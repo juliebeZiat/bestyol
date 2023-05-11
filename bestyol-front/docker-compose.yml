@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  http-validator-ui:
+    container_name: http-validator-ui
+    image: rg.fr-par.scw.cloud/gazelle-snapshot/app/http-validator-ui:1.0.0-SNAPSHOT
+    restart: always
+    env_file:
+      - .env
+    network_mode: "host"
