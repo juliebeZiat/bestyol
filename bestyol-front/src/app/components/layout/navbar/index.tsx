@@ -48,10 +48,10 @@ const Navbar = ({
     }, [menuIsOpen]);
 
     return (
-        <nav className="bg-blue text-[#FFFFFF]">
+        <nav className="relative bg-blue text-[#FFFFFF]">
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    <div className="flex items-center gap-2 sm:gap-8">
+                    <div className="relative flex items-center gap-2 sm:gap-8">
                         <div className="flex-shrink-0">
                             <div className="bg-purple w-[40px] h-[40px]" />
                         </div>
@@ -74,7 +74,9 @@ const Navbar = ({
                                 <span className="">/ {yolXpToNextLevel} XP</span>
                             </div>
                         </div>
+                        <img className="absolute h-[64px] left-[80%] select-none" src="assets/cloud-with-moon.png" />
                     </div>
+
                     <div
                         ref={menuRef}
                         className="ml-3 relative flex gap-3 items-center"
