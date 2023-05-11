@@ -6,7 +6,9 @@
 
 ## Installation
 
-- `pnpm i`
+```bash
+pnpm i
+```
 
 ## Usage
 
