@@ -13,6 +13,7 @@ module.exports = {
       orange: '#FCB482',
       green: '#56C375',
       salmon: '#FF999A',
+      grey: '#D9D9D9',
     },
     extend: {
       backgroundImage: {
@@ -20,7 +21,7 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      fontFamily : {
+      fontFamily: {
         VT323: ['VT323', 'monospace'],
       }
     },
