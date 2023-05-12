@@ -9,11 +9,7 @@ import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode
-}) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	const options = useMemo(() => {
 		return {
 			particles: {
@@ -101,3 +97,5 @@ export default function RootLayout({
 		</html>
 	)
 }
+
+export default RootLayout
