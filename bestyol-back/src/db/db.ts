@@ -1,18 +1,27 @@
-// db.ts
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import { PrismaClient } from "@prisma/client";
 
-import { users } from "./schema/users";
+const prisma = new PrismaClient();
 
-// example values
-const pool = new Pool({
-  host: "127.0.0.1",
-  port: 5432,
-  user: "postgres",
-  password: "password",
-  database: "db_name",
-});
+async function main() {
+  await prisma.user.create({
+    data: {
+      pp: "test",
+      banner: "test",
+      name: "Alice",
+      email: "alice@prisma.io",
+    },
+  });
 
-const db = drizzle(pool);
+  const allUsers = await prisma.user.findMany();
+  console.log(allUsers);
+}
 
-const allUsers = await db.select().from(users);
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
