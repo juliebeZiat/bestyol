@@ -4,7 +4,7 @@ import Image from 'next/image'
 import '../globals.css'
 
 import React, { useCallback, useMemo } from 'react'
-import type { Container, Engine } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
@@ -21,8 +21,6 @@ export default function RootLayout({
 }) {
 
 	const options = useMemo(() => {
-		// using an empty options object will load the default options, which are static particles with no background and 3px radius, opacity 100%, white color
-		// all options can be found here: https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html
 		return {
 			particles: {
 				number: {
@@ -63,11 +61,6 @@ export default function RootLayout({
 	}, []);
 
 	const particlesInit = useCallback(async (engine: Engine) => {
-		console.log(engine);
-
-		// you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
-		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-		// starting from v2 you can add only the features you need reducing the bundle size
 		await loadFull(engine);
 	}, []);
 
