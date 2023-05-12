@@ -15,6 +15,7 @@ module.exports = {
       salmon: '#FF999A',
       grey: '#D9D9D9',
       white: '#FFFFFF',
+      error: '#8C0032',
     },
     extend: {
       backgroundImage: {
