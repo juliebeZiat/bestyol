@@ -21,55 +21,55 @@ export default function RootLayout({
 }) {
 
 	const options = useMemo(() => {
-	  // using an empty options object will load the default options, which are static particles with no background and 3px radius, opacity 100%, white color
-	  // all options can be found here: https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html
-	  return {
-		particles: {
-			number: {
-				value: 50,
-				density: {
-					enable: true,
-					value_area: 800
-				}
+		// using an empty options object will load the default options, which are static particles with no background and 3px radius, opacity 100%, white color
+		// all options can be found here: https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html
+		return {
+			particles: {
+				number: {
+					value: 50,
+					density: {
+						enable: true,
+						value_area: 800
+					}
+				},
+				color: {
+					value: "#ffffff"
+				},
+				shape: {
+					type: "edge",
+				},
+				opacity: {
+					value: 1,
+					random: true,
+					anim: {
+						enable: true,
+						speed: 2,
+						opacity_min: 0,
+						sync: false
+					}
+				},
+				size: {
+					value: 3,
+					random: true,
+					anim: {
+						enable: false,
+						speed: 4,
+						size_min: 0.3,
+						sync: false
+					}
+				},
 			},
-			color: {
-				value: "#ffffff"
-			},
-			shape: {
-				type: "edge",
-			},
-			opacity: {
-				value: 1,
-				random: true,
-				anim: {
-					enable: true,
-					speed: 2,
-					opacity_min: 0,
-					sync: false
-				}
-			},
-			size: {
-				value: 3,
-				random: true,
-				anim: {
-					enable: false,
-					speed: 4,
-					size_min: 0.3,
-					sync: false
-				}
-			},
-		},
-	};
+		};
 	}, []);
-  
-    const particlesInit = useCallback(async (engine: Engine) => {
-        console.log(engine);
 
-        // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        await loadFull(engine);
-    }, []);
+	const particlesInit = useCallback(async (engine: Engine) => {
+		console.log(engine);
+
+		// you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
+		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+		// starting from v2 you can add only the features you need reducing the bundle size
+		await loadFull(engine);
+	}, []);
 
 	return (
 		<html lang='en'>
@@ -80,7 +80,9 @@ export default function RootLayout({
 					<Image src="/assets/cloud-with-moon.png" alt="cloud" width={564} height={195} className='absolute top-[10vh] right-[5vw] w-[30vw] h-auto' />
 					<Image src="/assets/mountain.png" alt="cloud" width={1011} height={335} className='absolute bottom-0 right-0 w-[40vw] h-auto' />
 				</div>
-				{children}
+				<main className='flex min-h-screen w-screen flex-col items-center justify-between p-24'>
+					{children}
+				</main>
 			</body>
 		</html>
 	)
