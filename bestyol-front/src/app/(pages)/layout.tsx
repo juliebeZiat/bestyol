@@ -67,7 +67,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<div className='w-screen h-screen bg-purple absolute top-0 left-0 -z-10'>
+				<div className='w-screen h-screen bg-purple fixed top-0 left-0 -z-10'>
 					<Particles init={particlesInit} options={options} />
 					<Image
 						src='/assets/cloud-1.png'
@@ -91,7 +91,7 @@ export default function RootLayout({
 						className='absolute bottom-0 right-0 w-[40vw] h-auto'
 					/>
 				</div>
-				<main className='flex min-h-screen w-screen flex-col items-center justify-between p-24'>
+				<main className='flex min-h-screen w-screen flex-col items-center justify-between'>
 					{children}
 				</main>
 			</body>
