@@ -11,7 +11,5 @@ export default function Home() {
 		return null
 	}
 
-	return (
-		<h1 className="text-5xl">BEST YOL</h1>
-	)
+	return <h1 className='text-5xl'>BEST YOL</h1>
 }
