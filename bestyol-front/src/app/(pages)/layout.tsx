@@ -8,11 +8,6 @@ import type { Engine } from 'tsparticles-engine'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 
-export const metadata = {
-	description: 'Best Yol is the best website about yols',
-	title: 'Best Yol',
-}
-
 export default function RootLayout({
 	children,
 }: {
@@ -64,6 +59,13 @@ export default function RootLayout({
 
 	return (
 		<html lang='en'>
+			<head>
+				<title>Best'Yol</title>
+				<meta
+					name='description'
+					content='Best Yol is the best website about yols'
+				/>
+			</head>
 			<body>
 				<div className='w-screen h-screen bg-purple absolute top-0 left-0 -z-10'>
 					<Particles init={particlesInit} options={options} />
