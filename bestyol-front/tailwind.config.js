@@ -25,7 +25,37 @@ module.exports = {
       },
       fontFamily: {
         VT323: ['VT323', 'monospace'],
-      }
+      },
+      animation: {
+        slideRight: 'slideRight 1s ease-in-out',
+        slideLeft: 'slideLeft 1s ease-in-out',
+        disappear: 'disappear 1s ease-in-out',
+        centerToRight: 'centerToRight 1s ease-in-out',
+        centerToLeft: 'centerToLeft 1s ease-in-out',
+        appear: 'appear 0.5s ease-in-out',
+      },
+      keyframes: {
+        slideRight: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(85%)', scale: '2' },
+        },
+        slideLeft: {
+          '0%': { transform: 'translateX(0)', scale: '1' },
+          '100%': { transform: 'translateX(-85%)', scale: '2' },
+        },
+        disappear: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        centerToLeft: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(-150%)', scale: '0.5' },
+        },
+        centerToRight: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(150%)', scale: '0.5' },
+        },
+      },
     },
   },
   plugins: [],
