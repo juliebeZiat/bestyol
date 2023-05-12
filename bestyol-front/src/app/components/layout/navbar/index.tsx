@@ -91,8 +91,8 @@ const Navbar = ({
                         {menuIsOpen && (
                             <ul className="absolute top-[51px] left-[-80px]">
                                 {menuItems.map((item, index) => (
-                                    <a className="cursor-pointer" href={item.link}>
-                                        <li key={index} className="w-[150px] border-2 p-1 text-xl border-purple bg-blue">
+                                    <a className="cursor-pointer" href={item.link} key={index}>
+                                        <li className="w-[150px] border-2 p-1 text-xl border-purple bg-blue">
                                             {item.name}
                                         </li>
                                     </a>
