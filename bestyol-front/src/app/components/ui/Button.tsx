@@ -4,7 +4,7 @@ interface ButtonProps {
 	textColor?: string
 	content: string
 	uppercase?: boolean
-	onClick: () => void
+	onClick?: () => void
 }
 
 const Button = ({
