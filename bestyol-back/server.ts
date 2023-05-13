@@ -10,10 +10,6 @@ app.use(cors());
 
 const port = process.env.PORT;
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("Express + typescript server");
-});
-
 app.listen(port, () => {
   console.log(`🚀 http://localhost:${port}`);
 });
