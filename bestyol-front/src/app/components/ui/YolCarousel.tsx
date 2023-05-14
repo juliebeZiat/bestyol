@@ -1,3 +1,4 @@
+import useWindowSize from '@/hooks/useWindowSize'
 import { useState } from 'react'
 
 interface YolCarouselProps {
@@ -17,6 +18,7 @@ const YolCarousel = ({
 	)
 	const [isAnimating, setIsAnimating] = useState(false)
 	const [animatedImageIndex, setAnimatedImageIndex] = useState(currentIndex)
+	const windowSizes = useWindowSize()
 
 	const handlePrev = () => {
 		if (!isAnimating) {
@@ -50,12 +52,14 @@ const YolCarousel = ({
 
 	return (
 		<div className='flex items-center'>
-			<button
-				className='text-xl lg:text-7xl mr-2 duration-300 transform hover:scale-125 text-white'
-				onClick={handlePrev}
-			>
-				{'<'}
-			</button>
+			{windowSizes.windowWidth > 500 && (
+				<button
+					className='text-xl lg:text-7xl mr-2 duration-300 transform hover:scale-125 text-white'
+					onClick={handlePrev}
+				>
+					{'<'}
+				</button>
+			)}
 			<section className='relative flex items-center justify-center h-[160px] sm:w-[400px] sm:h-[200px] lg:h-[300px] lg:w-[800px]'>
 				{isAnimating ? (
 					<>
@@ -97,6 +101,7 @@ const YolCarousel = ({
 						<img
 							src={images[(currentIndex + images.length - 1) % images.length]}
 							key={`left-${scrollDirection}-${currentIndex}`}
+							onClick={handlePrev}
 							alt='yol'
 							className={`w-[80px] lg:w-[150px] select-none ${
 								scrollDirection === 'right' ? 'animate-appear' : ''
@@ -111,6 +116,7 @@ const YolCarousel = ({
 						<img
 							src={images[(currentIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
+							onClick={handleNext}
 							alt='yol'
 							className={`w-[80px] lg:w-[150px] select-none ${
 								scrollDirection === 'left' ? 'animate-appear' : ''
@@ -119,12 +125,14 @@ const YolCarousel = ({
 					</>
 				)}
 			</section>
-			<button
-				className='text-xl lg:text-7xl duration-300 transform hover:scale-125 text-white'
-				onClick={handleNext}
-			>
-				{'>'}
-			</button>
+			{windowSizes.windowWidth > 500 && (
+				<button
+					className='text-xl lg:text-7xl duration-300 transform hover:scale-125 text-white'
+					onClick={handleNext}
+				>
+					{'>'}
+				</button>
+			)}
 		</div>
 	)
 }
