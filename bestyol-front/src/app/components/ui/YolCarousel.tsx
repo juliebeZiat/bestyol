@@ -65,9 +65,9 @@ const YolCarousel = ({
 							}
 							key={`left-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`w-[150px] mr-2 select-none  ${
+							className={`w-[150px] select-none  ${
 								scrollDirection === 'right'
-									? 'animate-slideRight'
+									? 'animate-slideRightUpScale'
 									: 'animate-disappear relative z-[-5]'
 							}`}
 						/>
@@ -75,20 +75,20 @@ const YolCarousel = ({
 							src={images[animatedImageIndex]}
 							key={`current-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`w-[300px] mr-2 select-none  ${
+							className={`w-[300px] select-none  ${
 								scrollDirection === 'right'
-									? 'animate-centerToRight'
-									: 'animate-centerToLeft'
+									? 'animate-centerToRightDownScale'
+									: 'animate-centerToLeftDownScale'
 							}`}
 						/>
 						<img
 							src={images[(animatedImageIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`w-[150px] mr-2 select-none  ${
+							className={`w-[150px] select-none  ${
 								scrollDirection === 'right'
 									? 'animate-disappear relative z-[-5]'
-									: 'animate-slideLeft'
+									: 'animate-slideLeftUpScale'
 							}`}
 						/>
 					</>
@@ -98,19 +98,23 @@ const YolCarousel = ({
 							src={images[(currentIndex + images.length - 1) % images.length]}
 							key={`left-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`max-w-[150px] mr-2 select-none  `}
+							className={`max-w-[150px] select-none ${
+								scrollDirection === 'right' ? 'animate-appear' : ''
+							} `}
 						/>
 						<img
 							src={images[currentIndex]}
 							key={`current-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`max-w-[300px] mr-2 select-none  `}
+							className={`max-w-[300px] select-none`}
 						/>
 						<img
 							src={images[(currentIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`max-w-[150px] mr-2 select-none  `}
+							className={`max-w-[150px] select-none ${
+								scrollDirection === 'left' ? 'animate-appear' : ''
+							} `}
 						/>
 					</>
 				)}

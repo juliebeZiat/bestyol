@@ -27,33 +27,37 @@ module.exports = {
         VT323: ['VT323', 'monospace'],
       },
       animation: {
-        slideRight: 'slideRight 1s ease-in-out',
-        slideLeft: 'slideLeft 1s ease-in-out',
+        slideRightUpScale: 'slideRightUpScale 1s ease-in-out',
+        slideLeftUpScale: 'slideLeftUpScale 1s ease-in-out',
+        centerToRightDownScale: 'centerToRightDownScale 1s ease-in-out',
+        centerToLeftDownScale: 'centerToLeftDownScale 1s ease-in-out',
         disappear: 'disappear 1s ease-in-out',
-        centerToRight: 'centerToRight 1s ease-in-out',
-        centerToLeft: 'centerToLeft 1s ease-in-out',
         appear: 'appear 0.5s ease-in-out',
       },
       keyframes: {
-        slideRight: {
+        slideRightUpScale: {
           '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(85%)', scale: '2' },
+          '100%': { transform: 'translateX(75%)', scale: '2' },
         },
-        slideLeft: {
+        slideLeftUpScale: {
           '0%': { transform: 'translateX(0)', scale: '1' },
-          '100%': { transform: 'translateX(-85%)', scale: '2' },
+          '100%': { transform: 'translateX(-75%)', scale: '2' },
+        },
+        centerToRightDownScale: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(150%)', scale: '0.5' },
+        },
+        centerToLeftDownScale: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(-150%)', scale: '0.5' },
         },
         disappear: {
           '0%': { opacity: '1' },
           '100%': { opacity: '0' },
         },
-        centerToLeft: {
-          '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(-150%)', scale: '0.5' },
-        },
-        centerToRight: {
-          '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(150%)', scale: '0.5' },
+        appear: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
     },
