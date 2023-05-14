@@ -51,12 +51,12 @@ const YolCarousel = ({
 	return (
 		<div className='flex items-center'>
 			<button
-				className='text-7xl mr-2 duration-300 transform hover:scale-125 text-white'
+				className='text-xl lg:text-7xl mr-2 duration-300 transform hover:scale-125 text-white'
 				onClick={handlePrev}
 			>
 				{'<'}
 			</button>
-			<section className='relative flex items-center justify-center h-[300px] w-[800px]'>
+			<section className='relative flex items-center justify-center h-[160px] sm:w-[400px] sm:h-[200px] lg:h-[300px] lg:w-[800px]'>
 				{isAnimating ? (
 					<>
 						<img
@@ -65,7 +65,7 @@ const YolCarousel = ({
 							}
 							key={`left-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`w-[150px] select-none  ${
+							className={`w-[80px] lg:w-[150px] select-none  ${
 								scrollDirection === 'right'
 									? 'animate-slideRightUpScale'
 									: 'animate-disappear relative z-[-5]'
@@ -75,7 +75,7 @@ const YolCarousel = ({
 							src={images[animatedImageIndex]}
 							key={`current-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`w-[300px] select-none  ${
+							className={`w-[160px] lg:w-[300px] select-none  ${
 								scrollDirection === 'right'
 									? 'animate-centerToRightDownScale'
 									: 'animate-centerToLeftDownScale'
@@ -85,7 +85,7 @@ const YolCarousel = ({
 							src={images[(animatedImageIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`w-[150px] select-none  ${
+							className={`w-[80px] lg:w-[150px] select-none  ${
 								scrollDirection === 'right'
 									? 'animate-disappear relative z-[-5]'
 									: 'animate-slideLeftUpScale'
@@ -98,7 +98,7 @@ const YolCarousel = ({
 							src={images[(currentIndex + images.length - 1) % images.length]}
 							key={`left-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`max-w-[150px] select-none ${
+							className={`w-[80px] lg:w-[150px] select-none ${
 								scrollDirection === 'right' ? 'animate-appear' : ''
 							} `}
 						/>
@@ -106,13 +106,13 @@ const YolCarousel = ({
 							src={images[currentIndex]}
 							key={`current-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`max-w-[300px] select-none`}
+							className={`w-[160px] lg:w-[300px] select-none animate-hovering duration-300`}
 						/>
 						<img
 							src={images[(currentIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
 							alt='yol'
-							className={`max-w-[150px] select-none ${
+							className={`w-[80px] lg:w-[150px] select-none ${
 								scrollDirection === 'left' ? 'animate-appear' : ''
 							} `}
 						/>
@@ -120,7 +120,7 @@ const YolCarousel = ({
 				)}
 			</section>
 			<button
-				className='text-7xl duration-300 transform hover:scale-125 text-white'
+				className='text-xl lg:text-7xl duration-300 transform hover:scale-125 text-white'
 				onClick={handleNext}
 			>
 				{'>'}

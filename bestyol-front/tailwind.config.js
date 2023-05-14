@@ -33,6 +33,7 @@ module.exports = {
         centerToLeftDownScale: 'centerToLeftDownScale 1s ease-in-out',
         disappear: 'disappear 1s ease-in-out',
         appear: 'appear 0.5s ease-in-out',
+        hovering: 'hovering 3s ease-in-out infinite',
       },
       keyframes: {
         slideRightUpScale: {
@@ -58,6 +59,11 @@ module.exports = {
         appear: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        hovering: {
+          '0%': { transform: 'translateY(0%)' },
+          '50%': { transform: 'translateY(-10%)' },
+          '100%': { transform: 'translateY(0%)' },
         },
       },
     },
