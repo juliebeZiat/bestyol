@@ -21,7 +21,7 @@ const HomePage = () => {
 			<div className='flex flex-col justify-center items-center'>
 				<div className='w-fit relative'>
 					<h1 className='text-7xl sm:text-[100px] lg:text-[150px] text-center'>
-						BEST'YOL
+						BEST YOL
 					</h1>
 					<h2 className='absolute right-0 top-[55px] sm:top-[80px] lg:top-[120px]'>
 						le meilleur de toi-même
@@ -55,7 +55,7 @@ const HomePage = () => {
 			</div>
 			<div className='text-center w-2/3 text-xl sm:text-3xl'>
 				<p>
-					Bienvenue sur Best'yol, le site web qui vous offre une expérience
+					Bienvenue sur Best yol, le site web qui vous offre une expérience
 					unique et motivante ! Best'yol vous présente Yol, votre compagnon
 					virtuel plein d'énergie et d'enthousiasme.
 				</p>
