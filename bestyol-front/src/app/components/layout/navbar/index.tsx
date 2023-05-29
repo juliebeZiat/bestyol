@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import ProgressBar from '../../ui/ProgressBar'
 
 interface NavbarProps {
 	yolName?: string
@@ -13,7 +14,7 @@ interface NavbarProps {
 const Navbar = ({
 	yolName = 'Mini Yol',
 	yolLevel = 1,
-	yolXp = 10,
+	yolXp = 110,
 	yolXpToNextLevel = 350,
 	userName = "Yol'anda",
 }: NavbarProps) => {
@@ -65,13 +66,7 @@ const Navbar = ({
 							</div>
 						</div>
 						<div className='flex flex-col'>
-							<div className='w-[75px] sm:w-[150px]'>
-								<div className='h-[10px] bg-[#FFFFFF] mt-2'>
-									<div
-										className={`${progressBarPercentage} h-full bg-orange`}
-									/>
-								</div>
-							</div>
+							<ProgressBar progress={yolXp} total={yolXpToNextLevel} />
 							<div className='flex items-center text-sm sm:text-lg'>
 								<span className=' mr-2'>{yolXp} XP</span>
 								<span className=''>/ {yolXpToNextLevel} XP</span>
