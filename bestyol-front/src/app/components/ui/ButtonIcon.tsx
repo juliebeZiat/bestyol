@@ -15,7 +15,7 @@ const ButtonIcon = ({
 }: ButtonIconProps) => {
 	return (
 		<button
-			className={`${backgroundColor} ${additionalStyle} py-2 px-4 lg:h-10 h-5`}
+			className={`${backgroundColor} ${additionalStyle} py-2 px-4 lg:h-10 h-5 w-10`}
 			onClick={onClick}
 		>
 			{children}

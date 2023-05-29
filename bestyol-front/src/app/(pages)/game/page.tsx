@@ -16,13 +16,18 @@ const GamePage = () => {
 				<Box
 					additionalStyle='row-span-2 mb-12 lg:mb-0'
 					title='Tâches quotidiennes'
+					isToggle
 				>
 					<DailyTaskBox />
 				</Box>
-				<Box additionalStyle='h-[20rem] mb-12 lg:mb-0' title='Mes tâches'>
+				<div className='lg:h-[20rem] mb-12 lg:mb-0'>
 					<CustomTaskBox />
-				</Box>
-				<Box title='Mes succès'>
+				</div>
+				<Box
+					additionalStyle='mt-[32px] lg:h-[20rem]'
+					title='Mes succès'
+					isToggle
+				>
 					<SuccessBox />
 				</Box>
 			</div>

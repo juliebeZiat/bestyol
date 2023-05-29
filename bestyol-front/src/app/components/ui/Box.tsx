@@ -12,6 +12,8 @@ interface BoxProps {
 	additionalStyle?: string
 	handleOpen?: () => void
 	title?: string
+	isToggle?: boolean
+	additionalButton?: ReactNode
 }
 
 const Box = ({
@@ -21,6 +23,8 @@ const Box = ({
 	additionalStyle,
 	handleOpen,
 	title,
+	isToggle = false,
+	additionalButton,
 }: BoxProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const isMobile = useIsMobile()
@@ -47,19 +51,24 @@ const Box = ({
 				<div>
 					<h1 className='text-white lg:text-2xl uppercase'>{title}</h1>
 				</div>
-				<div className='flex items-center'>
-					<ButtonIcon onClick={toggleOpen}>
-						<Image
-							src='/assets/icons/arrow.svg'
-							width={10}
-							height={10}
-							alt='arrow-icon'
-							className={isOpen ? 'rotate-180' : ''}
-						/>
-					</ButtonIcon>
-				</div>
+				{isToggle && isMobile ? (
+					<div className='flex'>
+						{additionalButton}
+						<ButtonIcon onClick={toggleOpen}>
+							<Image
+								src='/assets/icons/arrow.svg'
+								width={10}
+								height={10}
+								alt='arrow-icon'
+								className={isOpen ? 'rotate-180' : ''}
+							/>
+						</ButtonIcon>
+					</div>
+				) : (
+					<div>{additionalButton}</div>
+				)}
 			</div>
-			{children}
+			{isToggle ? isOpen && children : children}
 		</div>
 	)
 }
