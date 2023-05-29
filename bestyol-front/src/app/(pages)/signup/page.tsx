@@ -3,10 +3,12 @@
 import Box from '@/app/components/ui/Box'
 import Button from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
+import { useIsMobile } from '@/hooks/useWindowSize'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const SigninPage = () => {
+	const isMobile = useIsMobile()
 	const [hydrated, setHydrated] = useState(false)
 	useEffect(() => {
 		setHydrated(true)
@@ -16,7 +18,7 @@ const SigninPage = () => {
 	}
 
 	return (
-		<Box centerItems additionalStyle='mt-24'>
+		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
 			<h1 className='text-white text-2xl mb-10'>Inscription</h1>
 			<form className='w-3/4 mb-10'>
 				<TextField label="Votre nom d'utilisateur" labelFor='username' />
