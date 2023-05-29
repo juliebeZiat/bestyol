@@ -43,7 +43,7 @@ const SuccessBox = () => {
 			</div>
 			{isMobile && (
 				<div className='flex flex-col items-center'>
-					<Link href='/success'>
+					<Link href='/achievements'>
 						<Button content='Voir tous mes succès' uppercase />
 					</Link>
 				</div>
