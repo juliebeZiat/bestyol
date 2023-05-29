@@ -1,6 +1,6 @@
 import Box from '@/app/components/ui/Box'
 import achievementsList from './tempAchievements.json'
-import AchievementTile from './achievementTile'
+import AchievementTile from './AchievementTile'
 
 interface achievementProps {
 	title: string
