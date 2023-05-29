@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useWindowSize'
 
-interface achievement {
+interface achievementTileProps {
 	title: string
 	description: string
 	xp: number
@@ -17,9 +17,7 @@ const AchievementTile = ({
 	xp,
 	goal,
 	progress,
-}: achievement) => {
-	// const progressPercent = Math.round((progress / goal) * 100)
-	// const widthClass = `w-[${progressPercent}%]`
+}: achievementTileProps) => {
 
 	return (
 		<div

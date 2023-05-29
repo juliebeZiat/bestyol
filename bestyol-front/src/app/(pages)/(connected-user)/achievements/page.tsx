@@ -1,8 +1,8 @@
 import Box from '@/app/components/ui/Box'
 import achievementsList from './tempAchievements.json'
-import AchievementTile from '@/app/components/layout/achievementTile'
+import AchievementTile from './achievementTile'
 
-interface achievement {
+interface achievementProps {
 	title: string
 	description: string
 	xp: number
@@ -10,7 +10,7 @@ interface achievement {
 	progress: number
 }
 
-const Success = () => {
+const AchievementsPage = () => {
 	achievementsList.sort((a, b) => {
 		if (a.progress / a.goal > b.progress / b.goal) return -1
 		if (a.progress / a.goal < b.progress / b.goal) return 1
@@ -26,7 +26,7 @@ const Success = () => {
 			<h1 className='text-5xl text-white mt-[2rem]'>MES SUCCÈS</h1>
 			<div className='w-full flex flex-col items-center'>
 				<Box centerItems additionalStyle='gap-y-[2rem]'>
-					{achievementsList.map((achievement: achievement) => {
+					{achievementsList.map((achievement: achievementProps) => {
 						return (
 							<AchievementTile
 								title={achievement.title}
@@ -43,4 +43,4 @@ const Success = () => {
 	)
 }
 
-export default Success
+export default AchievementsPage
