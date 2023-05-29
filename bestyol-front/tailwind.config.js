@@ -25,7 +25,47 @@ module.exports = {
       },
       fontFamily: {
         VT323: ['VT323', 'monospace'],
-      }
+      },
+      animation: {
+        slideRightUpScale: 'slideRightUpScale 1s ease-in-out',
+        slideLeftUpScale: 'slideLeftUpScale 1s ease-in-out',
+        centerToRightDownScale: 'centerToRightDownScale 1s ease-in-out',
+        centerToLeftDownScale: 'centerToLeftDownScale 1s ease-in-out',
+        disappear: 'disappear 1s ease-in-out',
+        appear: 'appear 0.5s ease-in-out',
+        hovering: 'hovering 3s ease-in-out infinite',
+      },
+      keyframes: {
+        slideRightUpScale: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(75%)', scale: '2' },
+        },
+        slideLeftUpScale: {
+          '0%': { transform: 'translateX(0)', scale: '1' },
+          '100%': { transform: 'translateX(-75%)', scale: '2' },
+        },
+        centerToRightDownScale: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(150%)', scale: '0.5' },
+        },
+        centerToLeftDownScale: {
+          '0%': { transform: 'translateX(0%)', scale: '1' },
+          '100%': { transform: 'translateX(-150%)', scale: '0.5' },
+        },
+        disappear: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        appear: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        hovering: {
+          '0%': { transform: 'translateY(0%)' },
+          '50%': { transform: 'translateY(-10%)' },
+          '100%': { transform: 'translateY(0%)' },
+        },
+      },
     },
   },
   plugins: [],

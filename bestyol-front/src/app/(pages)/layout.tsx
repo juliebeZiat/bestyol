@@ -9,11 +9,7 @@ import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode
-}) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	const options = useMemo(() => {
 		return {
 			particles: {
@@ -68,7 +64,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<div className='w-screen h-screen bg-purple fixed top-0 left-0 -z-10'>
+				<div className='w-full h-screen bg-purple fixed top-0 left-0 -z-10'>
 					{!useIsMobile() && (
 						<Particles init={particlesInit} options={options} />
 					)}
@@ -94,10 +90,12 @@ export default function RootLayout({
 						className='fixed bottom-0 right-0 w-[40vw] h-auto'
 					/>
 				</div>
-				<main className='flex min-h-screen w-screen flex-col items-center'>
+				<main className='flex min-h-screen w-full flex-col items-center'>
 					{children}
 				</main>
 			</body>
 		</html>
 	)
 }
+
+export default RootLayout
