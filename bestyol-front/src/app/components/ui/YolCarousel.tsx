@@ -1,5 +1,6 @@
 import useWindowSize from '@/hooks/useWindowSize'
 import { useState } from 'react'
+import Image from 'next/image'
 
 interface YolCarouselProps {
 	images?: string[]
@@ -63,11 +64,13 @@ const YolCarousel = ({
 			<section className='relative flex items-center justify-center h-[160px] sm:w-[400px] sm:h-[200px] lg:h-[300px] lg:w-[800px]'>
 				{isAnimating ? (
 					<>
-						<img
+						<Image
 							src={
 								images[(animatedImageIndex + images.length - 1) % images.length]
 							}
 							key={`left-${scrollDirection}-${currentIndex}`}
+							width={windowSizes.windowWidth > 500 ? 150 : 80}
+							height={windowSizes.windowWidth > 500 ? 150 : 80}
 							alt='yol'
 							className={`w-[80px] lg:w-[150px] select-none  ${
 								scrollDirection === 'right'
@@ -75,9 +78,11 @@ const YolCarousel = ({
 									: 'animate-disappear relative z-[-5]'
 							}`}
 						/>
-						<img
+						<Image
 							src={images[animatedImageIndex]}
 							key={`current-${scrollDirection}-${currentIndex}`}
+							width={windowSizes.windowWidth > 500 ? 300 : 160}
+							height={windowSizes.windowWidth > 500 ? 300 : 160}
 							alt='yol'
 							className={`w-[160px] lg:w-[300px] select-none  ${
 								scrollDirection === 'right'
@@ -85,9 +90,11 @@ const YolCarousel = ({
 									: 'animate-centerToLeftDownScale'
 							}`}
 						/>
-						<img
+						<Image
 							src={images[(animatedImageIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
+							width={windowSizes.windowWidth > 500 ? 150 : 80}
+							height={windowSizes.windowWidth > 500 ? 150 : 80}
 							alt='yol'
 							className={`w-[80px] lg:w-[150px] select-none  ${
 								scrollDirection === 'right'
@@ -98,24 +105,30 @@ const YolCarousel = ({
 					</>
 				) : (
 					<>
-						<img
+						<Image
 							src={images[(currentIndex + images.length - 1) % images.length]}
 							key={`left-${scrollDirection}-${currentIndex}`}
+							width={windowSizes.windowWidth > 500 ? 150 : 80}
+							height={windowSizes.windowWidth > 500 ? 150 : 80}
 							onClick={handlePrev}
 							alt='yol'
 							className={`w-[80px] lg:w-[150px] select-none ${
 								scrollDirection === 'right' ? 'animate-appear' : ''
 							} `}
 						/>
-						<img
+						<Image
 							src={images[currentIndex]}
 							key={`current-${scrollDirection}-${currentIndex}`}
+							width={windowSizes.windowWidth > 500 ? 300 : 160}
+							height={windowSizes.windowWidth > 500 ? 300 : 160}
 							alt='yol'
 							className={`w-[160px] lg:w-[300px] select-none animate-hovering duration-300`}
 						/>
-						<img
+						<Image
 							src={images[(currentIndex + 1) % images.length]}
 							key={`right-${scrollDirection}-${currentIndex}`}
+							width={windowSizes.windowWidth > 500 ? 150 : 80}
+							height={windowSizes.windowWidth > 500 ? 150 : 80}
 							onClick={handleNext}
 							alt='yol'
 							className={`w-[80px] lg:w-[150px] select-none ${
