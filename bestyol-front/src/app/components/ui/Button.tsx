@@ -5,6 +5,7 @@ interface ButtonProps {
 	content: string
 	uppercase?: boolean
 	onClick?: () => void
+	additionalStyle?: string
 }
 
 const Button = ({
@@ -13,10 +14,11 @@ const Button = ({
 	content,
 	uppercase,
 	onClick,
+	additionalStyle,
 }: ButtonProps) => {
 	return (
 		<button
-			className={`${backgroundColor} ${textColor} py-2 px-4 text-lg`}
+			className={`${backgroundColor} ${textColor} ${additionalStyle} py-2 px-4 text-lg`}
 			onClick={onClick}
 		>
 			{uppercase ? content.toUpperCase() : content}

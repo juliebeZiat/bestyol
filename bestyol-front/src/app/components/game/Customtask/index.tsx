@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Box from '../../ui/Box'
 import ButtonIcon from '../../ui/ButtonIcon'
 import Image from 'next/image'
+import TextField from '../../ui/TextField'
+import CustomTaskItem from './CustomTaskItem'
 
 const CustomTaskBox = () => {
 	const [allTasks, setAllTasks] = useState<boolean>(true)
@@ -14,6 +16,26 @@ const CustomTaskBox = () => {
 	}
 
 	const customTasks = [
+		{
+			title: 'intégration front de Bestyol intégration front de Bestyol',
+			status: true,
+		},
+		{
+			title: 'intégration front de Bestyol',
+			status: true,
+		},
+		{
+			title: 'intégration front de Bestyol',
+			status: true,
+		},
+		{
+			title: 'intégration front de Bestyol',
+			status: true,
+		},
+		{
+			title: 'intégration front de Bestyol',
+			status: true,
+		},
 		{
 			title: 'intégration front de Bestyol',
 			status: true,
@@ -59,7 +81,7 @@ const CustomTaskBox = () => {
 				title='Mes tâches'
 				isToggle
 				additionalButton={
-					<ButtonIcon onClick={() => console.log('add')} additionalStyle='mr-2'>
+					<ButtonIcon onClick={handleCreateNewTask} additionalStyle='mr-2'>
 						<Image
 							src='/assets/icons/add.svg'
 							width={8}
@@ -70,7 +92,32 @@ const CustomTaskBox = () => {
 					</ButtonIcon>
 				}
 			>
-				<div className='block text-right'></div>
+				{allTasks ? (
+					<>
+						<div className='overflow-y-auto max-h-[80%] mt-4'>
+							{createNewTask && <TextField inputFocus />}
+							{activeTasks.map((task, index) => (
+								<CustomTaskItem
+									title={task.title}
+									status={task.status}
+									key={index}
+								/>
+							))}
+						</div>
+					</>
+				) : (
+					<div>
+						<div>
+							{archivedTasks.map((task, index) => (
+								<CustomTaskItem
+									title={task.title}
+									status={task.status}
+									key={index}
+								/>
+							))}
+						</div>
+					</div>
+				)}
 			</Box>
 		</div>
 	)
