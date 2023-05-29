@@ -25,21 +25,23 @@ const AchievementTile = ({
 		<div
 			className={`${
 				progress < goal ? 'bg-lowOpacity' : 'bg-orange'
-			} p-8 w-[80%] flex ${
+			} h-[15vh] p-8 w-[80%] flex ${
 				useIsMobile() ? 'flex-col text-center' : ''
 			} items-center relative text-white gap-x-[1rem]`}
+			 style={{textShadow: '-0.5px -0.5px 2px black'}}
 		>
 			<Image
 				src={'/assets/tempAchievement.png'}
 				alt='achievement logo'
 				width={50}
 				height={50}
+				className='h-[80%] w-auto'
 			/>
 			<div>
-				<p className='text-2xl'>{title}</p>
-				<p>{description}</p>
+				<p className='text-3xl'>{title}</p>
+				<p className='text-xl'>{description}</p>
 			</div>
-			<div className='absolute top-[1rem] right-[1rem] text-end'>
+			<div className='absolute top-[1rem] right-[1rem] text-end text-2xl'>
 				{progress < goal && (
 					<p>
 						{progress}/{goal}

@@ -24,7 +24,7 @@ const Success = () => {
 	return (
 		<>
 			<h1 className='text-5xl text-white mt-[2rem]'>MES SUCCÈS</h1>
-			<div className='w-screen flex flex-col items-center'>
+			<div className='w-full flex flex-col items-center'>
 				<Box centerItems additionalStyle='gap-y-[2rem]'>
 					{achievementsList.map((achievement: achievement) => {
 						return (
