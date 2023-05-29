@@ -9,7 +9,6 @@ interface TextFieldProps {
 	placeholder?: string
 	error?: boolean
 	errorMessage?: string
-	value?: string
 	inputFocus?: boolean
 }
 

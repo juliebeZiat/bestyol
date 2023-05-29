@@ -12,7 +12,7 @@ interface BoxProps {
 	additionalStyle?: string
 	handleOpen?: () => void
 	title?: string
-	isToggle?: boolean
+	isTogglable?: boolean
 	additionalButton?: ReactNode
 }
 
@@ -23,7 +23,7 @@ const Box = ({
 	additionalStyle,
 	handleOpen,
 	title,
-	isToggle = false,
+	isTogglable: isToggle = false,
 	additionalButton,
 }: BoxProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)

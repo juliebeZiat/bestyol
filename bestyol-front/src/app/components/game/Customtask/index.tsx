@@ -9,6 +9,7 @@ import CustomTaskItem from './CustomTaskItem'
 
 const CustomTaskBox = () => {
 	const [allTasks, setAllTasks] = useState<boolean>(true)
+	// filtrer avec 'all' "archived"
 	const [createNewTask, setCreateNewTask] = useState<boolean>(false)
 
 	const handleCreateNewTask = () => {
@@ -79,7 +80,7 @@ const CustomTaskBox = () => {
 			<Box
 				additionalStyle='h-full'
 				title='Mes tâches'
-				isToggle
+				isTogglable
 				additionalButton={
 					<ButtonIcon onClick={handleCreateNewTask} additionalStyle='mr-2'>
 						<Image
@@ -93,29 +94,25 @@ const CustomTaskBox = () => {
 				}
 			>
 				{allTasks ? (
-					<>
-						<div className='overflow-y-auto max-h-[80%] mt-4'>
-							{createNewTask && <TextField inputFocus />}
-							{activeTasks.map((task, index) => (
-								<CustomTaskItem
-									title={task.title}
-									status={task.status}
-									key={index}
-								/>
-							))}
-						</div>
-					</>
+					<div className='overflow-y-auto max-h-[80%] mt-4'>
+						{createNewTask && <TextField inputFocus />}
+						{activeTasks.map((task, index) => (
+							<CustomTaskItem
+								title={task.title}
+								status={task.status}
+								key={index}
+							/>
+						))}
+					</div>
 				) : (
 					<div>
-						<div>
-							{archivedTasks.map((task, index) => (
-								<CustomTaskItem
-									title={task.title}
-									status={task.status}
-									key={index}
-								/>
-							))}
-						</div>
+						{archivedTasks.map((task, index) => (
+							<CustomTaskItem
+								title={task.title}
+								status={task.status}
+								key={index}
+							/>
+						))}
 					</div>
 				)}
 			</Box>
