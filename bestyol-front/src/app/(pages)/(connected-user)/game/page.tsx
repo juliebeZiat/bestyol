@@ -32,7 +32,7 @@ const GamePage = () => {
 				isTogglable
 				additionalButton={
 					!isMobile && (
-						<Link href='/success'>
+						<Link href='/achievements'>
 							<Button content='Voir tous mes succès' uppercase />
 						</Link>
 					)
