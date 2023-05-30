@@ -27,7 +27,7 @@ const Button = ({
 }: ButtonProps) => {
 	return (
 		<button
-			className={`${backgroundColor} ${textColor} ${size}`}
+			className={`${backgroundColor} ${textColor} ${size} ${additionalStyle}`}
 			onClick={onClick}
 		>
 			{uppercase ? content.toUpperCase() : content}
