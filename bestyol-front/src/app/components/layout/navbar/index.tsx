@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import ProgressBar from '../../ui/ProgressBar'
+import Link from 'next/link'
 
 interface NavbarProps {
 	yolName?: string
@@ -52,9 +53,11 @@ const Navbar = ({
 			<div className='w-full px-4 sm:px-6 lg:px-8'>
 				<div className='flex items-center justify-between h-16'>
 					<div className='relative flex items-center gap-2 sm:gap-8'>
-						<div className='flex-shrink-0'>
-							<div className='bg-purple w-[40px] h-[40px]' />
-						</div>
+						<Link href='/game'>
+							<div className='flex-shrink-0'>
+								<div className='bg-purple w-[40px] h-[40px]' />
+							</div>
+						</Link>
 						<div className='flex flex-col'>
 							<div className=''>
 								<span className='sm:text-3xl'>Level {yolLevel}</span>
