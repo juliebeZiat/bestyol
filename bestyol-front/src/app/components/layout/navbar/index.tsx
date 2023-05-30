@@ -18,8 +18,6 @@ const Navbar = ({
 	yolXpToNextLevel = 350,
 	userName = "Yol'anda",
 }: NavbarProps) => {
-	const progressBarPercentage: string =
-		yolXp === 0 ? 'w-0' : `w-[${Math.round((yolXp / yolXpToNextLevel) * 100)}%]`
 	const firstLetterOfUserName: string = userName.charAt(0).toUpperCase()
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
@@ -50,7 +48,7 @@ const Navbar = ({
 	}, [menuIsOpen])
 
 	return (
-		<nav className='relative bg-blue text-[#FFFFFF]'>
+		<nav className='relative bg-blue text-[#FFFFFF] w-full'>
 			<div className='w-full px-4 sm:px-6 lg:px-8'>
 				<div className='flex items-center justify-between h-16'>
 					<div className='relative flex items-center gap-2 sm:gap-8'>
