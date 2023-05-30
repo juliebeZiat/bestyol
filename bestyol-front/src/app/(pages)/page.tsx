@@ -53,7 +53,7 @@ const HomePage = () => {
 					/>
 				</Link>
 			</div>
-			<div className='text-center w-2/3 text-xl sm:text-3xl'>
+			<div className='text-center w-2/3 text-xl sm:text-xl'>
 				<p>
 					Bienvenue sur Best yol, le site web qui vous offre une expérience
 					unique et motivante ! Best'yol vous présente Yol, votre compagnon
