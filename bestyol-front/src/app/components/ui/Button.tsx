@@ -23,7 +23,6 @@ const Button = ({
 	content,
 	uppercase,
 	onClick,
-	additionalStyle,
 }: ButtonProps) => {
 	return (
 		<button

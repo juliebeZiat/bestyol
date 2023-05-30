@@ -7,9 +7,13 @@ import Image from 'next/image'
 import TextField from '../../ui/TextField'
 import CustomTaskItem from './CustomTaskItem'
 
+export enum TaskType {
+	All = 'all',
+	Archived = 'archived',
+}
+
 const CustomTaskBox = () => {
-	const [allTasks, setAllTasks] = useState<boolean>(true)
-	// filtrer avec 'all' "archived"
+	const [taskType, setTaskType] = useState<TaskType>(TaskType.All)
 	const [createNewTask, setCreateNewTask] = useState<boolean>(false)
 
 	const handleCreateNewTask = () => {
@@ -62,17 +66,17 @@ const CustomTaskBox = () => {
 			<div className='flex cursor-pointer'>
 				<div
 					className={`${
-						allTasks ? 'bg-lowOpacity' : 'bg-[#564089]'
+						taskType === TaskType.All ? 'bg-lowOpacity' : 'bg-[#564089]'
 					} lg:w-[30%] w-20 py-1`}
-					onClick={() => setAllTasks(true)}
+					onClick={() => setTaskType(TaskType.All)}
 				>
 					<p className='text-white text-center'>toutes</p>
 				</div>
 				<div
 					className={`${
-						!allTasks ? 'bg-lowOpacity' : 'bg-[#564089]'
+						taskType === TaskType.Archived ? 'bg-lowOpacity' : 'bg-[#564089]'
 					} lg:w-[30%] w-20 py-1`}
-					onClick={() => setAllTasks(false)}
+					onClick={() => setTaskType(TaskType.Archived)}
 				>
 					<p className='text-white text-center'>historique</p>
 				</div>
@@ -93,7 +97,7 @@ const CustomTaskBox = () => {
 					</ButtonIcon>
 				}
 			>
-				{allTasks ? (
+				{taskType === TaskType.All ? (
 					<div className='overflow-y-auto max-h-[80%] mt-4'>
 						{createNewTask && <TextField inputFocus />}
 						{activeTasks.map((task, index) => (

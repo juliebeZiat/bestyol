@@ -1,6 +1,6 @@
 import Box from '@/app/components/ui/Box'
 import achievementsList from './tempAchievements.json'
-import AchievementTile from './AchievementTile'
+import AchievementTile from '../../../components/achievements/AchievementTile'
 
 interface achievementProps {
 	title: string
@@ -23,9 +23,9 @@ const AchievementsPage = () => {
 
 	return (
 		<>
-			<h1 className='text-5xl text-white mt-[2rem]'>MES SUCCÈS</h1>
+			<h1 className='text-4xl text-white my-[2rem]'>MES SUCCÈS</h1>
 			<div className='w-full flex flex-col items-center'>
-				<Box centerItems additionalStyle='gap-y-[2rem]'>
+				<Box centerItems additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem]'>
 					{achievementsList.map((achievement: achievementProps) => {
 						return (
 							<AchievementTile

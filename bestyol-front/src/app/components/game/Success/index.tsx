@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Box from '@/app/components/ui/Box'
-import Button from '@/app/components/ui/Button'
+import Button, { ButtonSize } from '@/app/components/ui/Button'
 import SuccessItem from './SuccessItem'
 import { useIsMobile } from '@/hooks/useWindowSize'
 
@@ -44,7 +44,11 @@ const SuccessBox = () => {
 			{isMobile && (
 				<div className='flex flex-col items-center'>
 					<Link href='/achievements'>
-						<Button content='Voir tous mes succès' uppercase />
+						<Button
+							content='Voir tous mes succès'
+							uppercase
+							size={ButtonSize.Small}
+						/>
 					</Link>
 				</div>
 			)}

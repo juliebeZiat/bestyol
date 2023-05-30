@@ -5,7 +5,7 @@ import DailyTaskBox from '@/app/components/game/DailyTask'
 import SuccessBox from '@/app/components/game/Success'
 import YolBox from '@/app/components/game/Yol'
 import Box from '@/app/components/ui/Box'
-import Button from '@/app/components/ui/Button'
+import Button, { ButtonSize } from '@/app/components/ui/Button'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Link from 'next/link'
 
@@ -33,7 +33,11 @@ const GamePage = () => {
 				additionalButton={
 					!isMobile && (
 						<Link href='/achievements'>
-							<Button content='Voir tous mes succès' uppercase />
+							<Button
+								content='Voir tous mes succès'
+								uppercase
+								size={ButtonSize.Small}
+							/>
 						</Link>
 					)
 				}
