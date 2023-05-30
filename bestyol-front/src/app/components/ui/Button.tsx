@@ -13,6 +13,7 @@ interface ButtonProps {
 	content: string
 	uppercase?: boolean
 	onClick?: () => void
+	additionalStyle?: string
 }
 
 const Button = ({
@@ -22,6 +23,7 @@ const Button = ({
 	content,
 	uppercase,
 	onClick,
+	additionalStyle,
 }: ButtonProps) => {
 	return (
 		<button

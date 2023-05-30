@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import ProgressBar from '../../ui/ProgressBar'
 
 interface NavbarProps {
 	yolName?: string
@@ -13,12 +14,10 @@ interface NavbarProps {
 const Navbar = ({
 	yolName = 'Mini Yol',
 	yolLevel = 1,
-	yolXp = 10,
+	yolXp = 110,
 	yolXpToNextLevel = 350,
 	userName = "Yol'anda",
 }: NavbarProps) => {
-	const progressBarPercentage: string =
-		yolXp === 0 ? 'w-0' : `w-[${Math.round((yolXp / yolXpToNextLevel) * 100)}%]`
 	const firstLetterOfUserName: string = userName.charAt(0).toUpperCase()
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
@@ -49,7 +48,7 @@ const Navbar = ({
 	}, [menuIsOpen])
 
 	return (
-		<nav className='relative bg-blue text-[#FFFFFF]'>
+		<nav className='relative bg-blue text-[#FFFFFF] w-full'>
 			<div className='w-full px-4 sm:px-6 lg:px-8'>
 				<div className='flex items-center justify-between h-16'>
 					<div className='relative flex items-center gap-2 sm:gap-8'>
@@ -65,13 +64,7 @@ const Navbar = ({
 							</div>
 						</div>
 						<div className='flex flex-col'>
-							<div className='w-[75px] sm:w-[150px]'>
-								<div className='h-[10px] bg-[#FFFFFF] mt-2'>
-									<div
-										className={`${progressBarPercentage} h-full bg-orange`}
-									/>
-								</div>
-							</div>
+							<ProgressBar progress={yolXp} total={yolXpToNextLevel} />
 							<div className='flex items-center text-sm sm:text-lg'>
 								<span className=' mr-2'>{yolXp} XP</span>
 								<span className=''>/ {yolXpToNextLevel} XP</span>

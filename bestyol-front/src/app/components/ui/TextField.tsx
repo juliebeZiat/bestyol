@@ -1,14 +1,15 @@
 'use client'
 
-import { HTMLInputTypeAttribute, useState } from 'react'
+import { HTMLInputTypeAttribute, useEffect, useRef, useState } from 'react'
 
 interface TextFieldProps {
-	label: string
-	labelFor: string
+	label?: string
+	labelFor?: string
 	inputType?: HTMLInputTypeAttribute
 	placeholder?: string
 	error?: boolean
 	errorMessage?: string
+	inputFocus?: boolean
 }
 
 const TextField = ({
@@ -18,8 +19,17 @@ const TextField = ({
 	placeholder,
 	error,
 	errorMessage = 'Erreur',
+	inputFocus,
 }: TextFieldProps) => {
 	const [isFocused, setIsFocused] = useState(false)
+	const inputReference = useRef<HTMLInputElement>(null)
+
+	useEffect(() => {
+		if (inputReference.current) {
+			inputReference.current.focus()
+		}
+	}, [])
+
 	return (
 		<div className='mb-4 w-full'>
 			<label className='block text-xl mb-2 text text-white' htmlFor={labelFor}>
@@ -27,6 +37,7 @@ const TextField = ({
 			</label>
 			<div className='relative'>
 				<input
+					ref={inputFocus ? inputReference : null}
 					className={`appearance-none w-full py-2 px-3 pl-6 focus:outline-none outline-none text-xl ${
 						error && 'border-error border-2'
 					} `}
