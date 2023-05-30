@@ -7,3 +7,23 @@
 * {
   font-family: 'VT323', monospace;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2E1B5B;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #2E1B5B;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #D9D9D9;
+  border: 3px solid #2E1B5B;
+}
