@@ -4,11 +4,15 @@ import Box from '@/app/components/ui/Box'
 import Button from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
+import { useAppDispatch } from '@/state/hooks'
+import { login } from '@/state/reducer/app.reducer'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const LoginPage = () => {
 	const isMobile = useIsMobile()
+	const dispatch = useAppDispatch()
+
 	const [hydrated, setHydrated] = useState(false)
 	useEffect(() => {
 		setHydrated(true)
@@ -28,14 +32,15 @@ const LoginPage = () => {
 					inputType='password'
 				/>
 				<div className='flex flex-col items-center py-5'>
-					<Link href='/'>
+					<Link href='/game'>
 						<Button
 							content='Je me connecte'
 							textColor='text-white'
 							backgroundColor='bg-orange'
+							onClick={() => dispatch(login())}
 						/>
 					</Link>
-					<Link href='/signin' className='text-white mt-5'>
+					<Link href='/signup' className='text-white mt-5'>
 						Pas encore inscrit ? Inscrivez-vous
 					</Link>
 				</div>

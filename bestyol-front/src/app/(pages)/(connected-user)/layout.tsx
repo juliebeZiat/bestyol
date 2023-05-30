@@ -1,12 +1,22 @@
+'use client'
+
 import Navbar from '@/app/components/layout/navbar'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
+import { redirect } from 'next/navigation'
 
 const NavLayout = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<>
-			<Navbar />
-			{children}
-		</>
-	)
+	const isLogged = useAppSelector((state: RootState) => state.app.isLogged)
+
+	if (isLogged) {
+		return (
+			<>
+				<Navbar />
+				{children}
+			</>
+		)
+	}
+	return redirect('/login')
 }
 
 export default NavLayout

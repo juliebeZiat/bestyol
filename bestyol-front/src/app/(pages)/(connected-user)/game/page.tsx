@@ -7,10 +7,12 @@ import YolBox from '@/app/components/game/Yol'
 import Box from '@/app/components/ui/Box'
 import Button from '@/app/components/ui/Button'
 import { useIsMobile } from '@/hooks/useWindowSize'
+import { useAppSelector } from '@/state/hooks'
 import Link from 'next/link'
 
 const GamePage = () => {
 	const isMobile = useIsMobile()
+
 	return (
 		<div className='lg:grid grid-cols-[30%_30%_35%] grid-flow-row gap-8 p-10'>
 			<Box additionalStyle='col-span-2 h-[20rem] mb-12 lg:mb-0'>
