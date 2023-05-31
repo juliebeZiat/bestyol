@@ -5,7 +5,7 @@ import Button from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppDispatch } from '@/state/hooks'
-import { login } from '@/state/reducer/app.reducer'
+import { login } from '@/state/reducer/auth.reducer'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 

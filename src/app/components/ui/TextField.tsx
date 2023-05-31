@@ -20,7 +20,7 @@ const TextField = ({
 	inputType = 'text',
 	placeholder,
 	error,
-	errorMessage = 'Erreur',
+	errorMessage,
 	inputFocus,
 	value,
 	onChange,

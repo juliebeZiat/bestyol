@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "pp": "Icon1.png",
+        "banner": "cloud-1.png",
+        "name": "Vincent",
+        "email": "vincent@bestyol.fr",
+        "password": "1234567890"
+    },
+    {
+        "id": 2,
+        "pp": "Icon2.png",
+        "banner": "cloud-2.png",
+        "name": "Alan",
+        "email": "alan@bestyol.fr",
+        "password": "1234567890"
+    },
+    {
+        "id": 3,
+        "pp": "Icon3.png",
+        "banner": "mountain.png",
+        "name": "Julie",
+        "email": "julie@bestyol.fr",
+        "password": "1234567890"
+    }
+]

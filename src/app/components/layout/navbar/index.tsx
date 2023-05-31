@@ -3,6 +3,10 @@
 import { useState, useEffect, useRef } from 'react'
 import ProgressBar from '../../ui/ProgressBar'
 import Link from 'next/link'
+import { useAppDispatch, useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
+import Image from 'next/image'
+import { logout } from '@/state/reducer/auth.reducer'
 
 interface NavbarProps {
 	yolName?: string
@@ -17,9 +21,10 @@ const Navbar = ({
 	yolLevel = 1,
 	yolXp = 110,
 	yolXpToNextLevel = 350,
-	userName = "Yol'anda",
 }: NavbarProps) => {
-	const firstLetterOfUserName: string = userName.charAt(0).toUpperCase()
+	const dispatch = useAppDispatch()
+	const user = useAppSelector((state: RootState) => state.auth.user)
+
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
 	const menuItems = [
@@ -30,6 +35,7 @@ const Navbar = ({
 		{
 			name: 'Déconnexion',
 			link: '/',
+			action: () => dispatch(logout()),
 		},
 	]
 
@@ -86,9 +92,12 @@ const Navbar = ({
 							setMenuIsOpen(!menuIsOpen)
 						}}
 					>
-						<div className='bg-purple w-[40px] h-[40px] grid place-items-center text-4xl cursor-pointer select-none'>
-							{firstLetterOfUserName}
-						</div>
+						<Image
+							src={`/assets/avatars/${user.pp}`}
+							alt='user profile'
+							width={40}
+							height={40}
+						/>
 						<div className='rotate-90 text-2xl select-none cursor-pointer'>
 							&gt;
 						</div>
@@ -97,7 +106,7 @@ const Navbar = ({
 								{menuItems.map((item, index) => (
 									<a className='cursor-pointer' href={item.link} key={index}>
 										<li className='w-[150px] border-2 p-1 text-xl border-purple bg-blue'>
-											{item.name}
+											<div onClick={item.action ?? undefined}>{item.name}</div>
 										</li>
 									</a>
 								))}
