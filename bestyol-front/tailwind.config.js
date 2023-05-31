@@ -36,11 +36,12 @@ module.exports = {
         appear: 'appear 0.5s ease-in-out',
         hovering: 'hovering 3s ease-in-out infinite',
         slideLeftToRight: 'slideLeftToRight 2s ease-in-out infinite',
+        hoveringTest: 'hoveringTest 3s ease-in-out infinite',
       },
       keyframes: {
         slideRightUpScale: {
           '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(75%)', scale: '2' },
+          '100%': { transform: 'translateX(75%)' },
         },
         slideLeftUpScale: {
           '0%': { transform: 'translateX(0)', scale: '1' },
@@ -72,6 +73,11 @@ module.exports = {
           '50%': { transform: 'translateX(15%)' },
           '100%': { transform: 'translateX(-15%)' },
         }
+        hoveringTest: {
+          '0%': { transform: 'translate(-50%, -50%) scale(2)' },
+          '50%': { transform: 'translate(-50%, -70%) scale(2)' },
+          '100%': { transform: 'translate(-50%, -50%) scale(2)' },
+        },
       },
     },
   },
