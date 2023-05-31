@@ -14,6 +14,7 @@ interface ButtonProps {
 	uppercase?: boolean
 	onClick?: () => void
 	additionalStyle?: string
+	type?: 'button' | 'submit' | 'reset' | undefined
 }
 
 const Button = ({
@@ -23,11 +24,14 @@ const Button = ({
 	content,
 	uppercase,
 	onClick,
+	additionalStyle,
+	type = 'button',
 }: ButtonProps) => {
 	return (
 		<button
-			className={`${backgroundColor} ${textColor} ${size}`}
+			className={`${backgroundColor} ${textColor} ${size} ${additionalStyle}`}
 			onClick={onClick}
+			type={type}
 		>
 			{uppercase ? content.toUpperCase() : content}
 		</button>

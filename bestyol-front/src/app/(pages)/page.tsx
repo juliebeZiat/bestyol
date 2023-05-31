@@ -54,12 +54,12 @@ const HomePage = () => {
 				</Link>
 			</div>
 			<div className='text-center w-2/3 text-xl sm:text-xl'>
-				<p>
+				<p className='textShadow'>
 					Bienvenue sur Best yol, le site web qui vous offre une expérience
 					unique et motivante ! Best'yol vous présente Yol, votre compagnon
 					virtuel plein d'énergie et d'enthousiasme.
 				</p>
-				<p>
+				<p className='textShadow'>
 					Yol est bien plus qu'un simple personnage animé : il évolue en
 					fonction de vos accomplissements quotidiens. Imaginez, chaque fois que
 					vous terminez une tâche, qu'elle soit prévue ou que vous la créiez

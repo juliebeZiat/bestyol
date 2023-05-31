@@ -12,7 +12,7 @@ import Link from 'next/link'
 const GamePage = () => {
 	const isMobile = useIsMobile()
 	return (
-		<div className='lg:grid grid-cols-[30%_30%_35%] grid-flow-row gap-8 p-10'>
+		<div className='lg:grid grid-cols-[30%_30%_35%] grid-flow-row gap-8 p-10 lg:w-[90vw]'>
 			<Box additionalStyle='col-span-2 h-[20rem] mb-12 lg:mb-0'>
 				<YolBox yolName='bonjour' />
 			</Box>

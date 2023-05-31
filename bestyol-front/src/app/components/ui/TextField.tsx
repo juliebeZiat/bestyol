@@ -10,6 +10,8 @@ interface TextFieldProps {
 	error?: boolean
 	errorMessage?: string
 	inputFocus?: boolean
+	value?: string
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const TextField = ({
@@ -20,6 +22,8 @@ const TextField = ({
 	error,
 	errorMessage = 'Erreur',
 	inputFocus,
+	value,
+	onChange,
 }: TextFieldProps) => {
 	const [isFocused, setIsFocused] = useState(false)
 	const inputReference = useRef<HTMLInputElement>(null)
@@ -35,7 +39,7 @@ const TextField = ({
 			<label className='block text-xl mb-2 text text-white' htmlFor={labelFor}>
 				{label}
 			</label>
-			<div className='relative'>
+			<div className='relative text-[#000000]'>
 				<input
 					ref={inputFocus ? inputReference : null}
 					className={`appearance-none w-full py-2 px-3 pl-6 focus:outline-none outline-none text-xl ${
@@ -45,6 +49,8 @@ const TextField = ({
 					placeholder={placeholder}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
+					value={value ?? undefined}
+					onChange={onChange ?? undefined}
 				/>
 				{error && <p className='text-lg text-error'>{errorMessage}</p>}
 				{isFocused && (
