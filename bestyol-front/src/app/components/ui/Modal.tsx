@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useState } from 'react'
+import { BaseSyntheticEvent } from 'react'
 
 interface ModalProps {
 	children: React.ReactNode
@@ -13,7 +13,7 @@ export default function Modal({
 	isOpen,
 	title,
 	onClose,
-	bgColor = 'purple',
+	bgColor = 'bg-purple',
 }: ModalProps) {
 	const handleOutsideModalClick = (e: BaseSyntheticEvent) => {
 		if (e.target === e.currentTarget) {
@@ -26,7 +26,7 @@ export default function Modal({
 				className='w-[90%] min-h-[100%] flex flex-col justify-center items-center py-[20px] '
 				onClick={handleOutsideModalClick}
 			>
-				<div className={`bg-${bgColor} shadow-xl mx-2`}>
+				<div className={`${bgColor} shadow-xl mx-2`}>
 					<div className='flex flex-col'>
 						<div className={`pl-4 sm:pl-8 flex justify-between items-center`}>
 							<div
