@@ -72,7 +72,7 @@ module.exports = {
           '0%': { transform: 'translateX(-15%)' },
           '50%': { transform: 'translateX(15%)' },
           '100%': { transform: 'translateX(-15%)' },
-        }
+        },
         hoveringTest: {
           '0%': { transform: 'translate(-50%, -50%) scale(2)' },
           '50%': { transform: 'translate(-50%, -70%) scale(2)' },
