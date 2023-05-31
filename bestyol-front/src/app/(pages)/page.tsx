@@ -5,6 +5,7 @@ import YolCarousel from '@/app/components/ui/YolCarousel'
 import useWindowSize from '@/hooks/useWindowSize'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import TestYolCarousel from '../components/ui/NewYolCarousel'
 
 const HomePage = () => {
 	const windowSize = useWindowSize()
@@ -27,7 +28,7 @@ const HomePage = () => {
 						le meilleur de toi-même
 					</h2>
 				</div>
-				<YolCarousel />
+				<TestYolCarousel />
 			</div>
 			<div className='flex gap-5'>
 				<Link href='/login'>

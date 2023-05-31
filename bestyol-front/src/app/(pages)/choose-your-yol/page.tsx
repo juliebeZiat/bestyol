@@ -5,7 +5,7 @@ import Box from '@/app/components/ui/Box'
 import Button, { ButtonSize } from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import YolCarousel from '@/app/components/ui/YolCarousel'
-import TestYolCarousel from '@/app/components/ui/testYolCarousel'
+import TestYolCarousel from '@/app/components/ui/NewYolCarousel'
 import { useEffect, useState } from 'react'
 
 const ChooseYourYol = () => {

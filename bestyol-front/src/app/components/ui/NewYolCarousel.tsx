@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { yol } from '../interfaces'
 import Hammer from 'react-hammerjs'
 
-const TestYolCarousel = ({
+const NewYolCarousel = ({
 	getCurrentYol,
 }: {
 	getCurrentYol?: (yol: yol) => void
@@ -129,4 +129,4 @@ const TestYolCarousel = ({
 	)
 }
 
-export default TestYolCarousel
+export default NewYolCarousel
