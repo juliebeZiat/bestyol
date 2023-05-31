@@ -13,7 +13,7 @@ const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 			<div className='flex content-center'>
 				<div className='w-[15%]'>
 					<Image
-						src='/assets/icons/success-test.png'
+						src='/assets/tempAchievement.png'
 						alt='cloud'
 						width={40}
 						height={40}
