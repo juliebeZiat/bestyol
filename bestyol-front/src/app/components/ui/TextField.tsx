@@ -49,7 +49,7 @@ const TextField = ({
 					placeholder={placeholder}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
-					value={value ?? ''}
+					value={value ?? undefined}
 					onChange={onChange ?? undefined}
 				/>
 				{error && <p className='text-lg text-error'>{errorMessage}</p>}
