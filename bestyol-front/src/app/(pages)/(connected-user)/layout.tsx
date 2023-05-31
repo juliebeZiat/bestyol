@@ -16,7 +16,7 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 			</>
 		)
 	}
-	return redirect('/login')
+	return redirect('/')
 }
 
 export default NavLayout
