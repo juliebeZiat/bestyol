@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       purple: '#2E1B5B',
       lowOpacity: 'rgba(255, 255, 255, 0.3)',
+      darkLowOpacity: 'rgba(0, 0, 0, 0.5)',
       blue: '#5561D3',
       orange: '#FCB482',
       green: '#56C375',
@@ -34,6 +35,7 @@ module.exports = {
         disappear: 'disappear 1s ease-in-out',
         appear: 'appear 0.5s ease-in-out',
         hovering: 'hovering 3s ease-in-out infinite',
+        slideLeftToRight: 'slideLeftToRight 2s ease-in-out infinite',
         hoveringTest: 'hoveringTest 3s ease-in-out infinite',
       },
       keyframes: {
@@ -66,6 +68,11 @@ module.exports = {
           '50%': { transform: 'translateY(-10%)' },
           '100%': { transform: 'translateY(0%)' },
         },
+        slideLeftToRight: {
+          '0%': { transform: 'translateX(-15%)' },
+          '50%': { transform: 'translateX(15%)' },
+          '100%': { transform: 'translateX(-15%)' },
+        }
         hoveringTest: {
           '0%': { transform: 'translate(-50%, -50%) scale(2)' },
           '50%': { transform: 'translate(-50%, -70%) scale(2)' },
