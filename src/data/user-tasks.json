@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "user_id": 1,
+        "title": "Importer les données",
+        "is_daily": false,
+        "is_completed": false,
+        "completed_at": null
+    },
+    {
+        "id": 2,
+        "user_id": 2,
+        "title": "Une nouvelle tâche",
+        "is_daily": false,
+        "is_completed": true,
+        "completed_at": null
+    },
+    {
+        "id": 3,
+        "user_id": 1,
+        "title": null,
+        "is_daily": true,
+        "is_completed": false,
+        "completed_at": null,
+        "dailyTaskDetails": {
+            "title": "Faire 10 minutes d'activités physique",
+            "category": "Sport",
+            "difficulty": 3,
+            "xp": 40
+        }
+    }
+]
