@@ -18,7 +18,6 @@ const GamePage = () => {
 
 	const dailyTasks = tasks?.data.filter((task) => task.is_daily === true)
 	const customTasks = tasks?.data.filter((task) => task.is_daily === false)
-	console.log(customTasks)
 
 	const isMobile = useIsMobile()
 	return (
