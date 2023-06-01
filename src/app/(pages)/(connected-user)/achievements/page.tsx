@@ -3,6 +3,10 @@
 import Box from '@/app/components/ui/Box'
 import achievementsList from './tempAchievements.json'
 import AchievementTile from '../../../components/achievements/AchievementTile'
+import {
+	useFetchAllSuccessQuery,
+	useFetchAllUserSuccessQuery,
+} from '@/services/queries/success'
 
 interface AchievementProps {
 	title: string
@@ -13,6 +17,8 @@ interface AchievementProps {
 }
 
 const AchievementsPage = () => {
+	const { data: userSuccess } = useFetchAllUserSuccessQuery()
+	const { data: success } = useFetchAllSuccessQuery()
 	achievementsList.sort((a, b) => {
 		if (a.progress / a.goal > b.progress / b.goal) return -1
 		if (a.progress / a.goal < b.progress / b.goal) return 1

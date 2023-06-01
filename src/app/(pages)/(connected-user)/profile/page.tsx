@@ -10,8 +10,10 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { availableAvatars, availableBanners } from './profileImages'
+import { useFetchUserById } from '@/services/queries/user'
 
 const ProfilePage = () => {
+	const { data: user } = useFetchUserById(1)
 	const [userAvatar, setUserAvatar] = useState<string>(
 		'/assets/avatars/Icon1.png',
 	)
