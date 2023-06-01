@@ -3,13 +3,14 @@
 import { useState, useEffect, useRef } from 'react'
 import ProgressBar from '../../ui/ProgressBar'
 import Link from 'next/link'
+import { useFetchUserById } from '@/services/queries/user'
+import Image from 'next/image'
 
 interface NavbarProps {
 	yolName?: string
 	yolLevel?: number
 	yolXp?: number
 	yolXpToNextLevel?: number
-	userName?: string
 }
 
 const Navbar = ({
@@ -17,9 +18,9 @@ const Navbar = ({
 	yolLevel = 1,
 	yolXp = 110,
 	yolXpToNextLevel = 350,
-	userName = "Yol'anda",
 }: NavbarProps) => {
-	const firstLetterOfUserName: string = userName.charAt(0).toUpperCase()
+	const userId = 1
+	const { data: user } = useFetchUserById(userId)
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
 	const menuItems = [
@@ -47,6 +48,8 @@ const Navbar = ({
 			document.removeEventListener('mousedown', handleMouseDown)
 		}
 	}, [menuIsOpen])
+
+	if (!user) return null
 
 	return (
 		<nav className='relative bg-blue text-[#FFFFFF] w-full'>
@@ -86,14 +89,17 @@ const Navbar = ({
 							setMenuIsOpen(!menuIsOpen)
 						}}
 					>
-						<div className='bg-purple w-[40px] h-[40px] grid place-items-center text-4xl cursor-pointer select-none'>
-							{firstLetterOfUserName}
-						</div>
+						<Image
+							src={`/assets/avatars/${user.data.pp}`}
+							alt='user profile'
+							width={40}
+							height={40}
+						/>
 						<div className='rotate-90 text-2xl select-none cursor-pointer'>
 							&gt;
 						</div>
 						{menuIsOpen && (
-							<ul className='absolute top-[51px] left-[-80px]'>
+							<ul className='absolute top-[51px] left-[-80px] z-50'>
 								{menuItems.map((item, index) => (
 									<a className='cursor-pointer' href={item.link} key={index}>
 										<li className='w-[150px] border-2 p-1 text-xl border-purple bg-blue'>
