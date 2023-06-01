@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Box from '../ui/Box'
 import { useState } from 'react'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface ProfileInformationProps {
 	setModalInfoIsOpen: (isOpen: boolean) => void
@@ -13,6 +14,8 @@ const ProfileInformation = ({
 	setModalPasswordIsOpen,
 	setModalDeleteAccountIsOpen,
 }: ProfileInformationProps) => {
+	const { user } = useAuth()
+	if (!user) return null
 	const [pointerHovering, setPointerHovering] = useState<
 		'none' | 'profile' | 'password' | 'delete'
 	>('none')
@@ -22,8 +25,8 @@ const ProfileInformation = ({
 				<h2 className='text-center text-4xl tracking-wider'>Informations</h2>
 				<div className='flex flex-col gap-5 text-xl justify-between h-[250px]'>
 					<div className='flex flex-col'>
-						<p className=''>nom : Julie</p>
-						<p className=''>email : julie@mail.fr</p>
+						<p className=''>nom : {user.name}</p>
+						<p className=''>email : {user.email}</p>
 					</div>
 					<section className='flex flex-col gap-3 border-t-2 pt-8'>
 						<Image
