@@ -5,10 +5,10 @@ import ButtonIcon from '../../ui/ButtonIcon'
 
 interface CustomTaskProps {
 	title: string
-	status: boolean
+	is_completed: boolean
 }
 
-const CustomTaskItem = ({ title, status }: CustomTaskProps) => {
+const CustomTaskItem = ({ title, is_completed }: CustomTaskProps) => {
 	const [taskIsDone, setTaskIsDone] = useState<boolean>(false)
 	const [taskIsArchived, setTaskIsArchived] = useState<boolean>(false)
 	const [editTask, setEditTask] = useState<boolean>(false)
@@ -36,7 +36,7 @@ const CustomTaskItem = ({ title, status }: CustomTaskProps) => {
 
 	return (
 		<>
-			{!taskIsArchived && status ? (
+			{!taskIsArchived && !is_completed ? (
 				<div
 					className={`w-full p-2 flex justify-between items-center mb-3 mt-1 transition-all ${
 						taskIsDone
