@@ -1,8 +1,14 @@
+'use client'
+
 import Box from '@/app/components/ui/Box'
 import achievementsList from './tempAchievements.json'
 import AchievementTile from '../../../components/achievements/AchievementTile'
+import {
+	useFetchAllSuccessQuery,
+	useFetchAllUserSuccessQuery,
+} from '@/services/queries/success'
 
-interface achievementProps {
+interface AchievementProps {
 	title: string
 	description: string
 	xp: number
@@ -11,6 +17,8 @@ interface achievementProps {
 }
 
 const AchievementsPage = () => {
+	const { data: userSuccess } = useFetchAllUserSuccessQuery()
+	const { data: success } = useFetchAllSuccessQuery()
 	achievementsList.sort((a, b) => {
 		if (a.progress / a.goal > b.progress / b.goal) return -1
 		if (a.progress / a.goal < b.progress / b.goal) return 1
@@ -26,7 +34,7 @@ const AchievementsPage = () => {
 			<h1 className='text-4xl text-white my-[2rem]'>MES SUCCÈS</h1>
 			<div className='w-full flex flex-col items-center'>
 				<Box centerItems additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem]'>
-					{achievementsList.map((achievement: achievementProps) => {
+					{achievementsList.map((achievement: AchievementProps) => {
 						return (
 							<AchievementTile
 								title={achievement.title}
