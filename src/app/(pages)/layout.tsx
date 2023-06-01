@@ -2,18 +2,13 @@
 
 import Image from 'next/image'
 import '../globals.css'
-import { Provider } from '@/state/provider'
 
 import React, { useCallback, useMemo } from 'react'
 import type { Engine } from 'tsparticles-engine'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
-import { store } from '@/state/store'
-
-let persistor = persistStore(store)
+import Providers from '@/utils/provider'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	const options = useMemo(() => {
@@ -97,11 +92,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 					/>
 				</div>
 				<main className='flex min-h-screen w-full flex-col items-center'>
-					<Provider>
-						<PersistGate loading={null} persistor={persistor}>
-							{children}
-						</PersistGate>
-					</Provider>
+					<Providers>{children}</Providers>
 				</main>
 			</body>
 		</html>
