@@ -1,4 +1,4 @@
-import { Success, UserSuccess } from '@/model/success.model'
+import { Success, UserSuccess } from '@/type/success.type'
 import axios from 'axios'
 
 const fetchAllSuccess = async () => {
