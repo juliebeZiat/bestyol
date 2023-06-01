@@ -1,13 +1,12 @@
 'use client'
 
 import Navbar from '@/app/components/layout/navbar'
-import AuthProvider from '@/contexts/AuthContext'
-import { useAppSelector } from '@/state/hooks'
-import { RootState } from '@/state/store'
+import AuthProvider, { useAuth } from '@/contexts/AuthContext'
 import { redirect } from 'next/navigation'
 
 const NavLayout = ({ children }: { children: React.ReactNode }) => {
-	const isLogged = useAppSelector((state: RootState) => state.app.isLogged)
+	const isLogged = true
+	// const { isLogged } = useAuth()
 
 	if (isLogged) {
 		return (

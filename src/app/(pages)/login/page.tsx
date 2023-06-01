@@ -4,14 +4,11 @@ import Box from '@/app/components/ui/Box'
 import Button from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
-import { useAppDispatch } from '@/state/hooks'
-import { login } from '@/state/reducer/app.reducer'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const LoginPage = () => {
 	const isMobile = useIsMobile()
-	const dispatch = useAppDispatch()
 
 	const [hydrated, setHydrated] = useState(false)
 	useEffect(() => {
@@ -37,7 +34,6 @@ const LoginPage = () => {
 							content='Je me connecte'
 							textColor='text-white'
 							backgroundColor='bg-orange'
-							onClick={() => dispatch(login())}
 						/>
 					</Link>
 					<Link href='/signup' className='text-white mt-5'>
