@@ -10,10 +10,11 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { availableAvatars, availableBanners } from './profileImages'
-import { useFetchUserById } from '@/services/queries/user'
+import { useAuth } from '@/contexts/AuthContext'
 
 const ProfilePage = () => {
-	const { data: user } = useFetchUserById(1)
+	const { user } = useAuth()
+
 	const [userAvatar, setUserAvatar] = useState<string>(
 		'/assets/avatars/Icon1.png',
 	)
@@ -37,11 +38,13 @@ const ProfilePage = () => {
 		return null
 	}
 
+	if (!user) return null
+
 	return (
 		<div className='w-full flex flex-col gap-20'>
 			<ProfileBanner
-				avatar={userAvatar}
-				banner={userBanner}
+				avatar={`/assets/avatars/${user.pp}`}
+				banner={`/assets/${user.banner}`}
 				setModalAvatarIsOpen={setModalAvatarIsOpen}
 				setModalBannerIsOpen={setModalBannerIsOpen}
 			/>

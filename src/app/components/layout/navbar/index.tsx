@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import ProgressBar from '../../ui/ProgressBar'
 import Link from 'next/link'
-import { useFetchUserById } from '@/services/queries/user'
 import Image from 'next/image'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface NavbarProps {
 	yolName?: string
@@ -19,8 +19,7 @@ const Navbar = ({
 	yolXp = 110,
 	yolXpToNextLevel = 350,
 }: NavbarProps) => {
-	const userId = 1
-	const { data: user } = useFetchUserById(userId)
+	const { user } = useAuth()
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
 	const menuItems = [
@@ -90,7 +89,7 @@ const Navbar = ({
 						}}
 					>
 						<Image
-							src={`/assets/avatars/${user.data.pp}`}
+							src={`/assets/avatars/${user.pp}`}
 							alt='user profile'
 							width={40}
 							height={40}

@@ -1,3 +1,4 @@
+import { useAuth } from '@/contexts/AuthContext'
 import useWindowSize from '@/hooks/useWindowSize'
 import Image from 'next/image'
 
@@ -14,8 +15,10 @@ const ProfileBanner = ({
 	avatar,
 	banner,
 }: ProfileBannerProps) => {
+	const { user } = useAuth()
+	if (!user) return null
 	const windowSize = useWindowSize()
-	const username = 'Julie'
+	const username = user.name
 	return (
 		<div className='relative flex items-center h-[200px] bg-lowOpacity'>
 			<div className='flex items-center'>
@@ -28,7 +31,7 @@ const ProfileBanner = ({
 						className='ml-10 border-4 border-darkLowOpacity bg-purple'
 					/>
 					<Image
-						src='/assets/icons/clip-edit.svg'
+						src={banner}
 						height={30}
 						width={30}
 						alt='Icone de modification'
