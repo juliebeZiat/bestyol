@@ -13,7 +13,6 @@ module.exports = {
       darkLowOpacity: 'rgba(0, 0, 0, 0.6)',
       blue: '#55a0d3',
       accentSuccess: '#d35561',
-      orange: '#61d355',
       green: '#56C375',
       salmon: '#FF999A',
       grey: '#D9D9D9',
@@ -22,7 +21,8 @@ module.exports = {
       gradientBlue: '#647DEE',
       gradientPurple: '#7F53AC',
       yellow: '#d3c755',
-
+      pouassonBleu: '#83EAF1',
+      lunettesOrange: '#FCB482',
     },
     extend: {
       backgroundImage: {
