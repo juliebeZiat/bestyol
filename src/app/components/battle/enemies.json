@@ -1,0 +1,62 @@
+[
+	{
+		"name": "Gobelin",
+		"image": "/assets/enemies/goblin.png",
+		"attacks": [
+			{
+				"name": "Coup de griffes",
+				"damages": 3
+			},
+			{
+				"name": "Morsure",
+				"damages": 7
+			},
+			{
+				"name": "Coup de gourdin",
+				"damages": 12
+			}
+		],
+		"rotateImage": false,
+		"maxHealth": 150
+	},
+	{
+		"name": "Blob",
+		"image": "/assets/enemies/blob.png",
+		"attacks": [
+			{
+				"name": "Charge",
+				"damages": 4
+			},
+			{
+				"name": "Flaque d'eau",
+				"damages": 8
+			},
+			{
+				"name": "Englutissement",
+				"damages": 15
+			}
+		],
+		"rotateImage": true,
+		"maxHealth": 200
+	},
+	{
+		"name": "Squelette",
+		"image": "/assets/enemies/skeleton.png",
+		"attacks": [
+			{
+				"name": "Lancer d'os",
+				"damages": 2
+			},
+			{
+				"name": "Trop plein de calcium",
+				"damages": 5
+			},
+			{
+				"name": "Coup de lance",
+				"damages": 10
+			}
+		],
+		"rotateImage": true,
+		"maxHealth": 250
+	}
+]

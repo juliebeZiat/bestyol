@@ -37,6 +37,8 @@ module.exports = {
         hovering: 'hovering 3s ease-in-out infinite',
         slideLeftToRight: 'slideLeftToRight 2s ease-in-out infinite',
         hoveringTest: 'hoveringTest 3s ease-in-out infinite',
+        spinScaleDownDisapear: 'spinScaleDownDisapear 3s ease-in-out forwards',
+        slideLeftRightQuickly: 'slideLeftRightQuickly 0.2s ease-in-out',
       },
       keyframes: {
         slideRightUpScale: {
@@ -78,6 +80,16 @@ module.exports = {
           '50%': { transform: 'translate(-50%, -70%) scale(2)' },
           '100%': { transform: 'translate(-50%, -50%) scale(2)' },
         },
+        spinScaleDownDisapear: {
+          '0%': { transform: 'rotate(0deg)', scale: '1', opacity: '1' },
+          '100%': { transform: 'rotate(1440deg)', scale: '0.5', opacity: '0' },
+        },
+        slideLeftRightQuickly: {
+          '0%': { transform: 'translateX(0%)' },
+          '50%': { transform: 'translateX(5%)' },
+          '100%': { transform: 'translateX(-5%)' },
+
+        }
       },
     },
   },

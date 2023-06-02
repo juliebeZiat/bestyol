@@ -1,0 +1,39 @@
+[
+	{
+		"name": "Potion de soin",
+		"heal": 20,
+		"type": "Heal"
+	},
+	{
+		"name": "Grande potion de soin",
+		"heal": 30,
+		"type": "Heal"
+	},
+	{
+		"name": "Potion de mana",
+		"mana": 50,
+		"type": "Mana"
+	},
+	{
+		"name": "Grande potion de mana",
+		"mana": 100,
+		"type": "Mana"
+	},
+	{
+		"name": "Flasque de poison",
+		"damage": 20,
+		"type": "Damage"
+	},
+	{
+		"name": "Bombe instable",
+		"damage": 20,
+		"heal": 20,
+		"type": "Chaos"
+	},
+	{
+		"name": "Potion de divinité",
+		"damage": 15,
+		"heal": 15,
+		"type": "Bonus"
+	}
+]

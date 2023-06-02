@@ -1,0 +1,74 @@
+[
+	{
+		"species": "blob",
+		"evolution": 1,
+		"name": "Recharge du Blob",
+		"healMin": 5,
+		"healMax": 15,
+		"mana": 20
+	},
+	{
+		"species": "blob",
+		"evolution": 2,
+		"name": "Division cellulaire",
+		"damageMin": 5,
+		"damageMax": 25,
+		"mana": 25
+	},
+	{
+		"species": "blob",
+		"evolution": 3,
+		"name": "Engloutissement royal",
+		"damageMin": 10,
+		"damageMax": 40,
+		"mana": 50
+	},
+	{
+		"species": "grumpfish",
+		"evolution": 1,
+		"name": "Splash d'ennui",
+		"damageMin": 5,
+		"damageMax": 15,
+		"mana": 20
+	},
+	{
+		"species": "grumpfish",
+		"evolution": 2,
+		"name": "Frénésie boudeuse",
+		"damageMin": 5,
+		"damageMax": 30,
+		"mana": 25
+	},
+	{
+		"species": "grumpfish",
+		"evolution": 3,
+		"name": "Tempêtes de grognements",
+		"damageMin": 5,
+		"damageMax": 80,
+		"mana": 100
+	},
+	{
+		"species": "greenbelly",
+		"evolution": 1,
+		"name": "Morsure de la jungle",
+		"damageMin": 8,
+		"damageMax": 12,
+		"mana": 15
+	},
+	{
+		"species": "greenbelly",
+		"evolution": 2,
+		"name": "Toxines",
+		"damageMin": 15,
+		"damageMax": 20,
+		"mana": 20
+	},
+	{
+		"species": "greenbelly",
+		"evolution": 3,
+		"name": "Floraison régénérative",
+		"healMin": 20,
+		"healMax": 60,
+		"mana": 100
+	}
+]
