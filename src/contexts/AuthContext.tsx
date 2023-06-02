@@ -1,3 +1,4 @@
+import Loader from '@/app/components/ui/Loader'
 import { useFetchUserById } from '@/services/queries/user'
 import { User } from '@/type/user.type'
 import {
@@ -23,7 +24,8 @@ const AuthContext = createContext({} as AuthContextProps)
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const userId = 1
-	const { data: userData } = useFetchUserById(userId)
+	const { data: userData, isLoading: userDataIsLoading } =
+		useFetchUserById(userId)
 
 	const [user, setUser] = useState<User | undefined>(undefined)
 	const [isLogged, setIsLogged] = useState<boolean>(false)
@@ -43,6 +45,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	useEffect(() => {
 		init()
 	}, [init])
+
+	if (userDataIsLoading) {
+		return <Loader />
+	}
 
 	const value: AuthContextProps = {
 		user,
