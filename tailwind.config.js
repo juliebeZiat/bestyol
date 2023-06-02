@@ -28,56 +28,42 @@ module.exports = {
         VT323: ['VT323', 'monospace'],
       },
       animation: {
-        slideRightUpScale: 'slideRightUpScale 1s ease-in-out',
-        slideLeftUpScale: 'slideLeftUpScale 1s ease-in-out',
-        centerToRightDownScale: 'centerToRightDownScale 1s ease-in-out',
-        centerToLeftDownScale: 'centerToLeftDownScale 1s ease-in-out',
-        disappear: 'disappear 1s ease-in-out',
-        appear: 'appear 0.5s ease-in-out',
         hovering: 'hovering 3s ease-in-out infinite',
-        slideLeftToRight: 'slideLeftToRight 2s ease-in-out infinite',
         hoveringTest: 'hoveringTest 3s ease-in-out infinite',
+        wiggle: 'wiggle 2s ease-in-out 3 1s',
+        flash: 'flash 4s ease-out 7s',
+        jump: 'jump .5s 2 3s'
       },
       keyframes: {
-        slideRightUpScale: {
-          '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(75%)' },
-        },
-        slideLeftUpScale: {
-          '0%': { transform: 'translateX(0)', scale: '1' },
-          '100%': { transform: 'translateX(-75%)', scale: '2' },
-        },
-        centerToRightDownScale: {
-          '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(150%)', scale: '0.5' },
-        },
-        centerToLeftDownScale: {
-          '0%': { transform: 'translateX(0%)', scale: '1' },
-          '100%': { transform: 'translateX(-150%)', scale: '0.5' },
-        },
-        disappear: {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' },
-        },
-        appear: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
         hovering: {
           '0%': { transform: 'translateY(0%)' },
           '50%': { transform: 'translateY(-10%)' },
           '100%': { transform: 'translateY(0%)' },
-        },
-        slideLeftToRight: {
-          '0%': { transform: 'translateX(-15%)' },
-          '50%': { transform: 'translateX(15%)' },
-          '100%': { transform: 'translateX(-15%)' },
         },
         hoveringTest: {
           '0%': { transform: 'translate(-50%, -50%) scale(2)' },
           '50%': { transform: 'translate(-50%, -70%) scale(2)' },
           '100%': { transform: 'translate(-50%, -50%) scale(2)' },
         },
+        wiggle: {
+          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+          '16%': { transform: 'rotate(-3deg)' },
+          '33%': { transform: 'rotate(3deg)' },
+        },
+        flash: {
+          '0%, 100%': { opacity: '0' },
+          '5%, 25%': { opacity: '1' },
+        },
+        jump: {
+          '0%, 100%': {
+            'transform': 'translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+          '50%': {
+            'transform': 'translateY(-25%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+        }
       },
     },
   },
