@@ -8,6 +8,7 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import { useFetchAllUserSuccessQuery } from '@/services/queries/success'
 import { useEffect, useState } from 'react'
 import { UserSuccess } from '@/type/success.type'
+import Loader from '../../ui/Loader'
 
 const SuccessBox = () => {
 	const isMobile = useIsMobile()
@@ -44,33 +45,32 @@ const SuccessBox = () => {
 		}
 	}, [success])
 
+	if (isLoading) return <Loader />
 	return (
-		!isLoading && (
-			<div>
-				<div className='mt-4'>
-					{incomingSuccess &&
-						incomingSuccess.map((success) => (
-							<SuccessItem
-								key={success.id}
-								title={success.success.title}
-								amount={success.success.amount_needed}
-								current_amount={success.actual_amount}
-							/>
-						))}
-				</div>
-				{isMobile && (
-					<div className='flex flex-col items-center'>
-						<Link href='/achievements'>
-							<Button
-								content='Voir tous mes succès'
-								uppercase
-								size={ButtonSize.Small}
-							/>
-						</Link>
-					</div>
-				)}
+		<div>
+			<div className='mt-4'>
+				{incomingSuccess &&
+					incomingSuccess.map((success) => (
+						<SuccessItem
+							key={success.id}
+							title={success.success.title}
+							amount={success.success.amount_needed}
+							current_amount={success.actual_amount}
+						/>
+					))}
 			</div>
-		)
+			{isMobile && (
+				<div className='flex flex-col items-center'>
+					<Link href='/achievements'>
+						<Button
+							content='Voir tous mes succès'
+							uppercase
+							size={ButtonSize.Small}
+						/>
+					</Link>
+				</div>
+			)}
+		</div>
 	)
 }
 

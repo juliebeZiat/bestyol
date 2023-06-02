@@ -66,7 +66,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 				/>
 			</head>
 			<body>
-				<div className='w-full h-screen bg-purple fixed top-0 left-0 -z-10'>
+				<div className='w-full h-screen bg-black fixed top-0 left-0 -z-10'>
 					{!useIsMobile() && (
 						<Particles init={particlesInit} options={options} />
 					)}

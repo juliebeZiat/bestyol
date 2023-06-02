@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       purple: '#2E1B5B',
       lowOpacity: 'rgba(255, 255, 255, 0.3)',
+      black: '#000',
       darkLowOpacity: 'rgba(0, 0, 0, 0.5)',
       blue: '#5561D3',
       orange: '#FCB482',
