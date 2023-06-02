@@ -32,6 +32,7 @@ module.exports = {
         hovering: 'hovering 3s ease-in-out infinite',
         hoveringTest: 'hoveringTest 3s ease-in-out infinite',
         wiggle: 'wiggle 2s ease-in-out 3 1s',
+        wiggleInfinite: 'wiggle 2s ease-in-out infinite',
         flash: 'flash 4s ease-out 7s',
         jump: 'jump .5s 2 3s'
       },
