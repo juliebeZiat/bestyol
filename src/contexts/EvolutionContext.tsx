@@ -1,18 +1,6 @@
-import { useFetchUserById } from '@/services/queries/user'
-import { User } from '@/type/user.type'
-import {
-	ReactNode,
-	SetStateAction,
-	createContext,
-	useContext,
-	useState,
-} from 'react'
+'use client'
 
-interface AuthContextProps {
-	user: User | undefined
-	isLogged: boolean
-	isInitialized: boolean
-}
+import { ReactNode, createContext, useContext, useState } from 'react'
 
 interface EvolutionProviderProps {
 	children: ReactNode

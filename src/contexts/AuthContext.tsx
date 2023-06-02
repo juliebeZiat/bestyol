@@ -1,3 +1,5 @@
+'use client'
+
 import Loader from '@/app/components/ui/Loader'
 import { useFetchUserById } from '@/services/queries/user'
 import { User } from '@/type/user.type'
