@@ -6,13 +6,18 @@ import ButtonIcon from '../../ui/ButtonIcon'
 import Image from 'next/image'
 import TextField from '../../ui/TextField'
 import CustomTaskItem from './CustomTaskItem'
+import { UserTasks } from '@/type/tasks.type'
 
 export enum TaskType {
 	All = 'all',
 	Archived = 'archived',
 }
 
-const CustomTaskBox = () => {
+interface CustomTaskProps {
+	customTasks?: UserTasks[]
+}
+
+const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const [taskType, setTaskType] = useState<TaskType>(TaskType.All)
 	const [createNewTask, setCreateNewTask] = useState<boolean>(false)
 
@@ -20,47 +25,10 @@ const CustomTaskBox = () => {
 		setCreateNewTask(!createNewTask)
 	}
 
-	const customTasks = [
-		{
-			title: 'intégration front de Bestyol intégration front de Bestyol',
-			status: true,
-		},
-		{
-			title: 'intégration front de Bestyol',
-			status: true,
-		},
-		{
-			title: 'intégration front de Bestyol',
-			status: true,
-		},
-		{
-			title: 'intégration front de Bestyol',
-			status: true,
-		},
-		{
-			title: 'intégration front de Bestyol',
-			status: true,
-		},
-		{
-			title: 'intégration front de Bestyol',
-			status: true,
-		},
-		{
-			title: 'tâche 2',
-			status: false,
-		},
-		{
-			title: 'tâche 3',
-			status: true,
-		},
-		{
-			title: 'tâche 4',
-			status: false,
-		},
-	]
+	if (!customTasks) return null
 
-	const activeTasks = customTasks.filter((task) => task.status)
-	const archivedTasks = customTasks.filter((task) => !task.status)
+	const activeTasks = customTasks.filter((task) => !task.is_completed)
+	const archivedTasks = customTasks.filter((task) => task.is_completed)
 	return (
 		<div className='h-full'>
 			<div className='flex cursor-pointer'>
@@ -86,15 +54,17 @@ const CustomTaskBox = () => {
 				title='Mes tâches'
 				isTogglable
 				additionalButton={
-					<ButtonIcon onClick={handleCreateNewTask} additionalStyle='mr-2'>
-						<Image
-							src='/assets/icons/add.svg'
-							width={8}
-							height={8}
-							alt='add-icon'
-							className='-mt-[2px]'
-						/>
-					</ButtonIcon>
+					taskType === TaskType.All && (
+						<ButtonIcon onClick={handleCreateNewTask} additionalStyle='mr-2'>
+							<Image
+								src='/assets/icons/add.svg'
+								width={8}
+								height={8}
+								alt='add-icon'
+								className='-mt-[2px]'
+							/>
+						</ButtonIcon>
+					)
 				}
 			>
 				{taskType === TaskType.All ? (
@@ -102,8 +72,8 @@ const CustomTaskBox = () => {
 						{createNewTask && <TextField inputFocus />}
 						{activeTasks.map((task, index) => (
 							<CustomTaskItem
-								title={task.title}
-								status={task.status}
+								title={task.title || ''}
+								is_completed={task.is_completed}
 								key={index}
 							/>
 						))}
@@ -112,8 +82,8 @@ const CustomTaskBox = () => {
 					<div>
 						{archivedTasks.map((task, index) => (
 							<CustomTaskItem
-								title={task.title}
-								status={task.status}
+								title={task.title || ''}
+								is_completed={task.is_completed}
 								key={index}
 							/>
 						))}

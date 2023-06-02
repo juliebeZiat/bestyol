@@ -2,7 +2,7 @@ export interface Success {
 	id: number
 	title: string
 	description: string
-	amount_needed: string
+	amount_needed: number
 	success_xp: number
 }
 
@@ -11,5 +11,5 @@ export interface UserSuccess {
 	user_id: number
 	actual_amount: number
 	is_completed: boolean
-	success_id: number
+	success: Success
 }

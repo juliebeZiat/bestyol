@@ -3,12 +3,13 @@
 import Image from 'next/image'
 import '../globals.css'
 
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import type { Engine } from 'tsparticles-engine'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Providers from '@/utils/provider'
+import EvolutionProvider from '@/contexts/EvolutionContext'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	const options = useMemo(() => {
@@ -92,7 +93,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 					/>
 				</div>
 				<main className='flex min-h-screen w-full flex-col items-center'>
-					<Providers>{children}</Providers>
+					<Providers>
+						<EvolutionProvider>{children}</EvolutionProvider>
+					</Providers>
 				</main>
 			</body>
 		</html>
