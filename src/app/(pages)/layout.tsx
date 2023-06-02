@@ -70,7 +70,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 					{!useIsMobile() && (
 						<Particles init={particlesInit} options={options} />
 					)}
-					<Image
+					{/* <Image
 						src='/assets/cloud-1.png'
 						alt='cloud'
 						width={567}
@@ -90,7 +90,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 						width={1011}
 						height={335}
 						className='fixed bottom-0 right-0 w-[40vw] h-auto'
-					/>
+					/> */}
 				</div>
 				<main className='flex min-h-screen w-full flex-col items-center'>
 					<Providers>

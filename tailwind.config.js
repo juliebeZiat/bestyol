@@ -12,7 +12,7 @@ module.exports = {
       black: '#000',
       darkLowOpacity: 'rgba(0, 0, 0, 0.6)',
       blue: '#55a0d3',
-      red: '#d35561',
+      accentSuccess: '#d35561',
       orange: '#61d355',
       green: '#56C375',
       salmon: '#FF999A',

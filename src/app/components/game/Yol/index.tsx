@@ -17,7 +17,7 @@ const YolBox = () => {
 
 	return (
 		<div
-			className={`mt-8 flex flex-col items-center gap-y-10 ${
+			className={`h-full w-full flex flex-col justify-center items-center gap-y-10 ${
 				isEvolving && 'cursor-pointer'
 			}`}
 		>
@@ -40,7 +40,7 @@ const YolBox = () => {
 				/>
 			</div>
 
-			<p className='text-white'>✨ {yol.data.name} ✨</p>
+			<p className='text-white absolute bottom-0'>✨ {yol.data.name} ✨</p>
 		</div>
 	)
 }
