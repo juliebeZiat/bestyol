@@ -10,15 +10,18 @@ const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
 	return (
 		<div
 			className={`${
-				is_completed ? 'bg-blue' : 'bg-[#BAF2BB] cursor-pointer'
-			} p-4 relative overflow-hidden flex flex-col items-center text-center justify-around text-white mb-12 lg:mb-0`}
+				is_completed ? '' : 'cursor-pointer'
+			} bg-blue h-[20vh] p-4 relative overflow-hidden flex flex-col items-center text-center justify-around text-white mb-12 lg:mb-0`}
 		>
 			{is_completed && (
-				<div className='absolute left-0 top-0 h-16 w-16'>
-					<div className='absolute left-[-34px] top-0 w-[100px] transform -rotate-45 bg-green py-1'></div>
-				</div>
+				<>
+					<div className='absolute left-0 top-0 h-16 w-16'>
+						<div className='absolute left-[-34px] top-0 w-[100px] transform -rotate-45 bg-green py-1'></div>
+					</div>
+					<p className='absolute text-green text-6xl font-bold'>&#10003;</p>
+				</>
 			)}
-			<div className='mb-2'>
+			<div className='h-[40%]'>
 				<h1>{title}</h1>
 			</div>
 			<div className='w-10 h-10 bg-grey mb-2' />
