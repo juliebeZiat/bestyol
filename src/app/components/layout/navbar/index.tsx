@@ -49,7 +49,12 @@ const Navbar = () => {
 					<div className='relative flex items-center gap-2 sm:gap-8'>
 						<Link href='/game'>
 							<div className='flex-shrink-0'>
-								<div className='bg-purple w-[40px] h-[40px]' />
+								<Image
+									src={yol.data.species.image}
+									width={38}
+									height={38}
+									alt='yol'
+								/>
 							</div>
 						</Link>
 						<div className='flex flex-col'>
