@@ -12,17 +12,17 @@ const NewYolCarousel = ({
 	const [yols, setYols] = useState<yol[]>([
 		{
 			name: 'Bé-boo',
-			pic: '/assets/GRAND_FEUILLE.png',
+			pic: '/assets/yols/base/feuille.png',
 			pos: 1,
 		},
 		{
 			name: 'Yolkshire',
-			pic: '/assets/GRAND_POUASSON.png',
+			pic: '/assets/yols/base/pouasson.png',
 			pos: 2,
 		},
 		{
 			name: 'Evopink',
-			pic: '/assets/GRAND_BOB.png',
+			pic: '/assets/yols/base/lunettes.png',
 			pos: 3,
 		},
 	])
