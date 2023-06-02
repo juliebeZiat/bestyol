@@ -1,0 +1,74 @@
+[
+	{
+		"species": "blob",
+		"evolution": 1,
+		"name": "Charge acide",
+		"damageMin": 5,
+		"damageMax": 10,
+		"uses": 15
+	},
+	{
+		"species": "blob",
+		"evolution": 2,
+		"name": "Lancer visqueux",
+		"damageMin": 5,
+		"damageMax": 15,
+		"uses": 5
+	},
+	{
+		"species": "blob",
+		"evolution": 3,
+		"name": "Crocs corrosifs",
+		"damageMin": 15,
+		"damageMax": 25,
+		"uses": 2
+	},
+	{
+		"species": "grumpfish",
+		"evolution": 1,
+		"name": "Morsure grincheuse",
+		"damageMin": 5,
+		"damageMax": 10,
+		"uses": 15
+	},
+	{
+		"species": "grumpfish",
+		"evolution": 2,
+		"name": "Coup de tête plaintif",
+		"damageMin": 5,
+		"damageMax": 15,
+		"uses": 5
+	},
+	{
+		"species": "grumpfish",
+		"evolution": 3,
+		"name": "Ecrasement colérique",
+		"damageMin": 15,
+		"damageMax": 25,
+		"uses": 2
+	},
+	{
+		"species": "greenbelly",
+		"evolution": 1,
+		"name": "Coup d'épine",
+		"damageMin": 1,
+		"damageMax": 5,
+		"uses": 15
+	},
+	{
+		"species": "greenbelly",
+		"evolution": 2,
+		"name": "Virevolte verte",
+		"damageMin": 5,
+		"damageMax": 20,
+		"uses": 5
+	},
+	{
+		"species": "greenbelly",
+		"evolution": 3,
+		"name": "Colère de lianes",
+		"damageMin": 10,
+		"damageMax": 30,
+		"uses": 2
+	}
+]
