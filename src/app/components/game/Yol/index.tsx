@@ -16,32 +16,30 @@ const YolBox = () => {
 	const isEvolving = evolutionLevels.some((level) => level === yol.data.xp)
 
 	return (
-		<div className='mt-8 flex flex-col items-center cursor-pointer gap-y-10'>
-			{isEvolving && yol.data.level.level === 1 ? (
-				<div
-					onClick={() =>
+		<div
+			className={`mt-8 flex flex-col items-center gap-y-10 ${
+				isEvolving && 'cursor-pointer'
+			}`}
+		>
+			<div
+				onClick={() => {
+					if (isEvolving) {
 						evolveYol(
 							'/assets/yols/eggs/eclosion-feuille.gif',
 							'/assets/yols/base/feuille.png',
 						)
 					}
-				>
-					<Image
-						src='/assets/yols/eggs/eclosion-feuille.gif'
-						width={150}
-						height={150}
-						alt='yol'
-						className='animate-wiggleInfinite'
-					/>
-				</div>
-			) : (
+				}}
+			>
 				<Image
 					src={yol.data.species.image}
 					width={150}
 					height={150}
 					alt='yol'
+					className={isEvolving ? 'animate-wiggleInfinite origin-bottom' : ''}
 				/>
-			)}
+			</div>
+
 			<p className='text-white'>✨ {yol.data.name} ✨</p>
 		</div>
 	)
