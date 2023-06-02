@@ -10,7 +10,7 @@ const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
 	return (
 		<div
 			className={`${
-				is_completed ? 'bg-orange' : 'bg-blue cursor-pointer'
+				is_completed ? 'bg-red' : 'bg-[#55a0d3] cursor-pointer'
 			} p-4 relative overflow-hidden flex flex-col items-center text-center justify-around text-white mb-12 lg:mb-0`}
 		>
 			{is_completed && (

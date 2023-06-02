@@ -7,12 +7,13 @@ module.exports = {
   ],
   theme: {
     colors: {
-      purple: '#2E1B5B',
-      lowOpacity: 'rgba(255, 255, 255, 0.3)',
+      purple: '#5561d3',
+      lowOpacity: 'rgba(255, 255, 255, 0.7)',
       black: '#000',
-      darkLowOpacity: 'rgba(0, 0, 0, 0.5)',
-      blue: '#5561D3',
-      orange: '#FCB482',
+      darkLowOpacity: 'rgba(0, 0, 0, 0.6)',
+      blue: '#55a0d3',
+      red: '#d35561',
+      orange: '#61d355',
       green: '#56C375',
       salmon: '#FF999A',
       grey: '#D9D9D9',

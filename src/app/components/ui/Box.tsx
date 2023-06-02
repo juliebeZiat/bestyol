@@ -42,7 +42,7 @@ const Box = ({
 
 	return (
 		<div
-			className={`bg-lowOpacity p-8 ${additionalStyle} ${
+			className={`bg-lowOpacity p-8 rounded-xl border-[4px] shadow-white/25 shadow-lg border-blue ${additionalStyle} ${
 				centerItems && 'items-center flex flex-col'
 			}`}
 			style={{ width: width }}
