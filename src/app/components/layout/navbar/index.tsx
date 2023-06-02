@@ -5,21 +5,13 @@ import ProgressBar from '../../ui/ProgressBar'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useAuth } from '@/contexts/AuthContext'
+import { useFetchUserYol } from '@/services/queries/yol'
 
-interface NavbarProps {
-	yolName?: string
-	yolLevel?: number
-	yolXp?: number
-	yolXpToNextLevel?: number
-}
-
-const Navbar = ({
-	yolName = 'Mini Yol',
-	yolLevel = 1,
-	yolXp = 110,
-	yolXpToNextLevel = 350,
-}: NavbarProps) => {
+const Navbar = () => {
 	const { user } = useAuth()
+	if (!user) return null
+
+	const { data: yol } = useFetchUserYol(user.id)
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
 
 	const menuItems = [
@@ -48,7 +40,7 @@ const Navbar = ({
 		}
 	}, [menuIsOpen])
 
-	if (!user) return null
+	if (!yol) return null
 
 	return (
 		<nav className='relative bg-blue text-[#FFFFFF] w-full'>
@@ -61,18 +53,23 @@ const Navbar = ({
 							</div>
 						</Link>
 						<div className='flex flex-col'>
-							<div className=''>
-								<span className='sm:text-3xl'>Level {yolLevel}</span>
+							<div>
+								<span className='sm:text-3xl'>
+									Level {yol.data.level.level}
+								</span>
 							</div>
-							<div className=''>
-								<span className='text-sm sm:text-base'>{yolName}</span>
+							<div>
+								<span className='text-sm sm:text-base'>{yol.data.name}</span>
 							</div>
 						</div>
 						<div className='flex flex-col'>
-							<ProgressBar progress={yolXp} total={yolXpToNextLevel} />
+							<ProgressBar
+								progress={yol.data.xp - yol.data.level.levelMin}
+								total={yol.data.level.levelMax}
+							/>
 							<div className='flex items-center text-sm sm:text-lg'>
-								<span className=' mr-2'>{yolXp} XP</span>
-								<span className=''>/ {yolXpToNextLevel} XP</span>
+								<span className=' mr-2'>{yol.data.xp} XP</span>
+								<span className=''>/ {yol.data.level.levelMax} XP</span>
 							</div>
 						</div>
 						<img

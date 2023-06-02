@@ -1,6 +1,6 @@
 interface ProgressBarProps {
 	progress: number
-	total: number
+	total: number | undefined
 	width?: string
 	margin?: string
 	color?: string
@@ -13,6 +13,8 @@ const ProgressBar = ({
 	margin = 'mt-2',
 	color = 'bg-orange',
 }: ProgressBarProps) => {
+	if (!total) return null
+
 	const progressPercentage = `${Math.round((progress / total) * 100)}%`
 
 	return (
