@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     colors: {
       purple: '#5561d3',
-      lowOpacity: 'rgba(255, 255, 255, 0.7)',
+      lowOpacity: 'rgba(255, 255, 255, 0.4)',
       black: '#000',
       darkLowOpacity: 'rgba(0, 0, 0, 0.6)',
       blue: '#55a0d3',
@@ -19,6 +19,10 @@ module.exports = {
       grey: '#D9D9D9',
       white: '#FFFFFF',
       error: '#8C0032',
+      gradientBlue: '#647DEE',
+      gradientPurple: '#7F53AC',
+      yellow: '#d3c755',
+
     },
     extend: {
       backgroundImage: {
