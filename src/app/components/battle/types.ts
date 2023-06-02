@@ -45,7 +45,9 @@ export interface BattleHistoryLine {
 }
 
 export interface BattleYol {
+    name: string
     species: string
+    image: string
     evolution: number
     maxHealth: number
     maxMana: number

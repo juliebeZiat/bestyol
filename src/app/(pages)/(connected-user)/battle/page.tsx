@@ -18,7 +18,9 @@ const BattlePage = () => {
 	const [yolTakingDamages, setYolTakingDamages] = useState<boolean>(false)
 	const [enemyTakingDamages, setEnemyTakingDamages] = useState<boolean>(false)
 	const [yolInfo, setYolInfo] = useState<BattleYol>({
+		name: 'Mr. Greenbelly',
 		species: 'greenbelly',
+		image: '/assets/yols/base/feuille.png',
 		evolution: 3,
 		maxMana: 100,
 		maxHealth: 100,

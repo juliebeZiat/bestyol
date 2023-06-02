@@ -81,22 +81,22 @@ const BattleZone = ({
 			<div className='w-[45%] flex justify-center items-center ] '>
 				<div
 					className={
-						'relative ' +
+						'flex flex-col justify-center items-center ' +
 						(playerTurn && gameState === 'battle' ? 'animate-hovering' : '') +
 						(gameState === 'victory' ? 'animate-bounce ' : '') +
 						(yolHealth === 0 ? ' animate-spinScaleDownDisapear ' : '') +
 						(yolTakingDamages ? ' animate-slideLeftRightQuickly ' : '')
 					}
 				>
-					<p className='text-center text-white text-2xl'>Mon yol</p>
+					<p className='text-center text-white text-2xl'>{yolInfo.name}</p>
 
 					<Image
-						src={'/assets/yol-test-1.png'}
-						width={200}
-						height={200}
+						src={yolInfo.image}
+						width={150}
+						height={150}
 						alt='yol'
 						className={
-							'relative transform scale-x-[-1] ' +
+							' ' +
 							(yolHealth < yolInfo.maxHealth / 2 && gameState === 'battle'
 								? 'animate-pulse'
 								: '')
@@ -146,7 +146,7 @@ const BattleZone = ({
 				>
 					<p className='text-center text-white text-2xl'>{enemy.name}</p>
 
-					<div className='relative'>
+					<div className='relative flex flex-col justify-center items-center'>
 						<Image
 							src={enemy.image}
 							width={200}
