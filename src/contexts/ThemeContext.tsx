@@ -31,7 +31,7 @@ interface ThemeContextProps {
 const ThemeContext = createContext({} as ThemeContextProps)
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-	const [theme, setTheme] = useState<Theme>(themes.darkBlue)
+	const [theme, setTheme] = useState<Theme>(themes.lightGreen)
 
 	const value = {
 		theme,

@@ -1,14 +1,14 @@
 export const themes = {
 	lightGreen: {
-		primaryBorderColor: "border-green",
+		primaryBorderColor: "after:bg-green",
 		primaryBackgroundColor: "bg-green/25",
 		secondaryBackgroundColor: "bg-lowOpacity",
-		vibrantBackGroundColor: 'bg-green',
+		vibrantBackgroundColor: 'bg-green',
 		gradientFrom: "from-blue",
 		gradientTo: "to-green"
 	},
 	darkGreen: {
-		primaryBorderColor: "border-darkGreen",
+		primaryBorderColor: "after:bg-darkGreen",
 		primaryBackgroundColor: "bg-darkGreen/25",
 		secondaryBackgroundColor: "bg-darkLowOpacity",
 		vibrantBackgroundColor: "bg-darkGreen",
@@ -16,7 +16,7 @@ export const themes = {
 		gradientTo: "to-darkGreen"
 	},
 	lightBlue: {
-		primaryBorderColor: "border-lightBlue",
+		primaryBorderColor: "after:bg-lightBlue",
 		primaryBackgroundColor: "bg-lightBlue/25",
 		secondaryBackgroundColor: "bg-lowOpacity",
 		vibrantBackgroundColor: "bg-lightBlue",
@@ -24,7 +24,7 @@ export const themes = {
 		gradientTo: "to-lightBlue"
 	},
 	darkBlue: {
-		primaryBorderColor: "border-darkBlue",
+		primaryBorderColor: "after:bg-darkBlue",
 		primaryBackgroundColor: "bg-darkBlue/25",
 		secondaryBackgroundColor: "bg-darkLowOpacity",
 		vibrantBackgroundColor: "bg-darkBlue",
@@ -32,7 +32,7 @@ export const themes = {
 		gradientTo: "to-darkBlue"
 	},
 	lightYellow: {
-		primaryBorderColor: "border-lightOrange",
+		primaryBorderColor: "after:bg-lightOrange",
 		primaryBackgroundColor: "bg-lightOrange/25",
 		secondaryBackgroundColor: "bg-lowOpacity",
 		vibrantBackgroundColor: "bg-lightOrange",
@@ -40,11 +40,19 @@ export const themes = {
 		gradientTo: "to-lightOrange"
 	},
 	darkYellow: {
-		primaryBorderColor: "border-darkYellow",
+		primaryBorderColor: "after:bg-darkYellow",
 		primaryBackgroundColor: "bg-darkYellow/25",
 		secondaryBackgroundColor: "bg-darkLowOpacity",
 		vibrantBackgroundColor: "bg-darkYellow",
 		gradientFrom: "from-black",
 		gradientTo: "to-darkYellow"
+	},
+	basePurple: {
+		primaryBorderColor: "after:bg-[#5F0A87]",
+		primaryBackgroundColor: "bg-[#5F0A87]/25",
+		secondaryBackgroundColor: "bg-darkLowOpacity",
+		vibrantBackgroundColor: "bg-[#5F0A87]",
+		gradientFrom: "from-[#A4508B]",
+		gradientTo: "to-[#5F0A87]"
 	}
 }

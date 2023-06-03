@@ -13,7 +13,7 @@ const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 
 	return (
 		<div
-			className={`${theme.secondaryBackgroundColor} p-3 mb-4 rounded-xl border-[4px] ${theme.primaryBorderColor}`}
+			className={`${theme.secondaryBackgroundColor} p-3 mb-4 pixel-corners ${theme.primaryBorderColor}`}
 		>
 			<div className='flex content-center'>
 				<div className='w-[15%]'>
