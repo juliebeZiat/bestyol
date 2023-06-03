@@ -1,4 +1,5 @@
 import ProgressBar from '@/app/components/ui/ProgressBar'
+import { useTheme } from '@/contexts/ThemeContext'
 import Image from 'next/image'
 
 interface SuccessProps {
@@ -8,8 +9,12 @@ interface SuccessProps {
 }
 
 const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
+	const { theme } = useTheme()
+
 	return (
-		<div className='bg-[#9A90AF] p-3 mb-4'>
+		<div
+			className={`${theme.secondaryBackgroundColor} p-3 mb-4 rounded-xl border-[4px] ${theme.primaryBorderColor}`}
+		>
 			<div className='flex content-center'>
 				<div className='w-[15%]'>
 					<Image
@@ -31,7 +36,7 @@ const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 						total={amount}
 						width='w-[80%]'
 						margin='mt-1'
-						color='bg-blue'
+						color={theme.vibrantBackgroundColor}
 					/>
 				</div>
 			</div>

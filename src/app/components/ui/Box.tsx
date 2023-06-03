@@ -4,6 +4,7 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import React, { ReactNode, useEffect, useState } from 'react'
 import ButtonIcon from './ButtonIcon'
+import { useTheme } from '@/contexts/ThemeContext'
 
 interface BoxProps {
 	width?: string
@@ -40,11 +41,13 @@ const Box = ({
 		}
 	}
 
+	const { theme } = useTheme()
+
 	return (
 		<div
-			className={`bg-lowOpacity p-8 rounded-xl border-[4px] shadow-white/25 shadow-lg border-blue ${additionalStyle} ${
-				centerItems && 'items-center flex flex-col'
-			}`}
+			className={`bg-lowOpacity p-8 rounded-xl border-[4px] ${
+				theme.primaryBorderColor
+			} ${additionalStyle} ${centerItems && 'items-center flex flex-col'}`}
 			style={{ width: width }}
 		>
 			<div className='flex justify-between justify-items-center'>

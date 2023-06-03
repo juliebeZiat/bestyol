@@ -31,9 +31,9 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const archivedTasks = customTasks.filter((task) => task.is_completed)
 	return (
 		<div className='h-full'>
-			<div className='flex cursor-pointer'>
+			<div className='flex cursor-pointer h-[10%]'>
 				<div
-					className={`${
+					className={` h-full rounded-xl border-[4px] shadow-white/25 shadow-lg border-blue ${
 						taskType === TaskType.All ? 'bg-lowOpacity' : 'bg-[#564089]'
 					} lg:w-[30%] w-20 py-1`}
 					onClick={() => setTaskType(TaskType.All)}
@@ -41,7 +41,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 					<p className='text-white text-center'>toutes</p>
 				</div>
 				<div
-					className={`${
+					className={` h-full rounded-xl border-[4px] shadow-white/25 shadow-lg border-blue ${
 						taskType === TaskType.Archived ? 'bg-lowOpacity' : 'bg-[#564089]'
 					} lg:w-[30%] w-20 py-1`}
 					onClick={() => setTaskType(TaskType.Archived)}
@@ -49,24 +49,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 					<p className='text-white text-center'>historique</p>
 				</div>
 			</div>
-			<Box
-				additionalStyle='h-full'
-				title='Mes tâches'
-				isTogglable
-				additionalButton={
-					taskType === TaskType.All && (
-						<ButtonIcon onClick={handleCreateNewTask} additionalStyle='mr-2'>
-							<Image
-								src='/assets/icons/add.svg'
-								width={8}
-								height={8}
-								alt='add-icon'
-								className='-mt-[2px]'
-							/>
-						</ButtonIcon>
-					)
-				}
-			>
+			<Box additionalStyle='h-[90%]' title='Mes tâches' isTogglable>
 				{taskType === TaskType.All ? (
 					<div className='overflow-y-auto max-h-[80%] mt-4'>
 						{createNewTask && <TextField inputFocus />}

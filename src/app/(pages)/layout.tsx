@@ -10,6 +10,8 @@ import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Providers from '@/utils/provider'
 import EvolutionProvider from '@/contexts/EvolutionContext'
+import ThemeProvider from '@/contexts/ThemeContext'
+import BackgroundGradient from '../components/layout/navbar/backgroundGradient'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	const options = useMemo(() => {
@@ -66,37 +68,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 				/>
 			</head>
 			<body>
-				<div className='w-full h-screen bg-gradient-to-bl from-blue to-pouassonBleu fixed top-0 left-0 -z-10'>
-					{!useIsMobile() && (
-						<Particles init={particlesInit} options={options} />
-					)}
-					<Image
-						src='/assets/cloud-1.png'
-						alt='cloud'
-						width={567}
-						height={201}
-						className='absolute top-[5vh] left-[5vw] w-[20vw] h-auto'
-					/>
-					<Image
-						src='/assets/cloud-with-moon.png'
-						alt='cloud'
-						width={564}
-						height={195}
-						className='absolute top-[10vh] right-[5vw] w-[30vw] h-auto'
-					/>
-					<Image
-						src='/assets/mountain.png'
-						alt='cloud'
-						width={1011}
-						height={335}
-						className='fixed bottom-0 right-0 w-[40vw] h-auto'
-					/>
-				</div>
-				<main className='flex min-h-screen w-full flex-col items-center'>
-					<Providers>
-						<EvolutionProvider>{children}</EvolutionProvider>
-					</Providers>
-				</main>
+				<ThemeProvider>
+					<BackgroundGradient />
+					<main className='flex min-h-screen w-full flex-col items-center'>
+						<Providers>
+							<EvolutionProvider>{children}</EvolutionProvider>
+						</Providers>
+					</main>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

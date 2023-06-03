@@ -43,7 +43,7 @@ const Navbar = () => {
 	if (!yol) return null
 
 	return (
-		<nav className='relative bg-lowOpacity text-[#FFFFFF] w-full'>
+		<nav className='relative bg-lowOpacity text-[#FFFFFF] w-full h-[6svh] flex items-center'>
 			<div className='w-full px-4 sm:px-6 lg:px-8'>
 				<div className='flex items-center justify-between h-16'>
 					<div className='relative flex items-center gap-2 sm:gap-8'>

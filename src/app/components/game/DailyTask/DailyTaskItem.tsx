@@ -1,3 +1,4 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { DailyTasks, UserTasks } from '@/type/tasks.type'
 
 interface DailyTaskItemProps {
@@ -7,18 +8,22 @@ interface DailyTaskItemProps {
 }
 
 const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
+	const { theme } = useTheme()
+
 	return (
 		<div
-			className={`${
-				is_completed ? '' : 'cursor-pointer'
-			} bg-blue h-[20vh] p-4 relative overflow-hidden flex flex-col items-center text-center justify-around text-white mb-12 lg:mb-0`}
+			className={`${theme.primaryBorderColor} ${
+				is_completed
+					? theme.primaryBackgroundColor + ' shadow-white/25 shadow-lg'
+					: theme.secondaryBackgroundColor + ' cursor-pointer'
+			} h-[20vh] p-4 relative overflow-hidden flex flex-col items-center text-center justify-around text-white mb-12 lg:mb-0 rounded-xl border-[4px]`}
 		>
 			{is_completed && (
 				<>
 					<div className='absolute left-0 top-0 h-16 w-16'>
 						<div className='absolute left-[-34px] top-0 w-[100px] transform -rotate-45 bg-green py-1'></div>
 					</div>
-					<p className='absolute text-green text-6xl font-bold'>&#10003;</p>
+					{/* <p className='absolute text-green text-6xl font-bold'>&#10003;</p> */}
 				</>
 			)}
 			<div className='h-[40%]'>

@@ -4,16 +4,16 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/data/themes.ts'
   ],
   theme: {
     colors: {
       purple: '#5561d3',
-      lowOpacity: 'rgba(255, 255, 255, 0.4)',
+      lowOpacity: 'rgba(0, 0, 0, 0.3)',
       black: '#000',
       darkLowOpacity: 'rgba(0, 0, 0, 0.6)',
       blue: '#55a0d3',
       accentSuccess: '#d35561',
-      green: '#56C375',
       salmon: '#FF999A',
       grey: '#D9D9D9',
       white: '#FFFFFF',
@@ -21,8 +21,12 @@ module.exports = {
       gradientBlue: '#647DEE',
       gradientPurple: '#7F53AC',
       yellow: '#d3c755',
-      pouassonBleu: '#83EAF1',
-      lunettesOrange: '#FCB482',
+      green: '#56C375',
+      darkGreen: '#166D3B',
+      lightBlue: '#83EAF1',
+      darkBlue: '#04619F',
+      lightOrange: '#FCB482',
+      darkYellow: '#756213',
     },
     extend: {
       backgroundImage: {

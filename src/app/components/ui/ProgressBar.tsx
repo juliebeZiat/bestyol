@@ -1,3 +1,5 @@
+import { useTheme } from '@/contexts/ThemeContext'
+
 interface ProgressBarProps {
 	progress: number
 	total: number | undefined
@@ -16,6 +18,8 @@ const ProgressBar = ({
 	if (!total) return null
 
 	const progressPercentage = `${Math.round((progress / total) * 100)}%`
+
+	const { theme } = useTheme()
 
 	return (
 		<div className='flex flex-col'>

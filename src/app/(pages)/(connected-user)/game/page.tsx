@@ -21,8 +21,8 @@ const GamePage = () => {
 
 	const isMobile = useIsMobile()
 	return (
-		<div className='lg:grid grid-cols-[30%_30%_35%] grid-flow-row gap-8 p-10 lg:w-[90vw]'>
-			<Box additionalStyle='col-span-2 h-[20rem] mb-12 lg:mb-0 relative'>
+		<div className='lg:grid grid-cols-[30%_30%_35%] grid-rows-[40vh_40vh] grid-flow-row gap-8 p-10 lg:w-[90vw] h-full'>
+			<Box additionalStyle='col-span-2 mb-12 lg:mb-0 relative'>
 				<YolBox />
 			</Box>
 			<Box
@@ -32,11 +32,8 @@ const GamePage = () => {
 			>
 				{dailyTasks && <DailyTaskBox dailyTasks={dailyTasks} />}
 			</Box>
-			<div className='lg:h-[21rem] mb-12 lg:mb-0'>
-				<CustomTaskBox customTasks={customTasks} />
-			</div>
+			<CustomTaskBox customTasks={customTasks} />
 			<Box
-				additionalStyle='mt-[32px] lg:h-[21rem]'
 				title='Mes succès'
 				isTogglable
 				additionalButton={
