@@ -6,13 +6,26 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useAuth } from '@/contexts/AuthContext'
 import { useFetchUserYol } from '@/services/queries/yol'
+import { Theme, Themes, useTheme } from '@/contexts/ThemeContext'
+import Modal from '../../ui/Modal'
+import { themes as allThemes, themes } from '@/data/themes'
+import Button from '../../ui/Button'
 
 const Navbar = () => {
 	const { user } = useAuth()
 	if (!user) return null
 
+	const { theme, setTheme } = useTheme()
+
 	const { data: yol } = useFetchUserYol(user.id)
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
+	const [isThemeModalOpen, setIsThemeModalOpen] = useState(false)
+	const [selectedTheme, setSelectedTheme] = useState(theme.name)
+
+	const handleThemeFormSubmit = () => {
+		setTheme(themes.find((theme) => theme.name == selectedTheme)!)
+		setIsThemeModalOpen(false)
+	}
 
 	const menuItems = [
 		{
@@ -77,10 +90,10 @@ const Navbar = () => {
 								<span className=''>/ {yol.data.level.levelMax} XP</span>
 							</div>
 						</div>
-						<img
+						{/* <img
 							className='absolute h-[64px] left-[80%] select-none'
 							src='assets/cloud-with-moon.png'
-						/>
+						/> */}
 					</div>
 
 					<div
@@ -93,6 +106,7 @@ const Navbar = () => {
 						<Image
 							src={`/assets/avatars/${user.pp}`}
 							alt='user profile'
+							className={`border-[2px] border-black`}
 							width={40}
 							height={40}
 						/>
@@ -103,16 +117,67 @@ const Navbar = () => {
 							<ul className='absolute top-[51px] left-[-80px] z-50'>
 								{menuItems.map((item, index) => (
 									<a className='cursor-pointer' href={item.link} key={index}>
-										<li className='w-[150px] border-2 p-1 text-xl border-purple bg-blue'>
+										<li
+											className={`w-[150px] border-2 p-1 text-xl ${theme.borderColor} ${theme.primaryBackgroundColor}`}
+										>
 											{item.name}
 										</li>
 									</a>
 								))}
+								<li
+									className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.borderColor} ${theme.primaryBackgroundColor}`}
+									onClick={() => setIsThemeModalOpen(true)}
+								>
+									Thèmes de couleur
+								</li>
 							</ul>
 						)}
 					</div>
 				</div>
 			</div>
+			<Modal
+				isOpen={isThemeModalOpen}
+				onClose={() => setIsThemeModalOpen(false)}
+				title='Modifier le thème de couleur'
+			>
+				<div className='flex flex-col items-center justify-center gap-10 basis-[33%] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
+					<div className='flex flex-wrap gap-4 justify-center'>
+						{allThemes.map((currentTheme, index) => {
+							return (
+								<div
+									onClick={() => setSelectedTheme(currentTheme.name)}
+									className={`h-[100px] w-[100px] bg-gradient-to-bl cursor-pointer ${
+										currentTheme.gradientFrom
+									} ${currentTheme.gradientTo} ${
+										currentTheme.name == selectedTheme
+											? 'border-[4px] border-white'
+											: ''
+									}`}
+								></div>
+							)
+						})}
+						{/* random avatar button */}
+						{/* <div
+							className='flex justify-center items-center cursor-pointer h-[100px] w-[100px] border border-darkLowOpacity'
+							onClick={() => {
+								const randomAvatar =
+									availableAvatars[
+										Math.floor(Math.random() * availableAvatars.length)
+									]
+								setUserAvatar(randomAvatar)
+							}}
+						>
+							<div className='text-4xl font-bold text-white select-none'>?</div>
+						</div> */}
+					</div>
+					<Button
+						content='Valider'
+						onClick={handleThemeFormSubmit}
+						backgroundColor='bg-orange'
+						additionalStyle='self-center w-[50%]'
+					/>
+				</div>
+			</Modal>
 		</nav>
 	)
 }

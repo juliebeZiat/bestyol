@@ -113,7 +113,8 @@
 .pixel-corners--wrapper::after {
   content: "";
   position: absolute;
-  clip-path: polygon(0px calc(100% - 20px),
+  clip-path: polygon(
+    0px calc(100% - 20px),
     4px calc(100% - 20px),
     4px calc(100% - 12px),
     8px calc(100% - 12px),
@@ -180,7 +181,8 @@
     8px calc(100% - 20px),
     4px calc(100% - 20px),
     4px 50%,
-    0px 50%);
+    0px 50%
+    );
   top: 0;
   bottom: 0;
   left: 0;

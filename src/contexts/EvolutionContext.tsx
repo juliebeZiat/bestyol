@@ -10,11 +10,16 @@ interface Evolution {
 	isEvolving: boolean
 	previousForm?: string
 	newForm?: string
+	animatedNewForm?: string
 }
 
 interface EvolutionContextProps {
 	evolution: Evolution
-	evolveYol: (previousForm: string, newForm: string) => void
+	evolveYol: (
+		previousForm: string,
+		newForm: string,
+		animatedNewForm: string,
+	) => void
 	endEvolution: () => void
 }
 
@@ -23,11 +28,16 @@ const EvolutionContext = createContext({} as EvolutionContextProps)
 const EvolutionProvider = ({ children }: EvolutionProviderProps) => {
 	const [evolution, setEvolution] = useState<Evolution>({ isEvolving: false })
 
-	const evolveYol = (previousForm: string, newForm: string) => {
+	const evolveYol = (
+		previousForm: string,
+		newForm: string,
+		animatedNewForm: string,
+	) => {
 		setEvolution({
 			isEvolving: true,
 			previousForm,
 			newForm,
+			animatedNewForm,
 		})
 	}
 	const endEvolution = () => {

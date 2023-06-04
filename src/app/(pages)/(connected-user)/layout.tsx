@@ -26,6 +26,7 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 					<EvolutionCinematic
 						previousForm={evolution.previousForm!}
 						newForm={evolution.newForm!}
+						animatedNewForm={evolution.animatedNewForm!}
 					/>
 				)}
 			</AuthProvider>

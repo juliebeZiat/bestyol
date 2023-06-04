@@ -47,8 +47,8 @@ const SuccessBox = () => {
 
 	if (isLoading) return <Loader />
 	return (
-		<div>
-			<div className='mt-4'>
+		<div className='h-[80%]'>
+			<div className='mt-4 h-full'>
 				{incomingSuccess &&
 					incomingSuccess.map((success) => (
 						<SuccessItem

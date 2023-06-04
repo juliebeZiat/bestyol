@@ -12,7 +12,7 @@ const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
 
 	return (
 		<div
-			className={`pixel-corners ${theme.primaryBorderColor} ${
+			className={`pixel-corners ${theme.pixelBorderColor} ${
 				is_completed
 					? theme.primaryBackgroundColor + ' shadow-white/25 shadow-lg'
 					: theme.secondaryBackgroundColor + ' cursor-pointer'

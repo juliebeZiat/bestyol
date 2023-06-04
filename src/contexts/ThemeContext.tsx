@@ -14,8 +14,16 @@ interface ThemeProviderProps {
 	children: ReactNode
 }
 
-interface Theme {
-	primaryBorderColor: string
+export interface Themes {
+	[key: string | number]: Theme
+}
+
+export interface Theme {
+	[key: string]: string
+
+	name: string
+	pixelBorderColor: string
+	borderColor: string
 	gradientFrom: string
 	gradientTo: string
 	primaryBackgroundColor: string
@@ -31,7 +39,7 @@ interface ThemeContextProps {
 const ThemeContext = createContext({} as ThemeContextProps)
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-	const [theme, setTheme] = useState<Theme>(themes.lightGreen)
+	const [theme, setTheme] = useState<Theme>(themes[1])
 
 	const value = {
 		theme,

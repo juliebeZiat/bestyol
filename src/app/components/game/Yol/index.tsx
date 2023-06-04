@@ -25,8 +25,9 @@ const YolBox = () => {
 				onClick={() => {
 					if (isEvolving) {
 						evolveYol(
-							'/assets/yols/eggs/eclosion-feuille.gif',
-							'/assets/yols/base/feuille.png',
+							'/assets/yols/eggs/animated/eclosion-feuille.gif',
+							'/assets/yols/base/static/FEUILLE2.png',
+							'/assets/yols/base/animated/feuille.gif',
 						)
 					}
 				}}

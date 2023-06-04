@@ -53,13 +53,13 @@ const ProfileBanner = ({
 			</div>
 			{windowSize.windowWidth > 500 && (
 				<>
-					<Image
+					{/* <Image
 						src={banner}
 						height={100}
 						width={300}
 						alt='Fond du profil'
 						className='absolute right-0 bottom-0'
-					/>
+					/> */}
 					<Image
 						src='/assets/icons/clip-edit.svg'
 						height={30}

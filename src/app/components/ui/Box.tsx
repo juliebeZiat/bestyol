@@ -46,7 +46,7 @@ const Box = ({
 	return (
 		<div
 			className={`bg-lowOpacity p-8 pixel-corners ${
-				theme.primaryBorderColor
+				theme.pixelBorderColor
 			} ${additionalStyle} ${centerItems && 'items-center flex flex-col'}`}
 			style={{ width: width }}
 		>

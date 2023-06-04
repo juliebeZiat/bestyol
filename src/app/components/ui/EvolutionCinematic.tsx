@@ -8,9 +8,11 @@ import { useEffect, useState } from 'react'
 const EvolutionCinematic = ({
 	previousForm,
 	newForm,
+	animatedNewForm,
 }: {
 	previousForm: string
 	newForm: string
+	animatedNewForm: string
 }) => {
 	const { endEvolution } = useEvolution()
 	const [currentImage, setCurrentImage] = useState(previousForm)
@@ -20,6 +22,9 @@ const EvolutionCinematic = ({
 		setTimeout(() => {
 			setCurrentImage(newForm)
 			setHasEvolved(true)
+			setTimeout(() => {
+				setCurrentImage(animatedNewForm)
+			}, 5000)
 		}, 7300)
 	}, [])
 

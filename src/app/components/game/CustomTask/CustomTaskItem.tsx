@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Button from '@/app/components/ui/Button'
 import ButtonIcon from '../../ui/ButtonIcon'
+import { useTheme } from '@/contexts/ThemeContext'
 
 interface CustomTaskProps {
 	title: string
@@ -34,14 +35,18 @@ const CustomTaskItem = ({ title, is_completed }: CustomTaskProps) => {
 		setEditTask(false)
 	}
 
+	const { theme } = useTheme()
+
 	return (
 		<>
 			{!taskIsArchived && !is_completed ? (
 				<div
-					className={`w-full p-2 flex justify-between items-center mb-3 mt-1 transition-all ${
+					className={`h-[4rem] p-3 mb-4 pixel-corners text-white flex justify-start items-center ${
+						theme.pixelBorderColor
+					} transition-all ${
 						taskIsDone
-							? 'bg-orange ease-in-out duration-1000 opacity-0'
-							: 'bg-white'
+							? `${theme.primaryBackgroundColor} ease-in-out duration-1000 delay-1000`
+							: theme.secondaryBackgroundColor
 					}`}
 				>
 					<div>

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import TextField from '../../ui/TextField'
 import CustomTaskItem from './CustomTaskItem'
 import { UserTasks } from '@/type/tasks.type'
+import { useTheme } from '@/contexts/ThemeContext'
 
 export enum TaskType {
 	All = 'all',
@@ -25,31 +26,37 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 		setCreateNewTask(!createNewTask)
 	}
 
+	const { theme } = useTheme()
+
 	if (!customTasks) return null
 
 	const activeTasks = customTasks.filter((task) => !task.is_completed)
 	const archivedTasks = customTasks.filter((task) => task.is_completed)
 	return (
 		<div className='h-full'>
-			<div className='flex cursor-pointer h-[10%]'>
-				<div
-					className={` h-full rounded-xl border-[4px] shadow-white/25 shadow-lg border-blue ${
-						taskType === TaskType.All ? 'bg-lowOpacity' : 'bg-[#564089]'
-					} lg:w-[30%] w-20 py-1`}
-					onClick={() => setTaskType(TaskType.All)}
-				>
-					<p className='text-white text-center'>toutes</p>
+			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
+				<div className='flex justify-end cursor-pointer h-[10%] !absolute top-0 right-0 w-[40%] rounded-bl-lg overflow-hidden'>
+					<div
+						className={`py-1 w-[50%] flex justify-center items-center ${
+							taskType === TaskType.All
+								? theme.vibrantBackgroundColor
+								: 'bg-lowOpacity'
+						}`}
+						onClick={() => setTaskType(TaskType.All)}
+					>
+						<p className='text-white text-center'>Actives</p>
+					</div>
+					<div
+						className={`w-[50%] flex justify-center items-center  ${
+							taskType === TaskType.Archived
+								? theme.vibrantBackgroundColor
+								: 'bg-lowOpacity'
+						} py-1`}
+						onClick={() => setTaskType(TaskType.Archived)}
+					>
+						<p className='text-white text-center'>Complétées</p>
+					</div>
 				</div>
-				<div
-					className={` h-full rounded-xl border-[4px] shadow-white/25 shadow-lg border-blue ${
-						taskType === TaskType.Archived ? 'bg-lowOpacity' : 'bg-[#564089]'
-					} lg:w-[30%] w-20 py-1`}
-					onClick={() => setTaskType(TaskType.Archived)}
-				>
-					<p className='text-white text-center'>historique</p>
-				</div>
-			</div>
-			<Box additionalStyle='h-[90%]' title='Mes tâches' isTogglable>
 				{taskType === TaskType.All ? (
 					<div className='overflow-y-auto max-h-[80%] mt-4'>
 						{createNewTask && <TextField inputFocus />}
