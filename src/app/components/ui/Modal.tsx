@@ -1,3 +1,4 @@
+import { useTheme } from '@/contexts/ThemeContext'
 import { BaseSyntheticEvent } from 'react'
 
 interface ModalProps {
@@ -20,13 +21,18 @@ export default function Modal({
 			if (onClose) onClose()
 		}
 	}
+
+	const { theme } = useTheme()
+
 	return isOpen === true ? (
-		<div className='w-[100%] h-[-webkit-fill-available] overflow-scroll fixed top-0 left-0 z-[60] bg-darkLowOpacity flex justify-center items-start '>
+		<div className='w-[100vw] h-[100vh] fixed top-0 left-0 z-[60] bg-darkLowOpacity'>
 			<div
-				className='w-[90%] min-h-[100%] flex flex-col justify-center items-center py-[20px] '
+				className='w-full h-full flex justify-center items-center'
 				onClick={handleOutsideModalClick}
 			>
-				<div className={`${bgColor} shadow-xl mx-2`}>
+				<div
+					className={`${theme.vibrantBackgroundColor} ${theme.pixelBorderColor} pixel-corners shadow-xl mx-2`}
+				>
 					<div className='flex flex-col'>
 						<div className={`pl-4 sm:pl-8 flex justify-between items-center`}>
 							<div

@@ -8,27 +8,9 @@ import EvolutionProvider from '@/contexts/EvolutionContext'
 import ThemeProvider from '@/contexts/ThemeContext'
 import BackgroundGradient from '../components/layout/backgroundGradient'
 import ReactAudioPlayer from 'react-audio-player'
+import AudioPlayer from '../components/ui/AudioPlayer'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-	const [audioPlaying, setAudioPlaying] = useState(true)
-	const audioPlayer = useRef<HTMLAudioElement>(null)
-	const toggleAudio = () => {
-		if (audioPlaying) {
-			audioPlayer.current?.pause()
-			setAudioPlaying(false)
-		} else {
-			audioPlayer.current?.play()
-			setAudioPlaying(true)
-		}
-	}
-	useEffect(() => {
-		if (!audioPlaying) {
-			audioPlayer.current?.pause()
-		} else {
-			audioPlayer.current?.play()
-		}
-	}, [audioPlaying])
-
 	return (
 		<html lang='en'>
 			<head>
@@ -41,14 +23,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 			<body>
 				<ThemeProvider>
 					<BackgroundGradient />
-					<main className='flex min-h-screen w-full flex-col items-center'>
+					<main className='flex min-h-screen w-full flex-col items-center !relative'>
 						<Providers>
 							<EvolutionProvider>{children}</EvolutionProvider>
 						</Providers>
-						<audio ref={audioPlayer} loop src='/audio/Hyperspace.wav' />
-						<button onClick={() => setAudioPlaying(!audioPlaying)}>
-							PAUSE
-						</button>
+						<AudioPlayer />
 					</main>
 				</ThemeProvider>
 			</body>
