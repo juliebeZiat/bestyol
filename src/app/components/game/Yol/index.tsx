@@ -17,7 +17,7 @@ const YolBox = () => {
 
 	return (
 		<div
-			className={`h-full w-full flex flex-col justify-center items-center gap-y-10 ${
+			className={`h-full w-full flex flex-col justify-center items-center gap-y-8 ${
 				isEvolving && 'cursor-pointer'
 			}`}
 		>

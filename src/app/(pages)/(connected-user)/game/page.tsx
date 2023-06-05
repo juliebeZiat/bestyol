@@ -21,7 +21,7 @@ const GamePage = () => {
 
 	const isMobile = useIsMobile()
 	return (
-		<div className='lg:grid grid-cols-[30%_30%_35%] grid-rows-[40vh_40vh] grid-flow-row gap-8 p-10 lg:w-[90vw] h-full'>
+		<div className='lg:grid grid-cols-[30%_30%_35%] grid-rows-[40vh_40vh] grid-flow-row gap-8 p-6 lg:w-[90vw] h-full'>
 			<Box additionalStyle='col-span-2 mb-12 lg:mb-0 relative'>
 				<YolBox />
 			</Box>

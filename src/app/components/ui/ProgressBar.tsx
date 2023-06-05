@@ -13,13 +13,14 @@ const ProgressBar = ({
 	total,
 	width = 'sm:w-[150px]',
 	margin = 'mt-2',
-	color = 'bg-orange',
+	color,
 }: ProgressBarProps) => {
 	if (!total) return null
 
 	const progressPercentage = `${Math.round((progress / total) * 100)}%`
 
 	const { theme } = useTheme()
+	console.log
 
 	return (
 		<div className='flex flex-col'>

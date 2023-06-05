@@ -56,7 +56,7 @@ const Navbar = () => {
 	if (!yol) return null
 
 	return (
-		<nav className='relative bg-lowOpacity text-[#FFFFFF] w-full h-[6svh] flex items-center'>
+		<nav className='relative bg-lowOpacity text-[#FFFFFF] w-full h-[8svh] flex items-center'>
 			<div className='w-full px-4 sm:px-6 lg:px-8'>
 				<div className='flex items-center justify-between h-16'>
 					<div className='relative flex items-center gap-2 sm:gap-8'>
@@ -64,8 +64,8 @@ const Navbar = () => {
 							<div className='flex-shrink-0'>
 								<Image
 									src={yol.data.species.image}
-									width={38}
-									height={38}
+									width={35}
+									height={35}
 									alt='yol'
 								/>
 							</div>
@@ -84,6 +84,7 @@ const Navbar = () => {
 							<ProgressBar
 								progress={yol.data.xp - yol.data.level.levelMin}
 								total={yol.data.level.levelMax}
+								color={theme.vibrantBackgroundColor}
 							/>
 							<div className='flex items-center text-sm sm:text-lg'>
 								<span className=' mr-2'>{yol.data.xp} XP</span>
@@ -118,14 +119,14 @@ const Navbar = () => {
 								{menuItems.map((item, index) => (
 									<a className='cursor-pointer' href={item.link} key={index}>
 										<li
-											className={`w-[150px] border-2 p-1 text-xl ${theme.borderColor} ${theme.primaryBackgroundColor}`}
+											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
 										>
 											{item.name}
 										</li>
 									</a>
 								))}
 								<li
-									className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.borderColor} ${theme.primaryBackgroundColor}`}
+									className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
 									onClick={() => setIsThemeModalOpen(true)}
 								>
 									Thèmes de couleur

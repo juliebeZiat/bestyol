@@ -35,7 +35,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	return (
 		<div className='h-full'>
 			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
-				<div className='flex justify-end cursor-pointer h-[10%] !absolute top-0 right-0 w-[40%] rounded-bl-lg overflow-hidden'>
+				<div className='flex justify-end cursor-pointer h-[10%] !absolute top-0 right-0 w-[50%] rounded-bl-lg overflow-hidden'>
 					<div
 						className={`py-1 w-[50%] flex justify-center items-center ${
 							taskType === TaskType.All

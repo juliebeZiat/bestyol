@@ -41,7 +41,7 @@ const CustomTaskItem = ({ title, is_completed }: CustomTaskProps) => {
 		<>
 			{!taskIsArchived && !is_completed ? (
 				<div
-					className={`h-[4rem] p-3 mb-4 pixel-corners text-white flex justify-start items-center ${
+					className={`h-[4rem] p-3 mb-4 pixel-corners text-white flex justify-between items-center ${
 						theme.pixelBorderColor
 					} transition-all ${
 						taskIsDone
@@ -79,10 +79,11 @@ const CustomTaskItem = ({ title, is_completed }: CustomTaskProps) => {
 					{!editTask ? (
 						<div className='cursor-pointer' onClick={handleEdit}>
 							<Image
-								src='/assets/icons/edit.svg'
-								width={15}
-								height={15}
+								src='/assets/icons/clip-edit.svg'
+								width={20}
+								height={20}
 								alt='edit-icon'
+								className='invert'
 							/>
 						</div>
 					) : (
