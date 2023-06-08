@@ -36,7 +36,6 @@ const LoginPage = () => {
 						<Button
 							content='Je me connecte'
 							textColor='text-white'
-							backgroundColor='bg-orange'
 							onClick={() => dispatch(login())}
 						/>
 					</Link>

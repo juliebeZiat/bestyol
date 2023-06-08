@@ -1,5 +1,7 @@
 'use client'
 
+import { useTheme } from '@/contexts/ThemeContext'
+
 export enum ButtonSize {
 	Small = 'py-2 px-4 text-lg',
 	Medium = 'py-3 px-5 text-xl',
@@ -18,7 +20,7 @@ interface ButtonProps {
 }
 
 const Button = ({
-	backgroundColor = 'bg-grey',
+	backgroundColor,
 	textColor,
 	size = ButtonSize.Medium,
 	content,
@@ -27,9 +29,12 @@ const Button = ({
 	additionalStyle,
 	type = 'button',
 }: ButtonProps) => {
+	const { theme } = useTheme()
 	return (
 		<button
-			className={`${backgroundColor} ${textColor} ${size} ${additionalStyle}`}
+			className={`${
+				backgroundColor || theme.vibrantBackgroundColor
+			} ${textColor} ${size} ${additionalStyle} pixel-corners-items`}
 			onClick={onClick}
 			type={type}
 		>

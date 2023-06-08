@@ -8,6 +8,7 @@ import TextField from '../../ui/TextField'
 import CustomTaskItem from './CustomTaskItem'
 import { UserTasks } from '@/type/tasks.type'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useIsMobile } from '@/hooks/useWindowSize'
 
 export enum TaskType {
 	All = 'all',
@@ -19,6 +20,7 @@ interface CustomTaskProps {
 }
 
 const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
+	const isMobile = useIsMobile()
 	const [taskType, setTaskType] = useState<TaskType>(TaskType.All)
 	const [createNewTask, setCreateNewTask] = useState<boolean>(false)
 
@@ -33,7 +35,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const activeTasks = customTasks.filter((task) => !task.is_completed)
 	const archivedTasks = customTasks.filter((task) => task.is_completed)
 	return (
-		<div className='h-full'>
+		<div className={`h-full ${isMobile && 'mb-12'}`}>
 			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
 				<div className='flex justify-end cursor-pointer h-[10%] !absolute top-0 right-0 w-[50%] rounded-bl-lg overflow-hidden'>
 					<div

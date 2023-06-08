@@ -39,12 +39,7 @@ const SigninPage = () => {
 				/>
 				<div className='flex flex-col items-center py-5'>
 					<Link href='/game'>
-						<Button
-							content="Je m'inscris"
-							textColor='text-white'
-							backgroundColor='bg-orange'
-							onClick={() => dispatch(login())}
-						/>
+						<Button content="Je m'inscris" onClick={() => dispatch(login())} />
 					</Link>
 					<Link href='/login' className='text-white mt-5'>
 						Déjà inscrit ? Connectez-vous

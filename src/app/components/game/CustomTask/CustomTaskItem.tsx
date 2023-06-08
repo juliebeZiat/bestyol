@@ -41,7 +41,7 @@ const CustomTaskItem = ({ title, is_completed }: CustomTaskProps) => {
 		<>
 			{!taskIsArchived && !is_completed ? (
 				<div
-					className={`h-[4rem] p-3 mb-4 pixel-corners text-white flex justify-between items-center ${
+					className={`h-[4rem] p-3 mb-4 pixel-corners-items text-white flex justify-between items-center ${
 						theme.pixelBorderColor
 					} transition-all ${
 						taskIsDone
@@ -90,9 +90,10 @@ const CustomTaskItem = ({ title, is_completed }: CustomTaskProps) => {
 						<div className='cursor-pointer' onClick={handleSave}>
 							<Image
 								src='/assets/icons/ok.svg'
-								width={15}
-								height={15}
+								width={25}
+								height={25}
 								alt='ok-icon'
+								className='invert'
 							/>
 						</div>
 					)}

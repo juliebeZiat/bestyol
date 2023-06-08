@@ -39,10 +39,10 @@ const TextField = ({
 			<label className='block text-xl mb-2 text text-white' htmlFor={labelFor}>
 				{label}
 			</label>
-			<div className='relative text-[#000000]'>
+			<div className='relative text-white'>
 				<input
 					ref={inputFocus ? inputReference : null}
-					className={`appearance-none w-full py-2 px-3 pl-6 focus:outline-none outline-none text-xl ${
+					className={`pixel-corners-items appearance-none w-full py-2 px-3 pl-6 focus:outline-none outline-none text-xl bg-lowOpacity ${
 						error && 'border-error border-2'
 					} `}
 					type={inputType}
@@ -54,7 +54,7 @@ const TextField = ({
 				/>
 				{error && <p className='text-lg text-error'>{errorMessage}</p>}
 				{isFocused && (
-					<div className='absolute top-5 left-1 grid h-5 w-5 -translate-y-2/4 place-items-center'>
+					<div className='absolute top-6 left-1 grid h-5 w-5 -translate-y-2/4 place-items-center'>
 						&gt;
 					</div>
 				)}

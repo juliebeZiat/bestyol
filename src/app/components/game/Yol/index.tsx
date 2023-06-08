@@ -1,10 +1,12 @@
 import { useAuth } from '@/contexts/AuthContext'
 import { useEvolution } from '@/contexts/EvolutionContext'
+import { useIsMobile } from '@/hooks/useWindowSize'
 import { useFetchUserYol } from '@/services/queries/yol'
 import { evolutionLevels } from '@/utils/utils'
 import Image from 'next/image'
 
 const YolBox = () => {
+	const isMobile = useIsMobile()
 	const { user } = useAuth()
 	if (!user) return null
 
@@ -17,7 +19,7 @@ const YolBox = () => {
 
 	return (
 		<div
-			className={`h-full w-full flex flex-col justify-center items-center gap-y-8 ${
+			className={`h-full w-full flex flex-col justify-center items-center  ${
 				isEvolving && 'cursor-pointer'
 			}`}
 		>
@@ -40,8 +42,9 @@ const YolBox = () => {
 					className={isEvolving ? 'animate-wiggleInfinite origin-bottom' : ''}
 				/>
 			</div>
-
-			<p className='text-white absolute bottom-0'>✨ {yol.data.name} ✨</p>
+			<p className={`text-white ${!isMobile ? 'absolute bottom-4' : 'mt-4'}`}>
+				✨ {yol.data.name} ✨
+			</p>
 		</div>
 	)
 }

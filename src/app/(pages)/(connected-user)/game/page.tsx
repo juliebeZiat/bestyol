@@ -39,11 +39,7 @@ const GamePage = () => {
 				additionalButton={
 					!isMobile && (
 						<Link href='/achievements'>
-							<Button
-								content='Voir tous mes succès'
-								uppercase
-								size={ButtonSize.Small}
-							/>
+							<p className='text-white underline'>Voir tous mes succès</p>
 						</Link>
 					)
 				}

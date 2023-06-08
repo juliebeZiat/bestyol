@@ -1,5 +1,6 @@
 import ProgressBar from '@/app/components/ui/ProgressBar'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 
 interface SuccessProps {
@@ -9,11 +10,12 @@ interface SuccessProps {
 }
 
 const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
+	const isMobile = useIsMobile()
 	const { theme } = useTheme()
 
 	return (
 		<div
-			className={`h-[30%] p-3 mb-4 pixel-corners ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor}`}
+			className={`h-[30%] p-2 mb-3 pixel-corners-items ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor}`}
 		>
 			<div className='flex content-center'>
 				<div className='w-[15%]'>
@@ -26,7 +28,7 @@ const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 				</div>
 				<div className='w-[85%]'>
 					<div className='flex justify-between'>
-						<h1 className='text-white w-[80%]'>{title}</h1>
+						<h1 className='text-white w-[70%]'>{title}</h1>
 						<div className='text-white'>
 							{current_amount} / {amount}
 						</div>
@@ -34,7 +36,7 @@ const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 					<ProgressBar
 						progress={current_amount}
 						total={amount}
-						width='w-[80%]'
+						width={isMobile ? 'w-[60%]' : 'w-[80%]'}
 						margin='mt-1'
 						color={theme.vibrantBackgroundColor}
 					/>

@@ -9,7 +9,7 @@ import TestYolCarousel from '@/app/components/ui/NewYolCarousel'
 import { useEffect, useState } from 'react'
 
 const ChooseYourYol = () => {
-	const [yolName, setYolName] = useState('test')
+	const [yolName, setYolName] = useState('')
 	const [currentYol, setCurrentYol] = useState<yol>()
 	const [hydrated, setHydrated] = useState(false)
 	useEffect(() => {
@@ -47,13 +47,13 @@ const ChooseYourYol = () => {
 
 					<div className='w-[40%]'>
 						<TextField
+							inputFocus
 							value={yolName}
 							onChange={(e) => setYolName(e.target.value)}
 							inputType='text'
 						/>
 					</div>
 					<Button
-						backgroundColor='bg-orange'
 						content="C'est parti !"
 						type='submit'
 						size={ButtonSize.Medium}

@@ -7,8 +7,8 @@ const loadingAnimation = keyframes`
 const LoaderComponent = styled.div`
 	width: 120px;
 	height: 20px;
-	mask: linear-gradient(90deg, #fcb482 70%, #0000 0) 0/20%;
-	background: linear-gradient(#fcb482 0 0) 0/0% no-repeat #ddd;
+	mask: linear-gradient(90deg, #454545 70%, #0000 0) 0/20%;
+	background: linear-gradient(#454545 0 0) 0/0% no-repeat #ddd;
 	animation: ${loadingAnimation} 2s infinite steps(6);
 `
 
