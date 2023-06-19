@@ -12,6 +12,9 @@ interface TextFieldProps {
 	inputFocus?: boolean
 	value?: string
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	needsSaving?: boolean
+	onValidate?: () => void
+	onCancel?: () => void
 }
 
 const TextField = ({
@@ -24,6 +27,9 @@ const TextField = ({
 	inputFocus,
 	value,
 	onChange,
+	needsSaving = false,
+	onValidate,
+	onCancel,
 }: TextFieldProps) => {
 	const [isFocused, setIsFocused] = useState(false)
 	const inputReference = useRef<HTMLInputElement>(null)
@@ -35,7 +41,7 @@ const TextField = ({
 	}, [])
 
 	return (
-		<div className='mb-4 w-full'>
+		<div className='mb-4 w-full relative'>
 			<label className='block text-xl mb-2 text text-white' htmlFor={labelFor}>
 				{label}
 			</label>
@@ -52,6 +58,12 @@ const TextField = ({
 					value={value ?? undefined}
 					onChange={onChange ?? undefined}
 				/>
+				{needsSaving && (
+					<div className='absolute top-[50%] right-0 px-4 flex gap-x-4 translate-y-[-50%]'>
+						<button onClick={onValidate}>&#10004;</button>
+						<button onClick={onCancel}>&#10539;</button>
+					</div>
+				)}
 				{error && <p className='text-lg text-error'>{errorMessage}</p>}
 				{isFocused && (
 					<div className='absolute top-6 left-1 grid h-5 w-5 -translate-y-2/4 place-items-center'>
