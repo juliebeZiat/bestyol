@@ -24,6 +24,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const [createNewTask, setCreateNewTask] = useState<boolean>(false)
 
 	const handleCreateNewTask = () => {
+		if (createNewTask) setNewTask('')
 		setCreateNewTask(!createNewTask)
 	}
 	const [newTask, setNewTask] = useState<string>('')
@@ -51,7 +52,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 							<TextField
 								inputFocus
 								needsSaving
-								onValidate={() => console.log('validate')}
+								onValidate={() => console.log(newTask)}
 								onCancel={handleCreateNewTask}
 								value={newTask}
 								onChange={(e) => setNewTask(e.target.value)}
