@@ -19,9 +19,6 @@ const ProgressBar = ({
 
 	const progressPercentage = `${Math.round((progress / total) * 100)}%`
 
-	const { theme } = useTheme()
-	console.log
-
 	return (
 		<div className='flex flex-col'>
 			<div className={`w-[75px] ${width}`}>

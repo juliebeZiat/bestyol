@@ -31,7 +31,6 @@ const LoginPage = () => {
 	}
 
 	const handleSubmit = () => {
-		console.log(user)
 		dispatch(setUser(user))
 		dispatch(login())
 	}

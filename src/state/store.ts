@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import authReducer from './reducer/auth.reducer'
+import evolutionReducer from './reducer/evolution.reducer'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	auth: authReducer,
+	evolution: evolutionReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
