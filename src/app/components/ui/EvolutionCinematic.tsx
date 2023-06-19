@@ -1,7 +1,8 @@
 'use client'
 
-import { useEvolution } from '@/contexts/EvolutionContext'
 import useWindowSize from '@/hooks/useWindowSize'
+import { useAppDispatch } from '@/state/hooks'
+import { endEvolution } from '@/state/reducer/evolution.reducer'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -14,7 +15,7 @@ const EvolutionCinematic = ({
 	newForm: string
 	animatedNewForm: string
 }) => {
-	const { endEvolution } = useEvolution()
+	const dispatch = useAppDispatch()
 	const [currentImage, setCurrentImage] = useState(previousForm)
 	const [hasEvolved, setHasEvolved] = useState(false)
 
@@ -37,7 +38,7 @@ const EvolutionCinematic = ({
 					<button
 						type='button'
 						className='text-white text-6xl'
-						onClick={endEvolution}
+						onClick={() => dispatch(endEvolution())}
 					>
 						&#x2190;
 					</button>

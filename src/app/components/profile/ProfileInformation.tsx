@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Box from '../ui/Box'
 import { useState } from 'react'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 interface ProfileInformationProps {
 	setModalInfoIsOpen: (isOpen: boolean) => void
@@ -14,8 +15,8 @@ const ProfileInformation = ({
 	setModalPasswordIsOpen,
 	setModalDeleteAccountIsOpen,
 }: ProfileInformationProps) => {
-	const { user } = useAuth()
-	if (!user) return null
+	const user = useAppSelector((state: RootState) => state.auth.user)
+
 	const [pointerHovering, setPointerHovering] = useState<
 		'none' | 'profile' | 'password' | 'delete'
 	>('none')

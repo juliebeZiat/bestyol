@@ -5,7 +5,7 @@ import Button from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppDispatch } from '@/state/hooks'
-import { login } from '@/state/reducer/app.reducer'
+import { login, setUser } from '@/state/reducer/auth.reducer'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -19,6 +19,20 @@ const LoginPage = () => {
 	}, [])
 	if (!hydrated) {
 		return null
+	}
+
+	const user = {
+		id: 1,
+		pp: 'Icon1.png',
+		banner: 'cloud-1.png',
+		name: 'Vincent',
+		email: 'vincent@bestyol.fr',
+		password: '1234567890',
+	}
+
+	const handleSubmit = () => {
+		dispatch(setUser(user))
+		dispatch(login())
 	}
 
 	return (
@@ -36,7 +50,7 @@ const LoginPage = () => {
 						<Button
 							content='Je me connecte'
 							textColor='text-white'
-							onClick={() => dispatch(login())}
+							onClick={handleSubmit}
 						/>
 					</Link>
 					<Link href='/signup' className='text-white mt-5'>

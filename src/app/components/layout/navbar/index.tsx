@@ -4,16 +4,16 @@ import { useState, useEffect, useRef } from 'react'
 import ProgressBar from '../../ui/ProgressBar'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useAuth } from '@/contexts/AuthContext'
 import { useFetchUserYol } from '@/services/queries/yol'
-import { Theme, Themes, useTheme } from '@/contexts/ThemeContext'
+import { useTheme } from '@/contexts/ThemeContext'
 import Modal from '../../ui/Modal'
 import { themes as allThemes, themes } from '@/data/themes'
 import Button from '../../ui/Button'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 const Navbar = () => {
-	const { user } = useAuth()
-	if (!user) return null
+	const user = useAppSelector((state: RootState) => state.auth.user)
 
 	const { theme, setTheme } = useTheme()
 

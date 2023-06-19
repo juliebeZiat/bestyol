@@ -2,12 +2,10 @@
 
 import '../globals.css'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import Providers from '@/utils/provider'
-import EvolutionProvider from '@/contexts/EvolutionContext'
 import ThemeProvider from '@/contexts/ThemeContext'
 import BackgroundGradient from '../components/layout/backgroundGradient'
-import ReactAudioPlayer from 'react-audio-player'
 import AudioPlayer from '../components/ui/AudioPlayer'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
@@ -24,9 +22,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 				<ThemeProvider>
 					<BackgroundGradient />
 					<main className='flex min-h-screen w-full flex-col items-center !relative'>
-						<Providers>
-							<EvolutionProvider>{children}</EvolutionProvider>
-						</Providers>
+						<Providers>{children}</Providers>
 						<AudioPlayer />
 					</main>
 				</ThemeProvider>
