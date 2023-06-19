@@ -88,8 +88,8 @@ module.exports = {
           },
         },
         explode: {
-          '0%': { transform: 'scaleX(100%)' },
-          '100%': { transform: 'scaleX(-5%)' },
+          '0%': { transform: 'rotateY(0)' },
+          '100%': { transform: 'rotateY(1turn)' },
         }
       },
     },
