@@ -1,13 +1,14 @@
-import { useAuth } from '@/contexts/AuthContext'
 import { useEvolution } from '@/contexts/EvolutionContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useFetchUserYol } from '@/services/queries/yol'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import { evolutionLevels } from '@/utils/utils'
 import Image from 'next/image'
 
 const YolBox = () => {
 	const isMobile = useIsMobile()
-	const { user } = useAuth()
+	const user = useAppSelector((state: RootState) => state.auth.user)
 	if (!user) return null
 
 	const { data: yol } = useFetchUserYol(user.id)

@@ -5,15 +5,14 @@ import DailyTaskBox from '@/app/components/game/DailyTask'
 import SuccessBox from '@/app/components/game/Success'
 import YolBox from '@/app/components/game/Yol'
 import Box from '@/app/components/ui/Box'
-import Button, { ButtonSize } from '@/app/components/ui/Button'
-import { useAuth } from '@/contexts/AuthContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useFetchAllUserTasks } from '@/services/queries/tasks'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import Link from 'next/link'
 
 const GamePage = () => {
-	const { user } = useAuth()
-	if (!user) return null
+	const user = useAppSelector((state: RootState) => state.auth.user)
 	const { data: tasks } = useFetchAllUserTasks(user.id)
 
 	const dailyTasks = tasks?.data.filter((task) => task.is_daily === true)

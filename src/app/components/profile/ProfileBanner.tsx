@@ -1,5 +1,6 @@
-import { useAuth } from '@/contexts/AuthContext'
 import useWindowSize from '@/hooks/useWindowSize'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import Image from 'next/image'
 
 interface ProfileBannerProps {
@@ -15,7 +16,7 @@ const ProfileBanner = ({
 	avatar,
 	banner,
 }: ProfileBannerProps) => {
-	const { user } = useAuth()
+	const user = useAppSelector((state: RootState) => state.auth.user)
 	if (!user) return null
 	const windowSize = useWindowSize()
 	const username = user.name

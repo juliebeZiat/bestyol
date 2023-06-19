@@ -10,10 +10,11 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { availableAvatars, availableBanners } from './profileImages'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 const ProfilePage = () => {
-	const { user } = useAuth()
+	const user = useAppSelector((state: RootState) => state.auth.user)
 
 	const [userAvatar, setUserAvatar] = useState<string>(
 		'/assets/avatars/Icon1.png',
