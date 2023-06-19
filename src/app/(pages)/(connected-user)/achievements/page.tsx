@@ -63,33 +63,19 @@ const AchievementsPage = () => {
 							/>
 						</div>
 						<div className='lg:w-full lg:max-h-[30rem] lg:overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8'>
-							{achievementType === AchievementType.Pending ? (
-								<>
-									{pendingAchievements?.map((achievement) => (
-										<AchievementTile
-											title={achievement.success.title}
-											description={achievement.success.description}
-											xp={achievement.success.success_xp}
-											goal={achievement.success.amount_needed}
-											progress={achievement.actual_amount}
-											isCompleted={achievement.is_completed}
-										/>
-									))}
-								</>
-							) : (
-								<>
-									{completedAchievements?.map((achievement) => (
-										<AchievementTile
-											title={achievement.success.title}
-											description={achievement.success.description}
-											xp={achievement.success.success_xp}
-											goal={achievement.success.amount_needed}
-											progress={achievement.actual_amount}
-											isCompleted={achievement.is_completed}
-										/>
-									))}
-								</>
-							)}
+							{(achievementType === AchievementType.Pending
+								? pendingAchievements
+								: completedAchievements
+							)?.map((achievement) => (
+								<AchievementTile
+									title={achievement.success.title}
+									description={achievement.success.description}
+									xp={achievement.success.success_xp}
+									goal={achievement.success.amount_needed}
+									progress={achievement.actual_amount}
+									isCompleted={achievement.is_completed}
+								/>
+							))}
 						</div>
 					</Box>
 				</div>

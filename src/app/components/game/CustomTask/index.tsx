@@ -35,7 +35,24 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const archivedTasks = customTasks.filter((task) => task.is_completed)
 	return (
 		<div className={`h-full ${isMobile && 'mb-12'}`}>
-			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
+			<Box
+				additionalStyle='h-full'
+				title='Mes tâches'
+				isTogglable
+				additionalButton={
+					taskType === TaskType.All && (
+						<ButtonIcon onClick={handleCreateNewTask} additionalStyle='mr-2'>
+							<Image
+								src='/assets/icons/add.svg'
+								width={8}
+								height={8}
+								alt='add-icon'
+								className='-mt-[2px]'
+							/>
+						</ButtonIcon>
+					)
+				}
+			>
 				<Tabs
 					activeItemsTitle='Actives'
 					archivedItemsTitle='Complétées'
@@ -44,7 +61,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 					setActiveItems={() => setTaskType(TaskType.All)}
 					setArchivedItems={() => setTaskType(TaskType.Archived)}
 				/>
-				{taskType === TaskType.All ? (
+				{/* {taskType === TaskType.All ? (
 					<div className='overflow-y-auto max-h-[80%] mt-4'>
 						{createNewTask && <TextField inputFocus />}
 						{activeTasks.map((task, index) => (
@@ -65,7 +82,21 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 							/>
 						))}
 					</div>
-				)}
+				)} */}
+				<div className='overflow-y-auto max-h-[80%] mt-4'>
+					{/* {createNewTask && taskType === TaskType.All && (
+						<TextField inputFocus />
+					)} */}
+					{(taskType === TaskType.All ? activeTasks : archivedTasks).map(
+						(task, index) => (
+							<CustomTaskItem
+								title={task.title || ''}
+								is_completed={task.is_completed}
+								key={index}
+							/>
+						),
+					)}
+				</div>
 			</Box>
 		</div>
 	)
