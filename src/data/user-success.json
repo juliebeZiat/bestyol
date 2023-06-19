@@ -15,8 +15,8 @@
 	{
 		"id": 2,
 		"user_id": 1,
-		"actual_amount": 7,
-		"is_completed": false,
+		"actual_amount": 20,
+		"is_completed": true,
 		"success": {
 			"id": 4,
 			"title": "Rat de bibliothèque",
@@ -41,8 +41,8 @@
 	{
 		"id": 3,
 		"user_id": 1,
-		"actual_amount": 13,
-		"is_completed": false,
+		"actual_amount": 15,
+		"is_completed": true,
 		"success": {
 			"id": 6,
 			"title": "Savant curieux.se",

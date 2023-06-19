@@ -45,7 +45,8 @@ module.exports = {
         wiggle: 'wiggle 2s ease-in-out 3 1s',
         wiggleInfinite: 'wiggle 2s ease-in-out infinite',
         flash: 'flash 4s ease-out 7s',
-        jump: 'jump .5s 2 3s'
+        jump: 'jump .5s 2 3s',
+        explode: 'explode 1s ease-in-out'
       },
       keyframes: {
         hovering: {
@@ -85,6 +86,10 @@ module.exports = {
             'transform': 'translateY(-25%)',
             'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
           },
+        },
+        explode: {
+          '0%': { transform: 'scaleX(100%)' },
+          '100%': { transform: 'scaleX(-5%)' },
         }
       },
     },

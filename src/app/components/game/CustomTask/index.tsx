@@ -9,6 +9,7 @@ import CustomTaskItem from './CustomTaskItem'
 import { UserTasks } from '@/type/tasks.type'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
+import Tabs from '../../ui/Tabs'
 
 export enum TaskType {
 	All = 'all',
@@ -28,8 +29,6 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 		setCreateNewTask(!createNewTask)
 	}
 
-	const { theme } = useTheme()
-
 	if (!customTasks) return null
 
 	const activeTasks = customTasks.filter((task) => !task.is_completed)
@@ -37,28 +36,14 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	return (
 		<div className={`h-full ${isMobile && 'mb-12'}`}>
 			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
-				<div className='flex justify-end cursor-pointer h-[10%] !absolute top-0 right-0 w-[50%] rounded-bl-lg overflow-hidden'>
-					<div
-						className={`py-1 w-[50%] flex justify-center items-center ${
-							taskType === TaskType.All
-								? theme.vibrantBackgroundColor
-								: 'bg-lowOpacity'
-						}`}
-						onClick={() => setTaskType(TaskType.All)}
-					>
-						<p className='text-white text-center'>Actives</p>
-					</div>
-					<div
-						className={`w-[50%] flex justify-center items-center  ${
-							taskType === TaskType.Archived
-								? theme.vibrantBackgroundColor
-								: 'bg-lowOpacity'
-						} py-1`}
-						onClick={() => setTaskType(TaskType.Archived)}
-					>
-						<p className='text-white text-center'>Complétées</p>
-					</div>
-				</div>
+				<Tabs
+					activeItemsTitle='Actives'
+					archivedItemsTitle='Complétées'
+					activeItemsCondition={taskType === TaskType.All}
+					archivedItemsCondition={taskType === TaskType.Archived}
+					setActiveItems={() => setTaskType(TaskType.All)}
+					setArchivedItems={() => setTaskType(TaskType.Archived)}
+				/>
 				{taskType === TaskType.All ? (
 					<div className='overflow-y-auto max-h-[80%] mt-4'>
 						{createNewTask && <TextField inputFocus />}
