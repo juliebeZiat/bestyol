@@ -13,7 +13,9 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 	const isEvolving = useAppSelector(
 		(state: RootState) => state.evolution.isEvolving,
 	)
-	const evolution = useAppSelector((state: RootState) => state.evolution.assets)
+	const evolutionAssets = useAppSelector(
+		(state: RootState) => state.evolution.assets,
+	)
 
 	if (isLogged) {
 		return (
@@ -25,9 +27,9 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 					</>
 				) : (
 					<EvolutionCinematic
-						previousForm={evolution.previousForm!}
-						newForm={evolution.newForm!}
-						animatedNewForm={evolution.animatedNewForm!}
+						previousForm={evolutionAssets.previousForm!}
+						newForm={evolutionAssets.newForm!}
+						animatedNewForm={evolutionAssets.animatedNewForm!}
 					/>
 				)}
 			</>

@@ -1,4 +1,3 @@
-import { User } from '@/type/user.type'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type EvolutionAssets = {
