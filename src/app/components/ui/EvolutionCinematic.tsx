@@ -21,7 +21,7 @@ const EvolutionCinematic = ({
 	const dispatch = useAppDispatch()
 	const [currentImage, setCurrentImage] = useState(previousForm)
 	const [hasEvolved, setHasEvolved] = useState(false)
-	const user = useAppSelector((state: RootState) => state.auth.user)
+	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: yol } = useFetchUserYol(user.id)
 
 	const evolutionStep = getEvolutionStep(yol!.data!)

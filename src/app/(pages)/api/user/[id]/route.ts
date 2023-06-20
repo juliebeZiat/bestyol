@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import userData from '../../../../../data/user.json'
+import userData from '@/data/user.json'
 
 export function GET(request: Request, { params }: { params: { id: string } }) {
 	const userId = params.id

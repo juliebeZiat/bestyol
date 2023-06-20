@@ -31,7 +31,7 @@ const YolCarousel = ({
 		},
 		{
 			name: 'Evopink',
-			pic: '/assets/yols/base/lunettes.png',
+			pic: '/assets/yols/base/static/lunettes.png',
 			pos: 3,
 			theme: themes[4],
 		},
