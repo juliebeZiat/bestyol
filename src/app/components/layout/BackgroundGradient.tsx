@@ -1,12 +1,12 @@
 'use client'
 
-import Image from 'next/image'
-
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import type { Engine } from 'tsparticles-engine'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import { useTheme } from '@/contexts/ThemeContext'
 
 const BackgroundGradient = () => {
@@ -54,7 +54,7 @@ const BackgroundGradient = () => {
 		await loadFull(engine)
 	}, [])
 
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
 		<div

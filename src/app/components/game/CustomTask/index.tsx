@@ -8,6 +8,8 @@ import { UserTasks } from '@/type/tasks.type'
 import { useTheme } from '@/contexts/ThemeContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 export enum TaskType {
 	All = 'all',
@@ -29,7 +31,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	}
 	const [newTask, setNewTask] = useState<string>('')
 
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	if (!customTasks) return null
 

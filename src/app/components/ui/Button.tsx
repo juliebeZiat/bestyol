@@ -1,6 +1,8 @@
 'use client'
 
 import { useTheme } from '@/contexts/ThemeContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 export enum ButtonSize {
 	Small = 'py-2 px-4 text-lg',
@@ -29,7 +31,7 @@ const Button = ({
 	additionalStyle,
 	type = 'button',
 }: ButtonProps) => {
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 	return (
 		<button
 			className={`${

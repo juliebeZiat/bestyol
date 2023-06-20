@@ -15,7 +15,7 @@ const ProfileInformation = ({
 	setModalPasswordIsOpen,
 	setModalDeleteAccountIsOpen,
 }: ProfileInformationProps) => {
-	const user = useAppSelector((state: RootState) => state.auth.user)
+	const user = useAppSelector((state: RootState) => state.user.user)
 
 	const [pointerHovering, setPointerHovering] = useState<
 		'none' | 'profile' | 'password' | 'delete'

@@ -5,11 +5,13 @@ import Button from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppDispatch } from '@/state/hooks'
-import { login } from '@/state/reducer/auth.reducer'
+import { login } from '@/state/reducer/user.reducer'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const SigninPage = () => {
+	const router = useRouter()
 	const isMobile = useIsMobile()
 	const dispatch = useAppDispatch()
 
@@ -21,11 +23,20 @@ const SigninPage = () => {
 		return null
 	}
 
+	const handleSubmit = () => {
+		router.push('/choose-your-yol')
+		dispatch(login())
+	}
+
 	return (
 		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
 			<h1 className='text-white text-2xl mb-10'>Inscription</h1>
 			<form className='w-3/4 mb-10'>
-				<TextField label="Votre nom d'utilisateur" labelFor='username' />
+				<TextField
+					label="Votre nom d'utilisateur"
+					labelFor='username'
+					inputFocus
+				/>
 				<TextField label='Votre email' labelFor='email' inputType='email' />
 				<TextField
 					label='Votre mot de passe'
@@ -38,9 +49,7 @@ const SigninPage = () => {
 					inputType='password'
 				/>
 				<div className='flex flex-col items-center py-5'>
-					<Link href='/game'>
-						<Button content="Je m'inscris" onClick={() => dispatch(login())} />
-					</Link>
+					<Button content="Je m'inscris" onClick={handleSubmit} />
 					<Link href='/login' className='text-white mt-5'>
 						Déjà inscrit ? Connectez-vous
 					</Link>

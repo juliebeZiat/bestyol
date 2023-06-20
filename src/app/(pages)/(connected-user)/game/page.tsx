@@ -12,7 +12,7 @@ import { RootState } from '@/state/store'
 import Link from 'next/link'
 
 const GamePage = () => {
-	const user = useAppSelector((state: RootState) => state.auth.user)
+	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: tasks } = useFetchAllUserTasks(user.id)
 
 	const dailyTasks = tasks?.data.filter((task) => task.is_daily === true)

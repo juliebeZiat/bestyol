@@ -1,4 +1,6 @@
 import { useTheme } from '@/contexts/ThemeContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import { useEffect, useRef, useState } from 'react'
 
 const AudioPlayer = () => {
@@ -26,7 +28,7 @@ const AudioPlayer = () => {
 		audioPlayer.current.play()
 	}, [])
 
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
 		<>

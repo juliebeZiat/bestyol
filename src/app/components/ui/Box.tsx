@@ -5,6 +5,8 @@ import Image from 'next/image'
 import React, { ReactNode, useEffect, useState } from 'react'
 import ButtonIcon from './ButtonIcon'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 interface BoxProps {
 	width?: string
@@ -41,7 +43,7 @@ const Box = ({
 		}
 	}
 
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
 		<div

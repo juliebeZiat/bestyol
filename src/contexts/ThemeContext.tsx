@@ -8,7 +8,7 @@ import {
 	useState,
 } from 'react'
 
-import { themes } from '@/data/themes'
+import { themes } from '@/utils/themes'
 
 interface ThemeProviderProps {
 	children: ReactNode

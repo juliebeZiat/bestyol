@@ -5,7 +5,7 @@ import YolCarousel from '@/app/components/ui/YolCarousel'
 import useWindowSize from '@/hooks/useWindowSize'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import TestYolCarousel from '../components/ui/NewYolCarousel'
+import TestYolCarousel from '../components/ui/YolCarousel'
 
 const HomePage = () => {
 	const windowSize = useWindowSize()

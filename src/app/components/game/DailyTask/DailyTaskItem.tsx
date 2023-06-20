@@ -1,5 +1,5 @@
-import { useTheme } from '@/contexts/ThemeContext'
-import { DailyTasks, UserTasks } from '@/type/tasks.type'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 interface DailyTaskItemProps {
 	title: string
@@ -8,7 +8,7 @@ interface DailyTaskItemProps {
 }
 
 const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
 		<div
