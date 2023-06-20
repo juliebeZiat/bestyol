@@ -9,7 +9,8 @@
 			"title": "Maîtrise de l'hydratation",
 			"description": "Finir la tâche quotidienne \"boire de l'eau\" 25 fois",
 			"amount_needed": 25,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/1.svg"
 		}
 	},
 	{
@@ -22,7 +23,8 @@
 			"title": "Rat de bibliothèque",
 			"description": "Avoir validé la tâche \"lire quelques pages d'un livre\" 20 fois",
 			"amount_needed": 20,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/4.svg"
 		}
 	},
 	{
@@ -35,7 +37,8 @@
 			"title": "Pro de la méditation",
 			"description": "Finir la tâche \"méditer 10 minutes\" 25 fois",
 			"amount_needed": 25,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/5.svg"
 		}
 	},
 	{
@@ -48,7 +51,8 @@
 			"title": "Savant curieux.se",
 			"description": "Apprendre quelque chose de nouveau chaque jour 15 fois",
 			"amount_needed": 15,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/6.svg"
 		}
 	},
 	{
@@ -61,7 +65,8 @@
 			"title": "Proche de la Nature",
 			"description": "Passer 10 minutes dehors X fois",
 			"amount_needed": 10,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/7.svg"
 		}
 	},
 	{
@@ -74,7 +79,8 @@
 			"title": "L'Ami·e idéal·e",
 			"description": "Prendre contact avec un ami ou un membre de la famille 25 fois",
 			"amount_needed": 25,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/8.svg"
 		}
 	},
 	{
@@ -87,7 +93,8 @@
 			"title": "Cuisine exploratrice",
 			"description": "Cuisiner quelque chose de nouveau 15 fois",
 			"amount_needed": 15,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/2.svg"
 		}
 	},
 	{
@@ -100,7 +107,8 @@
 			"title": "Bodybuilder",
 			"description": "Faire 10 minutes d'activités physiques 15 fois",
 			"amount_needed": 15,
-			"success_xp": 200
+			"success_xp": 200,
+			"image": "/assets/tasks/3.svg"
 		}
 	}
 ]

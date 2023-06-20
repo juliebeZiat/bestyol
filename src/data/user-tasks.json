@@ -27,7 +27,8 @@
             "title": "Faire 10 minutes d'activités physique",
             "category": "Sport",
             "difficulty": 3,
-            "xp": 40
+            "xp": 40,
+            "image": "/assets/tasks/3.svg"
         }
     },
     {
@@ -42,7 +43,8 @@
             "title": "Lire quelques pages d'un livre",
             "category": "Apprentissage",
             "difficulty": 2,
-            "xp": 20
+            "xp": 20,
+            "image": "/assets/tasks/4.svg"
         }
     },
     {
@@ -57,7 +59,8 @@
             "title": "Méditer pendant 10 minutes",
             "category": "Relaxation",
             "difficulty": 1,
-            "xp": 10
+            "xp": 10,
+            "image": "/assets/tasks/5.svg"
         }
     },
     {
@@ -72,7 +75,8 @@
             "title": "Apprendre quelque chose de nouveau",
             "category": "Apprentissage",
             "difficulty": 3,
-            "xp": 40
+            "xp": 40,
+            "image": "/assets/tasks/6.svg"
         }
     },
     {
@@ -87,7 +91,8 @@
             "title": "Sortir dehors 30 minutese",
             "category": "Sport",
             "difficulty": 4,
-            "xp": 60
+            "xp": 60,
+            "image": "/assets/tasks/7.svg"
         }
     },
     {
@@ -102,7 +107,8 @@
             "title": "Contacter un proche",
             "category": "Besoin vitaux",
             "difficulty": 1,
-            "xp": 10
+            "xp": 10,
+            "image": "/assets/tasks/8.svg"
         }
     }
 ]

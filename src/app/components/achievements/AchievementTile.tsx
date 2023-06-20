@@ -1,11 +1,11 @@
 'use client'
-import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Button, { ButtonSize } from '../ui/Button'
 import { useState } from 'react'
 import ConfettiExplosion from 'react-confetti-explosion'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import SuccessAsset from '../ui/SuccessAsset'
 
 interface achievementTileProps {
 	title: string
@@ -14,6 +14,7 @@ interface achievementTileProps {
 	goal: number
 	progress: number
 	isCompleted: boolean
+	image: string
 }
 
 const AchievementTile = ({
@@ -23,6 +24,7 @@ const AchievementTile = ({
 	goal,
 	progress,
 	isCompleted,
+	image,
 }: achievementTileProps) => {
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 	const [validateSuccess, setValidateSuccess] = useState(false)
@@ -45,13 +47,7 @@ const AchievementTile = ({
 			} items-center relative text-white gap-x-[1rem] pixel-corners-items`}
 			// style={{textShadow: '-0.5px -0.5px 2px black'}}
 		>
-			<Image
-				src={'/assets/tempAchievement.png'}
-				alt='achievement logo'
-				width={useIsMobile() ? 40 : 50}
-				height={useIsMobile() ? 40 : 50}
-				className='h-[80%] w-auto'
-			/>
+			<SuccessAsset image={image} amount={goal} size={60} />
 			<div>
 				<p className='text-2xl'>{title}</p>
 				<p className='text-lg'>{description}</p>

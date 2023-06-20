@@ -4,6 +4,7 @@ export interface DailyTasks {
 	category: string
 	difficulty: number
 	xp: number
+	image: string
 }
 
 export interface UserTasks {

@@ -54,6 +54,7 @@ const SuccessBox = () => {
 							title={success.success.title}
 							amount={success.success.amount_needed}
 							current_amount={success.actual_amount}
+							image={success.success.image}
 						/>
 					))}
 			</div>

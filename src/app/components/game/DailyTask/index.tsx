@@ -15,6 +15,7 @@ const DailyTaskBox = ({ dailyTasks }: DailyTaskBoxProps) => {
 					xp={task.dailyTask?.xp || 0}
 					is_completed={task.is_completed}
 					key={task.id}
+					image={task.dailyTask?.image}
 				/>
 			))}
 		</div>

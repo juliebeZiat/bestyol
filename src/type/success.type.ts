@@ -4,6 +4,7 @@ export interface Success {
 	description: string
 	amount_needed: number
 	success_xp: number
+	image: string
 }
 
 export interface UserSuccess {
