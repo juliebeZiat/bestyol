@@ -2,15 +2,21 @@ import ProgressBar from '@/app/components/ui/ProgressBar'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import Image from 'next/image'
+import SuccessAsset from '../../ui/SuccessAsset'
 
 interface SuccessProps {
 	title: string
 	amount: number
 	current_amount: number
+	image: string
 }
 
-const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
+const SuccessItem = ({
+	title,
+	amount,
+	current_amount,
+	image,
+}: SuccessProps) => {
 	const isMobile = useIsMobile()
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
@@ -20,12 +26,7 @@ const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 		>
 			<div className='flex content-center'>
 				<div className='w-[15%]'>
-					<Image
-						src='/assets/tempAchievement.png'
-						alt='cloud'
-						width={40}
-						height={40}
-					/>
+					<SuccessAsset image={image} size={40} amount={amount} />
 				</div>
 				<div className='w-[85%]'>
 					<div className='flex justify-between'>

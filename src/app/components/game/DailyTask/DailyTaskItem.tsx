@@ -1,13 +1,20 @@
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import Image from 'next/image'
 
 interface DailyTaskItemProps {
 	title: string
 	xp: number
 	is_completed: boolean
+	image: string | undefined
 }
 
-const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
+const DailyTaskItem = ({
+	title,
+	xp,
+	is_completed,
+	image,
+}: DailyTaskItemProps) => {
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
@@ -29,7 +36,9 @@ const DailyTaskItem = ({ title, xp, is_completed }: DailyTaskItemProps) => {
 			<div className='h-[40%]'>
 				<h1>{title}</h1>
 			</div>
-			<div className='w-10 h-10 bg-grey mb-2' />
+			{image && (
+				<Image src={image} alt='daily task asset' width={60} height={60} />
+			)}
 			<div>
 				<h2 className='text-2xl uppercase'>{xp}xp</h2>
 			</div>

@@ -72,6 +72,7 @@ const AchievementsPage = () => {
 									goal={achievement.success.amount_needed}
 									progress={achievement.actual_amount}
 									isCompleted={achievement.is_completed}
+									image={achievement.success.image}
 								/>
 							))}
 						</div>
