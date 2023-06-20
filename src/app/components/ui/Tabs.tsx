@@ -1,4 +1,5 @@
-import { useTheme } from '@/contexts/ThemeContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 interface TabsProps {
 	activeItemsTitle: string
@@ -17,7 +18,7 @@ const Tabs = ({
 	setActiveItems,
 	setArchivedItems,
 }: TabsProps) => {
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 	return (
 		<div className='flex justify-end cursor-pointer h-[50px] !absolute top-0 right-0 w-[50%] rounded-bl-lg overflow-hidden'>
 			<div

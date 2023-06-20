@@ -14,7 +14,7 @@ import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 
 const ProfilePage = () => {
-	const user = useAppSelector((state: RootState) => state.auth.user)
+	const user = useAppSelector((state: RootState) => state.user.user)
 
 	const [userAvatar, setUserAvatar] = useState<string>(
 		'/assets/avatars/Icon1.png',

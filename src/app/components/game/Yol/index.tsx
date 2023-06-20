@@ -15,7 +15,7 @@ import Image from 'next/image'
 const YolBox = () => {
 	const dispatch = useAppDispatch()
 	const isMobile = useIsMobile()
-	const user = useAppSelector((state: RootState) => state.auth.user)
+	const user = useAppSelector((state: RootState) => state.user.user)
 	if (!user) return null
 
 	const { data: yol } = useFetchUserYol(user.id)

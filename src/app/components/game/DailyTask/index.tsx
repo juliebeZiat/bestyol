@@ -1,6 +1,5 @@
-import Box from '@/app/components/ui/Box'
 import DailyTaskItem from './DailyTaskItem'
-import { DailyTasks, UserTasks } from '@/type/tasks.type'
+import { UserTasks } from '@/type/tasks.type'
 
 interface DailyTaskBoxProps {
 	dailyTasks: UserTasks[]

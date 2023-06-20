@@ -1,7 +1,5 @@
 'use client'
-
 import Link from 'next/link'
-import Box from '@/app/components/ui/Box'
 import Button, { ButtonSize } from '@/app/components/ui/Button'
 import SuccessItem from './SuccessItem'
 import { useIsMobile } from '@/hooks/useWindowSize'

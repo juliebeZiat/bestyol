@@ -4,8 +4,7 @@ import '../globals.css'
 
 import React from 'react'
 import Providers from '@/utils/provider'
-import ThemeProvider from '@/contexts/ThemeContext'
-import BackgroundGradient from '../components/layout/backgroundGradient'
+import BackgroundGradient from '../components/layout/BackgroundGradient'
 import AudioPlayer from '../components/ui/AudioPlayer'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
@@ -19,13 +18,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 				/>
 			</head>
 			<body>
-				<ThemeProvider>
+				<Providers>
 					<BackgroundGradient />
 					<main className='flex min-h-screen w-full flex-col items-center !relative'>
-						<Providers>{children}</Providers>
-						<AudioPlayer />
+						{children}
 					</main>
-				</ThemeProvider>
+					<AudioPlayer />
+				</Providers>
 			</body>
 		</html>
 	)

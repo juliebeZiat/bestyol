@@ -1,6 +1,7 @@
 import ProgressBar from '@/app/components/ui/ProgressBar'
-import { useTheme } from '@/contexts/ThemeContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import Image from 'next/image'
 
 interface SuccessProps {
@@ -11,7 +12,7 @@ interface SuccessProps {
 
 const SuccessItem = ({ title, amount, current_amount }: SuccessProps) => {
 	const isMobile = useIsMobile()
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
 		<div

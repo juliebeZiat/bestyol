@@ -1,10 +1,8 @@
 'use client'
-
 import Box from '@/app/components/ui/Box'
 import achievementsList from './tempAchievements.json'
 import AchievementTile from '../../../components/achievements/AchievementTile'
 import { useFetchAllUserSuccessQuery } from '@/services/queries/success'
-import { UserSuccess } from '@/type/success.type'
 import Tabs from '@/app/components/ui/Tabs'
 import { useState } from 'react'
 

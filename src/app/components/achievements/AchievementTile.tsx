@@ -1,11 +1,11 @@
 'use client'
-
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useWindowSize'
-import { useTheme } from '@/contexts/ThemeContext'
 import Button, { ButtonSize } from '../ui/Button'
 import { useState } from 'react'
 import ConfettiExplosion from 'react-confetti-explosion'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 interface achievementTileProps {
 	title: string
@@ -24,7 +24,7 @@ const AchievementTile = ({
 	progress,
 	isCompleted,
 }: achievementTileProps) => {
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 	const [validateSuccess, setValidateSuccess] = useState(false)
 	const [isExploding, setIsExploding] = useState(false)
 

@@ -16,7 +16,7 @@ const ProfileBanner = ({
 	avatar,
 	banner,
 }: ProfileBannerProps) => {
-	const user = useAppSelector((state: RootState) => state.auth.user)
+	const user = useAppSelector((state: RootState) => state.user.user)
 	if (!user) return null
 	const windowSize = useWindowSize()
 	const username = user.name
