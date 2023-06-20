@@ -44,9 +44,13 @@ module.exports = {
         slideLeftRightQuickly: 'slideLeftRightQuickly 0.2s ease-in-out',
         wiggle: 'wiggle 2s ease-in-out 3 1s',
         wiggleInfinite: 'wiggle 2s ease-in-out infinite',
-        flash: 'flash 4s ease-out 7s',
+        flashEgg: 'flash 4s ease-out 7s',
+        flashEvolve: 'flash 4s ease-out 9s',
         jump: 'jump .5s 2 3s',
-        explode: 'explode 1s ease-in-out'
+        jumpInfinite: 'jumpInfinite 2s infinite',
+        explode: 'explode 1s ease-in-out',
+        evolveOut: 'evolveOut 12s forwards',
+        evolveIn: 'evolveIn 12s forwards',
       },
       keyframes: {
         hovering: {
@@ -87,9 +91,61 @@ module.exports = {
             'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
           },
         },
+        jumpInfinite: {
+          '0%, 25%, 50%': {
+            'transform': 'translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+          },
+          '12.5%, 37.5%': {
+            'transform': 'translateY(-25%)',
+            'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
+          },
+        },
         explode: {
           '0%': { transform: 'rotateY(0)' },
           '100%': { transform: 'rotateY(1turn)' },
+        },
+        evolveOut: {
+          '0%': {
+            visibility: 'visible',
+            filter: 'brightness(100%)',
+            transform: 'scale(1)',
+          },
+          '16.6%, 33.2%, 41.5%, 49.8%, 53.95%, 58.1%, 62.25%, 66.4%, 68.475%, 70.55%, 72.625%, 74.7%, 76.775%, 78.85%, 80.925%': {
+            filter: 'brightness(0%) invert(100%)',
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+          '24.9%, 37.35%, 45.65%, 51.875%, 56.025%, 60.175%, 64.325%, 67.4375%, 69.5125%, 71.5875%, 73.6625%, 75.7375%, 77.8125%, 79.8875%, 81.9625%': {
+            filter: 'brightness(0%) invert(100%)',
+            opacity: '0',
+            transform: 'scale(0.25)',
+          },
+          '83.3%, 100%': {
+            visibility: 'hidden',
+            filter: 'brightness(0%) invert(100%)',
+            opacity: '0',
+            transform: 'scale(0.25)',
+          }
+        },
+        evolveIn: {
+          '0%, 16.6%, 33.2%, 41.5%, 49.8%, 53.95%, 58.1%, 62.25%, 66.4%, 68.475%, 70.55%, 72.625%, 74.7%, 76.775%, 78.85%, 80.925%': {
+            visibility: 'visible',
+            filter: 'brightness(0%) invert(100%)',
+            opacity: '0',
+            transform: 'scale(0.25)',
+          },
+          '24.9%, 37.35%, 45.65%, 51.875%, 56.025%, 60.175%, 64.325%, 67.4375%, 69.5125%, 71.5875%, 73.6625%, 75.7375%, 77.8125%, 79.8875%, 81.9625%, 96%': {
+            filter: 'brightness(0%) invert(100%)',
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+          '100%:': {
+            opacity: '1',
+            filter: 'brightness(100%)',
+            transform: 'scale(1)',
+            visibility: 'visible',
+          }
         }
       },
     },

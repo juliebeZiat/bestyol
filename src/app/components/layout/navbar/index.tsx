@@ -120,6 +120,7 @@ const Navbar = () => {
 									<a className='cursor-pointer' href={item.link} key={index}>
 										<li
 											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
+											key={`${index}${item.link}`}
 										>
 											{item.name}
 										</li>
@@ -146,6 +147,7 @@ const Navbar = () => {
 						{allThemes.map((currentTheme, index) => {
 							return (
 								<div
+									key={`${index}${currentTheme.name}`}
 									onClick={() => setSelectedTheme(currentTheme.name)}
 									className={`h-[100px] w-[100px] bg-gradient-to-bl cursor-pointer ${
 										currentTheme.gradientFrom
