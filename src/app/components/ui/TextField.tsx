@@ -48,7 +48,7 @@ const TextField = ({
 			<div className='relative text-white'>
 				<input
 					ref={inputFocus ? inputReference : null}
-					className={`pixel-corners-items appearance-none w-full py-2 px-3 pl-6 focus:outline-none outline-none text-xl bg-lowOpacity ${
+					className={`pixel-corners-items appearance-none w-full py-2 px-3 sm:pl-6 focus:outline-none outline-none text-[.7rem] sm:text-xl bg-lowOpacity ${
 						error && 'border-error border-2'
 					} `}
 					type={inputType}
@@ -66,7 +66,7 @@ const TextField = ({
 				)}
 				{error && <p className='text-lg text-error'>{errorMessage}</p>}
 				{isFocused && (
-					<div className='absolute top-6 left-1 grid h-5 w-5 -translate-y-2/4 place-items-center'>
+					<div className='absolute top-[50%] translate-y-[-50%] left-1 h-5 w-5'>
 						&gt;
 					</div>
 				)}
