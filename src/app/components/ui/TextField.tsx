@@ -23,7 +23,6 @@ const TextField = ({
 	inputType = 'text',
 	placeholder,
 	error,
-	errorMessage = 'Erreur',
 	inputFocus,
 	value,
 	onChange,
@@ -64,7 +63,6 @@ const TextField = ({
 						<button onClick={onCancel}>&#10539;</button>
 					</div>
 				)}
-				{error && <p className='text-lg text-error'>{errorMessage}</p>}
 				{isFocused && (
 					<div className='absolute top-[50%] translate-y-[-50%] left-1 h-5 w-5'>
 						&gt;

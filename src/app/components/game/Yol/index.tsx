@@ -3,9 +3,7 @@ import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { evolveYol } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
-import { EvolutionAssets } from '@/type/yol.type'
 import {
-	evolutionLevels,
 	getEvolutionAssets,
 	getEvolutionStep,
 	isYolEvolving,

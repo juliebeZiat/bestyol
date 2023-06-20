@@ -9,7 +9,7 @@ import { themes as allThemes, themes } from '@/utils/themes'
 import Button from '../ui/Button'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import { setTheme } from '@/state/reducer/user.reducer'
+import { logout, setTheme } from '@/state/reducer/user.reducer'
 
 const Navbar = () => {
 	const dispatch = useAppDispatch()
@@ -25,17 +25,6 @@ const Navbar = () => {
 		dispatch(setTheme(themes.find((theme) => theme.name == selectedTheme)!))
 		setIsThemeModalOpen(false)
 	}
-
-	const menuItems = [
-		{
-			name: 'Profil',
-			link: '/profile',
-		},
-		{
-			name: 'Déconnexion',
-			link: '/',
-		},
-	]
 
 	const menuRef = useRef<HTMLDivElement>(null)
 
@@ -104,7 +93,7 @@ const Navbar = () => {
 						}}
 					>
 						<Image
-							src={`/assets/avatars/${user.pp}`}
+							src={user.pp}
 							alt='user profile'
 							className={`border-[2px] border-black`}
 							width={40}
@@ -115,16 +104,23 @@ const Navbar = () => {
 						</div>
 						{menuIsOpen && (
 							<ul className='absolute top-[51px] left-[-80px] z-50'>
-								{menuItems.map((item, index) => (
-									<a className='cursor-pointer' href={item.link} key={index}>
-										<li
-											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
-											key={`${index}${item.link}`}
-										>
-											{item.name}
-										</li>
-									</a>
-								))}
+								<a className='cursor-pointer' href={'/profile'}>
+									<li
+										className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
+									>
+										Profil
+									</li>
+								</a>
+
+								<a className='cursor-pointer' href={'/'}>
+									<li
+										className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
+										onClick={() => dispatch(logout())}
+									>
+										Déconnexion
+									</li>
+								</a>
+
 								<li
 									className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
 									onClick={() => setIsThemeModalOpen(true)}
