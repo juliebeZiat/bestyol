@@ -1,5 +1,3 @@
-import { useTheme } from '@/contexts/ThemeContext'
-
 interface ProgressBarProps {
 	progress: number
 	total: number | undefined

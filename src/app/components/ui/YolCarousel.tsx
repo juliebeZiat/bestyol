@@ -3,10 +3,9 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { yol } from '../interfaces'
 import Hammer from 'react-hammerjs'
-import { useAppDispatch, useAppSelector } from '@/state/hooks'
+import { useAppDispatch } from '@/state/hooks'
 import { themes } from '@/utils/themes'
 import { Theme, setTheme } from '@/state/reducer/user.reducer'
-import { RootState } from '@/state/store'
 
 const YolCarousel = ({
 	getCurrentYol,
@@ -16,14 +15,13 @@ const YolCarousel = ({
 	applyTheme: boolean
 }) => {
 	const dispatch = useAppDispatch()
-	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	const [yols, setYols] = useState<yol[]>([
 		{
 			name: 'Bé-boo',
 			pic: '/assets/yols/base/animated/feuille.gif',
 			pos: 1,
-			theme: themes[1],
+			theme: themes[0],
 		},
 		{
 			name: 'Yolkshire',

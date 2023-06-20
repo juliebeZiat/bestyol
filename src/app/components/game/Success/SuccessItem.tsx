@@ -1,5 +1,4 @@
 import ProgressBar from '@/app/components/ui/ProgressBar'
-import { useTheme } from '@/contexts/ThemeContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'

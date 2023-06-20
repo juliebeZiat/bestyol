@@ -1,6 +1,4 @@
 'use client'
-
-import { useTheme } from '@/contexts/ThemeContext'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 

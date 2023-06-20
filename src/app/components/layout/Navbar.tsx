@@ -1,11 +1,9 @@
 'use client'
-
 import { useState, useEffect, useRef } from 'react'
 import ProgressBar from '../ui/ProgressBar'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useFetchUserYol } from '@/services/queries/yol'
-import { useTheme } from '@/contexts/ThemeContext'
 import Modal from '../ui/Modal'
 import { themes as allThemes, themes } from '@/utils/themes'
 import Button from '../ui/Button'
@@ -17,8 +15,6 @@ const Navbar = () => {
 	const dispatch = useAppDispatch()
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const theme = useAppSelector((state: RootState) => state.user.theme)
-
-	// const { theme, setTheme } = useTheme()
 
 	const { data: yol } = useFetchUserYol(user.id)
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)

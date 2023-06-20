@@ -1,8 +1,5 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from '@/app/components/ui/Button'
-import ButtonIcon from '../../ui/ButtonIcon'
-import { useTheme } from '@/contexts/ThemeContext'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 

@@ -1,10 +1,8 @@
 'use client'
-
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
-import React, { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import ButtonIcon from './ButtonIcon'
-import { useTheme } from '@/contexts/ThemeContext'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 

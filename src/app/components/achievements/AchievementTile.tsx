@@ -1,8 +1,6 @@
 'use client'
-
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useWindowSize'
-import { useTheme } from '@/contexts/ThemeContext'
 import Button, { ButtonSize } from '../ui/Button'
 import { useState } from 'react'
 import ConfettiExplosion from 'react-confetti-explosion'

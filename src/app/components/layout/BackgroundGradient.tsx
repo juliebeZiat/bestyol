@@ -1,13 +1,11 @@
 'use client'
-
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import type { Engine } from 'tsparticles-engine'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import { useTheme } from '@/contexts/ThemeContext'
 
 const BackgroundGradient = () => {
 	const options = useMemo(() => {

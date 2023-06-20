@@ -1,11 +1,9 @@
 'use client'
-
 import { useState } from 'react'
 import Box from '../../ui/Box'
 import TextField from '../../ui/TextField'
 import CustomTaskItem from './CustomTaskItem'
 import { UserTasks } from '@/type/tasks.type'
-import { useTheme } from '@/contexts/ThemeContext'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
