@@ -17,7 +17,7 @@ export const getEvolutionAssets = (yol: Yol) => {
         switch (getEvolutionStep(yol)) {
             case 0:
                 evolutionAssets = {
-                    previousForm: `/assets/yols/eggs/animated/eclosion-${yol.species.name}.gif`,
+                    previousForm: `/assets/yols/eggs/animated/${yol.species.name}.gif`,
                     newForm: `/assets/yols/base/static/${yol.species.name}.png`,
                     animatedNewForm: `/assets/yols/base/animated/${yol.species.name}.gif`,
                 }
@@ -41,7 +41,7 @@ export const getEvolutionAssets = (yol: Yol) => {
 
             default:
                 evolutionAssets = {
-                    previousForm: `/assets/yols/eggs/animated/eclosion-${yol.species.name}.gif`,
+                    previousForm: `/assets/yols/eggs/animated/${yol.species.name}.gif`,
                     newForm: `/assets/yols/base/static/${yol.species.name}.png`,
                     animatedNewForm: `/assets/yols/base/animated/${yol.species.name}.gif`,
                 }

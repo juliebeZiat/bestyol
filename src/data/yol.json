@@ -4,16 +4,16 @@
 		"user_id": 1,
 		"species_id": 1,
 		"name": "bé-boo",
-		"xp": 1750,
+		"xp": 100,
 		"level": {
 			"level": 1,
 			"levelMin": 0,
-			"levelMax": 1750
+			"levelMax": 100
 		},
 		"species": {
 			"id": 1,
 			"name": "pouasson",
-			"image": "/assets/yols/second/animated/pouasson.gif"
+			"image": "/assets/yols/eggs/static/pouasson.png"
 		}
 	}
 ]
