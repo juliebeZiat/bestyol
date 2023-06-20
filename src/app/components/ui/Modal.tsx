@@ -1,4 +1,5 @@
-import { useTheme } from '@/contexts/ThemeContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import { BaseSyntheticEvent } from 'react'
 
 interface ModalProps {
@@ -22,7 +23,7 @@ export default function Modal({
 		}
 	}
 
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return isOpen === true ? (
 		<div className='w-[100vw] h-[100vh] fixed top-0 left-0 z-[60] bg-darkLowOpacity'>

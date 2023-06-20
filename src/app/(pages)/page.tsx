@@ -1,11 +1,10 @@
 'use client'
 
 import Button, { ButtonSize } from '@/app/components/ui/Button'
-import YolCarousel from '@/app/components/ui/YolCarousel'
 import useWindowSize from '@/hooks/useWindowSize'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import TestYolCarousel from '../components/ui/NewYolCarousel'
+import YolCarousel from '../components/ui/YolCarousel'
 
 const HomePage = () => {
 	const windowSize = useWindowSize()
@@ -28,7 +27,7 @@ const HomePage = () => {
 						le meilleur de toi-même
 					</h2>
 				</div>
-				<TestYolCarousel />
+				<YolCarousel applyTheme={false} />
 			</div>
 			<div className='flex gap-5'>
 				<Link href='/login'>

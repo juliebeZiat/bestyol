@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from '@/app/components/ui/Button'
-import ButtonIcon from '../../ui/ButtonIcon'
-import { useTheme } from '@/contexts/ThemeContext'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 interface CustomTaskProps {
 	title: string
@@ -31,7 +30,7 @@ const CustomTaskItem = ({ title, is_archieved }: CustomTaskProps) => {
 		setEditTask(false)
 	}
 
-	const { theme } = useTheme()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
 		<div

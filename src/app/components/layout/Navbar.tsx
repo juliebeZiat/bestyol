@@ -1,21 +1,20 @@
 'use client'
-
 import { useState, useEffect, useRef } from 'react'
-import ProgressBar from '../../ui/ProgressBar'
+import ProgressBar from '../ui/ProgressBar'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useFetchUserYol } from '@/services/queries/yol'
-import { useTheme } from '@/contexts/ThemeContext'
-import Modal from '../../ui/Modal'
-import { themes as allThemes, themes } from '@/data/themes'
-import Button from '../../ui/Button'
-import { useAppSelector } from '@/state/hooks'
+import Modal from '../ui/Modal'
+import { themes as allThemes, themes } from '@/utils/themes'
+import Button from '../ui/Button'
+import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { setTheme } from '@/state/reducer/user.reducer'
 
 const Navbar = () => {
-	const user = useAppSelector((state: RootState) => state.auth.user)
-
-	const { theme, setTheme } = useTheme()
+	const dispatch = useAppDispatch()
+	const user = useAppSelector((state: RootState) => state.user.user)
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	const { data: yol } = useFetchUserYol(user.id)
 	const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
@@ -23,7 +22,7 @@ const Navbar = () => {
 	const [selectedTheme, setSelectedTheme] = useState(theme.name)
 
 	const handleThemeFormSubmit = () => {
-		setTheme(themes.find((theme) => theme.name == selectedTheme)!)
+		dispatch(setTheme(themes.find((theme) => theme.name == selectedTheme)!))
 		setIsThemeModalOpen(false)
 	}
 
