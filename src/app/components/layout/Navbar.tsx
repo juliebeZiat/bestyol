@@ -93,7 +93,7 @@ const Navbar = () => {
 						}}
 					>
 						<Image
-							src={`/assets/avatars/${user.pp}`}
+							src={user.pp}
 							alt='user profile'
 							className={`border-[2px] border-black`}
 							width={40}

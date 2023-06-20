@@ -2,10 +2,12 @@ import { LoginRequest, LoginResponse } from '@/type/auth.type'
 import axios from 'axios'
 
 const signIn = async ({ username, password }: LoginRequest) => {
-	const response = await axios.post<LoginResponse>('/api/user/login', {
+	console.log(process.env.NEXT_PUBLIC_API_URL);
+	const response = await axios.post<LoginResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, {
 		username,
 		password,
 	})
+	console.log("user: ", response.data);
 	return response.data
 }
 
