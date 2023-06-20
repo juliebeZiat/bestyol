@@ -15,7 +15,7 @@ export interface Theme {
 	vibrantBackgroundColor: string
 }
 
-type AuthState = {
+type UserState = {
 	user: User
 	isLogged: boolean
 	theme: Theme
@@ -25,7 +25,7 @@ const initialState = {
 	isLogged: false,
 	user: {},
 	theme: themes[1],
-} as AuthState
+} as UserState
 
 export const user = createSlice({
 	name: 'user',

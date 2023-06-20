@@ -3,33 +3,46 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { yol } from '../interfaces'
 import Hammer from 'react-hammerjs'
+import { useAppDispatch, useAppSelector } from '@/state/hooks'
+import { themes } from '@/utils/themes'
+import { Theme, setTheme } from '@/state/reducer/user.reducer'
+import { RootState } from '@/state/store'
 
 const YolCarousel = ({
 	getCurrentYol,
+	applyTheme,
 }: {
 	getCurrentYol?: (yol: yol) => void
+	applyTheme: boolean
 }) => {
+	const dispatch = useAppDispatch()
+	const theme = useAppSelector((state: RootState) => state.user.theme)
+
 	const [yols, setYols] = useState<yol[]>([
 		{
 			name: 'Bé-boo',
-			pic: '/assets/yols/base/feuille.png',
+			pic: '/assets/yols/base/animated/feuille.gif',
 			pos: 1,
+			theme: themes[1],
 		},
 		{
 			name: 'Yolkshire',
-			pic: '/assets/yols/base/pouasson.png',
+			pic: '/assets/yols/base/animated/pouasson.gif',
 			pos: 2,
+			theme: themes[2],
 		},
 		{
 			name: 'Evopink',
 			pic: '/assets/yols/base/lunettes.png',
 			pos: 3,
+			theme: themes[4],
 		},
 	])
 	useEffect(() => {
 		if (!getCurrentYol) return
 		const currentYol = yols.find((yol) => yol.pos == 2)
 		getCurrentYol(currentYol!)
+		applyTheme && dispatch(setTheme(currentYol?.theme!))
 	}, [yols])
 
 	const [isAnimating, setIsAnimating] = useState(true)
@@ -45,7 +58,6 @@ const YolCarousel = ({
 				else if ((yol.pos = 3)) yol.pos = 1
 				return yol
 			})
-			console.log('newOrder: ', newOrder)
 			setYols(newOrder)
 		}, 100)
 		setTimeout(() => {
@@ -63,7 +75,6 @@ const YolCarousel = ({
 				else if ((yol.pos = 1)) yol.pos = 3
 				return yol
 			})
-			console.log('newOrder: ', newOrder)
 			setYols(newOrder)
 		}, 100)
 		setTimeout(() => {
@@ -71,7 +82,8 @@ const YolCarousel = ({
 			setIsAnimating(true)
 		}, 1100)
 	}
-	const handleNav = (pos: number) => {
+	const handleNav = (pos: number, theme: Theme) => {
+		applyTheme && dispatch(setTheme(theme))
 		if (pos == 1) handleNext()
 		else if (pos == 3) handlePrev()
 		return
@@ -108,7 +120,7 @@ const YolCarousel = ({
 									}`
 								} ${yol.pos == 3 && 'translate-x-[100%] z-0'}`}
 								onClick={() => {
-									handleNav(yol.pos)
+									handleNav(yol.pos, yol.theme)
 								}}
 								key={yol.name}
 							/>
