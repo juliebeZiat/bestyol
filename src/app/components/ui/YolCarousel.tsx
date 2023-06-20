@@ -90,7 +90,7 @@ const YolCarousel = ({
 	const windowSizes = useWindowSize()
 
 	return (
-		<div className='flex items-center'>
+		<div className='flex items-center justify-center'>
 			{windowSizes.windowWidth > 500 && (
 				<button
 					type='button'

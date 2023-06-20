@@ -30,18 +30,20 @@ const ChooseYourYol = () => {
 
 	return (
 		<div className='h-[100svh] flex items-center justify-center text-white text-center'>
-			<form className='flex items-center' onSubmit={handleSubmit}>
+			<form
+				className='flex items-center justify-center'
+				onSubmit={handleSubmit}
+			>
 				<Box
 					centerItems
-					additionalStyle='h-[80vh] lg:aspect-square justify-between'
-					width='60vw'
+					additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
 				>
 					<h1 className='text-2xl lg:text-4xl'>Bienvenue, User !</h1>
 					<p className='lg:text-2xl text-center w-5/6'>
 						Choisis ton Yol ! Ce sera ton compagnon tout au long de ton
 						aventure, alors choisis le bien !
 					</p>
-					<div className='text-center flex flex-col justify-items-center w-5/6 m-auto'>
+					<div className='text-center flex flex-col justify-center w-full'>
 						<YolCarousel getCurrentYol={getCurrentYol} applyTheme />
 						<h2 className='text-4xl'>{currentYol?.name ?? ''}</h2>
 					</div>
