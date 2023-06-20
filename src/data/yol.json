@@ -12,8 +12,8 @@
 		},
 		"species": {
 			"id": 1,
-			"name": "Mr. Greenbelly",
-			"image": "/assets/yols/base/animated/feuille.gif"
+			"name": "pouasson",
+			"image": "/assets/yols/eggs/static/pouasson.png"
 		}
 	}
 ]

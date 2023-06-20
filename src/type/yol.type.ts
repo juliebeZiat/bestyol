@@ -19,3 +19,9 @@ export interface Yol {
 	level: Level
 	species: Species
 }
+
+export interface EvolutionAssets {
+	previousForm: string
+	newForm: string
+	animatedNewForm: string
+}

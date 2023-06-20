@@ -3,7 +3,13 @@ import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { evolveYol } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
-import { evolutionLevels } from '@/utils/utils'
+import { EvolutionAssets } from '@/type/yol.type'
+import {
+	evolutionLevels,
+	getEvolutionAssets,
+	getEvolutionStep,
+	isYolEvolving,
+} from '@/utils/utils'
 import Image from 'next/image'
 
 const YolBox = () => {
@@ -15,27 +21,21 @@ const YolBox = () => {
 	const { data: yol } = useFetchUserYol(user.id)
 	if (!yol) return null
 
-	const isEvolving = evolutionLevels.some((level) => level === yol.data.xp)
+	const animation =
+		getEvolutionStep(yol.data) === 0
+			? 'animate-wiggleInfinite'
+			: 'animate-jumpInfinite'
 
-	const evolutionAssets = {
-		previousForm: '/assets/yols/eggs/animated/eclosion-feuille.gif',
-		newForm: '/assets/yols/base/static/FEUILLE2.png',
-		animatedNewForm: '/assets/yols/base/animated/feuille.gif',
-	}
-
-	// '/assets/yols/eggs/animated/eclosion-feuille.gif',
-	// 							'/assets/yols/base/static/FEUILLE2.png',
-	// 							'/assets/yols/base/animated/feuille.gif',
 	return (
 		<div
 			className={`h-full w-full flex flex-col justify-center items-center  ${
-				isEvolving && 'cursor-pointer'
+				isYolEvolving(yol.data) && 'cursor-pointer'
 			}`}
 		>
 			<div
 				onClick={() => {
-					if (isEvolving) {
-						dispatch(evolveYol(evolutionAssets))
+					if (isYolEvolving(yol.data)) {
+						dispatch(evolveYol(getEvolutionAssets(yol.data)!))
 					}
 				}}
 			>
@@ -44,7 +44,9 @@ const YolBox = () => {
 					width={150}
 					height={150}
 					alt='yol'
-					className={isEvolving ? 'animate-wiggleInfinite origin-bottom' : ''}
+					className={
+						isYolEvolving(yol.data) ? `${animation} origin-bottom` : ''
+					}
 				/>
 			</div>
 			<p className={`text-white ${!isMobile ? 'absolute bottom-4' : 'mt-4'}`}>
