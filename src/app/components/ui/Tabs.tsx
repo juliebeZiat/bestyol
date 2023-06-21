@@ -20,7 +20,7 @@ const Tabs = ({
 }: TabsProps) => {
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 	return (
-		<div className='flex justify-end cursor-pointer h-[50px] !absolute top-0 right-0 w-[50%] rounded-bl-lg overflow-hidden'>
+		<div className='flex justify-end cursor-pointer h-[50px] !absolute -top-1 -right-1 w-[50%] rounded-bl-lg overflow-hidden'>
 			<div
 				className={`py-1 w-[50%] flex justify-center items-center ${
 					activeItemsCondition ? theme.vibrantBackgroundColor : 'bg-lowOpacity'

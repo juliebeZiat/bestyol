@@ -18,20 +18,20 @@ const YolCarousel = ({
 
 	const [yols, setYols] = useState<yol[]>([
 		{
-			name: 'Bé-boo',
-			pic: '/assets/yols/base/animated/feuille.gif',
+			name: 'feuille',
+			pic: '/assets/yols/base/static/feuille.png',
 			pos: 1,
 			theme: themes[0],
 		},
 		{
-			name: 'Yolkshire',
-			pic: '/assets/yols/base/animated/pouasson.gif',
+			name: 'pouasson',
+			pic: '/assets/yols/base/static/pouasson.png',
 			pos: 2,
 			theme: themes[2],
 		},
 		{
-			name: 'Evopink',
-			pic: '/assets/yols/base/static/lunettes.png',
+			name: 'fantom',
+			pic: '/assets/yols/base/static/fantom.png',
 			pos: 3,
 			theme: themes[4],
 		},
