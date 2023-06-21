@@ -6,8 +6,15 @@ export type LoginRequest = {
 }
 
 export type LoginResponse = {
-	userId: number
 	token: string
 	message: string
 	user: User
 }
+
+export type SignupRequest = {
+	username: string
+	email: string
+	password: string
+}
+
+export type SignupResponse = LoginResponse

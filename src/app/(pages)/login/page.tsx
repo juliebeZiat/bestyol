@@ -20,7 +20,7 @@ const LoginPage = () => {
 
 	const { mutateAsync, isError, isLoading } = useMutationSignIn()
 
-	const handleSignin = async () => {
+	const handleSubmit = async () => {
 		const data = { username, password }
 		await mutateAsync(data, {
 			onSuccess: async (data) => {
@@ -73,7 +73,7 @@ const LoginPage = () => {
 					<Button
 						content='Je me connecte'
 						textColor='text-white'
-						onClick={handleSignin}
+						onClick={handleSubmit}
 					/>
 
 					<Link href='/signup' className='text-white mt-5'>
