@@ -47,7 +47,7 @@ const AchievementTile = ({
 			} items-center relative text-white gap-x-[1rem] pixel-corners-items`}
 			// style={{textShadow: '-0.5px -0.5px 2px black'}}
 		>
-			<SuccessAsset image={image} amount={goal} size={60} />
+			{image && <SuccessAsset image={image} amount={goal} size={60} />}
 			<div>
 				<p className='text-2xl'>{title}</p>
 				<p className='text-lg'>{description}</p>

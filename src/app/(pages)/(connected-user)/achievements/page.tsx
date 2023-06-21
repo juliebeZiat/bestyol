@@ -6,7 +6,6 @@ import Tabs from '@/app/components/ui/Tabs'
 import { useState } from 'react'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import Loader from '@/app/components/ui/Loader'
 
 export enum AchievementType {
 	Pending = 'pending',
@@ -34,8 +33,6 @@ const AchievementsPage = () => {
 
 	console.log('completed: ', completedAchievements)
 	console.log('pending: ', pendingAchievements)
-	if (userSuccessLoading) return Loader
-	if (!userSuccess) return null
 
 	return (
 		userSuccess && (
