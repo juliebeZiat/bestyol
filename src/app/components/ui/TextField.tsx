@@ -23,6 +23,7 @@ const TextField = ({
 	inputType = 'text',
 	placeholder,
 	error,
+	errorMessage,
 	inputFocus,
 	value,
 	onChange,
@@ -69,6 +70,11 @@ const TextField = ({
 					</div>
 				)}
 			</div>
+			{errorMessage && (
+				<div>
+					<p className='text-error'>{errorMessage}</p>
+				</div>
+			)}
 		</div>
 	)
 }

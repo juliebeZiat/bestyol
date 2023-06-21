@@ -21,11 +21,11 @@ const LoginPage = () => {
 	const { mutateAsync, isError, isLoading } = useMutationSignIn()
 
 	const handleSubmit = async () => {
-		const data = { username, password }
-		await mutateAsync(data, {
-			onSuccess: async (data) => {
-				dispatch(login(data.token))
-				dispatch(setUser(data.user))
+		const values = { username, password }
+		await mutateAsync(values, {
+			onSuccess: async (responseData) => {
+				dispatch(login(responseData.token))
+				dispatch(setUser(responseData.user))
 				router.push('/game')
 			},
 		})

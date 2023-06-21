@@ -1,11 +1,13 @@
 'use client'
 import Box from '@/app/components/ui/Box'
 import Button from '@/app/components/ui/Button'
+import Loader from '@/app/components/ui/Loader'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useMutationSignUp } from '@/services/mutations/auth'
 import { useAppDispatch } from '@/state/hooks'
 import { login, setUser } from '@/state/reducer/user.reducer'
+import { signinSchema } from '@/utils/formValidationSchema'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -14,63 +16,88 @@ const SigninPage = () => {
 	const router = useRouter()
 	const isMobile = useIsMobile()
 	const dispatch = useAppDispatch()
-	const [username, setUsername] = useState<string>('')
-	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
-	const [passwordConfirm, setPasswordConfirm] = useState<string>('')
-	const [passwordError, setPasswordError] = useState<boolean>(false)
+
+	const [values, setValues] = useState({
+		username: '',
+		email: '',
+		password: '',
+		passwordConfirm: '',
+	})
+
+	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
 	const { mutateAsync, isError, isLoading } = useMutationSignUp()
 
 	const handleSubmit = async () => {
-		const data = { username, email, password }
-		if (password !== passwordConfirm) {
-			setPasswordError(true)
+		const data = {
+			username: values.username,
+			email: values.email,
+			password: values.password,
+			passwordConfirm: values.passwordConfirm,
 		}
-		await mutateAsync(data, {
-			onSuccess: async (data) => {
-				dispatch(login(data.token))
-				dispatch(setUser(data.user))
-				router.push('/choose-your-yol')
-			},
-		})
+
+		try {
+			await signinSchema.validate(data, { abortEarly: false })
+			setErrors({})
+			await mutateAsync(data, {
+				onSuccess: async (data) => {
+					dispatch(login(data.token))
+					dispatch(setUser(data.user))
+					router.push('/choose-your-yol')
+				},
+			})
+		} catch (error: any) {
+			const validationErrors: { [key: string]: string } = {}
+			error.inner.forEach((fieldError: any) => {
+				validationErrors[fieldError.path] = fieldError.message
+			})
+			setErrors(validationErrors)
+		}
 	}
+
+	if (isLoading) return <Loader />
 
 	return (
 		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
 			<h1 className='text-white text-2xl mb-10'>Inscription</h1>
 			<form className='w-3/4 mb-10'>
 				<TextField
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
+					value={values.username}
+					onChange={(e) => setValues({ ...values, username: e.target.value })}
 					label="Votre nom d'utilisateur"
 					labelFor='username'
 					inputFocus
+					errorMessage={errors['username']}
 				/>
 				<TextField
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					value={values.email}
+					onChange={(e) => setValues({ ...values, email: e.target.value })}
 					label='Votre email'
 					labelFor='email'
 					inputType='email'
+					errorMessage={errors['email']}
 				/>
 				<TextField
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+					value={values.password}
+					onChange={(e) => setValues({ ...values, password: e.target.value })}
 					label='Votre mot de passe'
 					labelFor='password'
 					inputType='password'
+					errorMessage={errors['password']}
 				/>
 				<TextField
-					value={passwordConfirm}
-					onChange={(e) => setPasswordConfirm(e.target.value)}
+					value={values.passwordConfirm}
+					onChange={(e) =>
+						setValues({ ...values, passwordConfirm: e.target.value })
+					}
 					label='Confirmation de votre mot de passe'
 					labelFor='confirmPassword'
 					inputType='password'
+					errorMessage={errors['passwordConfirm']}
 				/>
-				{(isError || passwordError) && (
+				{isError && (
 					<div>
-						<p className='text-lg text-error'>Erreur</p>
+						<p className='text-lg text-error'>Erreur REQUEST</p>
 					</div>
 				)}
 				<div className='flex flex-col items-center py-5'>
