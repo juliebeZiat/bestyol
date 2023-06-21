@@ -1,42 +1,69 @@
 'use client'
-
 import { yol } from '@/app/components/interfaces'
 import Box from '@/app/components/ui/Box'
 import Button, { ButtonSize } from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import YolCarousel from '@/app/components/ui/YolCarousel'
+import { useMutationCreateYol } from '@/services/mutations/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { createYolSchema } from '@/utils/formValidationSchema'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const ChooseYourYol = () => {
+	const router = useRouter()
 	const user = useAppSelector((state: RootState) => state.user.user)
-	const [yolName, setYolName] = useState('')
+
+	const [values, setValues] = useState({
+		name: '',
+		userId: user.id,
+		speciesId: 0,
+	})
+
+	const [requestError, setRequestError] = useState<string | null>()
+	const [errors, setErrors] = useState<{ [key: string]: string }>({})
+
+	const { mutateAsync, isError, isLoading } = useMutationCreateYol()
+
 	const [currentYol, setCurrentYol] = useState<yol>()
-	const [hydrated, setHydrated] = useState(false)
-	useEffect(() => {
-		setHydrated(true)
-	}, [])
-	if (!hydrated) {
-		return null
-	}
 
 	const getCurrentYol = (yol: yol) => {
 		setCurrentYol(yol)
 	}
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		console.log(currentYol?.name, yolName)
+	const handleSubmit = async () => {
+		const data = {
+			name: values.name,
+			userId: values.userId,
+			speciesId: values.speciesId,
+		}
+
+		console.log(currentYol)
+
+		try {
+			await createYolSchema.validate(data, { abortEarly: false })
+			setErrors({})
+			await mutateAsync(data, {
+				onSuccess: () => {
+					// router.push('/game')
+				},
+				onError: async (error: any) => {
+					setRequestError(error.response.data.erreur)
+				},
+			})
+		} catch (error: any) {
+			const validationErrors: { [key: string]: string } = {}
+			error.inner.forEach((fieldError: any) => {
+				validationErrors[fieldError.path] = fieldError.message
+			})
+			setErrors(validationErrors)
+		}
 	}
 
 	return (
 		<div className='h-[100svh] flex items-center justify-center text-white text-center'>
-			<form
-				className='flex items-center justify-center'
-				onSubmit={handleSubmit}
-			>
+			<form className='flex items-center justify-center'>
 				<Box
 					centerItems
 					additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
@@ -54,19 +81,28 @@ const ChooseYourYol = () => {
 					<div className='w-[40%]'>
 						<TextField
 							inputFocus
-							value={yolName}
-							onChange={(e) => setYolName(e.target.value)}
+							value={values.name}
+							onChange={(e) => setValues({ ...values, name: e.target.value })}
 							inputType='text'
 							placeholder='Quel est son petit nom ?'
+							errorMessage={errors['name']}
 						/>
 					</div>
-					<Link href='/game'>
-						<Button
-							content="C'est parti !"
-							type='submit'
-							size={ButtonSize.Medium}
-						/>
-					</Link>
+
+					{isError && (
+						<div>
+							<p className='text-lg text-error'>
+								Il y a eu un problème de la création du Yol
+								{requestError && `: ${requestError}`}
+							</p>
+						</div>
+					)}
+
+					<Button
+						content="C'est parti !"
+						size={ButtonSize.Medium}
+						onClick={handleSubmit}
+					/>
 				</Box>
 			</form>
 		</div>
