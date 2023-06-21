@@ -12,8 +12,8 @@ export interface Level {
 
 export interface Yol {
 	id: number
-	user_id: number
-	species_id: number
+	userId: number
+	speciesId: number
 	name: string
 	xp: number
 	level: Level
@@ -24,4 +24,14 @@ export interface EvolutionAssets {
 	previousForm: string
 	newForm: string
 	animatedNewForm: string
+}
+
+export interface CreateYolRequest {
+	name: string
+	userId: number
+	speciesId: number
+}
+
+export interface CreateYolReponse {
+	yol: Yol
 }
