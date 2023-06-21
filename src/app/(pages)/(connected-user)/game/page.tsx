@@ -1,6 +1,6 @@
 'use client'
 
-import CustomTaskBox from '@/app/components/game/CustomTask'
+import CustomTaskBox from '@/app/components/game/CustomTask/CustomTask'
 import DailyTaskBox from '@/app/components/game/DailyTask'
 import SuccessBox from '@/app/components/game/Success'
 import YolBox from '@/app/components/game/Yol'

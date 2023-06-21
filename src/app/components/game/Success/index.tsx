@@ -11,27 +11,6 @@ import Loader from '../../ui/Loader'
 const SuccessBox = () => {
 	const isMobile = useIsMobile()
 
-	const allSuccess = [
-		{
-			id: 1,
-			title: "Maîtrise de l'hydratation",
-			current_amount: 10,
-			amount: 25,
-		},
-		{
-			id: 2,
-			title: 'Chef·fe cuistot',
-			current_amount: 4,
-			amount: 10,
-		},
-		{
-			id: 3,
-			title: 'Bodybuilder',
-			current_amount: 42,
-			amount: 50,
-		},
-	]
-
 	const { data: success, isLoading } = useFetchAllUserSuccessQuery()
 	const [incomingSuccess, setIncomingSuccess] = useState<UserSuccess[]>([])
 	useEffect(() => {
