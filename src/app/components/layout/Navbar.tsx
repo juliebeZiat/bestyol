@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import ProgressBar from '../ui/ProgressBar'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useFetchUserYol } from '@/services/queries/yol'
@@ -10,6 +9,7 @@ import Button from '../ui/Button'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { logout, setTheme } from '@/state/reducer/user.reducer'
+import ProgressBar from '../ui/ProgressBar'
 
 const Navbar = () => {
 	const dispatch = useAppDispatch()
