@@ -24,6 +24,7 @@ const SigninPage = () => {
 		passwordConfirm: '',
 	})
 
+	const [requestError, setRequestError] = useState<string | null>()
 	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
 	const { mutateAsync, isError, isLoading } = useMutationSignUp()
@@ -44,6 +45,9 @@ const SigninPage = () => {
 					dispatch(login(data.token))
 					dispatch(setUser(data.user))
 					router.push('/choose-your-yol')
+				},
+				onError: async (error: any) => {
+					setRequestError(error.response.data.erreur)
 				},
 			})
 		} catch (error: any) {
@@ -97,7 +101,10 @@ const SigninPage = () => {
 				/>
 				{isError && (
 					<div>
-						<p className='text-lg text-error'>Erreur REQUEST</p>
+						<p className='text-lg text-error'>
+							Il y a eu un problème de l'inscription{' '}
+							{requestError && `: ${requestError}`}
+						</p>
 					</div>
 				)}
 				<div className='flex flex-col items-center py-5'>

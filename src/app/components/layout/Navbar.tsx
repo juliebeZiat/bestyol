@@ -9,6 +9,7 @@ import Button from '../ui/Button'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { logout, setTheme } from '@/state/reducer/user.reducer'
+import ProgressBar from '../ui/ProgressBar'
 
 const Navbar = () => {
 	const dispatch = useAppDispatch()
@@ -40,7 +41,7 @@ const Navbar = () => {
 		}
 	}, [menuIsOpen])
 
-	// if (!yol) return null
+	if (!yol) return null
 
 	return (
 		<nav className='relative bg-lowOpacity text-[#FFFFFF] w-full h-[8svh] flex items-center'>
@@ -49,34 +50,34 @@ const Navbar = () => {
 					<div className='relative flex items-center gap-2 sm:gap-8'>
 						<Link href='/game'>
 							<div className='flex-shrink-0'>
-								{/* <Image
+								<Image
 									src={yol.data.species.image}
 									width={35}
 									height={35}
 									alt='yol'
-								/> */}
+								/>
 							</div>
 						</Link>
 						<div className='flex flex-col'>
 							<div>
 								<span className='sm:text-3xl'>
-									{/* Level {yol.data.level.level} */}
+									Level {yol.data.level.level}
 								</span>
 							</div>
 							<div>
-								{/* <span className='text-sm sm:text-base'>{yol.data.name}</span> */}
+								<span className='text-sm sm:text-base'>{yol.data.name}</span>
 							</div>
 						</div>
 						<div className='flex flex-col'>
-							{/* <ProgressBar
+							<ProgressBar
 								progress={yol.data.xp - yol.data.level.levelMin}
 								total={yol.data.level.levelMax}
 								color={theme.vibrantBackgroundColor}
-							/> */}
-							{/* <div className='flex items-center text-sm sm:text-lg'>
+							/>
+							<div className='flex items-center text-sm sm:text-lg'>
 								<span className=' mr-2'>{yol.data.xp} XP</span>
 								<span className=''>/ {yol.data.level.levelMax} XP</span>
-							</div> */}
+							</div>
 						</div>
 						{/* <img
 							className='absolute h-[64px] left-[80%] select-none'
