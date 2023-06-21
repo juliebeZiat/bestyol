@@ -53,6 +53,7 @@ const BackgroundGradient = () => {
 	}, [])
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)
+	console.log(theme)
 
 	return (
 		<div
