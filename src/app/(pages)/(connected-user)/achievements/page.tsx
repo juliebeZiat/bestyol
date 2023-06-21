@@ -38,8 +38,11 @@ const AchievementsPage = () => {
 		userSuccess && (
 			<>
 				<h1 className='text-4xl text-white my-[2rem]'>MES SUCCÈS</h1>
-				<div className='w-full flex flex-col items-center '>
-					<Box centerItems additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem] '>
+				<div className='w-full flex flex-col items-center h-[80vh]'>
+					<Box
+						centerItems
+						additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem] py-[50px] grow h-full justify-center'
+					>
 						<div>
 							<Tabs
 								activeItemsTitle='En cours'
@@ -58,7 +61,7 @@ const AchievementsPage = () => {
 								}
 							/>
 						</div>
-						<div className='lg:w-full lg:max-h-[30rem] lg:overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8'>
+						<div className='lg:w-full lg:max-h-[80%] overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8 h-full'>
 							{(achievementType === AchievementType.Pending
 								? pendingAchievements
 								: completedAchievements

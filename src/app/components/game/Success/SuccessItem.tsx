@@ -26,7 +26,11 @@ const SuccessItem = ({
 		>
 			<div className='flex content-center'>
 				<div className='w-[15%]'>
-					<SuccessAsset image={image} size={40} amount={amount} />
+					<SuccessAsset
+						image={image ?? '/assets/yols/egg/static/pouasson.png'}
+						size={40}
+						amount={amount}
+					/>
 				</div>
 				<div className='w-[85%]'>
 					<div className='flex justify-between'>
