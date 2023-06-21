@@ -26,7 +26,7 @@ const ProfileInformation = ({
 				<h2 className='text-center text-4xl tracking-wider'>Informations</h2>
 				<div className='flex flex-col gap-5 text-xl justify-between h-[250px]'>
 					<div className='flex flex-col'>
-						<p className=''>nom : {user.name}</p>
+						<p className=''>nom : {user.username}</p>
 						<p className=''>email : {user.email}</p>
 					</div>
 					<section className='flex flex-col gap-3 border-t-2 pt-8'>
