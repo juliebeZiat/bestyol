@@ -15,17 +15,20 @@ const LoginPage = () => {
 	const router = useRouter()
 	const isMobile = useIsMobile()
 	const dispatch = useAppDispatch()
-	const [username, setUsername] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
+
+	const [values, setValues] = useState({
+		username: '',
+		password: '',
+	})
 
 	const { mutateAsync, isError, isLoading } = useMutationSignIn()
 
-	const handleSignin = async () => {
-		const data = { username, password }
+	const handleSubmit = async () => {
+		const data = { username: values.username, password: values.password }
 		await mutateAsync(data, {
-			onSuccess: async (data) => {
-				dispatch(login(data.token))
-				dispatch(setUser(data.user))
+			onSuccess: async (responseData) => {
+				dispatch(login(responseData.token))
+				dispatch(setUser(responseData.user))
 				router.push('/game')
 			},
 		})
@@ -50,16 +53,16 @@ const LoginPage = () => {
 					label="Votre nom d'utilisateur"
 					labelFor='username'
 					inputType='text'
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
+					value={values.username}
+					onChange={(e) => setValues({ ...values, username: e.target.value })}
 					error={isError}
 				/>
 				<TextField
 					label='Votre mot de passe'
 					labelFor='password'
 					inputType='password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+					value={values.password}
+					onChange={(e) => setValues({ ...values, password: e.target.value })}
 					error={isError}
 				/>
 				{isError && (
@@ -73,7 +76,7 @@ const LoginPage = () => {
 					<Button
 						content='Je me connecte'
 						textColor='text-white'
-						onClick={handleSignin}
+						onClick={handleSubmit}
 					/>
 
 					<Link href='/signup' className='text-white mt-5'>

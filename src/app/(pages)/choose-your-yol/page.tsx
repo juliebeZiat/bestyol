@@ -5,10 +5,13 @@ import Box from '@/app/components/ui/Box'
 import Button, { ButtonSize } from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
 import YolCarousel from '@/app/components/ui/YolCarousel'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const ChooseYourYol = () => {
+	const user = useAppSelector((state: RootState) => state.user.user)
 	const [yolName, setYolName] = useState('')
 	const [currentYol, setCurrentYol] = useState<yol>()
 	const [hydrated, setHydrated] = useState(false)
@@ -38,7 +41,7 @@ const ChooseYourYol = () => {
 					centerItems
 					additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
 				>
-					<h1 className='text-2xl lg:text-4xl'>Bienvenue, User !</h1>
+					<h1 className='text-2xl lg:text-4xl'>Bienvenue, {user.username} !</h1>
 					<p className='lg:text-2xl text-center w-5/6'>
 						Choisis ton Yol ! Ce sera ton compagnon tout au long de ton
 						aventure, alors choisis le bien !
