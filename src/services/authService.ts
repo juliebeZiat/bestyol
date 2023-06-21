@@ -7,7 +7,6 @@ const signIn = async ({ username, password }: LoginRequest) => {
 		username,
 		password,
 	})
-	console.log("user: ", response.data);
 	return response.data
 }
 
