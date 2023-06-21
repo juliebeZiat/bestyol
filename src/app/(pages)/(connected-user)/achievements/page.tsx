@@ -1,10 +1,12 @@
 'use client'
 import Box from '@/app/components/ui/Box'
-import achievementsList from './tempAchievements.json'
 import AchievementTile from '../../../components/achievements/AchievementTile'
 import { useFetchAllUserSuccessQuery } from '@/services/queries/success'
 import Tabs from '@/app/components/ui/Tabs'
 import { useState } from 'react'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
+import Loader from '@/app/components/ui/Loader'
 
 export enum AchievementType {
 	Pending = 'pending',
@@ -12,29 +14,28 @@ export enum AchievementType {
 }
 
 const AchievementsPage = () => {
+	const userId = useAppSelector((state: RootState) => state.user.user.id)
+
 	const { data: userSuccess, isLoading: userSuccessLoading } =
-		useFetchAllUserSuccessQuery()
+		useFetchAllUserSuccessQuery(userId)
 
 	const [achievementType, setAchievementType] = useState<AchievementType>(
 		AchievementType.Pending,
 	)
 
-	achievementsList.sort((a, b) => {
-		if (a.progress / a.goal > b.progress / b.goal) return -1
-		if (a.progress / a.goal < b.progress / b.goal) return 1
-		// A progression égale, on trie alphabétiquement
-		if (a.title > b.title) return 1
-		if (a.title < b.title) return -1
+	console.log('userSuccess: ', userSuccess?.data.userSuccess)
 
-		return 0
-	})
+	const pendingAchievements = userSuccess?.data.userSuccess.filter(
+		(achievement) => !achievement.isCompleted,
+	)
+	const completedAchievements = userSuccess?.data.userSuccess.filter(
+		(achievement) => achievement.isCompleted,
+	)
 
-	const pendingAchievements = userSuccess?.filter(
-		(achievement) => !achievement.is_completed,
-	)
-	const completedAchievements = userSuccess?.filter(
-		(achievement) => achievement.is_completed,
-	)
+	console.log('completed: ', completedAchievements)
+	console.log('pending: ', pendingAchievements)
+	if (userSuccessLoading) return Loader
+	if (!userSuccess) return null
 
 	return (
 		userSuccess && (
@@ -68,10 +69,10 @@ const AchievementsPage = () => {
 								<AchievementTile
 									title={achievement.success.title}
 									description={achievement.success.description}
-									xp={achievement.success.success_xp}
-									goal={achievement.success.amount_needed}
-									progress={achievement.actual_amount}
-									isCompleted={achievement.is_completed}
+									xp={achievement.success.successXp}
+									goal={achievement.success.amountNeeded}
+									progress={achievement.actualAmount}
+									isCompleted={achievement.isCompleted}
 									image={achievement.success.image}
 								/>
 							))}
