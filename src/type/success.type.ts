@@ -1,3 +1,5 @@
+import { Yol } from './yol.type'
+
 export interface Success {
 	id: number
 	title: string
@@ -14,4 +16,13 @@ export interface UserSuccess {
 	isCompleted: boolean
 	successId: number
 	success: Success
+}
+
+export interface ValidateSuccessRequest {
+	yolId: number
+}
+
+export interface ValidateSuccessResponse {
+	message: string
+	yol: Yol
 }
