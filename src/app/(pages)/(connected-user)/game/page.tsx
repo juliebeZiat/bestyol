@@ -15,8 +15,8 @@ const GamePage = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: tasks } = useFetchAllUserTasks(user.id)
 
-	const dailyTasks = tasks?.data.filter((task) => task.is_daily === true)
-	const customTasks = tasks?.data.filter((task) => task.is_daily === false)
+	const dailyTasks = tasks?.data.dailyTasks
+	const customTasks = tasks?.data.customTasks
 
 	const isMobile = useIsMobile()
 	return (

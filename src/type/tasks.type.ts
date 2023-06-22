@@ -16,3 +16,8 @@ export interface UserTasks {
 	completed_at: Date
 	dailyTask?: DailyTasks
 }
+
+export interface TasksResponse {
+	customTasks: UserTasks[]
+	dailyTasks: UserTasks[]
+}

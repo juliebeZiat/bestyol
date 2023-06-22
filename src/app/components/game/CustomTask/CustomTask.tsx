@@ -8,9 +8,8 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import { usePostNewUserTask } from '@/services/queries/tasks'
-import { data } from 'autoprefixer'
 import userTasksService from '@/services/tasksService'
+import { useQueryClient } from '@tanstack/react-query'
 
 export enum TaskType {
 	All = 'all',
@@ -26,7 +25,8 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const [taskType, setTaskType] = useState<TaskType>(TaskType.All)
 	const [taskCreation, setTaskCreation] = useState<boolean>(false)
 	const [newTask, setNewTask] = useState<string>('')
-	const { user, token } = useAppSelector((state: RootState) => state.user)
+	const { user } = useAppSelector((state: RootState) => state.user)
+	const queryClient = useQueryClient()
 
 	const toggleTaskCreation = () => {
 		if (taskCreation) setNewTask('')
@@ -34,13 +34,10 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	}
 	const validateTaskCreation = async () => {
 		console.log('posting new task: ', newTask)
-		const data = await userTasksService.createNewUserTask(
-			newTask,
-			user.id,
-			token!,
-		)
+		const data = await userTasksService.createNewUserTask(newTask, user.id)
 		if (data) {
 			console.log(data)
+			queryClient.invalidateQueries({ queryKey: ['userTasks'] })
 		}
 		toggleTaskCreation()
 	}
@@ -87,6 +84,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								is_completed={task.is_completed}
 								key={index}
 								is_archieved={false}
+								taskId={task.id}
 							/>
 						))}
 					</div>
@@ -98,6 +96,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								is_completed={task.is_completed}
 								key={index}
 								is_archieved={true}
+								taskId={task.id}
 							/>
 						))}
 					</div>

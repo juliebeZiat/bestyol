@@ -8,9 +8,16 @@ export const useFetchAllUserTasks = (id: number) => {
 	)
 }
 
-export const usePostNewUserTask = (id: number, taskName: string, token: string) => {
+export const usePostNewUserTask = (id: number, taskName: string) => {
 	return useQuery(
 		['newUserTask', taskName, id],
-		async () => await userTasksService.createNewUserTask(taskName, id, token),
+		async () => await userTasksService.createNewUserTask(taskName, id),
+	)
+}
+
+export const useEditUserTask = (taskId: number, taskName: string) => {
+	return useQuery(
+		['editUserTask', taskName, taskId],
+		async () => await userTasksService.editUserTask(taskName, taskId),
 	)
 }
