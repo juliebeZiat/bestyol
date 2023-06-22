@@ -1,4 +1,4 @@
-import { Theme } from '@/state/reducer/user.reducer'
+import { Theme } from './type'
 
 export interface Species {
 	id: number
