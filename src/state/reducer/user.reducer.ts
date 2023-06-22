@@ -26,7 +26,7 @@ type UserState = {
 const initialState = {
 	isLogged: false,
 	user: {},
-	theme: themes[7],
+	theme: themes.find(theme => theme.name == 'neutral'),
 	token: undefined,
 } as UserState
 

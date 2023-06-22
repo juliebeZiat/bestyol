@@ -27,6 +27,12 @@ const AudioPlayer = () => {
 		audioPlayer.current.play()
 	}, [])
 
+	const setVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (audioPlayer.current)
+			audioPlayer.current.volume = parseInt(e.target.value) / 100
+		console.log(parseInt(e.target.value) / 100)
+	}
+
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	return (
@@ -38,6 +44,11 @@ const AudioPlayer = () => {
 			>
 				PAUSE
 			</button>
+			<input
+				type='range'
+				className={`!absolute top-[15vh] left-[2rem] -rotate-90`}
+				onChange={(e) => setVolume(e)}
+			/>
 		</>
 	)
 }
