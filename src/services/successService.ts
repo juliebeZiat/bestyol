@@ -1,18 +1,12 @@
 import { Success, UserSuccess } from '@/type/success.type'
 import axios from 'axios'
 
-const fetchAllSuccess = async () => {
-	const response = await axios.get<Success[]>('api/success')
-	return response
-}
-
-const fetchAllUserSuccess = async () => {
-	const response = await axios.get<UserSuccess[]>('api/user-success')
+const fetchAllUserSuccess = async (userId: number) => {
+	const response = await axios.get<{ userSuccess: UserSuccess[] }>(`${process.env.NEXT_PUBLIC_API_URL}/api/user-success/${userId}`)
 	return response
 }
 
 const successService = {
-	fetchAllSuccess,
 	fetchAllUserSuccess,
 }
 

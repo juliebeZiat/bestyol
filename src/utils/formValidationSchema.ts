@@ -23,3 +23,9 @@ export const signinSchema = object().shape({
 		.required(requiredField('La confirmation du mot de passe'))
 		.oneOf([ref('password')], 'Les mots de passe ne correspondent pas'),
 })
+
+export const createYolSchema = object().shape({
+	name: string()
+		.required(requiredField('Le nom du Yol'))
+		.min(3, 'Le nom de votre Yol doit faire au minimum 3 caractères'),
+})

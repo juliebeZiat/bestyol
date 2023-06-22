@@ -7,20 +7,24 @@ import { useFetchAllUserSuccessQuery } from '@/services/queries/success'
 import { useEffect, useState } from 'react'
 import { UserSuccess } from '@/type/success.type'
 import Loader from '../../ui/Loader'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 const SuccessBox = () => {
 	const isMobile = useIsMobile()
 
-	const { data: success, isLoading } = useFetchAllUserSuccessQuery()
+	const userId = useAppSelector((state: RootState) => state.user.user.id)
+	const { data: userSuccess, isLoading } = useFetchAllUserSuccessQuery(userId)
 	const [incomingSuccess, setIncomingSuccess] = useState<UserSuccess[]>([])
+
 	useEffect(() => {
-		if (success) {
-			const unCompleteSuccess = success.filter(
-				(success) => success.actual_amount < success.success.amount_needed,
+		if (userSuccess) {
+			const uncompleteUserSuccess = userSuccess.data.userSuccess.filter(
+				(success) => success.actualAmount < success.success.amountNeeded,
 			)
-			setIncomingSuccess(unCompleteSuccess.slice(0, 3))
+			setIncomingSuccess(uncompleteUserSuccess.slice(0, 3))
 		}
-	}, [success])
+	}, [userSuccess])
 
 	if (isLoading) return <Loader />
 	return (
@@ -31,8 +35,8 @@ const SuccessBox = () => {
 						<SuccessItem
 							key={success.id}
 							title={success.success.title}
-							amount={success.success.amount_needed}
-							current_amount={success.actual_amount}
+							amount={success.success.amountNeeded}
+							current_amount={success.actualAmount}
 							image={success.success.image}
 						/>
 					))}
