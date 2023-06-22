@@ -1,5 +1,4 @@
 'use client'
-import { yol } from '@/app/components/interfaces'
 import Box from '@/app/components/ui/Box'
 import Button, { ButtonSize } from '@/app/components/ui/Button'
 import TextField from '@/app/components/ui/TextField'
@@ -7,6 +6,7 @@ import YolCarousel from '@/app/components/ui/YolCarousel'
 import { useMutationCreateYol } from '@/services/mutations/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { SpeciesModifiedData } from '@/type/yol.type'
 import { createYolSchema } from '@/utils/formValidationSchema'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -26,17 +26,18 @@ const ChooseYourYol = () => {
 
 	const { mutateAsync, isError, isLoading } = useMutationCreateYol()
 
-	const [currentYol, setCurrentYol] = useState<yol>()
+	const [currentYol, setCurrentYol] = useState<SpeciesModifiedData>()
 
-	const getCurrentYol = (yol: yol) => {
+	const getCurrentYol = (yol: SpeciesModifiedData) => {
 		setCurrentYol(yol)
 	}
 
 	const handleSubmit = async () => {
+		if (!currentYol) return
 		const data = {
 			name: values.name,
 			userId: values.userId,
-			speciesId: values.speciesId,
+			speciesId: currentYol.id,
 		}
 
 		console.log(currentYol)

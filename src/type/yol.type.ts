@@ -1,7 +1,11 @@
+import { Theme } from '@/state/reducer/user.reducer'
+
 export interface Species {
 	id: number
 	name: string
 	image: string
+	gif: string
+	stage: string
 }
 
 export interface Level {
@@ -20,6 +24,16 @@ export interface Yol {
 	species: Species
 }
 
+export interface SpeciesModifiedData {
+	id: number
+	name: string
+	image: string
+	gif: string
+	stage: string
+	pos: number
+	theme: Theme
+}
+
 export interface EvolutionAssets {
 	previousForm: string
 	newForm: string
@@ -34,4 +48,17 @@ export interface CreateYolRequest {
 
 export interface CreateYolReponse {
 	yol: Yol
+}
+
+export enum SpeciesStages {
+	EGG = 'Egg',
+	BABY = 'Baby',
+	ADO = 'Adolescent',
+	FINAL = 'Final',
+}
+
+export enum SpeciesNames {
+	GRUMPFISH = 'Grumpfish',
+	BUMBLEBLINK = 'Bumbleblink',
+	GREENBELLY = 'Greenbelly',
 }

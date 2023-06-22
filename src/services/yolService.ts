@@ -1,4 +1,9 @@
-import { CreateYolReponse, CreateYolRequest, Yol } from '@/type/yol.type'
+import {
+	CreateYolReponse,
+	CreateYolRequest,
+	Species,
+	Yol,
+} from '@/type/yol.type'
 import axios from 'axios'
 
 const createYol = async ({ name, userId, speciesId }: CreateYolRequest) => {
@@ -13,14 +18,24 @@ const createYol = async ({ name, userId, speciesId }: CreateYolRequest) => {
 	return response.data
 }
 
-const fetchUserYol = async (id: number) => {
-	const response = await axios.get<Yol>(`api/yol/${id}`)
+const fetchUserYol = async (userId: number) => {
+	const response = await axios.get<Yol>(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/yol/user/${userId}`,
+	)
 	return response
 }
 
-const yolServive = {
-	createYol,
-	fetchUserYol,
+const fetchAllYolSpecies = async () => {
+	const response = await axios.get<{ species: Species[] }>(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/species`,
+	)
+	return response
 }
 
-export default yolServive
+const yolService = {
+	createYol,
+	fetchUserYol,
+	fetchAllYolSpecies,
+}
+
+export default yolService

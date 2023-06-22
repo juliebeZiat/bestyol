@@ -60,9 +60,7 @@ const Navbar = () => {
 						</Link>
 						<div className='flex flex-col'>
 							<div>
-								<span className='sm:text-3xl'>
-									Level {yol.data.level.level}
-								</span>
+								<span className='sm:text-3xl'>Level</span>
 							</div>
 							<div>
 								<span className='text-sm sm:text-base'>{yol.data.name}</span>
@@ -70,13 +68,13 @@ const Navbar = () => {
 						</div>
 						<div className='flex flex-col'>
 							<ProgressBar
-								progress={yol.data.xp - yol.data.level.levelMin}
-								total={yol.data.level.levelMax}
+								progress={yol.data.xp - 0}
+								total={100}
 								color={theme.vibrantBackgroundColor}
 							/>
 							<div className='flex items-center text-sm sm:text-lg'>
 								<span className=' mr-2'>{yol.data.xp} XP</span>
-								<span className=''>/ {yol.data.level.levelMax} XP</span>
+								<span className=''>/ {200} XP</span>
 							</div>
 						</div>
 						{/* <img

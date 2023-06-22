@@ -1,46 +1,46 @@
 import useWindowSize from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { yol } from '../interfaces'
 import Hammer from 'react-hammerjs'
 import { useAppDispatch } from '@/state/hooks'
 import { themes } from '@/utils/themes'
 import { Theme, setTheme } from '@/state/reducer/user.reducer'
+import { useFetchAllYolSpecies } from '@/services/queries/yol'
+import { SpeciesModifiedData, SpeciesStages } from '@/type/yol.type'
+import Loader from './Loader'
 
 const YolCarousel = ({
 	getCurrentYol,
 	applyTheme,
 }: {
-	getCurrentYol?: (yol: yol) => void
+	getCurrentYol?: (yol: SpeciesModifiedData) => void
 	applyTheme: boolean
 }) => {
 	const dispatch = useAppDispatch()
+	const [yols, setYols] = useState<SpeciesModifiedData[]>()
 
-	const [yols, setYols] = useState<yol[]>([
-		{
-			name: 'Bé-boo',
-			pic: '/assets/yols/base/animated/feuille.gif',
-			pos: 1,
-			theme: themes[0],
-		},
-		{
-			name: 'Yolkshire',
-			pic: '/assets/yols/base/animated/pouasson.gif',
-			pos: 2,
-			theme: themes[2],
-		},
-		{
-			name: 'Evopink',
-			pic: '/assets/yols/base/static/lunettes.png',
-			pos: 3,
-			theme: themes[4],
-		},
-	])
+	const { data, isLoading, isFetching } = useFetchAllYolSpecies()
+	const speciesToDisplay = data?.data.species.filter(
+		(spec) => spec.stage === SpeciesStages.BABY,
+	)
+	const modifiedData = speciesToDisplay?.map((obj, index) => {
+		return {
+			...obj,
+			pos: index + 1,
+			theme: themes[index * 2],
+		}
+	})
+
 	useEffect(() => {
+		setYols(modifiedData)
+	}, [data])
+
+	useEffect(() => {
+		if (!yols) return
 		if (!getCurrentYol) return
-		const currentYol = yols.find((yol) => yol.pos == 2)
-		getCurrentYol(currentYol!)
-		applyTheme && dispatch(setTheme(currentYol?.theme!))
+		const currentYol = yols?.find((yol) => yol.pos == 2)
+		getCurrentYol(currentYol)
+		applyTheme && dispatch(setTheme(currentYol.theme))
 	}, [yols])
 
 	const [isAnimating, setIsAnimating] = useState(true)
@@ -51,7 +51,7 @@ const YolCarousel = ({
 		setIsMoving(true)
 		setIsAnimating(false)
 		setTimeout(() => {
-			const newOrder = [...yols].map((yol) => {
+			const newOrder = yols?.map((yol) => {
 				if (yol.pos < 3) yol.pos += 1
 				else if ((yol.pos = 3)) yol.pos = 1
 				return yol
@@ -68,7 +68,7 @@ const YolCarousel = ({
 		setIsMoving(true)
 		setIsAnimating(false)
 		setTimeout(() => {
-			const newOrder = [...yols].map((yol) => {
+			const newOrder = yols?.map((yol) => {
 				if (yol.pos > 1) yol.pos -= 1
 				else if ((yol.pos = 1)) yol.pos = 3
 				return yol
@@ -89,6 +89,8 @@ const YolCarousel = ({
 
 	const windowSizes = useWindowSize()
 
+	if (isLoading || isFetching) return <Loader />
+
 	return (
 		<div className='flex items-center justify-center'>
 			{windowSizes.windowWidth > 500 && (
@@ -102,10 +104,10 @@ const YolCarousel = ({
 			)}
 			<Hammer onSwipeLeft={handlePrev} onSwipeRight={handleNext}>
 				<section className='relative flex items-center justify-center h-[160px] w-full sm:w-[400px] sm:h-[200px] lg:h-[300px] lg:w-[800px]'>
-					{yols.map((yol) => {
+					{yols?.map((yol) => {
 						return (
 							<Image
-								src={yol.pic}
+								src={yol.image}
 								alt={yol.name}
 								width={150}
 								height={150}
