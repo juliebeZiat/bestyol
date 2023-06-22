@@ -5,6 +5,10 @@ import { RootState } from '@/state/store'
 import TextField from '../../ui/TextField'
 import userTasksService from '@/services/tasksService'
 import { useQueryClient } from '@tanstack/react-query'
+import {
+	useMutationDeleteTask,
+	useMutationEditTask,
+} from '@/services/mutations/tasks'
 
 interface CustomTaskProps {
 	title: string
@@ -18,6 +22,8 @@ const CustomTaskItem = ({ title, is_archieved, taskId }: CustomTaskProps) => {
 	const [editTask, setEditTask] = useState<boolean>(false)
 	const [newTitle, setNewTitle] = useState<string>(title)
 	const queryClient = useQueryClient()
+	const { mutateAsync: mutateAsyncEditTask } = useMutationEditTask()
+	const { mutateAsync: mutateAsyncDeleteTask } = useMutationDeleteTask()
 
 	const handleClick = () => {
 		setTaskIsDone(!taskIsDone)
@@ -29,17 +35,26 @@ const CustomTaskItem = ({ title, is_archieved, taskId }: CustomTaskProps) => {
 	}
 
 	const handleEditTask = async () => {
-		console.log(newTitle)
-		const response = await userTasksService.editUserTask(newTitle, taskId)
-		console.log(response)
-		queryClient.invalidateQueries({ queryKey: ['userTasks'] })
-		toggleEdit()
+		await mutateAsyncEditTask(
+			{ taskId, taskName: newTitle },
+			{
+				onSuccess: async () => {
+					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
+					toggleEdit()
+				},
+			},
+		)
 	}
 
 	const deleteTask = async () => {
-		const response = await userTasksService.deleteUserTask(taskId)
-		queryClient.invalidateQueries({ queryKey: ['userTasks'] })
-		console.log(response)
+		await mutateAsyncDeleteTask(
+			{ taskId },
+			{
+				onSuccess: () => {
+					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
+				},
+			},
+		)
 	}
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)

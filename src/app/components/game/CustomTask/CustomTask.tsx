@@ -8,8 +8,8 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import userTasksService from '@/services/tasksService'
 import { useQueryClient } from '@tanstack/react-query'
+import { useMutationNewTask } from '@/services/mutations/tasks'
 
 export enum TaskType {
 	All = 'all',
@@ -27,19 +27,22 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const [newTask, setNewTask] = useState<string>('')
 	const { user } = useAppSelector((state: RootState) => state.user)
 	const queryClient = useQueryClient()
+	const { mutateAsync: mutateAsyncNewTask } = useMutationNewTask()
 
 	const toggleTaskCreation = () => {
 		if (taskCreation) setNewTask('')
 		setTaskCreation(!taskCreation)
 	}
 	const validateTaskCreation = async () => {
-		console.log('posting new task: ', newTask)
-		const data = await userTasksService.createNewUserTask(newTask, user.id)
-		if (data) {
-			console.log(data)
-			queryClient.invalidateQueries({ queryKey: ['userTasks'] })
-		}
-		toggleTaskCreation()
+		await mutateAsyncNewTask(
+			{ userId: user.id, taskName: newTask },
+			{
+				onSettled(data, error, variables, context) {
+					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
+					toggleTaskCreation()
+				},
+			},
+		)
 	}
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)
