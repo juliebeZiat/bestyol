@@ -26,28 +26,26 @@ const ChooseYourYol = () => {
 
 	const { mutateAsync, isError, isLoading } = useMutationCreateYol()
 
-	const [currentYol, setCurrentYol] = useState<SpeciesModifiedData>()
+	const [currentSpecies, setCurrentSpecies] = useState<SpeciesModifiedData>()
 
-	const getCurrentYol = (yol: SpeciesModifiedData) => {
-		setCurrentYol(yol)
+	const getCurrentYol = (spec: SpeciesModifiedData) => {
+		setCurrentSpecies(spec)
 	}
 
 	const handleSubmit = async () => {
-		if (!currentYol) return
+		if (!currentSpecies) return
 		const data = {
 			name: values.name,
 			userId: values.userId,
-			speciesId: currentYol.id,
+			speciesId: currentSpecies.id,
 		}
-
-		console.log(currentYol)
 
 		try {
 			await createYolSchema.validate(data, { abortEarly: false })
 			setErrors({})
 			await mutateAsync(data, {
 				onSuccess: () => {
-					// router.push('/game')
+					router.push('/game')
 				},
 				onError: async (error: any) => {
 					setRequestError(error.response.data.erreur)
@@ -75,8 +73,8 @@ const ChooseYourYol = () => {
 						aventure, alors choisis le bien !
 					</p>
 					<div className='text-center flex flex-col justify-center w-full'>
-						<YolCarousel getCurrentYol={getCurrentYol} applyTheme />
-						<h2 className='text-4xl'>{currentYol?.name ?? ''}</h2>
+						<YolCarousel getCurrentSpecies={getCurrentYol} applyTheme />
+						<h2 className='text-4xl'>{currentSpecies?.name ?? ''}</h2>
 					</div>
 
 					<div className='w-[40%]'>
