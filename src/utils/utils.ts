@@ -2,7 +2,6 @@ import { UserSuccess } from '@/type/success.type'
 import { EvolutionAssets, SpeciesNames, Yol } from '@/type/yol.type'
 import { themes } from './themes'
 
-
 export const evolutionLevels = [100, 700, 1750]
 
 export const isYolEvolving = (yol: Yol) => {
@@ -54,7 +53,6 @@ export const getEvolutionAssets = (yol: Yol) => {
 	} else return undefined
 }
 
-
 export const sortUserSuccess = (data: UserSuccess[]) => {
 	data.sort((a, b) => {
 		if (
@@ -73,6 +71,7 @@ export const sortUserSuccess = (data: UserSuccess[]) => {
 
 		return 0
 	})
+}
 
 export const getThemeBySpecies = (
 	speciesName: SpeciesNames,
