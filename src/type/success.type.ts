@@ -2,15 +2,16 @@ export interface Success {
 	id: number
 	title: string
 	description: string
-	amount_needed: number
-	success_xp: number
+	amountNeeded: number
+	successXp: number
 	image: string
 }
 
 export interface UserSuccess {
 	id: number
-	user_id: number
-	actual_amount: number
-	is_completed: boolean
+	userId: number
+	actualAmount: number
+	isCompleted: boolean
+	successId: number
 	success: Success
 }

@@ -1,5 +1,7 @@
+import { UserSuccess } from '@/type/success.type'
 import { EvolutionAssets, SpeciesNames, Yol } from '@/type/yol.type'
 import { themes } from './themes'
+
 
 export const evolutionLevels = [100, 700, 1750]
 
@@ -18,7 +20,7 @@ export const getEvolutionAssets = (yol: Yol) => {
 		switch (getEvolutionStep(yol)) {
 			case 0:
 				evolutionAssets = {
-					previousForm: `/assets/yols/eggs/animated/${yol.species.name}.gif`,
+					previousForm: `/assets/yols/egg/animated/${yol.species.name}.gif`,
 					newForm: `/assets/yols/base/static/${yol.species.name}.png`,
 					animatedNewForm: `/assets/yols/base/animated/${yol.species.name}.gif`,
 				}
@@ -42,7 +44,7 @@ export const getEvolutionAssets = (yol: Yol) => {
 
 			default:
 				evolutionAssets = {
-					previousForm: `/assets/yols/eggs/animated/${yol.species.name}.gif`,
+					previousForm: `/assets/yols/egg/animated/${yol.species.name}.gif`,
 					newForm: `/assets/yols/base/static/${yol.species.name}.png`,
 					animatedNewForm: `/assets/yols/base/animated/${yol.species.name}.gif`,
 				}
@@ -51,6 +53,26 @@ export const getEvolutionAssets = (yol: Yol) => {
 		return evolutionAssets
 	} else return undefined
 }
+
+
+export const sortUserSuccess = (data: UserSuccess[]) => {
+	data.sort((a, b) => {
+		if (
+			a.actualAmount / a.success.amountNeeded >
+			b.actualAmount / b.success.amountNeeded
+		)
+			return -1
+		if (
+			a.actualAmount / a.success.amountNeeded <
+			b.actualAmount / b.success.amountNeeded
+		)
+			return 1
+		// A progression égale, on trie alphabétiquement
+		if (a.success.title > b.success.title) return 1
+		if (a.success.title < b.success.title) return -1
+
+		return 0
+	})
 
 export const getThemeBySpecies = (
 	speciesName: SpeciesNames,
