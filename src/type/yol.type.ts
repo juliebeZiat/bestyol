@@ -2,10 +2,10 @@ import { Theme } from '@/state/reducer/user.reducer'
 
 export interface Species {
 	id: number
-	name: string
+	name: SpeciesNames
 	image: string
 	gif: string
-	stage: string
+	stage: SpeciesStages
 }
 
 export interface Level {
@@ -26,10 +26,10 @@ export interface Yol {
 
 export interface SpeciesModifiedData {
 	id: number
-	name: string
+	name: SpeciesNames
 	image: string
 	gif: string
-	stage: string
+	stage: SpeciesStages
 	pos: number
 	theme: Theme
 }

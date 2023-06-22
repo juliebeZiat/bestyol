@@ -3,11 +3,11 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Hammer from 'react-hammerjs'
 import { useAppDispatch } from '@/state/hooks'
-import { themes } from '@/utils/themes'
 import { Theme, setTheme } from '@/state/reducer/user.reducer'
 import { useFetchAllYolSpecies } from '@/services/queries/yol'
 import { SpeciesModifiedData, SpeciesStages } from '@/type/yol.type'
 import Loader from './Loader'
+import { getThemeBySpecies } from '@/utils/utils'
 
 const YolCarousel = ({
 	getCurrentSpecies,
@@ -24,11 +24,11 @@ const YolCarousel = ({
 		(spec) => spec.stage === SpeciesStages.BABY,
 	)
 
-	const speciesModifiedData = speciesToDisplay?.map((obj, index) => {
+	const speciesModifiedData = speciesToDisplay?.map((spec, index) => {
 		return {
-			...obj,
+			...spec,
 			pos: index + 1,
-			theme: themes[index * 2],
+			theme: getThemeBySpecies(spec.name, 'light'),
 		}
 	})
 

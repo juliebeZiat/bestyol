@@ -1,4 +1,5 @@
-import { EvolutionAssets, Yol } from '@/type/yol.type'
+import { EvolutionAssets, SpeciesNames, Yol } from '@/type/yol.type'
+import { themes } from './themes'
 
 export const evolutionLevels = [100, 700, 1750]
 
@@ -49,6 +50,33 @@ export const getEvolutionAssets = (yol: Yol) => {
 		}
 		return evolutionAssets
 	} else return undefined
+}
+
+export const getThemeBySpecies = (
+	speciesName: SpeciesNames,
+	mode: 'light' | 'dark',
+) => {
+	switch (mode) {
+		case 'light':
+			switch (speciesName) {
+				case SpeciesNames.GRUMPFISH:
+					return themes[0]
+				case SpeciesNames.BUMBLEBLINK:
+					return themes[2]
+				case SpeciesNames.GREENBELLY:
+					return themes[4]
+			}
+
+		case 'dark':
+			switch (speciesName) {
+				case SpeciesNames.GRUMPFISH:
+					return themes[1]
+				case SpeciesNames.BUMBLEBLINK:
+					return themes[3]
+				case SpeciesNames.GREENBELLY:
+					return themes[5]
+			}
+	}
 }
 
 const levels = [
