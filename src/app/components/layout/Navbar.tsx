@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import ProgressBar from '../ui/ProgressBar'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useFetchUserYol } from '@/services/queries/yol'
@@ -10,6 +9,8 @@ import Button from '../ui/Button'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { logout, setTheme } from '@/state/reducer/user.reducer'
+import ProgressBar from '../ui/ProgressBar'
+import { getYolCurrentLevel } from '@/utils/utils'
 
 const Navbar = () => {
 	const dispatch = useAppDispatch()
@@ -43,6 +44,8 @@ const Navbar = () => {
 
 	if (!yol) return null
 
+	const currentLevel = getYolCurrentLevel(yol.data.xp)
+
 	return (
 		<nav className='relative bg-lowOpacity text-[#FFFFFF] w-full h-[8svh] flex items-center'>
 			<div className='w-full px-4 sm:px-6 lg:px-8'>
@@ -60,9 +63,7 @@ const Navbar = () => {
 						</Link>
 						<div className='flex flex-col'>
 							<div>
-								<span className='sm:text-3xl'>
-									Level {yol.data.level.level}
-								</span>
+								<span className='sm:text-3xl'>Level {currentLevel.level}</span>
 							</div>
 							<div>
 								<span className='text-sm sm:text-base'>{yol.data.name}</span>
@@ -70,13 +71,13 @@ const Navbar = () => {
 						</div>
 						<div className='flex flex-col'>
 							<ProgressBar
-								progress={yol.data.xp - yol.data.level.levelMin}
-								total={yol.data.level.levelMax}
+								progress={yol.data.xp - currentLevel.levelMin}
+								total={currentLevel.levelMax}
 								color={theme.vibrantBackgroundColor}
 							/>
 							<div className='flex items-center text-sm sm:text-lg'>
 								<span className=' mr-2'>{yol.data.xp} XP</span>
-								<span className=''>/ {yol.data.level.levelMax} XP</span>
+								<span>/ {currentLevel.levelMax} XP</span>
 							</div>
 						</div>
 						{/* <img
