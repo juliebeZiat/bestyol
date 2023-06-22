@@ -6,32 +6,38 @@ import ConfettiExplosion from 'react-confetti-explosion'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import SuccessAsset from '../ui/SuccessAsset'
+import { useMutationValidateUserSuccess } from '@/services/mutations/success'
+import { UserSuccess } from '@/type/success.type'
+import { useFetchUserYol } from '@/services/queries/yol'
 
-interface achievementTileProps {
-	title: string
-	description: string
-	xp: number
-	goal: number
-	progress: number
-	isCompleted: boolean
-	image: string
+interface AchievementTileProps {
+	achievement: UserSuccess
 }
 
-const AchievementTile = ({
-	title,
-	description,
-	xp,
-	goal,
-	progress,
-	isCompleted,
-	image,
-}: achievementTileProps) => {
+const AchievementTile = ({ achievement }: AchievementTileProps) => {
 	const theme = useAppSelector((state: RootState) => state.user.theme)
+	const user = useAppSelector((state: RootState) => state.user.user)
+
 	const [validateSuccess, setValidateSuccess] = useState(false)
 	const [isExploding, setIsExploding] = useState(false)
 
-	const handleValidateSuccess = () => {
-		setValidateSuccess(true)
+	const { id: userSuccessId, actualAmount, isCompleted, success } = achievement
+
+	const { data: yolData } = useFetchUserYol(user.id)
+
+	const { mutateAsync: validateSuccessMutation } =
+		useMutationValidateUserSuccess()
+
+	if (!yolData) return null
+
+	const handleValidateSuccess = async () => {
+		const data = { userSuccessId, yolId: yolData.data.id }
+
+		await validateSuccessMutation(data, {
+			onSuccess: async () => {
+				setValidateSuccess(true)
+			},
+		})
 
 		setTimeout(() => {
 			setIsExploding(true)
@@ -41,31 +47,32 @@ const AchievementTile = ({
 	return (
 		<div
 			className={`${
-				progress < goal ? 'bg-lowOpacity' : `${theme.vibrantBackgroundColor}`
+				actualAmount < success.amountNeeded
+					? 'bg-lowOpacity'
+					: `${theme.vibrantBackgroundColor}`
 			} h-[15vh] p-8 w-[80%] flex ${
 				useIsMobile() ? 'h-full flex-col gap-y-[1rem]' : ''
 			} items-center relative text-white gap-x-[1rem] pixel-corners-items`}
-			// style={{textShadow: '-0.5px -0.5px 2px black'}}
 		>
 			<SuccessAsset
-				image={image ?? '/assets/yols/egg/static/pouasson.png'}
-				amount={goal}
+				image={success.image ?? '/assets/yols/egg/static/pouasson.png'}
+				amount={success.amountNeeded}
 				size={60}
 			/>
 			<div>
-				<p className='text-2xl'>{title}</p>
-				<p className='text-lg'>{description}</p>
+				<p className='text-2xl'>{success.title}</p>
+				<p className='text-lg'>{success.description}</p>
 			</div>
 			<div className='absolute top-[1rem] right-[1rem] text-end text-2xl'>
 				{isExploding && <ConfettiExplosion colors={['#FFF']} />}
-				{progress < goal && (
+				{actualAmount < success.amountNeeded && (
 					<p>
-						{progress}/{goal}
+						{actualAmount}/{success.amountNeeded}
 					</p>
 				)}
-				<p>+{xp}xp</p>
+				<p>+{success.successXp}xp</p>
 			</div>
-			{progress === goal && !isCompleted && (
+			{actualAmount === success.amountNeeded && !isCompleted && (
 				<div className='lg:absolute right-[1rem] top-12'>
 					<Button
 						content='Valider mon succès'
@@ -76,7 +83,7 @@ const AchievementTile = ({
 					/>
 				</div>
 			)}
-			{progress < goal && (
+			{actualAmount < success.amountNeeded && (
 				<div
 					className={`absolute -bottom-1 left-0 h-[7px] customWidth ${theme.vibrantBackgroundColor}`}
 				/>
@@ -84,7 +91,7 @@ const AchievementTile = ({
 			<style jsx>
 				{`
 					.customWidth {
-						width: ${Math.round((progress / goal) * 100)}%;
+						width: ${Math.round((actualAmount / success.amountNeeded) * 100)}%;
 					}
 				`}
 			</style>

@@ -72,7 +72,7 @@ const Navbar = () => {
 						<div className='flex flex-col'>
 							<ProgressBar
 								progress={yol.data.xp - currentLevel.levelMin}
-								total={currentLevel.levelMax}
+								total={currentLevel.levelMax - currentLevel.levelMin}
 								color={theme.vibrantBackgroundColor}
 							/>
 							<div className='flex items-center text-sm sm:text-lg'>
