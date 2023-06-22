@@ -1,6 +1,6 @@
 'use client'
 
-import CustomTaskBox from '@/app/components/game/CustomTask'
+import CustomTaskBox from '@/app/components/game/CustomTask/CustomTask'
 import DailyTaskBox from '@/app/components/game/DailyTask'
 import SuccessBox from '@/app/components/game/Success'
 import YolBox from '@/app/components/game/Yol'
@@ -15,8 +15,8 @@ const GamePage = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: tasks } = useFetchAllUserTasks(user.id)
 
-	const dailyTasks = tasks?.data.filter((task) => task.is_daily === true)
-	const customTasks = tasks?.data.filter((task) => task.is_daily === false)
+	const dailyTasks = tasks?.data.dailyTasks
+	const customTasks = tasks?.data.customTasks
 
 	const isMobile = useIsMobile()
 	return (
