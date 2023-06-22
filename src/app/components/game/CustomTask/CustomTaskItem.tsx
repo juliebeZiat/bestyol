@@ -2,32 +2,59 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import TextField from '../../ui/TextField'
+import userTasksService from '@/services/tasksService'
+import { useQueryClient } from '@tanstack/react-query'
+import {
+	useMutationDeleteTask,
+	useMutationEditTask,
+} from '@/services/mutations/tasks'
 
 interface CustomTaskProps {
 	title: string
 	is_completed: boolean
 	is_archieved: boolean
+	taskId: number
 }
 
-const CustomTaskItem = ({ title, is_archieved }: CustomTaskProps) => {
+const CustomTaskItem = ({ title, is_archieved, taskId }: CustomTaskProps) => {
 	const [taskIsDone, setTaskIsDone] = useState<boolean>(is_archieved)
 	const [editTask, setEditTask] = useState<boolean>(false)
 	const [newTitle, setNewTitle] = useState<string>(title)
+	const queryClient = useQueryClient()
+	const { mutateAsync: mutateAsyncEditTask } = useMutationEditTask()
+	const { mutateAsync: mutateAsyncDeleteTask } = useMutationDeleteTask()
 
 	const handleClick = () => {
 		setTaskIsDone(!taskIsDone)
 	}
 
-	const handleEdit = () => {
-		setEditTask(true)
+	const toggleEdit = () => {
+		if (newTitle !== '') setNewTitle('')
+		setEditTask(!editTask)
 	}
 
-	const handleEditTask = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setNewTitle(event.target.value)
+	const handleEditTask = async () => {
+		await mutateAsyncEditTask(
+			{ taskId, taskName: newTitle },
+			{
+				onSuccess: async () => {
+					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
+					toggleEdit()
+				},
+			},
+		)
 	}
 
-	const handleSave = () => {
-		setEditTask(false)
+	const deleteTask = async () => {
+		await mutateAsyncDeleteTask(
+			{ taskId },
+			{
+				onSuccess: () => {
+					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
+				},
+			},
+		)
 	}
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)
@@ -42,7 +69,7 @@ const CustomTaskItem = ({ title, is_archieved }: CustomTaskProps) => {
 					: theme.secondaryBackgroundColor
 			}`}
 		>
-			<div>
+			<div className='w-full'>
 				{!editTask ? (
 					<div className='flex items-center'>
 						{!is_archieved && (
@@ -58,38 +85,43 @@ const CustomTaskItem = ({ title, is_archieved }: CustomTaskProps) => {
 						<div className='text-lg'>{title}</div>
 					</div>
 				) : (
-					<div>
-						<input
+					<div className='w-full'>
+						{/* <input
 							type='text'
 							value={newTitle}
 							onChange={handleEditTask}
 							className='text-lg border-2 px-2 border-grey'
+						/> */}
+						<TextField
+							inputFocus
+							needsSaving
+							onChange={(e) => setNewTitle(e.target.value)}
+							onCancel={toggleEdit}
+							onValidate={() => handleEditTask()}
 						/>
 					</div>
 				)}
 			</div>
-			{!is_archieved &&
-				(!editTask ? (
-					<div className='cursor-pointer' onClick={handleEdit}>
-						<Image
-							src='/assets/icons/clip-edit.svg'
-							width={20}
-							height={20}
-							alt='edit-icon'
-							className='invert'
-						/>
-					</div>
-				) : (
-					<div className='cursor-pointer' onClick={handleSave}>
-						<Image
-							src='/assets/icons/ok.svg'
-							width={25}
-							height={25}
-							alt='ok-icon'
-							className='invert'
-						/>
-					</div>
-				))}
+			{!is_archieved && !editTask && (
+				<div className='cursor-pointer flex gap-x-2'>
+					<Image
+						src='/assets/icons/clip-edit.svg'
+						width={20}
+						height={20}
+						alt='edit-icon'
+						className='invert'
+						onClick={toggleEdit}
+					/>
+					<Image
+						src='/assets/icons/trash.png'
+						width={20}
+						height={20}
+						alt='edit-icon'
+						className='invert'
+						onClick={deleteTask}
+					/>
+				</div>
+			)}
 		</div>
 	)
 }

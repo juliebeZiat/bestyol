@@ -44,7 +44,7 @@ const ProfilePage = () => {
 	return (
 		<div className='w-full flex flex-col gap-20'>
 			<ProfileBanner
-				avatar={`/assets/avatars/${user.pp}`}
+				avatar={user.pp}
 				banner={`/assets/${user.banner}`}
 				setModalAvatarIsOpen={setModalAvatarIsOpen}
 				setModalBannerIsOpen={setModalBannerIsOpen}

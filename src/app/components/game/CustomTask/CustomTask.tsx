@@ -8,6 +8,8 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { useQueryClient } from '@tanstack/react-query'
+import { useMutationNewTask } from '@/services/mutations/tasks'
 
 export enum TaskType {
 	All = 'all',
@@ -21,13 +23,27 @@ interface CustomTaskProps {
 const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const isMobile = useIsMobile()
 	const [taskType, setTaskType] = useState<TaskType>(TaskType.All)
-	const [createNewTask, setCreateNewTask] = useState<boolean>(false)
-
-	const handleCreateNewTask = () => {
-		if (createNewTask) setNewTask('')
-		setCreateNewTask(!createNewTask)
-	}
+	const [taskCreation, setTaskCreation] = useState<boolean>(false)
 	const [newTask, setNewTask] = useState<string>('')
+	const { user } = useAppSelector((state: RootState) => state.user)
+	const queryClient = useQueryClient()
+	const { mutateAsync: mutateAsyncNewTask } = useMutationNewTask()
+
+	const toggleTaskCreation = () => {
+		if (taskCreation) setNewTask('')
+		setTaskCreation(!taskCreation)
+	}
+	const validateTaskCreation = async () => {
+		await mutateAsyncNewTask(
+			{ userId: user.id, taskName: newTask },
+			{
+				onSuccess() {
+					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
+					toggleTaskCreation()
+				},
+			},
+		)
+	}
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
@@ -48,15 +64,22 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 				/>
 				{taskType === TaskType.All ? (
 					<div className='overflow-y-auto max-h-[80%] mt-4'>
-						{createNewTask && (
-							<TextField
-								inputFocus
-								needsSaving
-								onValidate={() => console.log(newTask)}
-								onCancel={handleCreateNewTask}
-								value={newTask}
-								onChange={(e) => setNewTask(e.target.value)}
-							/>
+						{taskCreation && (
+							<form
+								onSubmit={(e) => {
+									e.preventDefault()
+									validateTaskCreation
+								}}
+							>
+								<TextField
+									inputFocus
+									needsSaving
+									onValidate={validateTaskCreation}
+									onCancel={toggleTaskCreation}
+									value={newTask}
+									onChange={(e) => setNewTask(e.target.value)}
+								/>
+							</form>
 						)}
 						{activeTasks.map((task, index) => (
 							<CustomTaskItem
@@ -64,6 +87,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								is_completed={task.is_completed}
 								key={index}
 								is_archieved={false}
+								taskId={task.id}
 							/>
 						))}
 					</div>
@@ -75,13 +99,14 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								is_completed={task.is_completed}
 								key={index}
 								is_archieved={true}
+								taskId={task.id}
 							/>
 						))}
 					</div>
 				)}
 				<button
 					className={`flex justify-center items-center cursor-pointer h-[50px] aspect-square !absolute bottom-0 right-0 rounded-tl-lg overflow-hidden ${theme.vibrantBackgroundColor} text-2xl text-white`}
-					onClick={handleCreateNewTask}
+					onClick={toggleTaskCreation}
 				>
 					&#10010;
 				</button>

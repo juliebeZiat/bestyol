@@ -1,10 +1,11 @@
 'use client'
 import Box from '@/app/components/ui/Box'
-import achievementsList from './tempAchievements.json'
 import AchievementTile from '../../../components/achievements/AchievementTile'
 import { useFetchAllUserSuccessQuery } from '@/services/queries/success'
 import Tabs from '@/app/components/ui/Tabs'
 import { useState } from 'react'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
 
 export enum AchievementType {
 	Pending = 'pending',
@@ -12,36 +13,31 @@ export enum AchievementType {
 }
 
 const AchievementsPage = () => {
+	const userId = useAppSelector((state: RootState) => state.user.user.id)
+
 	const { data: userSuccess, isLoading: userSuccessLoading } =
-		useFetchAllUserSuccessQuery()
+		useFetchAllUserSuccessQuery(userId)
 
 	const [achievementType, setAchievementType] = useState<AchievementType>(
 		AchievementType.Pending,
 	)
 
-	achievementsList.sort((a, b) => {
-		if (a.progress / a.goal > b.progress / b.goal) return -1
-		if (a.progress / a.goal < b.progress / b.goal) return 1
-		// A progression égale, on trie alphabétiquement
-		if (a.title > b.title) return 1
-		if (a.title < b.title) return -1
-
-		return 0
-	})
-
-	const pendingAchievements = userSuccess?.filter(
-		(achievement) => !achievement.is_completed,
+	const pendingAchievements = userSuccess?.data.userSuccess.filter(
+		(achievement) => !achievement.isCompleted,
 	)
-	const completedAchievements = userSuccess?.filter(
-		(achievement) => achievement.is_completed,
+	const completedAchievements = userSuccess?.data.userSuccess.filter(
+		(achievement) => achievement.isCompleted,
 	)
 
 	return (
 		userSuccess && (
 			<>
 				<h1 className='text-4xl text-white my-[2rem]'>MES SUCCÈS</h1>
-				<div className='w-full flex flex-col items-center '>
-					<Box centerItems additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem] '>
+				<div className='w-full flex flex-col items-center h-[80vh]'>
+					<Box
+						centerItems
+						additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem] py-[50px] grow h-full justify-center'
+					>
 						<div>
 							<Tabs
 								activeItemsTitle='En cours'
@@ -60,7 +56,7 @@ const AchievementsPage = () => {
 								}
 							/>
 						</div>
-						<div className='lg:w-full lg:max-h-[30rem] lg:overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8'>
+						<div className='lg:w-full lg:max-h-[80%] overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8 h-full'>
 							{(achievementType === AchievementType.Pending
 								? pendingAchievements
 								: completedAchievements
@@ -68,10 +64,10 @@ const AchievementsPage = () => {
 								<AchievementTile
 									title={achievement.success.title}
 									description={achievement.success.description}
-									xp={achievement.success.success_xp}
-									goal={achievement.success.amount_needed}
-									progress={achievement.actual_amount}
-									isCompleted={achievement.is_completed}
+									xp={achievement.success.successXp}
+									goal={achievement.success.amountNeeded}
+									progress={achievement.actualAmount}
+									isCompleted={achievement.isCompleted}
 									image={achievement.success.image}
 								/>
 							))}

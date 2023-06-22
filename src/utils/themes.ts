@@ -39,6 +39,7 @@ export const themes = [
 		gradientFrom: 'from-black',
 		gradientTo: 'to-darkBlue',
 	},
+
 	{
 		name: 'lightYellow',
 		pixelBorderColor: 'after:bg-lightOrange',
@@ -59,6 +60,27 @@ export const themes = [
 		gradientFrom: 'from-black',
 		gradientTo: 'to-darkYellow',
 	},
+	{
+		name: 'lightGreen',
+		pixelBorderColor: 'after:bg-green',
+		borderColor: 'border-green',
+		primaryBackgroundColor: 'bg-green/25',
+		secondaryBackgroundColor: 'bg-lowOpacity',
+		vibrantBackgroundColor: 'bg-green',
+		gradientFrom: 'from-blue',
+		gradientTo: 'to-green',
+	},
+	{
+		name: 'darkGreen',
+		pixelBorderColor: 'after:bg-darkGreen',
+		borderColor: 'border-darkGreen',
+		primaryBackgroundColor: 'bg-darkGreen/25',
+		secondaryBackgroundColor: 'bg-darkLowOpacity',
+		vibrantBackgroundColor: 'bg-darkGreen',
+		gradientFrom: 'from-black',
+		gradientTo: 'to-darkGreen',
+	},
+
 	{
 		name: 'basePurple',
 		pixelBorderColor: 'after:bg-[#5F0A87]',

@@ -19,7 +19,6 @@ const ProfileBanner = ({
 	const user = useAppSelector((state: RootState) => state.user.user)
 	if (!user) return null
 	const windowSize = useWindowSize()
-	const username = user.name
 	return (
 		<div className='relative flex items-center h-[200px] bg-lowOpacity'>
 			<div className='flex items-center'>
@@ -44,7 +43,9 @@ const ProfileBanner = ({
 					<div className='absolute top-2 left-40 border-collapse'>
 						<div className='text-2xl bg-white p-2 border-2 border-purple'>
 							Profil de{' '}
-							{username.length > 15 ? username.slice(0, 15) + '...' : username}
+							{user.username.length > 15
+								? user.username.slice(0, 15) + '...'
+								: user.username}
 						</div>
 						<div className='ml-2 w-6 overflow-hidden z-50 absolute bottom-[-73%]'>
 							<div className='h-10 bg-white rotate-45 transform origin-top-right border-2 border-purple' />

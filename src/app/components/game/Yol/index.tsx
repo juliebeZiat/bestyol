@@ -38,7 +38,7 @@ const YolBox = () => {
 				}}
 			>
 				<Image
-					src={yol.data.species.image}
+					src={yol.data.species.gif}
 					width={150}
 					height={150}
 					alt='yol'
