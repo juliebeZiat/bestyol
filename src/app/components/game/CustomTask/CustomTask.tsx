@@ -37,7 +37,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 		await mutateAsyncNewTask(
 			{ userId: user.id, taskName: newTask },
 			{
-				onSettled(data, error, variables, context) {
+				onSuccess() {
 					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
 					toggleTaskCreation()
 				},
