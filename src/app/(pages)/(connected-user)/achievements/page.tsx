@@ -22,17 +22,12 @@ const AchievementsPage = () => {
 		AchievementType.Pending,
 	)
 
-	console.log('userSuccess: ', userSuccess?.data.userSuccess)
-
 	const pendingAchievements = userSuccess?.data.userSuccess.filter(
 		(achievement) => !achievement.isCompleted,
 	)
 	const completedAchievements = userSuccess?.data.userSuccess.filter(
 		(achievement) => achievement.isCompleted,
 	)
-
-	console.log('completed: ', completedAchievements)
-	console.log('pending: ', pendingAchievements)
 
 	return (
 		userSuccess && (

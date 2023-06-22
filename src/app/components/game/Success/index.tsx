@@ -13,38 +13,18 @@ import { RootState } from '@/state/store'
 const SuccessBox = () => {
 	const isMobile = useIsMobile()
 
-	const allSuccess = [
-		{
-			id: 1,
-			title: "Maîtrise de l'hydratation",
-			current_amount: 10,
-			amount: 25,
-		},
-		{
-			id: 2,
-			title: 'Chef·fe cuistot',
-			current_amount: 4,
-			amount: 10,
-		},
-		{
-			id: 3,
-			title: 'Bodybuilder',
-			current_amount: 42,
-			amount: 50,
-		},
-	]
-
 	const userId = useAppSelector((state: RootState) => state.user.user.id)
-	const { data: success, isLoading } = useFetchAllUserSuccessQuery(userId)
+	const { data: userSuccess, isLoading } = useFetchAllUserSuccessQuery(userId)
 	const [incomingSuccess, setIncomingSuccess] = useState<UserSuccess[]>([])
+
 	useEffect(() => {
-		if (success) {
-			const unCompleteSuccess = success.data.userSuccess.filter(
+		if (userSuccess) {
+			const uncompleteUserSuccess = userSuccess.data.userSuccess.filter(
 				(success) => success.actualAmount < success.success.amountNeeded,
 			)
-			setIncomingSuccess(unCompleteSuccess.slice(0, 3))
+			setIncomingSuccess(uncompleteUserSuccess.slice(0, 3))
 		}
-	}, [success])
+	}, [userSuccess])
 
 	if (isLoading) return <Loader />
 	return (
