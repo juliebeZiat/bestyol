@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 const GamePage = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
-	const { data: tasks } = useFetchAllUserTasks(user.id)
+	const { data: tasks, isLoading } = useFetchAllUserTasks(user.id)
 
 	const dailyTasks = tasks?.data.dailyTasks
 	const customTasks = tasks?.data.customTasks
@@ -29,7 +29,9 @@ const GamePage = () => {
 				title='Tâches quotidiennes'
 				isTogglable
 			>
-				{dailyTasks && <DailyTaskBox dailyTasks={dailyTasks} />}
+				{dailyTasks && (
+					<DailyTaskBox dailyTasks={dailyTasks} isLoading={isLoading} />
+				)}
 			</Box>
 			<CustomTaskBox customTasks={customTasks} />
 			<Box

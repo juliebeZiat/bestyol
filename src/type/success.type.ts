@@ -1,11 +1,17 @@
 import { Yol } from './yol.type'
 
+export enum SuccessType {
+	DAILY = 'Daily',
+	UNIQUE = 'Unique',
+	YOL = 'Yol',
+}
 export interface Success {
 	id: number
 	title: string
 	description: string
 	amountNeeded: number
 	successXp: number
+	type: SuccessType
 	image: string
 }
 
