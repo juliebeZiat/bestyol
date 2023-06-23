@@ -1,5 +1,10 @@
 import { UserSuccess } from '@/type/success.type'
-import { EvolutionAssets, SpeciesNames, Yol } from '@/type/yol.type'
+import {
+	EvolutionAssets,
+	SpeciesNames,
+	SpeciesStages,
+	Yol,
+} from '@/type/yol.type'
 import { themes } from './themes'
 
 export const evolutionLevels = [100, 700, 1750]
@@ -131,4 +136,19 @@ export const getYolCurrentLevel = (xp: number) => {
 	}
 
 	return levels[0]
+}
+
+export const getNumberOfYolEvolution = (yol: Yol | undefined) => {
+	switch (yol?.species.stage) {
+		case SpeciesStages.EGG:
+			return 0
+		case SpeciesStages.BABY:
+			return 1
+		case SpeciesStages.ADO:
+			return 2
+		case SpeciesStages.FINAL:
+			return 3
+		default:
+			return 0
+	}
 }
