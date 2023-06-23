@@ -42,7 +42,13 @@ const ProfilePage = () => {
 	if (!user) return null
 
 	return (
-		<div className='w-full flex flex-col gap-20'>
+		<div className='w-full flex flex-col gap-20 h-full'>
+			<ProfileBanner
+				avatar={user.pp}
+				banner={`/assets/${user.banner}`}
+				setModalAvatarIsOpen={setModalAvatarIsOpen}
+				setModalBannerIsOpen={setModalBannerIsOpen}
+			/>
 			<div
 				className={
 					'flex justify-center items-center mx-4 text-white gap-5 sm:gap-28 lg:gap-36 ' +
