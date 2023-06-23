@@ -1,9 +1,5 @@
-import {
-	CreateYolReponse,
-	CreateYolRequest,
-	Species,
-	Yol,
-} from '@/type/yol.type'
+import { Species } from '@/type/species.type'
+import { CreateYolReponse, CreateYolRequest, Yol } from '@/type/yol.type'
 import axios from 'axios'
 
 const createYol = async ({ name, userId, speciesId }: CreateYolRequest) => {

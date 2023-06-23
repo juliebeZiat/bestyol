@@ -3,11 +3,12 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Hammer from 'react-hammerjs'
 import { useAppDispatch } from '@/state/hooks'
-import { Theme, setTheme } from '@/state/reducer/user.reducer'
+import { setTheme } from '@/state/reducer/user.reducer'
 import { useFetchAllYolSpecies } from '@/services/queries/yol'
-import { SpeciesModifiedData, SpeciesStages } from '@/type/yol.type'
 import Loader from './Loader'
 import { getThemeBySpecies } from '@/utils/utils'
+import { SpeciesModifiedData, SpeciesStages } from '@/type/species.type'
+import { Theme } from '@/type/type'
 
 const YolCarousel = ({
 	getCurrentSpecies,

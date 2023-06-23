@@ -146,7 +146,7 @@ module.exports = {
             transform: 'scale(1)',
             visibility: 'visible',
           }
-        }
+        },
       },
     },
   },
