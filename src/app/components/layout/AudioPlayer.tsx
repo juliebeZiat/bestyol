@@ -3,7 +3,7 @@ import { RootState } from '@/state/store'
 import { useEffect, useRef, useState } from 'react'
 
 const AudioPlayer = () => {
-	const [audioPlaying, setAudioPlaying] = useState(true)
+	const [audioPlaying, setAudioPlaying] = useState(false)
 	const audioPlayer = useRef<HTMLAudioElement>(null)
 
 	useEffect(() => {
@@ -12,7 +12,7 @@ const AudioPlayer = () => {
 			console.log('no audioplayer.current')
 			return
 		}
-
+		console.log(audioPlayer.current)
 		if (!audioPlaying) {
 			console.log('pause audio')
 			audioPlayer.current?.pause()
@@ -20,12 +20,18 @@ const AudioPlayer = () => {
 			console.log('play audio')
 			audioPlayer.current?.play()
 		}
-	}, [audioPlayer.current, audioPlaying])
+	}, [audioPlaying])
 
 	useEffect(() => {
 		if (!audioPlayer.current) return
 		audioPlayer.current.play()
 	}, [])
+
+	const setVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (audioPlayer.current)
+			audioPlayer.current.volume = parseInt(e.target.value) / 100
+		console.log(parseInt(e.target.value) / 100)
+	}
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
@@ -36,8 +42,13 @@ const AudioPlayer = () => {
 				onClick={() => setAudioPlaying(!audioPlaying)}
 				className={`!absolute top-[8vh] left-[2rem] rounded-full pixel-corners w-[2vw] aspect-square ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor} text-white`}
 			>
-				PAUSE
+				{audioPlaying ? 'PAUSE' : 'PLAY'}
 			</button>
+			<input
+				type='range'
+				className={`!absolute top-[15vh] left-[2rem] -rotate-90`}
+				onChange={(e) => setVolume(e)}
+			/>
 		</>
 	)
 }

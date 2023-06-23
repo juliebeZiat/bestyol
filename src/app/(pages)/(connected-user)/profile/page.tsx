@@ -42,7 +42,7 @@ const ProfilePage = () => {
 	if (!user) return null
 
 	return (
-		<div className='w-full flex flex-col gap-20'>
+		<div className='w-full flex flex-col gap-20 h-full'>
 			<ProfileBanner
 				avatar={user.pp}
 				banner={`/assets/${user.banner}`}

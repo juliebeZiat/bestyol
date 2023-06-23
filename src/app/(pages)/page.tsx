@@ -1,15 +1,20 @@
 'use client'
-
 import Button, { ButtonSize } from '@/app/components/ui/Button'
 import useWindowSize from '@/hooks/useWindowSize'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import YolCarousel from '../components/ui/YolCarousel'
+import { useAppDispatch } from '@/state/hooks'
+import { resetTheme } from '@/state/reducer/user.reducer'
 
 const HomePage = () => {
+	const dispatch = useAppDispatch()
 	const windowSize = useWindowSize()
 	const [hydrated, setHydrated] = useState(false)
 	useEffect(() => {
+		if (window.location.pathname === '/') {
+			dispatch(resetTheme())
+		}
 		setHydrated(true)
 	}, [])
 	if (!hydrated) {
@@ -17,16 +22,16 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='flex flex-col h-screen justify-center items-center text-white gap-10'>
-			<div className='flex flex-col justify-center items-center'>
-				<div className='w-fit relative'>
-					<h1 className='text-7xl sm:text-[100px] lg:text-[150px] text-center'>
-						BEST YOL
-					</h1>
-					<h2 className='absolute right-0 top-[55px] sm:top-[80px] lg:top-[120px]'>
-						le meilleur de toi-même
-					</h2>
-				</div>
+		<div className='flex flex-col min-h-screen justify-center items-center text-white gap-10'>
+			<div className='flex flex-col justify-center items-center relative'>
+				<h1 className='text-7xl sm:text-[100px] lg:text-[150px] text-center'>
+					BEST YOL
+				</h1>
+				<h2 className='absolute right-0 top-[55px] sm:top-[80px] lg:top-[120px]'>
+					le meilleur de toi-même
+				</h2>
+			</div>
+			<div className='w-[80vw]'>
 				<YolCarousel applyTheme={false} />
 			</div>
 			<div className='flex gap-5'>
