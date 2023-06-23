@@ -9,7 +9,7 @@ import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { useQueryClient } from '@tanstack/react-query'
-import { useMutationNewTask } from '@/services/mutations/tasks'
+import { useMutationCreateNewCustomTask } from '@/services/mutations/tasks'
 
 export enum TaskType {
 	All = 'all',
@@ -27,7 +27,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const [newTask, setNewTask] = useState<string>('')
 	const { user } = useAppSelector((state: RootState) => state.user)
 	const queryClient = useQueryClient()
-	const { mutateAsync: mutateAsyncNewTask } = useMutationNewTask()
+	const { mutateAsync: mutateAsyncNewTask } = useMutationCreateNewCustomTask()
 
 	const toggleTaskCreation = () => {
 		if (taskCreation) setNewTask('')

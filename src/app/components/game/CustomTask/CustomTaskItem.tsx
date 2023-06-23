@@ -5,8 +5,8 @@ import { RootState } from '@/state/store'
 import TextField from '../../ui/TextField'
 import { useQueryClient } from '@tanstack/react-query'
 import {
-	useMutationDeleteTask,
-	useMutationEditTask,
+	useMutationDeleteCustomTask,
+	useMutationEditCustomTask,
 	useMutationValidateCustomTask,
 } from '@/services/mutations/tasks'
 
@@ -28,8 +28,8 @@ const CustomTaskItem = ({
 	const [editTask, setEditTask] = useState<boolean>(false)
 	const [newTitle, setNewTitle] = useState<string>(title)
 	const queryClient = useQueryClient()
-	const { mutateAsync: mutateAsyncEditTask } = useMutationEditTask()
-	const { mutateAsync: mutateAsyncDeleteTask } = useMutationDeleteTask()
+	const { mutateAsync: mutateAsyncEditTask } = useMutationEditCustomTask()
+	const { mutateAsync: mutateAsyncDeleteTask } = useMutationDeleteCustomTask()
 	const { mutateAsync: validateCustomTask } = useMutationValidateCustomTask()
 
 	const handleValidateCustomTask = async () => {

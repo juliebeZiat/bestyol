@@ -43,26 +43,26 @@ export const useMutationValidateCustomTask = () => {
 	)
 }
 
-export const useMutationNewTask = () => {
+export const useMutationCreateNewCustomTask = () => {
 	return useMutation(
 		async (payload: { userId: number; taskName: string }) =>
-			await userTasksService.createNewUserTask(
+			await userTasksService.createNewCustomTask(
 				payload.taskName,
 				payload.userId,
 			),
 	)
 }
 
-export const useMutationEditTask = () => {
+export const useMutationEditCustomTask = () => {
 	return useMutation(
 		async (payload: { taskId: number; taskName: string }) =>
-			await userTasksService.editUserTask(payload.taskName, payload.taskId),
+			await userTasksService.editCustomTask(payload.taskName, payload.taskId),
 	)
 }
 
-export const useMutationDeleteTask = () => {
+export const useMutationDeleteCustomTask = () => {
 	return useMutation(
 		async (payload: { taskId: number }) =>
-			await userTasksService.deleteUserTask(payload.taskId),
+			await userTasksService.deleteCustomTask(payload.taskId),
 	)
 }

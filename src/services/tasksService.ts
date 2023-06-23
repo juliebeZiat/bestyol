@@ -39,7 +39,7 @@ const validateCustomTask = async (customTaskId: number) => {
 	return response.data
 }
 
-const createNewUserTask = async (taskName: string, userId: number) => {
+const createNewCustomTask = async (taskName: string, userId: number) => {
 	const response = await axios.post(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/${userId}`,
 		{
@@ -49,7 +49,7 @@ const createNewUserTask = async (taskName: string, userId: number) => {
 	return response
 }
 
-const editUserTask = async (newTaskName: string, taskId: number) => {
+const editCustomTask = async (newTaskName: string, taskId: number) => {
 	const response = await axios.put(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/${taskId}`,
 		{
@@ -59,7 +59,7 @@ const editUserTask = async (newTaskName: string, taskId: number) => {
 	return response
 }
 
-const deleteUserTask = async (taskId: number) => {
+const deleteCustomTask = async (taskId: number) => {
 	const response = await axios.delete(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/${taskId}`,
 	)
@@ -71,9 +71,9 @@ const userTasksService = {
 	generateDailyTasks,
 	validateDailyTask,
 	validateCustomTask,
-	createNewUserTask,
-	editUserTask,
-	deleteUserTask,
+	createNewCustomTask,
+	editCustomTask,
+	deleteCustomTask,
 }
 
 export default userTasksService
