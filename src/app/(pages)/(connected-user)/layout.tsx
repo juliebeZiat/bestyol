@@ -22,8 +22,12 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 			<>
 				{!isEvolving ? (
 					<>
-						<Navbar />
-						<Suspense fallback={<Loader />}>{children}</Suspense>
+						<div className='h-[8svh] w-full'>
+							<Navbar />
+						</div>
+						<div className='h-[92svh] w-full flex flex-col items-center justify-center'>
+							<Suspense fallback={<Loader />}>{children}</Suspense>
+						</div>
 					</>
 				) : (
 					<EvolutionCinematic

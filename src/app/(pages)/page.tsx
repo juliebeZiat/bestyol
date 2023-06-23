@@ -22,16 +22,16 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='flex flex-col h-screen justify-center items-center text-white gap-10'>
-			<div className='flex flex-col justify-center items-center'>
-				<div className='w-fit relative'>
-					<h1 className='text-7xl sm:text-[100px] lg:text-[150px] text-center'>
-						BEST YOL
-					</h1>
-					<h2 className='absolute right-0 top-[55px] sm:top-[80px] lg:top-[120px]'>
-						le meilleur de toi-même
-					</h2>
-				</div>
+		<div className='flex flex-col min-h-screen justify-center items-center text-white gap-10'>
+			<div className='flex flex-col justify-center items-center relative'>
+				<h1 className='text-7xl sm:text-[100px] lg:text-[150px] text-center'>
+					BEST YOL
+				</h1>
+				<h2 className='absolute right-0 top-[55px] sm:top-[80px] lg:top-[120px]'>
+					le meilleur de toi-même
+				</h2>
+			</div>
+			<div className='w-[80vw]'>
 				<YolCarousel applyTheme={false} />
 			</div>
 			<div className='flex gap-5'>

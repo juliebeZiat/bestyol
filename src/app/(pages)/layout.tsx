@@ -22,7 +22,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 					<main className='flex min-h-screen w-full flex-col items-center !relative'>
 						{children}
 					</main>
-					<AudioPlayer />
+					{/* <AudioPlayer /> */}
 				</Providers>
 			</body>
 		</html>

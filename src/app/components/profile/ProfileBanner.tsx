@@ -31,7 +31,7 @@ const ProfileBanner = ({
 						className='ml-10 border-4 border-darkLowOpacity bg-purple'
 					/>
 					<Image
-						src={banner}
+						src={'/assets/icons/clip-edit.svg'}
 						height={30}
 						width={30}
 						alt='Icone de modification'
@@ -53,25 +53,6 @@ const ProfileBanner = ({
 					</div>
 				)}
 			</div>
-			{windowSize.windowWidth > 500 && (
-				<>
-					{/* <Image
-						src={banner}
-						height={100}
-						width={300}
-						alt='Fond du profil'
-						className='absolute right-0 bottom-0'
-					/> */}
-					<Image
-						src='/assets/icons/clip-edit.svg'
-						height={30}
-						width={30}
-						alt='Icone de modification'
-						className='absolute top-1 right-1 cursor-pointer bg-white p-1 border-1 border-purple'
-						onClick={() => setModalBannerIsOpen(true)}
-					/>
-				</>
-			)}
 		</div>
 	)
 }

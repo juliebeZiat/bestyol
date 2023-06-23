@@ -47,7 +47,11 @@ const YolBox = () => {
 					}
 				/>
 			</div>
-			<p className={`text-white ${!isMobile ? 'absolute bottom-4' : 'mt-4'}`}>
+			<p
+				className={`text-white lg:text-5xl ${
+					!isMobile ? 'absolute bottom-4' : 'mt-4'
+				}`}
+			>
 				✨ {yol.data.name} ✨
 			</p>
 		</div>

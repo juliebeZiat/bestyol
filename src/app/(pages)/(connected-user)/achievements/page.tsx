@@ -69,6 +69,7 @@ const AchievementsPage = () => {
 									progress={achievement.actualAmount}
 									isCompleted={achievement.isCompleted}
 									image={achievement.success.image}
+									key={achievement.id}
 								/>
 							))}
 						</div>
