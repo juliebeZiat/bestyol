@@ -1,12 +1,52 @@
+import { useMutationGenerateDailyTasks } from '@/services/mutations/tasks'
 import DailyTaskItem from './DailyTaskItem'
 import { UserTasks } from '@/type/tasks.type'
+import { useEffect, useState } from 'react'
+import { useAppSelector } from '@/state/hooks'
+import { RootState } from '@/state/store'
+import Loader from '../../ui/Loader'
 
 interface DailyTaskBoxProps {
 	dailyTasks: UserTasks[]
+	isLoading: boolean
 }
 
-const DailyTaskBox = ({ dailyTasks }: DailyTaskBoxProps) => {
+const DailyTaskBox = ({ dailyTasks, isLoading }: DailyTaskBoxProps) => {
+	const user = useAppSelector((state: RootState) => state.user.user)
+	const { mutateAsync: generateDailyTasks } = useMutationGenerateDailyTasks()
+	const [hasSentRequest, setHasSentRequest] = useState(false)
+
+	useEffect(() => {
+		const data = { userId: user.id }
+
+		const sendRequest = async () => {
+			await generateDailyTasks(data)
+			setHasSentRequest(true)
+		}
+
+		const currentDate = new Date().toISOString().split('T')[0]
+		const storedDate = localStorage.getItem('lastRequestDate')
+
+		if (storedDate !== currentDate) {
+			sendRequest()
+			localStorage.setItem('lastRequestDate', currentDate)
+		}
+
+		const interval = setInterval(() => {
+			const date = new Date().toISOString().split('T')[0]
+			if (storedDate !== date) {
+				setHasSentRequest(false)
+			}
+		}, 24 * 60 * 60 * 1000)
+
+		return () => {
+			clearInterval(interval)
+		}
+	}, [])
+
 	if (!dailyTasks) return null
+	if (isLoading) return <Loader />
+
 	return (
 		<div className='lg:grid grid-cols-2 gap-8 lg:px-4 mt-4 perspective'>
 			{dailyTasks.map((task) => (
@@ -18,42 +58,6 @@ const DailyTaskBox = ({ dailyTasks }: DailyTaskBoxProps) => {
 					image={task.dailyTask?.image}
 				/>
 			))}
-			<DailyTaskItem
-				title={'task1'}
-				xp={10}
-				is_completed={false}
-				image={'/assets/tasks/1.svg'}
-			/>
-			<DailyTaskItem
-				title={'task2'}
-				xp={20}
-				is_completed={false}
-				image={'/assets/tasks/2.svg'}
-			/>
-			<DailyTaskItem
-				title={'task3'}
-				xp={10}
-				is_completed={false}
-				image={'/assets/tasks/3.svg'}
-			/>
-			<DailyTaskItem
-				title={'task4'}
-				xp={10}
-				is_completed={false}
-				image={'/assets/tasks/4.svg'}
-			/>
-			<DailyTaskItem
-				title={'task5'}
-				xp={10}
-				is_completed={false}
-				image={'/assets/tasks/5.svg'}
-			/>
-			<DailyTaskItem
-				title={'task6'}
-				xp={10}
-				is_completed={false}
-				image={'/assets/tasks/6.svg'}
-			/>
 		</div>
 	)
 }

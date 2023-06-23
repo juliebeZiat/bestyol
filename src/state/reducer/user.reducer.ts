@@ -14,7 +14,7 @@ type UserState = {
 const initialState = {
 	isLogged: false,
 	user: {},
-	theme: themes.find(theme => theme.name == 'neutral'),
+	theme: themes.find((theme) => theme.name == 'neutral'),
 	token: undefined,
 } as UserState
 
@@ -36,7 +36,10 @@ export const user = createSlice({
 		resetTheme: (state) => {
 			state.theme = initialState.theme
 		},
-		logout: () => initialState,
+		logout: () => {
+			initialState
+			localStorage.clear()
+		},
 	},
 })
 
