@@ -22,6 +22,7 @@ export interface Yol {
 	xp: number
 	level: Level
 	species: Species
+	createdAt: string
 }
 
 export interface SpeciesModifiedData {

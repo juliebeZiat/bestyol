@@ -4,7 +4,7 @@ import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { useFetchAllUserTasks } from '@/services/queries/tasks'
 import { useFetchUserYol } from '@/services/queries/yol'
-import { getNumberOfYolEvolution } from '@/utils/utils'
+import { getFormattedDate, getNumberOfYolEvolution } from '@/utils/utils'
 
 const ProfileStatistics = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
@@ -37,7 +37,7 @@ const ProfileStatistics = () => {
 						</li>
 						<li>• {numberOfYolEvolution} évolution de Yol</li>
 						<li>• {yolData?.data.xp} points d'expériences acquis</li>
-						{/* <li>• Membre depuis le 02/01/23</li> */}
+						<li>• Membre depuis le {getFormattedDate(user.createdAt)}</li>
 					</ul>
 				</div>
 			</div>

@@ -152,3 +152,15 @@ export const getNumberOfYolEvolution = (yol: Yol | undefined) => {
 			return 0
 	}
 }
+
+export const getFormattedDate = (dateString: string) => {
+	const date = new Date(dateString)
+	const options = {
+		day: '2-digit' as const,
+		month: '2-digit' as const,
+		year: 'numeric' as const,
+		timeZone: 'Europe/Paris',
+	}
+	const formattedDate = new Intl.DateTimeFormat('fr-FR', options).format(date)
+	return formattedDate
+}

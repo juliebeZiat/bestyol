@@ -5,16 +5,12 @@ import Image from 'next/image'
 
 interface ProfileBannerProps {
 	setModalAvatarIsOpen: (isOpen: boolean) => void
-	setModalBannerIsOpen: (isOpen: boolean) => void
 	avatar: string
-	banner: string
 }
 
 const ProfileBanner = ({
 	setModalAvatarIsOpen,
-	setModalBannerIsOpen,
 	avatar,
-	banner,
 }: ProfileBannerProps) => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const theme = useAppSelector((state: RootState) => state.user.theme)
@@ -59,25 +55,6 @@ const ProfileBanner = ({
 					</div>
 				)}
 			</div>
-			{windowSize.windowWidth > 500 && (
-				<>
-					{/* <Image
-						src={banner}
-						height={100}
-						width={300}
-						alt='Fond du profil'
-						className='absolute right-0 bottom-0'
-					/> */}
-					{/* <Image
-						src='/assets/icons/clip-edit.svg'
-						height={30}
-						width={30}
-						alt='Icone de modification'
-						className={`absolute top-1 right-1 cursor-pointer bg-white p-1 border-1 border-purple ${theme.borderColor}`}
-						onClick={() => setModalBannerIsOpen(true)}
-					/> */}
-				</>
-			)}
 		</div>
 	)
 }
