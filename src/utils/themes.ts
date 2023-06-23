@@ -62,14 +62,14 @@ export const themes = [
 	},
 
 	{
-		name: 'basePurple',
-		pixelBorderColor: 'after:bg-[#5F0A87]',
-		borderColor: 'border-[#5F0A87]',
-		primaryBackgroundColor: 'bg-[#5F0A87]/25',
+		name: 'plage',
+		pixelBorderColor: 'after:bg-plageOrange',
+		borderColor: 'border-plageOrange',
+		primaryBackgroundColor: 'bg-plageOrange/25',
 		secondaryBackgroundColor: 'bg-darkLowOpacity',
-		vibrantBackgroundColor: 'bg-[#5F0A87]',
-		gradientFrom: 'from-[#A4508B]',
-		gradientTo: 'to-[#5F0A87]',
+		vibrantBackgroundColor: 'bg-plageOrange',
+		gradientFrom: 'from-plageBlue',
+		gradientTo: 'to-plageOrange',
 	},
 	{
 		name: 'neutral',

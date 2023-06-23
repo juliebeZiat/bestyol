@@ -31,6 +31,8 @@ module.exports = {
       lightYellow2: '#FCE043',
       darkYellow1: '#FFC857',
       darkYellow2: '#C11D38',
+      plageBlue: '#55a0d3',
+      plageOrange: '#FCB482',
       neutral1: '#16A085',
       neutral2: '#F4D03F',
     },
