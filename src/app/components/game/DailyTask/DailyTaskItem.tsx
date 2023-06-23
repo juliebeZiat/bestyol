@@ -1,3 +1,5 @@
+import { useMutationValidateDailyTask } from '@/services/mutations/tasks'
+import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import Image from 'next/image'
@@ -8,6 +10,7 @@ interface DailyTaskItemProps {
 	xp: number
 	is_completed: boolean
 	image: string | undefined
+	id: any
 }
 
 const DailyTaskItem = ({
@@ -15,9 +18,23 @@ const DailyTaskItem = ({
 	xp,
 	is_completed,
 	image,
+	id,
 }: DailyTaskItemProps) => {
 	const theme = useAppSelector((state: RootState) => state.user.theme)
+	const user = useAppSelector((state: RootState) => state.user.user)
 	const [confirmValidation, setConfirmValidation] = useState(false)
+
+	const { data: yolData } = useFetchUserYol(user.id)
+
+	const { mutateAsync: validateDailyTask } = useMutationValidateDailyTask()
+
+	if (!yolData) return null
+
+	const handleValidateDailyTask = async () => {
+		const data = { dailyTaskId: id, yolId: yolData.data.id }
+
+		await validateDailyTask(data)
+	}
 
 	return (
 		<div
@@ -61,6 +78,7 @@ const DailyTaskItem = ({
 				<div className={`w-full h-full flex justify-center items-center`}>
 					<button
 						className={`pixel-corners-items p-2 ${theme.pixelBorderColor} ${theme.vibrantBackgroundColor}`}
+						onClick={handleValidateDailyTask}
 					>
 						Valider la tâche ?
 					</button>

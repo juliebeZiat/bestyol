@@ -1,4 +1,8 @@
-import { TasksResponse } from '@/type/tasks.type'
+import {
+	TasksResponse,
+	ValidateDailyTaskRequest,
+	ValidateDailyTaskResponse,
+} from '@/type/tasks.type'
 import axios from 'axios'
 
 const fetchAllUserTasks = async (userId: number) => {
@@ -13,6 +17,26 @@ const generateDailyTasks = async (userId: number) => {
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/daily/${userId}`,
 	)
 	return response
+}
+
+const validateDailyTask = async (
+	dailyTaskId: number,
+	{ yolId }: ValidateDailyTaskRequest,
+) => {
+	const response = await axios.patch<ValidateDailyTaskResponse>(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/daily/${dailyTaskId}`,
+		{
+			yolId,
+		},
+	)
+	return response.data
+}
+
+const validateCustomTask = async (customTaskId: number) => {
+	const response = await axios.patch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/custom/${customTaskId}`,
+	)
+	return response.data
 }
 
 const createNewUserTask = async (taskName: string, userId: number) => {
@@ -45,6 +69,8 @@ const deleteUserTask = async (taskId: number) => {
 const userTasksService = {
 	fetchAllUserTasks,
 	generateDailyTasks,
+	validateDailyTask,
+	validateCustomTask,
 	createNewUserTask,
 	editUserTask,
 	deleteUserTask,

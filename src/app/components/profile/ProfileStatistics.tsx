@@ -18,7 +18,7 @@ const ProfileStatistics = () => {
 	// Tâches quotidiennes achevées
 	const { data: tasksData } = useFetchAllUserTasks(user.id)
 	const completedDailyTasks = tasksData?.data.dailyTasks.filter(
-		(task) => task.is_completed,
+		(task) => task.isCompleted,
 	)
 
 	// Évolution de Yol

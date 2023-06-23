@@ -3,30 +3,42 @@ import { useState } from 'react'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import TextField from '../../ui/TextField'
-import userTasksService from '@/services/tasksService'
 import { useQueryClient } from '@tanstack/react-query'
 import {
 	useMutationDeleteTask,
 	useMutationEditTask,
+	useMutationValidateCustomTask,
 } from '@/services/mutations/tasks'
 
 interface CustomTaskProps {
+	id: number
 	title: string
 	is_completed: boolean
 	is_archieved: boolean
 	taskId: number
 }
 
-const CustomTaskItem = ({ title, is_archieved, taskId }: CustomTaskProps) => {
+const CustomTaskItem = ({
+	id,
+	title,
+	is_archieved,
+	taskId,
+}: CustomTaskProps) => {
 	const [taskIsDone, setTaskIsDone] = useState<boolean>(is_archieved)
 	const [editTask, setEditTask] = useState<boolean>(false)
 	const [newTitle, setNewTitle] = useState<string>(title)
 	const queryClient = useQueryClient()
 	const { mutateAsync: mutateAsyncEditTask } = useMutationEditTask()
 	const { mutateAsync: mutateAsyncDeleteTask } = useMutationDeleteTask()
+	const { mutateAsync: validateCustomTask } = useMutationValidateCustomTask()
 
-	const handleClick = () => {
-		setTaskIsDone(!taskIsDone)
+	const handleValidateCustomTask = async () => {
+		const data = { customTaskId: id }
+		await validateCustomTask(data, {
+			onSuccess: async () => {
+				setTaskIsDone(true)
+			},
+		})
 	}
 
 	const toggleEdit = () => {
@@ -79,19 +91,13 @@ const CustomTaskItem = ({ title, is_archieved, taskId }: CustomTaskProps) => {
 										? 'ease-in-out duration-1000 after:content-["x"] after:relative after:bottom-2 after:left-0.5'
 										: 'border-orange'
 								}`}
-								onClick={handleClick}
+								onClick={handleValidateCustomTask}
 							/>
 						)}
 						<div className='text-lg'>{title}</div>
 					</div>
 				) : (
 					<div className='w-full'>
-						{/* <input
-							type='text'
-							value={newTitle}
-							onChange={handleEditTask}
-							className='text-lg border-2 px-2 border-grey'
-						/> */}
 						<TextField
 							inputFocus
 							needsSaving
