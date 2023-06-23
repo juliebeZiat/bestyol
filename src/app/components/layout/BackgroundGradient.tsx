@@ -59,27 +59,6 @@ const BackgroundGradient = () => {
 			className={`w-full h-screen bg-gradient-to-bl ${theme.gradientFrom} ${theme.gradientTo} fixed top-0 left-0 -z-10`}
 		>
 			{!useIsMobile() && <Particles init={particlesInit} options={options} />}
-			{/* <Image
-                src='/assets/cloud-1.png'
-                alt='cloud'
-                width={567}
-                height={201}
-                className='absolute top-[5vh] left-[5vw] w-[20vw] h-auto'
-            />
-            <Image
-                src='/assets/cloud-with-moon.png'
-                alt='cloud'
-                width={564}
-                height={195}
-                className='absolute top-[10vh] right-[5vw] w-[30vw] h-auto'
-            />
-            <Image
-                src='/assets/mountain.png'
-                alt='cloud'
-                width={1011}
-                height={335}
-                className='fixed bottom-0 right-0 w-[40vw] h-auto'
-            /> */}
 		</div>
 	)
 }

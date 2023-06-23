@@ -1,20 +1,8 @@
+import { Theme } from '@/type/type'
 import { User } from '@/type/user.type'
 import { themes } from '@/utils/themes'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-
-export interface Theme {
-	[key: string]: string
-
-	name: string
-	pixelBorderColor: string
-	borderColor: string
-	gradientFrom: string
-	gradientTo: string
-	primaryBackgroundColor: string
-	secondaryBackgroundColor: string
-	vibrantBackgroundColor: string
-}
 
 type UserState = {
 	user: User
@@ -26,7 +14,7 @@ type UserState = {
 const initialState = {
 	isLogged: false,
 	user: {},
-	theme: themes[1],
+	theme: themes.find(theme => theme.name == 'neutral'),
 	token: undefined,
 } as UserState
 
@@ -45,9 +33,12 @@ export const user = createSlice({
 		setTheme: (state, action: PayloadAction<Theme>) => {
 			state.theme = action.payload
 		},
+		resetTheme: (state) => {
+			state.theme = initialState.theme
+		},
 		logout: () => initialState,
 	},
 })
 
-export const { login, logout, setUser, setTheme } = user.actions
+export const { login, logout, setUser, setTheme, resetTheme } = user.actions
 export default user.reducer

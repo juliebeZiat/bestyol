@@ -61,15 +61,7 @@ const AchievementsPage = () => {
 								? pendingAchievements
 								: completedAchievements
 							)?.map((achievement) => (
-								<AchievementTile
-									title={achievement.success.title}
-									description={achievement.success.description}
-									xp={achievement.success.successXp}
-									goal={achievement.success.amountNeeded}
-									progress={achievement.actualAmount}
-									isCompleted={achievement.isCompleted}
-									image={achievement.success.image}
-								/>
+								<AchievementTile achievement={achievement} />
 							))}
 						</div>
 					</Box>

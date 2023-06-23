@@ -4,6 +4,7 @@ import '../globals.css'
 import React from 'react'
 import Providers from '@/utils/provider'
 import BackgroundGradient from '../components/layout/BackgroundGradient'
+import AudioPlayer from '../components/layout/AudioPlayer'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	return (

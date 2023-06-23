@@ -22,7 +22,7 @@ const ProgressBar = ({
 			<div className={`w-[75px] ${width}`}>
 				<div className={`h-[10px] bg-[#FFFFFF] ${margin}`}>
 					<div
-						className={`h-full ${color}`}
+						className={`h-full ${color} transition-all ease-out`}
 						style={{ width: progressPercentage }}
 					/>
 				</div>

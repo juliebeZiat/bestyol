@@ -6,6 +6,7 @@ import {
 	Yol,
 } from '@/type/yol.type'
 import { themes } from './themes'
+import { SpeciesNames } from '@/type/species.type'
 
 export const evolutionLevels = [100, 700, 1750]
 
@@ -86,21 +87,21 @@ export const getThemeBySpecies = (
 		case 'light':
 			switch (speciesName) {
 				case SpeciesNames.GRUMPFISH:
-					return themes[0]
+					return themes.find(theme => theme.name == 'lightBlue') ?? themes[7]
 				case SpeciesNames.BUMBLEBLINK:
-					return themes[2]
+					return themes.find(theme => theme.name == 'lightYellow') ?? themes[7]
 				case SpeciesNames.GREENBELLY:
-					return themes[4]
+					return themes.find(theme => theme.name == 'lightGreen') ?? themes[7]
 			}
 
 		case 'dark':
 			switch (speciesName) {
 				case SpeciesNames.GRUMPFISH:
-					return themes[1]
+					return themes.find(theme => theme.name == 'darkBlue') ?? themes[7]
 				case SpeciesNames.BUMBLEBLINK:
-					return themes[3]
+					return themes.find(theme => theme.name == 'darkYellow') ?? themes[7]
 				case SpeciesNames.GREENBELLY:
-					return themes[5]
+					return themes.find(theme => theme.name == 'darkGreen') ?? themes[7]
 			}
 	}
 }

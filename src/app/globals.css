@@ -292,3 +292,19 @@
 .pixel-corners-items::after {
   margin: -4px;
 }
+
+
+.perspective {
+  perspective: 2000px;
+}
+.dailyCard {
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+}
+.flip {
+  transform: rotateY(calc(180deg * 5));
+}
+.backFace {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}

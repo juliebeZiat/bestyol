@@ -1,12 +1,4 @@
-import { Theme } from '@/state/reducer/user.reducer'
-
-export interface Species {
-	id: number
-	name: SpeciesNames
-	image: string
-	gif: string
-	stage: SpeciesStages
-}
+import { Species } from './species.type'
 
 export interface Level {
 	level: number
@@ -20,19 +12,8 @@ export interface Yol {
 	speciesId: number
 	name: string
 	xp: number
-	level: Level
 	species: Species
 	createdAt: string
-}
-
-export interface SpeciesModifiedData {
-	id: number
-	name: SpeciesNames
-	image: string
-	gif: string
-	stage: SpeciesStages
-	pos: number
-	theme: Theme
 }
 
 export interface EvolutionAssets {
@@ -49,17 +30,4 @@ export interface CreateYolRequest {
 
 export interface CreateYolReponse {
 	yol: Yol
-}
-
-export enum SpeciesStages {
-	EGG = 'Egg',
-	BABY = 'Baby',
-	ADO = 'Adolescent',
-	FINAL = 'Final',
-}
-
-export enum SpeciesNames {
-	GRUMPFISH = 'Grumpfish',
-	BUMBLEBLINK = 'Bumbleblink',
-	GREENBELLY = 'Greenbelly',
 }
