@@ -1,4 +1,4 @@
-import { UserSuccess } from '@/type/success.type'
+import { SuccessType, UserSuccess } from '@/type/success.type'
 import { EvolutionAssets, Yol } from '@/type/yol.type'
 import { themes } from './themes'
 import { SpeciesNames } from '@/type/species.type'
@@ -56,19 +56,35 @@ export const getEvolutionAssets = (yol: Yol) => {
 
 export const sortUserSuccess = (data: UserSuccess[]) => {
 	data.sort((a, b) => {
-		if (
-			a.actualAmount / a.success.amountNeeded >
-			b.actualAmount / b.success.amountNeeded
-		)
+		// Vérifier si a et b sont de type "Daily"
+		const isADaily = a.success.type === SuccessType.DAILY
+		const isBDaily = b.success.type === SuccessType.DAILY
+
+		// Placer les succès de type "Daily" en premier
+		if (isADaily && !isBDaily) {
 			return -1
-		if (
-			a.actualAmount / a.success.amountNeeded <
-			b.actualAmount / b.success.amountNeeded
-		)
+		}
+		if (!isADaily && isBDaily) {
 			return 1
+		}
+
+		// Comparaison basée sur le ratio de progression
+		const ratioA = a.actualAmount / a.success.amountNeeded
+		const ratioB = b.actualAmount / b.success.amountNeeded
+		if (ratioA > ratioB) {
+			return -1
+		}
+		if (ratioA < ratioB) {
+			return 1
+		}
+
 		// A progression égale, on trie alphabétiquement
-		if (a.success.title > b.success.title) return 1
-		if (a.success.title < b.success.title) return -1
+		if (a.success.title > b.success.title) {
+			return 1
+		}
+		if (a.success.title < b.success.title) {
+			return -1
+		}
 
 		return 0
 	})
@@ -82,21 +98,23 @@ export const getThemeBySpecies = (
 		case 'light':
 			switch (speciesName) {
 				case SpeciesNames.GRUMPFISH:
-					return themes.find(theme => theme.name == 'lightBlue') ?? themes[7]
+					return themes.find((theme) => theme.name == 'lightBlue') ?? themes[7]
 				case SpeciesNames.BUMBLEBLINK:
-					return themes.find(theme => theme.name == 'lightYellow') ?? themes[7]
+					return (
+						themes.find((theme) => theme.name == 'lightYellow') ?? themes[7]
+					)
 				case SpeciesNames.GREENBELLY:
-					return themes.find(theme => theme.name == 'lightGreen') ?? themes[7]
+					return themes.find((theme) => theme.name == 'lightGreen') ?? themes[7]
 			}
 
 		case 'dark':
 			switch (speciesName) {
 				case SpeciesNames.GRUMPFISH:
-					return themes.find(theme => theme.name == 'darkBlue') ?? themes[7]
+					return themes.find((theme) => theme.name == 'darkBlue') ?? themes[7]
 				case SpeciesNames.BUMBLEBLINK:
-					return themes.find(theme => theme.name == 'darkYellow') ?? themes[7]
+					return themes.find((theme) => theme.name == 'darkYellow') ?? themes[7]
 				case SpeciesNames.GREENBELLY:
-					return themes.find(theme => theme.name == 'darkGreen') ?? themes[7]
+					return themes.find((theme) => theme.name == 'darkGreen') ?? themes[7]
 			}
 	}
 }
