@@ -45,9 +45,7 @@ const ProfilePage = () => {
 		<div className='w-full flex flex-col gap-20 h-full'>
 			<ProfileBanner
 				avatar={user.pp}
-				banner={`/assets/${user.banner}`}
 				setModalAvatarIsOpen={setModalAvatarIsOpen}
-				setModalBannerIsOpen={setModalBannerIsOpen}
 			/>
 			<div
 				className={
@@ -62,7 +60,7 @@ const ProfilePage = () => {
 				/>
 				<ProfileStatistics />
 			</div>
-			{/* Modal pour modifier l'avatar */}
+
 			<Modal
 				isOpen={modalAvatarIsOpen}
 				onClose={() => setModalAvatarIsOpen(false)}
@@ -85,7 +83,7 @@ const ProfilePage = () => {
 								onClick={() => setUserAvatar(avatar)}
 							/>
 						))}
-						{/* random avatar button */}
+
 						<div
 							className='flex justify-center items-center cursor-pointer h-[100px] w-[100px] border border-darkLowOpacity'
 							onClick={() => {
@@ -107,7 +105,7 @@ const ProfilePage = () => {
 					/>
 				</div>
 			</Modal>
-			{/* Modal pour modifier la banner */}
+
 			<Modal
 				isOpen={modalBannerIsOpen}
 				onClose={() => setModalBannerIsOpen(false)}
@@ -128,7 +126,7 @@ const ProfilePage = () => {
 								onClick={() => setUserBanner(banner)}
 							/>
 						))}
-						{/* random banner button */}
+
 						<div
 							className='flex justify-center items-center cursor-pointer h-[100px] w-[100px] border border-darkLowOpacity'
 							onClick={() => {
@@ -150,7 +148,7 @@ const ProfilePage = () => {
 					/>
 				</div>
 			</Modal>
-			{/* Modal pour modifier les informations du compte */}
+
 			<Modal
 				isOpen={modalInfoIsOpen}
 				onClose={() => setModalInfoIsOpen(false)}
@@ -168,7 +166,7 @@ const ProfilePage = () => {
 					/>
 				</div>
 			</Modal>
-			{/* Modal pour modifier le mot de passe */}
+
 			<Modal
 				isOpen={modalPasswordIsOpen}
 				onClose={() => setModalPasswordIsOpen(false)}
@@ -187,7 +185,7 @@ const ProfilePage = () => {
 					</div>
 				</div>
 			</Modal>
-			{/* Modal pour supprimer le compte */}
+
 			<Modal
 				isOpen={modalDeleteAccountIsOpen}
 				onClose={() => {

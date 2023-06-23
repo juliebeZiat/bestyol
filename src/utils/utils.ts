@@ -1,7 +1,7 @@
 import { SuccessType, UserSuccess } from '@/type/success.type'
 import { EvolutionAssets, Yol } from '@/type/yol.type'
 import { themes } from './themes'
-import { SpeciesNames } from '@/type/species.type'
+import { SpeciesNames, SpeciesStages } from '@/type/species.type'
 
 export const evolutionLevels = [100, 700, 1750]
 
@@ -150,4 +150,31 @@ export const getYolCurrentLevel = (xp: number) => {
 	}
 
 	return levels[0]
+}
+
+export const getNumberOfYolEvolution = (yol: Yol | undefined) => {
+	switch (yol?.species.stage) {
+		case SpeciesStages.EGG:
+			return 0
+		case SpeciesStages.BABY:
+			return 1
+		case SpeciesStages.ADO:
+			return 2
+		case SpeciesStages.FINAL:
+			return 3
+		default:
+			return 0
+	}
+}
+
+export const getFormattedDate = (dateString: string) => {
+	const date = new Date(dateString)
+	const options = {
+		day: '2-digit' as const,
+		month: '2-digit' as const,
+		year: 'numeric' as const,
+		timeZone: 'Europe/Paris',
+	}
+	const formattedDate = new Intl.DateTimeFormat('fr-FR', options).format(date)
+	return formattedDate
 }
