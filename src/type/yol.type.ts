@@ -13,6 +13,7 @@ export interface Yol {
 	name: string
 	xp: number
 	species: Species
+	createdAt: string
 }
 
 export interface EvolutionAssets {
