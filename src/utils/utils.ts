@@ -1,12 +1,10 @@
 import { UserSuccess } from '@/type/success.type'
 import {
 	EvolutionAssets,
-	SpeciesNames,
-	SpeciesStages,
 	Yol,
 } from '@/type/yol.type'
 import { themes } from './themes'
-import { SpeciesNames } from '@/type/species.type'
+import { SpeciesNames, SpeciesStages } from '@/type/species.type'
 
 export const evolutionLevels = [100, 700, 1750]
 
