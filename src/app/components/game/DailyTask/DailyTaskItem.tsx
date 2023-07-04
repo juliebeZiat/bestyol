@@ -32,14 +32,13 @@ const DailyTaskItem = ({
 
 	const handleValidateDailyTask = async () => {
 		const data = { dailyTaskId: id, yolId: yolData.data.id }
-
 		await validateDailyTask(data)
 	}
 
 	return (
 		<div
-			className={`dailyCard relative h-[20vh] w-full cursor-pointer ${
-				confirmValidation && 'flip'
+			className={`dailyCard relative h-[20vh] w-full ${
+				confirmValidation && !is_completed && 'flip cursor-pointer'
 			}`}
 			onClick={() => setConfirmValidation(!confirmValidation)}
 		>
@@ -62,7 +61,7 @@ const DailyTaskItem = ({
 						width={60}
 						height={60}
 						className={`transition-all duration-[1s] ${
-							confirmValidation && 'opacity-25'
+							confirmValidation && !is_completed && 'opacity-25'
 						}`}
 					/>
 				)}
