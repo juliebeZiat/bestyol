@@ -38,6 +38,7 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 							previousForm={evolutionAssets.previousForm!}
 							newForm={evolutionAssets.newForm!}
 							animatedNewForm={evolutionAssets.animatedNewForm!}
+						  evolutionStep={evolutionAssets.evolutionStep}
 						/>
 					)}
 				</>

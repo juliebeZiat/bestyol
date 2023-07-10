@@ -308,3 +308,20 @@
   backface-visibility: hidden;
   transform: rotateY(180deg);
 }
+
+.pixel-corners-bar {
+  clip-path: polygon(
+    0px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px 100%,
+    calc(100% - 3px) 100%,
+    calc(100% - 3px) calc(100% - 3px),
+    100% calc(100% - 3px),
+    100% 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 0px,
+    3px 0px,
+    3px 3px,
+    0px 3px
+  );
+}

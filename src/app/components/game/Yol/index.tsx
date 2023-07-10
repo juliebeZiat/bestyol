@@ -22,13 +22,17 @@ const YolBox = () => {
 	if (!yol) return null
 
 	const handleEvolveYol = async () => {
+		if (!isYolEvolving(yol.data)) return
+		const evolutionStep = getEvolutionStep(yol.data)
 		const previousForm = yol.data.species.gif
 		const {
 			data: { newSpecies },
 		} = await evolveYolMutation({ yolId: yol.data.id })
 		const newForm = newSpecies.image
 		const animatedNewForm = newSpecies.gif
-		dispatch(evolveYol({ previousForm, newForm, animatedNewForm }))
+		dispatch(
+			evolveYol({ previousForm, newForm, animatedNewForm, evolutionStep }),
+		)
 	}
 
 	const animation =

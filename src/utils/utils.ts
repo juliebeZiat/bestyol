@@ -7,12 +7,14 @@ export const evolutionLevels = [100, 700, 1750]
 
 export const isYolEvolving = (yol: Yol) => {
 	// return evolutionLevels.includes(yol.xp)
-	return (yol.species.stage == SpeciesStages.EGG && yol.xp == 100) || (yol.species.stage == SpeciesStages.BABY && yol.xp == 700) || (yol.species.stage == SpeciesStages.ADO && yol.xp == 1750)
+	return (yol.species.stage == SpeciesStages.EGG && yol.xp >= 100) || (yol.species.stage == SpeciesStages.BABY && yol.xp >= 700) || (yol.species.stage == SpeciesStages.ADO && yol.xp >= 1750)
 }
 
 export const getEvolutionStep = (yol: Yol) => {
-	if (yol) return evolutionLevels.indexOf(yol.xp)
-	else return undefined
+	if (yol.species.stage == SpeciesStages.EGG && yol.xp >= 100) return 0
+	if (yol.species.stage == SpeciesStages.BABY && yol.xp >= 700) return 1
+	if (yol.species.stage == SpeciesStages.ADO && yol.xp >= 1750) return 2
+	return undefined
 }
 
 export const sortUserSuccess = (data: UserSuccess[]) => {
@@ -103,7 +105,7 @@ const levels = [
 
 export const getYolCurrentLevel = (xp: number) => {
 	for (const level of levels) {
-		if (xp > level.levelMin && xp <= level.levelMax) {
+		if (xp >= level.levelMin && xp < level.levelMax) {
 			return level
 		}
 	}
