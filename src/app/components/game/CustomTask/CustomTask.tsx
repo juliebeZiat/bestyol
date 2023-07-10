@@ -94,7 +94,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								id={task.id}
 								title={task.title || ''}
 								is_completed={task.isCompleted}
-								key={index}
+								key={task.id}
 								is_archieved={false}
 								taskId={task.id}
 							/>
@@ -107,7 +107,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								id={task.id}
 								title={task.title || ''}
 								is_completed={task.isCompleted}
-								key={index}
+								key={task.id}
 								is_archieved={true}
 								taskId={task.id}
 							/>
