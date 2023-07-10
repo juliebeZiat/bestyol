@@ -1,6 +1,7 @@
 import { useMutationEvolveYol } from '@/services/mutations/yol'
 import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
+import { evolveYol } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
 import { SpeciesStages } from '@/type/species.type'
 import {
@@ -15,13 +16,19 @@ const YolBox = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
-	const { mutateAsync: evolveYol } = useMutationEvolveYol()
+	const { mutateAsync: evolveYolMutation } = useMutationEvolveYol()
 
 	const { data: yol } = useFetchUserYol(user.id)
 	if (!yol) return null
 
 	const handleEvolveYol = async () => {
-		await evolveYol({ yolId: yol.data.id })
+		const previousForm = yol.data.species.gif
+		const {
+			data: { newSpecies },
+		} = await evolveYolMutation({ yolId: yol.data.id })
+		const newForm = newSpecies.image
+		const animatedNewForm = newSpecies.gif
+		dispatch(evolveYol({ previousForm, newForm, animatedNewForm }))
 	}
 
 	const animation =

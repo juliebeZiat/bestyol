@@ -24,7 +24,7 @@ const EvolutionCinematic = ({
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: yol } = useFetchUserYol(user.id)
 
-	const evolutionStep = getEvolutionStep(yol!.data!)
+	const evolutionStep = getEvolutionStep(yol!.data)
 
 	useEffect(() => {
 		setTimeout(
