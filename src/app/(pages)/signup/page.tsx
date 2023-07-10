@@ -10,7 +10,7 @@ import { login, setUser } from '@/state/reducer/user.reducer'
 import { signinSchema } from '@/utils/formValidationSchema'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const SigninPage = () => {
 	const router = useRouter()
@@ -112,7 +112,6 @@ const SigninPage = () => {
 						content="Je m'inscris"
 						onClick={handleSubmit}
 						textColor='text-white'
-						type='submit'
 					/>
 					<Link href='/login' className='text-white mt-5'>
 						Déjà inscrit ? Connectez-vous

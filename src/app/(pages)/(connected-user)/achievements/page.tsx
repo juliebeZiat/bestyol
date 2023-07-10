@@ -36,7 +36,7 @@ const AchievementsPage = () => {
 				<div className='w-full flex flex-col items-center h-[80vh]'>
 					<Box
 						centerItems
-						additionalStyle='gap-y-[2rem] lg:w-[65%] mb-[2rem] py-[50px] grow h-full justify-center'
+						additionalStyle='gap-y-[2rem] lg:w-[65%] w-[90%] mb-[2rem] py-[50px] grow h-full justify-center'
 					>
 						<div>
 							<Tabs
@@ -56,7 +56,7 @@ const AchievementsPage = () => {
 								}
 							/>
 						</div>
-						<div className='lg:w-full lg:max-h-[80%] overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8 h-full'>
+						<div className='w-full lg:max-h-[80%] overflow-y-auto gap-y-[2rem] flex flex-col items-center mb-8 h-full'>
 							{(achievementType === AchievementType.Pending
 								? pendingAchievements
 								: completedAchievements

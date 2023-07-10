@@ -34,14 +34,6 @@ const LoginPage = () => {
 		})
 	}
 
-	const [hydrated, setHydrated] = useState(false)
-	useEffect(() => {
-		setHydrated(true)
-	}, [])
-	if (!hydrated) {
-		return null
-	}
-
 	if (isLoading) return <Loader />
 
 	return (
@@ -77,7 +69,6 @@ const LoginPage = () => {
 						content='Je me connecte'
 						textColor='text-white'
 						onClick={handleSubmit}
-						type='submit'
 					/>
 
 					<Link href='/signup' className='text-white mt-5'>
