@@ -7,7 +7,7 @@ export const evolutionLevels = [100, 700, 1750]
 
 export const isYolEvolving = (yol: Yol) => {
 	// return evolutionLevels.includes(yol.xp)
-	return (yol.species.stage == "Egg" && yol.xp == 100) || (yol.species.stage == "Baby" && yol.xp == 700) || (yol.species.stage == "Adolescent" && yol.xp == 1750)
+	return (yol.species.stage == SpeciesStages.EGG && yol.xp == 100) || (yol.species.stage == SpeciesStages.BABY && yol.xp == 700) || (yol.species.stage == SpeciesStages.ADO && yol.xp == 1750)
 }
 
 export const getEvolutionStep = (yol: Yol) => {
