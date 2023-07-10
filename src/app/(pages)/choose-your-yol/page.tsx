@@ -5,16 +5,18 @@ import TextField from '@/app/components/ui/TextField'
 import YolCarousel from '@/app/components/ui/YolCarousel'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useMutationCreateYol } from '@/services/mutations/yol'
+import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { SpeciesModifiedData } from '@/type/species.type'
 import { createYolSchema } from '@/utils/formValidationSchema'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 const ChooseYourYol = () => {
 	const router = useRouter()
-	const user = useAppSelector((state: RootState) => state.user.user)
+	const { isLogged, user } = useAppSelector((state: RootState) => state.user)
+	const { data: yolData } = useFetchUserYol(user.id)
 
 	const [values, setValues] = useState({
 		name: '',
@@ -103,24 +105,28 @@ const ChooseYourYol = () => {
 		)
 	}
 
-	return (
-		<div className='h-[100svh] flex items-center justify-center text-white text-center'>
-			<form className='flex items-center justify-center'>
-				{useIsMobile() ? (
-					<div className='w-screen flex flex-col justify-center items-center gap-y-8'>
-						{BoxContent()}
-					</div>
-				) : (
-					<Box
-						centerItems
-						additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
-					>
-						{BoxContent()}
-					</Box>
-				)}
-			</form>
-		</div>
-	)
+	if (isLogged) {
+		if (!yolData) {
+			return (
+				<div className='h-[100svh] flex items-center justify-center text-white text-center'>
+					<form className='flex items-center justify-center'>
+						{useIsMobile() ? (
+							<div className='w-screen flex flex-col justify-center items-center gap-y-8'>
+								{BoxContent()}
+							</div>
+						) : (
+							<Box
+								centerItems
+								additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
+							>
+								{BoxContent()}
+							</Box>
+						)}
+					</form>
+				</div>
+			)
+		} else return redirect('/game')
+	}
 }
 
 export default ChooseYourYol
