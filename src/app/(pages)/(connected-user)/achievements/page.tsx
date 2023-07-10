@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 
-export enum AchievementType {
+enum AchievementType {
 	Pending = 'pending',
 	Completed = 'completed',
 }

@@ -148,7 +148,7 @@ module.exports = {
             opacity: '1',
             transform: 'scale(1)',
           },
-          '100%:': {
+          '100%': {
             opacity: '1',
             filter: 'brightness(100%)',
             transform: 'scale(1)',

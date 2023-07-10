@@ -1,8 +1,6 @@
 'use client'
 
-import Image from 'next/image'
-
-import { Enemy } from '@/app/(pages)/(connected-user)/battle/page'
+import { Enemy } from '@/app/components/battle/types'
 import Button from '../ui/Button'
 
 interface BattleEndScreenProps {
