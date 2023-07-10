@@ -20,9 +20,9 @@ const ProgressBar = ({
 	return (
 		<div className='flex flex-col'>
 			<div className={`w-[75px] ${width}`}>
-				<div className={`h-[10px] bg-[#FFFFFF] ${margin}`}>
+				<div className={`h-[10px] bg-[#FFFFFF] ${margin} pixel-corners-bar`}>
 					<div
-						className={`h-full ${color} transition-all ease-out`}
+						className={`h-full ${color} transition-all duration-1000 ease-in-out`}
 						style={{ width: progressPercentage }}
 					/>
 				</div>
