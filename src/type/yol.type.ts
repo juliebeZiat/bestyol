@@ -20,6 +20,7 @@ export interface EvolutionAssets {
 	previousForm: string
 	newForm: string
 	animatedNewForm: string
+	evolutionStep: 0 | 1 | 2 | undefined
 }
 
 export interface CreateYolRequest {

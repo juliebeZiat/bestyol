@@ -10,11 +10,10 @@ import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import { SpeciesModifiedData } from '@/type/species.type'
 import { createYolSchema } from '@/utils/formValidationSchema'
-import { redirect, useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { useState } from 'react'
 
 const ChooseYourYol = () => {
-	const router = useRouter()
 	const { isLogged, user } = useAppSelector((state: RootState) => state.user)
 	const { data: yolData } = useFetchUserYol(user.id)
 
@@ -47,9 +46,6 @@ const ChooseYourYol = () => {
 			await createYolSchema.validate(data, { abortEarly: false })
 			setErrors({})
 			await mutateAsync(data, {
-				onSuccess: () => {
-					router.push('/game')
-				},
 				onError: async (error: any) => {
 					setRequestError(error.response.data.erreur)
 				},

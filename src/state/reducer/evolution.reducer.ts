@@ -1,10 +1,5 @@
+import { EvolutionAssets } from '@/type/yol.type'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-type EvolutionAssets = {
-	previousForm?: string
-	newForm?: string
-	animatedNewForm?: string
-}
 
 type EvolutionState = {
 	isEvolving: boolean

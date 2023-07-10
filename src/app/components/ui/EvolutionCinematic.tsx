@@ -5,6 +5,7 @@ import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { endEvolution } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
+import { EvolutionAssets } from '@/type/yol.type'
 import { getEvolutionStep } from '@/utils/utils'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -13,18 +14,13 @@ const EvolutionCinematic = ({
 	previousForm,
 	newForm,
 	animatedNewForm,
-}: {
-	previousForm: string
-	newForm: string
-	animatedNewForm: string
-}) => {
+	evolutionStep,
+}: EvolutionAssets) => {
 	const dispatch = useAppDispatch()
 	const [currentImage, setCurrentImage] = useState(previousForm)
 	const [hasEvolved, setHasEvolved] = useState(false)
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: yol } = useFetchUserYol(user.id)
-
-	const evolutionStep = getEvolutionStep(yol!.data)
 
 	useEffect(() => {
 		setTimeout(
