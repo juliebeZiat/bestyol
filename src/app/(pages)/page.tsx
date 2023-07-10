@@ -4,17 +4,11 @@ import useWindowSize from '@/hooks/useWindowSize'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import YolCarousel from '../components/ui/YolCarousel'
-import { useAppDispatch } from '@/state/hooks'
-import { resetTheme } from '@/state/reducer/user.reducer'
 
 const HomePage = () => {
-	const dispatch = useAppDispatch()
 	const windowSize = useWindowSize()
 	const [hydrated, setHydrated] = useState(false)
 	useEffect(() => {
-		if (window.location.pathname === '/') {
-			dispatch(resetTheme())
-		}
 		setHydrated(true)
 	}, [])
 	if (!hydrated) {
