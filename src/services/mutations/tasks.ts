@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import userTasksService from '../tasksService'
 
 export const useMutationGenerateDailyTasks = () => {
@@ -8,26 +8,61 @@ export const useMutationGenerateDailyTasks = () => {
 	)
 }
 
-export const useMutationNewTask = () => {
+export const useMutationValidateDailyTask = () => {
+	const queryClient = useQueryClient()
+	return useMutation(
+		async ({ dailyTaskId, yolId }: { dailyTaskId: number; yolId: number }) => {
+			return await userTasksService.validateDailyTask(dailyTaskId, {
+				yolId,
+			})
+		},
+		{
+			onSuccess: () => {
+				setTimeout(() => {
+					queryClient.invalidateQueries(['yol'])
+					queryClient.invalidateQueries(['userSuccess'])
+					queryClient.invalidateQueries(['userTasks'])
+				}, 1100)
+			},
+		},
+	)
+}
+
+export const useMutationValidateCustomTask = () => {
+	const queryClient = useQueryClient()
+	return useMutation(
+		async ({ customTaskId }: { customTaskId: number }) => {
+			return await userTasksService.validateCustomTask(customTaskId)
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(['userSuccess'])
+				queryClient.invalidateQueries(['userTasks'])
+			},
+		},
+	)
+}
+
+export const useMutationCreateNewCustomTask = () => {
 	return useMutation(
 		async (payload: { userId: number; taskName: string }) =>
-			await userTasksService.createNewUserTask(
+			await userTasksService.createNewCustomTask(
 				payload.taskName,
 				payload.userId,
 			),
 	)
 }
 
-export const useMutationEditTask = () => {
+export const useMutationEditCustomTask = () => {
 	return useMutation(
 		async (payload: { taskId: number; taskName: string }) =>
-			await userTasksService.editUserTask(payload.taskName, payload.taskId),
+			await userTasksService.editCustomTask(payload.taskName, payload.taskId),
 	)
 }
 
-export const useMutationDeleteTask = () => {
+export const useMutationDeleteCustomTask = () => {
 	return useMutation(
 		async (payload: { taskId: number }) =>
-			await userTasksService.deleteUserTask(payload.taskId),
+			await userTasksService.deleteCustomTask(payload.taskId),
 	)
 }

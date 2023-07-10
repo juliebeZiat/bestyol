@@ -7,17 +7,28 @@ export interface DailyTasks {
 	image: string
 }
 
-export interface UserTasks {
+export interface UserTask {
 	id: number
-	user_id: number
-	title?: string
-	is_daily: boolean
-	is_completed: boolean
-	completed_at: Date
+	title: string
+	isDaily: boolean
+	isCompleted: boolean
+	completedAt: Date
+	userId: number
+	dailyTaskId: number
 	dailyTask?: DailyTasks
 }
 
 export interface TasksResponse {
-	customTasks: UserTasks[]
-	dailyTasks: UserTasks[]
+	customTasks: UserTask[]
+	dailyTasks: UserTask[]
+}
+
+export interface ValidateDailyTaskRequest {
+	yolId: number
+}
+
+export interface ValidateDailyTaskResponse {
+	message: string
+	yolXpGain: number
+	updatedTask: UserTask
 }

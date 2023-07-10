@@ -1,9 +1,9 @@
+import { useMutationEvolveYol } from '@/services/mutations/yol'
 import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
-import { evolveYol } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
+import { SpeciesStages } from '@/type/species.type'
 import {
-	getEvolutionAssets,
 	getEvolutionStep,
 	getFormattedDate,
 	isYolEvolving,
@@ -14,10 +14,15 @@ const YolBox = () => {
 	const dispatch = useAppDispatch()
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const theme = useAppSelector((state: RootState) => state.user.theme)
-	if (!user) return null
+
+	const { mutateAsync: evolveYol } = useMutationEvolveYol()
 
 	const { data: yol } = useFetchUserYol(user.id)
 	if (!yol) return null
+
+	const handleEvolveYol = async () => {
+		await evolveYol({ yolId: yol.data.id })
+	}
 
 	const animation =
 		getEvolutionStep(yol.data) === 0
@@ -40,15 +45,13 @@ const YolBox = () => {
 					<p>Espèce: {yol.data.species.name}</p>
 					<p>Stade d'évolution: {yol.data.species.stage}</p>
 				</div>
-				<div
-					onClick={() => {
-						if (isYolEvolving(yol.data)) {
-							dispatch(evolveYol(getEvolutionAssets(yol.data)!))
-						}
-					}}
-				>
+				<div onClick={handleEvolveYol}>
 					<Image
-						src={yol.data.species.gif}
+						src={
+							yol.data.species.stage === SpeciesStages.EGG
+								? yol.data.species.image
+								: yol.data.species.gif
+						}
 						width={150}
 						height={150}
 						alt='yol'

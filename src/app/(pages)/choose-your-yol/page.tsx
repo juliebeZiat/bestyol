@@ -7,7 +7,7 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import { useMutationCreateYol } from '@/services/mutations/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import { SpeciesModifiedData } from '@/type/yol.type'
+import { SpeciesModifiedData } from '@/type/species.type'
 import { createYolSchema } from '@/utils/formValidationSchema'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -38,7 +38,7 @@ const ChooseYourYol = () => {
 		const data = {
 			name: values.name,
 			userId: values.userId,
-			speciesId: currentSpecies.id,
+			speciesId: currentSpecies.id - 1,
 		}
 
 		try {
