@@ -40,6 +40,7 @@ const CustomTaskItem = ({
 	}
 
 	const toggleEdit = () => {
+		setNewTitle(title)
 		setEditTask(!editTask)
 	}
 
