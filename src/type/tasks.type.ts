@@ -16,6 +16,7 @@ export interface UserTask {
 	userId: number
 	dailyTaskId: number
 	dailyTask?: DailyTasks
+	createdAt: string
 }
 
 export interface TasksResponse {
