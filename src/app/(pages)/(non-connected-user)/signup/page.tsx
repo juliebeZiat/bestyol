@@ -27,7 +27,7 @@ const SigninPage = () => {
 	const [requestError, setRequestError] = useState<string | null>()
 	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-	const { mutateAsync, isError, isLoading } = useMutationSignUp()
+	const { mutateAsync, isError, isLoading, isSuccess } = useMutationSignUp()
 
 	const handleSubmit = async () => {
 		const data = {
@@ -59,7 +59,7 @@ const SigninPage = () => {
 		}
 	}
 
-	if (isLoading) return <Loader />
+	if (isLoading || isSuccess) return <Loader />
 
 	return (
 		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
