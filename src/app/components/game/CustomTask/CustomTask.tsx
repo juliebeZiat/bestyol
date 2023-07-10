@@ -8,7 +8,6 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import { useQueryClient } from '@tanstack/react-query'
 import { useMutationCreateNewCustomTask } from '@/services/mutations/tasks'
 
 export enum TaskType {
@@ -26,7 +25,6 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const [taskCreation, setTaskCreation] = useState<boolean>(false)
 	const [newTask, setNewTask] = useState<string>('')
 	const { user } = useAppSelector((state: RootState) => state.user)
-	const queryClient = useQueryClient()
 	const { mutateAsync: mutateAsyncNewTask } = useMutationCreateNewCustomTask()
 
 	const toggleTaskCreation = () => {
@@ -38,7 +36,6 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 			{ userId: user.id, taskName: newTask },
 			{
 				onSuccess() {
-					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
 					toggleTaskCreation()
 				},
 			},
@@ -49,10 +46,21 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 
 	if (!customTasks) return null
 
-	const activeTasks = customTasks.filter((task) => !task.isCompleted)
+	const activeTasks = customTasks
+		.filter((task) => !task.isCompleted)
+		.sort((a, b) => {
+			if (a.createdAt > b.createdAt) {
+				return -1
+			}
+			if (a.createdAt < b.createdAt) {
+				return 1
+			}
+			return 0
+		})
 	const archivedTasks = customTasks.filter((task) => task.isCompleted)
+
 	return (
-		<div className={`h-full ${isMobile && 'mb-12'}`}>
+		<div className={`lg:h-full lg:mb-0 mb-12`}>
 			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
 				<Tabs
 					activeItemsTitle='Actives'
@@ -86,7 +94,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								id={task.id}
 								title={task.title || ''}
 								is_completed={task.isCompleted}
-								key={index}
+								key={task.id}
 								is_archieved={false}
 								taskId={task.id}
 							/>
@@ -99,7 +107,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								id={task.id}
 								title={task.title || ''}
 								is_completed={task.isCompleted}
-								key={index}
+								key={task.id}
 								is_archieved={true}
 								taskId={task.id}
 							/>

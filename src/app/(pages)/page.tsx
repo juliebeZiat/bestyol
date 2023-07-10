@@ -5,20 +5,15 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import YolCarousel from '../components/ui/YolCarousel'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
-import { resetTheme } from '@/state/reducer/user.reducer'
 import { RootState } from '@/state/store'
 import { redirect } from 'next/navigation'
 
 const HomePage = () => {
-	const dispatch = useAppDispatch()
 	const windowSize = useWindowSize()
 	const [hydrated, setHydrated] = useState(false)
 
 	const isLogged = useAppSelector((state: RootState) => state.user.isLogged)
 	useEffect(() => {
-		if (window.location.pathname === '/') {
-			dispatch(resetTheme())
-		}
 		setHydrated(true)
 	}, [])
 	if (!hydrated) {

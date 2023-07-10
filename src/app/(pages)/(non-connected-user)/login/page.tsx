@@ -34,14 +34,6 @@ const LoginPage = () => {
 		})
 	}
 
-	const [hydrated, setHydrated] = useState(false)
-	useEffect(() => {
-		setHydrated(true)
-	}, [])
-	if (!hydrated) {
-		return null
-	}
-
 	if (isLoading) return <Loader />
 
 	return (

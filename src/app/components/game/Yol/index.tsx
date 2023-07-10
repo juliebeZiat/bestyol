@@ -1,6 +1,7 @@
 import { useMutationEvolveYol } from '@/services/mutations/yol'
 import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
+import { evolveYol } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
 import { SpeciesStages } from '@/type/species.type'
 import {
@@ -15,13 +16,19 @@ const YolBox = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const theme = useAppSelector((state: RootState) => state.user.theme)
 
-	const { mutateAsync: evolveYol } = useMutationEvolveYol()
+	const { mutateAsync: evolveYolMutation } = useMutationEvolveYol()
 
 	const { data: yol } = useFetchUserYol(user.id)
 	if (!yol) return null
 
 	const handleEvolveYol = async () => {
-		await evolveYol({ yolId: yol.data.id })
+		const previousForm = yol.data.species.gif
+		const {
+			data: { newSpecies },
+		} = await evolveYolMutation({ yolId: yol.data.id })
+		const newForm = newSpecies.image
+		const animatedNewForm = newSpecies.gif
+		dispatch(evolveYol({ previousForm, newForm, animatedNewForm }))
 	}
 
 	const animation =
@@ -35,9 +42,9 @@ const YolBox = () => {
 				isYolEvolving(yol.data) && 'cursor-pointer'
 			}`}
 		>
-			<div className='flex gap-x-8 w-[65%] justify-between p-10'>
+			<div className='flex gap-x-8 lg:w-[65%] lg:justify-between justify-center p-10 flex-wrap lg:flex-nowrap '>
 				<div
-					className={`p-4 pixel-corners-items ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor} ${theme.borderColor} text-white`}
+					className={`p-4 pixel-corners-items ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor} ${theme.borderColor} text-white mb-5 lg:mb-0`}
 				>
 					<h2 className='uppercase text-lg mb-2'>Informations</h2>
 					<p>Nom: ✨ {yol.data.name} ✨</p>

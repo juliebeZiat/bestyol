@@ -37,7 +37,7 @@ const DailyTaskItem = ({
 
 	return (
 		<div
-			className={`dailyCard relative h-[20vh] w-full ${
+			className={`dailyCard relative h-[20vh] w-full mb-5 lg:mb-0 ${
 				confirmValidation && !is_completed && 'flip cursor-pointer'
 			}`}
 			onClick={() => setConfirmValidation(!confirmValidation)}
