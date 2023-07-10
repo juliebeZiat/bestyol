@@ -108,7 +108,12 @@ const SigninPage = () => {
 					</div>
 				)}
 				<div className='flex flex-col items-center py-5'>
-					<Button content="Je m'inscris" onClick={handleSubmit} />
+					<Button
+						content="Je m'inscris"
+						onClick={handleSubmit}
+						textColor='text-white'
+						type='submit'
+					/>
 					<Link href='/login' className='text-white mt-5'>
 						Déjà inscrit ? Connectez-vous
 					</Link>

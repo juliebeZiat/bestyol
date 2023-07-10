@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { HTMLInputTypeAttribute, useEffect, useRef, useState } from 'react'
 
 interface TextFieldProps {
@@ -32,7 +33,12 @@ const TextField = ({
 	onCancel,
 }: TextFieldProps) => {
 	const [isFocused, setIsFocused] = useState(false)
+	const [passwordShown, setPasswordShown] = useState(false)
 	const inputReference = useRef<HTMLInputElement>(null)
+
+	const togglePassword = () => {
+		setPasswordShown(!passwordShown)
+	}
 
 	useEffect(() => {
 		if (inputReference.current) {
@@ -51,13 +57,23 @@ const TextField = ({
 					className={`pixel-corners-items appearance-none w-full py-2 px-3 sm:pl-6 focus:outline-none outline-none text-[.7rem] sm:text-xl bg-lowOpacity ${
 						error && 'border-error border-2'
 					} `}
-					type={inputType}
+					type={passwordShown ? 'text' : inputType}
 					placeholder={placeholder}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
 					value={value ?? undefined}
 					onChange={onChange ?? undefined}
 				/>
+				{inputType === 'password' && (
+					<Image
+						src='/assets/icons/eye.svg'
+						width={20}
+						height={20}
+						alt='edit-icon'
+						className='invert cursor-pointer absolute top-[50%] translate-y-[-50%] right-5'
+						onClick={togglePassword}
+					/>
+				)}
 				{needsSaving && (
 					<div className='absolute top-[50%] right-0 px-4 flex gap-x-4 translate-y-[-50%]'>
 						<button onClick={onValidate}>&#10004;</button>
@@ -65,7 +81,7 @@ const TextField = ({
 					</div>
 				)}
 				{isFocused && (
-					<div className='absolute top-[50%] translate-y-[-50%] left-1 h-5 w-5'>
+					<div className='absolute top-[50%] translate-y-[-50%] left-2'>
 						&gt;
 					</div>
 				)}
