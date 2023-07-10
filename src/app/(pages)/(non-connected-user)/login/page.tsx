@@ -7,12 +7,10 @@ import { useMutationSignIn } from '@/services/mutations/auth'
 import { useAppDispatch } from '@/state/hooks'
 import { login, setUser } from '@/state/reducer/user.reducer'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import Loader from '@/app/components/ui/Loader'
 
 const LoginPage = () => {
-	const router = useRouter()
 	const isMobile = useIsMobile()
 	const dispatch = useAppDispatch()
 
@@ -29,7 +27,6 @@ const LoginPage = () => {
 			onSuccess: async (responseData) => {
 				dispatch(login(responseData.token))
 				dispatch(setUser(responseData.user))
-				router.push('/game')
 			},
 		})
 	}

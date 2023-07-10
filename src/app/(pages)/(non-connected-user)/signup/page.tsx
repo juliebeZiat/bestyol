@@ -9,11 +9,9 @@ import { useAppDispatch } from '@/state/hooks'
 import { login, setUser } from '@/state/reducer/user.reducer'
 import { signinSchema } from '@/utils/formValidationSchema'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const SigninPage = () => {
-	const router = useRouter()
 	const isMobile = useIsMobile()
 	const dispatch = useAppDispatch()
 
@@ -44,7 +42,6 @@ const SigninPage = () => {
 				onSuccess: async (data) => {
 					dispatch(login(data.token))
 					dispatch(setUser(data.user))
-					router.push('/choose-your-yol')
 				},
 				onError: async (error: any) => {
 					setRequestError(error.response.data.erreur)
