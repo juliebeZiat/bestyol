@@ -6,52 +6,13 @@ import { SpeciesNames, SpeciesStages } from '@/type/species.type'
 export const evolutionLevels = [100, 700, 1750]
 
 export const isYolEvolving = (yol: Yol) => {
-	return evolutionLevels.includes(yol.xp)
+	// return evolutionLevels.includes(yol.xp)
+	return (yol.species.stage == "Egg" && yol.xp == 100) || (yol.species.stage == "Baby" && yol.xp == 700) || (yol.species.stage == "Adolescent" && yol.xp == 1750)
 }
 
 export const getEvolutionStep = (yol: Yol) => {
 	if (yol) return evolutionLevels.indexOf(yol.xp)
 	else return undefined
-}
-
-export const getEvolutionAssets = (yol: Yol) => {
-	if (yol) {
-		let evolutionAssets: EvolutionAssets
-		switch (getEvolutionStep(yol)) {
-			case 0:
-				evolutionAssets = {
-					previousForm: `/assets/yols/egg/animated/${yol.species.name}.gif`,
-					newForm: `/assets/yols/base/static/${yol.species.name}.png`,
-					animatedNewForm: `/assets/yols/base/animated/${yol.species.name}.gif`,
-				}
-				break
-
-			case 1:
-				evolutionAssets = {
-					previousForm: `/assets/yols/base/static/${yol.species.name}.png`,
-					newForm: `/assets/yols/second/static/${yol.species.name}.png`,
-					animatedNewForm: `/assets/yols/second/animated/${yol.species.name}.gif`,
-				}
-				break
-
-			case 2:
-				evolutionAssets = {
-					previousForm: `/assets/yols/second/static/${yol.species.name}.png`,
-					newForm: `/assets/yols/third/static/${yol.species.name}.png`,
-					animatedNewForm: `/assets/yols/third/animated/${yol.species.name}.gif`,
-				}
-				break
-
-			default:
-				evolutionAssets = {
-					previousForm: `/assets/yols/egg/animated/${yol.species.name}.gif`,
-					newForm: `/assets/yols/base/static/${yol.species.name}.png`,
-					animatedNewForm: `/assets/yols/base/animated/${yol.species.name}.gif`,
-				}
-				break
-		}
-		return evolutionAssets
-	} else return undefined
 }
 
 export const sortUserSuccess = (data: UserSuccess[]) => {
@@ -100,9 +61,7 @@ export const getThemeBySpecies = (
 				case SpeciesNames.GRUMPFISH:
 					return themes.find((theme) => theme.name == 'lightBlue') ?? themes[7]
 				case SpeciesNames.BUMBLEBLINK:
-					return (
-						themes.find((theme) => theme.name == 'lightYellow') ?? themes[7]
-					)
+					return themes.find((theme) => theme.name == 'lightYellow') ?? themes[7]
 				case SpeciesNames.GREENBELLY:
 					return themes.find((theme) => theme.name == 'lightGreen') ?? themes[7]
 			}
