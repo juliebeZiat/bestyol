@@ -21,7 +21,7 @@ const LoginPage = () => {
 		password: '',
 	})
 
-	const { mutateAsync, isError, isLoading } = useMutationSignIn()
+	const { mutateAsync, isError, isLoading, isSuccess } = useMutationSignIn()
 
 	const handleSubmit = async () => {
 		const data = { username: values.username, password: values.password }
@@ -34,7 +34,7 @@ const LoginPage = () => {
 		})
 	}
 
-	if (isLoading) return <Loader />
+	if (isLoading || isSuccess) return <Loader />
 
 	return (
 		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
