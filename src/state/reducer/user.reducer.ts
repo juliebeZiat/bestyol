@@ -29,19 +29,23 @@ export const user = createSlice({
 		},
 		setUser: (state, action: PayloadAction<User>) => {
 			state.user = action.payload
+			const selectedTheme = localStorage.getItem('selectedTheme')
+			state.theme = selectedTheme
+				? JSON.parse(selectedTheme)
+				: themes.find((theme) => theme.name == 'neutral')
 		},
 		setTheme: (state, action: PayloadAction<Theme>) => {
 			state.theme = action.payload
+			localStorage.setItem('selectedTheme', JSON.stringify(action.payload))
 		},
-		resetTheme: (state) => {
+		logout: (state) => {
+			state.isLogged = initialState.isLogged
+			state.user = initialState.user
+			state.token = initialState.token
 			state.theme = initialState.theme
-		},
-		logout: () => {
-			initialState
-			localStorage.clear()
 		},
 	},
 })
 
-export const { login, logout, setUser, setTheme, resetTheme } = user.actions
+export const { login, logout, setUser, setTheme } = user.actions
 export default user.reducer

@@ -60,7 +60,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	const archivedTasks = customTasks.filter((task) => task.isCompleted)
 
 	return (
-		<div className={`h-full ${isMobile && 'mb-12'}`}>
+		<div className={`lg:h-full lg:mb-0 mb-12`}>
 			<Box additionalStyle='h-full' title='Mes tâches' isTogglable>
 				<Tabs
 					activeItemsTitle='Actives'
