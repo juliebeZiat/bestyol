@@ -9,13 +9,18 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import { useFetchAllUserTasks } from '@/services/queries/tasks'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { getFormattedDate } from '@/utils/utils'
 import Link from 'next/link'
 
 const GamePage = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const { data: tasks, isLoading } = useFetchAllUserTasks(user.id)
 
-	const dailyTasks = tasks?.data.dailyTasks
+	const dailyTasks = tasks?.data.dailyTasks.filter(
+		(task) =>
+			getFormattedDate(task.createdAt) ===
+			getFormattedDate(new Date().toString()),
+	)
 	const customTasks = tasks?.data.customTasks
 
 	const isMobile = useIsMobile()

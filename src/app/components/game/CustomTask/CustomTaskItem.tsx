@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import TextField from '../../ui/TextField'
-import { useQueryClient } from '@tanstack/react-query'
 import {
 	useMutationDeleteCustomTask,
 	useMutationEditCustomTask,
@@ -27,7 +26,6 @@ const CustomTaskItem = ({
 	const [taskIsDone, setTaskIsDone] = useState<boolean>(is_archieved)
 	const [editTask, setEditTask] = useState<boolean>(false)
 	const [newTitle, setNewTitle] = useState<string>(title)
-	const queryClient = useQueryClient()
 	const { mutateAsync: mutateAsyncEditTask } = useMutationEditCustomTask()
 	const { mutateAsync: mutateAsyncDeleteTask } = useMutationDeleteCustomTask()
 	const { mutateAsync: validateCustomTask } = useMutationValidateCustomTask()
@@ -42,7 +40,6 @@ const CustomTaskItem = ({
 	}
 
 	const toggleEdit = () => {
-		if (newTitle !== '') setNewTitle('')
 		setEditTask(!editTask)
 	}
 
@@ -51,7 +48,6 @@ const CustomTaskItem = ({
 			{ taskId, taskName: newTitle },
 			{
 				onSuccess: async () => {
-					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
 					toggleEdit()
 				},
 			},
@@ -59,14 +55,7 @@ const CustomTaskItem = ({
 	}
 
 	const deleteTask = async () => {
-		await mutateAsyncDeleteTask(
-			{ taskId },
-			{
-				onSuccess: () => {
-					queryClient.invalidateQueries({ queryKey: ['userTasks'] })
-				},
-			},
-		)
+		await mutateAsyncDeleteTask({ taskId })
 	}
 
 	const theme = useAppSelector((state: RootState) => state.user.theme)
@@ -75,11 +64,13 @@ const CustomTaskItem = ({
 		<div
 			className={`h-[4rem] p-3 mb-4 pixel-corners-items text-white flex justify-between items-center ${
 				theme.pixelBorderColor
-			} transition-all ease-in-out duration-1000 ${
+			} transition-all ease-in-out duration-1000 
+			${
 				taskIsDone || is_archieved
-					? `${theme.primaryBackgroundColor}`
+					? theme.primaryBackgroundColor
 					: theme.secondaryBackgroundColor
-			}`}
+			}
+			`}
 		>
 			<div className='w-full'>
 				{!editTask ? (
@@ -89,7 +80,7 @@ const CustomTaskItem = ({
 								className={`cursor-pointer w-[15px] h-[15px] mr-2 border-2  ${
 									taskIsDone
 										? 'ease-in-out duration-1000 after:content-["x"] after:relative after:bottom-2 after:left-0.5'
-										: 'border-orange'
+										: ''
 								}`}
 								onClick={handleValidateCustomTask}
 							/>
@@ -103,7 +94,8 @@ const CustomTaskItem = ({
 							needsSaving
 							onChange={(e) => setNewTitle(e.target.value)}
 							onCancel={toggleEdit}
-							onValidate={() => handleEditTask()}
+							onValidate={handleEditTask}
+							value={newTitle}
 						/>
 					</div>
 				)}

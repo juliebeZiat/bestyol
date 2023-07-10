@@ -55,7 +55,7 @@ const TextField = ({
 					placeholder={placeholder}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
-					value={value ?? undefined}
+					value={value}
 					onChange={onChange ?? undefined}
 				/>
 				{needsSaving && (
