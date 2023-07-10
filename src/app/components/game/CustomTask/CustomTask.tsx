@@ -50,6 +50,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 	if (!customTasks) return null
 
 	const activeTasks = customTasks.filter((task) => !task.isCompleted)
+	console.log(activeTasks)
 	const archivedTasks = customTasks.filter((task) => task.isCompleted)
 	return (
 		<div className={`h-full ${isMobile && 'mb-12'}`}>
@@ -86,7 +87,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								id={task.id}
 								title={task.title || ''}
 								is_completed={task.isCompleted}
-								key={index}
+								key={task.id}
 								is_archieved={false}
 								taskId={task.id}
 							/>
@@ -99,7 +100,7 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 								id={task.id}
 								title={task.title || ''}
 								is_completed={task.isCompleted}
-								key={index}
+								key={task.id}
 								is_archieved={true}
 								taskId={task.id}
 							/>

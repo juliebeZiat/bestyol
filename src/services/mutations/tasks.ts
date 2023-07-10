@@ -36,8 +36,10 @@ export const useMutationValidateCustomTask = () => {
 		},
 		{
 			onSuccess: () => {
-				queryClient.invalidateQueries(['userSuccess'])
-				queryClient.invalidateQueries(['userTasks'])
+				setTimeout(() => {
+					queryClient.invalidateQueries(['userSuccess'])
+					queryClient.invalidateQueries(['userTasks'])
+				}, 1000)
 			},
 		},
 	)
