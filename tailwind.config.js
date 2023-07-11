@@ -68,9 +68,9 @@ module.exports = {
           '100%': { transform: 'translateY(0%)' },
         },
         hoveringTest: {
-          '0%': { transform: 'translate(-50%, -50%) scale(2)' },
-          '50%': { transform: 'translate(-50%, -70%) scale(2)' },
-          '100%': { transform: 'translate(-50%, -50%) scale(2)' },
+          '0%': { transform: 'translate(-50%, 0px) scale(1.5)' },
+          '50%': { transform: 'translate(-50%, -20px) scale(1.5)' },
+          '100%': { transform: 'translate(-50%, 0px) scale(1.5)' },
         },
         spinScaleDownDisapear: {
           '0%': { transform: 'rotate(0deg)', scale: '1', opacity: '1' },

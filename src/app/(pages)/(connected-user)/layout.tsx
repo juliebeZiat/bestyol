@@ -19,8 +19,9 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 		(state: RootState) => state.evolution.assets,
 	)
 
-	const { data: yolData } = useFetchUserYol(user.id)
+	const { data: yolData, isLoading } = useFetchUserYol(user.id)
 
+	if (isLoading) return <Loader />
 	if (isLogged) {
 		if (yolData) {
 			return (

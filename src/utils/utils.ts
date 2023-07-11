@@ -23,6 +23,16 @@ export const getEvolutionStep = (yol: Yol) => {
 
 export const sortUserSuccess = (data: UserSuccess[]) => {
 	data.sort((a, b) => {
+
+		const ratioA = a.actualAmount / a.success.amountNeeded
+		const ratioB = b.actualAmount / b.success.amountNeeded
+
+		if (ratioA >= 1 && ratioB < 1) {
+			return -1
+		}
+		if (ratioA < 1 && ratioB >= 1) {
+			return 1
+		}
 		// Vérifier si a et b sont de type "Daily"
 		const isADaily = a.success.type === SuccessType.DAILY
 		const isBDaily = b.success.type === SuccessType.DAILY
@@ -36,8 +46,6 @@ export const sortUserSuccess = (data: UserSuccess[]) => {
 		}
 
 		// Comparaison basée sur le ratio de progression
-		const ratioA = a.actualAmount / a.success.amountNeeded
-		const ratioB = b.actualAmount / b.success.amountNeeded
 		if (ratioA > ratioB) {
 			return -1
 		}
