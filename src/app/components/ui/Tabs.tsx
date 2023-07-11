@@ -25,7 +25,10 @@ const Tabs = ({
 				className={`py-1 w-[50%] flex justify-center items-center ${
 					activeItemsCondition ? theme.vibrantBackgroundColor : 'bg-lowOpacity'
 				}`}
-				onClick={setActiveItems}
+				onClick={(e) => {
+					e.stopPropagation()
+					setActiveItems()
+				}}
 			>
 				<p className='text-white text-center'>{activeItemsTitle}</p>
 			</div>
@@ -35,7 +38,10 @@ const Tabs = ({
 						? theme.vibrantBackgroundColor
 						: 'bg-lowOpacity'
 				} py-1`}
-				onClick={setArchivedItems}
+				onClick={(e) => {
+					e.stopPropagation()
+					setArchivedItems()
+				}}
 			>
 				<p className='text-white text-center'>{archivedItemsTitle}</p>
 			</div>

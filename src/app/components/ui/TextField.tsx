@@ -47,7 +47,7 @@ const TextField = ({
 	}, [])
 
 	return (
-		<div className='mb-4 w-full relative'>
+		<div className='mb-4 w-full relative' onClick={(e) => e.stopPropagation()}>
 			<label className='block text-xl mb-2 text text-white' htmlFor={labelFor}>
 				{label}
 			</label>

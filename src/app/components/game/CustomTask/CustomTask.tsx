@@ -116,7 +116,10 @@ const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
 				)}
 				<button
 					className={`flex justify-center items-center cursor-pointer h-[50px] aspect-square !absolute -bottom-1 -right-1 rounded-tl-lg overflow-hidden ${theme.vibrantBackgroundColor} text-2xl text-white`}
-					onClick={toggleTaskCreation}
+					onClick={(e) => {
+						e.stopPropagation()
+						toggleTaskCreation()
+					}}
 				>
 					&#10010;
 				</button>

@@ -36,9 +36,11 @@ const YolBox = () => {
 	}
 
 	const getYolHeight = () => {
-		if (yol.data.species.stage === SpeciesStages.ADO) return 'h-[70%]'
-		if (yol.data.species.stage === SpeciesStages.FINAL) return 'h-full'
-		return 'h-[50%]'
+		if (yol.data.species.stage === SpeciesStages.ADO)
+			return 'h-[80px] lg:h-[70%]'
+		if (yol.data.species.stage === SpeciesStages.FINAL)
+			return 'h-[80px] lg:h-full'
+		return 'h-[80px] lg:h-[50%]'
 	}
 
 	const animation =
