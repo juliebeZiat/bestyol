@@ -1,3 +1,5 @@
+'use client'
+
 import ProgressBar from '@/app/components/ui/ProgressBar'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/state/hooks'

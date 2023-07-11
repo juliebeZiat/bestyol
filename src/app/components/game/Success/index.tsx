@@ -7,12 +7,13 @@ import { useFetchAllUserSuccessQuery } from '@/services/queries/success'
 import { useEffect, useState } from 'react'
 import { UserSuccess } from '@/type/success.type'
 import Loader from '../../ui/Loader'
-import { useAppSelector } from '@/state/hooks'
+import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { setNotification } from '@/state/reducer/notification.reducer'
 
 const SuccessBox = () => {
 	const isMobile = useIsMobile()
-
+	const dispatch = useAppDispatch()
 	const userId = useAppSelector((state: RootState) => state.user.user.id)
 	const { data: userSuccess, isLoading } = useFetchAllUserSuccessQuery(userId)
 	const [incomingSuccess, setIncomingSuccess] = useState<UserSuccess[]>([])
@@ -25,6 +26,21 @@ const SuccessBox = () => {
 			setIncomingSuccess(uncompleteUserSuccess.slice(0, 3))
 		}
 	}, [userSuccess])
+
+	const successToValidate = userSuccess?.data.userSuccess.some(
+		(success) =>
+			success.actualAmount === success.success.amountNeeded &&
+			!success.isCompleted,
+	)
+
+	if (successToValidate) {
+		dispatch(
+			setNotification({
+				title: 'Il semblerait que tu aies un succès à valider !',
+				link: '/achievements',
+			}),
+		)
+	}
 
 	if (isLoading) return <Loader />
 	return (

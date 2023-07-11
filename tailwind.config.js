@@ -59,6 +59,7 @@ module.exports = {
         explode: 'explode 1s ease-in-out',
         evolveOut: 'evolveOut 12s forwards',
         evolveIn: 'evolveIn 12s forwards',
+        progressBar: 'progressBar 8s',
       },
       keyframes: {
         hovering: {
@@ -153,6 +154,14 @@ module.exports = {
             filter: 'brightness(100%)',
             transform: 'scale(1)',
             visibility: 'visible',
+          }
+        },
+        progressBar: {
+          '0%': {
+            width: '0'
+          },
+          '100%': {
+            width: '100%'
           }
         },
       },

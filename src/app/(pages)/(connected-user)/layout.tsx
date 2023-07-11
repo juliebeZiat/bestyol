@@ -31,11 +31,9 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 								<Navbar />
 							</div>
 							<div className='h-[92svh] w-full flex flex-col items-center justify-center'>
-								<Suspense fallback={<Loader />}>
-									{children}
-									<Notification />
-								</Suspense>
+								<Suspense fallback={<Loader />}>{children}</Suspense>
 							</div>
+							<Notification />
 						</>
 					) : (
 						<EvolutionCinematic

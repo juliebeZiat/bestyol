@@ -61,7 +61,10 @@ const AchievementsPage = () => {
 								? pendingAchievements
 								: completedAchievements
 							)?.map((achievement) => (
-								<AchievementTile achievement={achievement} />
+								<AchievementTile
+									achievement={achievement}
+									key={achievement.id}
+								/>
 							))}
 						</div>
 					</Box>
