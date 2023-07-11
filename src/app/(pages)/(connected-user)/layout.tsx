@@ -18,8 +18,9 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 		(state: RootState) => state.evolution.assets,
 	)
 
-	const { data: yolData } = useFetchUserYol(user.id)
+	const { data: yolData, isLoading } = useFetchUserYol(user.id)
 
+	if (isLoading) return <Loader />
 	if (isLogged) {
 		if (yolData) {
 			return (
@@ -38,7 +39,7 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 							previousForm={evolutionAssets.previousForm!}
 							newForm={evolutionAssets.newForm!}
 							animatedNewForm={evolutionAssets.animatedNewForm!}
-						  evolutionStep={evolutionAssets.evolutionStep}
+							evolutionStep={evolutionAssets.evolutionStep}
 						/>
 					)}
 				</>

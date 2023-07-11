@@ -15,7 +15,11 @@ import { useState } from 'react'
 
 const ChooseYourYol = () => {
 	const { isLogged, user } = useAppSelector((state: RootState) => state.user)
+
+	if (!isLogged) return redirect('/')
+
 	const { data: yolData } = useFetchUserYol(user.id)
+	console.log(yolData)
 
 	const [values, setValues] = useState({
 		name: '',
@@ -101,28 +105,26 @@ const ChooseYourYol = () => {
 		)
 	}
 
-	if (isLogged) {
-		if (!yolData) {
-			return (
-				<div className='h-[100svh] flex items-center justify-center text-white text-center'>
-					<form className='flex items-center justify-center'>
-						{useIsMobile() ? (
-							<div className='w-screen flex flex-col justify-center items-center gap-y-8'>
-								{BoxContent()}
-							</div>
-						) : (
-							<Box
-								centerItems
-								additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
-							>
-								{BoxContent()}
-							</Box>
-						)}
-					</form>
-				</div>
-			)
-		} else return redirect('/game')
-	}
+	if (!yolData) {
+		return (
+			<div className='h-[100svh] flex items-center justify-center text-white text-center'>
+				<form className='flex items-center justify-center'>
+					{useIsMobile() ? (
+						<div className='w-screen flex flex-col justify-center items-center gap-y-8'>
+							{BoxContent()}
+						</div>
+					) : (
+						<Box
+							centerItems
+							additionalStyle='h-[80vh] lg:aspect-square justify-between w-[80vw] 2xl:w-[60vw]'
+						>
+							{BoxContent()}
+						</Box>
+					)}
+				</form>
+			</div>
+		)
+	} else return redirect('/game')
 }
 
 export default ChooseYourYol

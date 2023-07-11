@@ -30,14 +30,7 @@ const ProfilePage = () => {
 		'form' | 'confirmation'
 	>('form')
 
-	const [hydrated, setHydrated] = useState(false)
 	const isMobile = useIsMobile()
-	useEffect(() => {
-		setHydrated(true)
-	}, [])
-	if (!hydrated) {
-		return null
-	}
 
 	if (!user) return null
 
