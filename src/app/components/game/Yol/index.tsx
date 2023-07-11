@@ -6,7 +6,6 @@ import { setNotification } from '@/state/reducer/notification.reducer'
 import { RootState } from '@/state/store'
 import { SpeciesStages } from '@/type/species.type'
 import {
-	evolutionLevels,
 	getEvolutionStep,
 	getFormattedDate,
 	isYolEvolving,
