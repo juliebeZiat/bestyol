@@ -17,7 +17,6 @@ const InitProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
 	const token = useAppSelector((state: RootState) => state.user.token)
 
 	useEffect(() => {
-		// axios.defaults.baseURL = 'http://tristan-derez-server.eddi.cloud:8080'
 		if (token) {
 			axios.defaults.headers.common = { Authorization: `Bearer ${token}` }
 		}

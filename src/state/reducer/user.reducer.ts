@@ -27,6 +27,10 @@ export const user = createSlice({
 			state.token = payload
 			axios.defaults.headers.common = { Authorization: `Bearer ${state.token}` }
 		},
+		setAccessToken: (state, { payload }) => {
+			state.token = payload
+			axios.defaults.headers.common = { Authorization: `Bearer ${state.token}` }
+		},
 		setUser: (state, action: PayloadAction<User>) => {
 			state.user = action.payload
 			const selectedTheme = localStorage.getItem('selectedTheme')
@@ -47,5 +51,5 @@ export const user = createSlice({
 	},
 })
 
-export const { login, logout, setUser, setTheme } = user.actions
+export const { login, logout, setUser, setTheme, setAccessToken } = user.actions
 export default user.reducer

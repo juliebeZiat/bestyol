@@ -86,7 +86,7 @@ const ChooseYourYol = () => {
 				{isError && (
 					<div>
 						<p className='text-lg text-error'>
-							Il y a eu un problème de la création du Yol
+							Il y a eu un problème lors de la création du Yol
 							{requestError && `: ${requestError}`}
 						</p>
 					</div>
