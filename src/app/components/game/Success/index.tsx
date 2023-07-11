@@ -20,7 +20,7 @@ const SuccessBox = () => {
 	useEffect(() => {
 		if (userSuccess) {
 			const uncompleteUserSuccess = userSuccess.data.userSuccess.filter(
-				(success) => success.actualAmount < success.success.amountNeeded,
+				(success) => !success.isCompleted,
 			)
 			setIncomingSuccess(uncompleteUserSuccess.slice(0, 3))
 		}
