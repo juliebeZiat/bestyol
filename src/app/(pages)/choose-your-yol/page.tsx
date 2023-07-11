@@ -19,7 +19,6 @@ const ChooseYourYol = () => {
 	if (!isLogged) return redirect('/')
 
 	const { data: yolData } = useFetchUserYol(user.id)
-	console.log(yolData)
 
 	const [values, setValues] = useState({
 		name: '',
