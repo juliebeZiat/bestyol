@@ -7,9 +7,15 @@ interface AudioPlayerProps {
 	source: string
 	isLoop?: boolean
 	player?: boolean
+	delay?: number
 }
 
-const AudioPlayer = ({ source, isLoop = false, player }: AudioPlayerProps) => {
+const AudioPlayer = ({
+	source,
+	isLoop = false,
+	player,
+	delay = 0,
+}: AudioPlayerProps) => {
 	const [audioPlaying, setAudioPlaying] = useState(false)
 	const audioPlayer = useRef<HTMLAudioElement>(null)
 
@@ -31,7 +37,10 @@ const AudioPlayer = ({ source, isLoop = false, player }: AudioPlayerProps) => {
 
 	useEffect(() => {
 		if (!audioPlayer.current) return
-		audioPlayer.current.play()
+		setTimeout(() => {
+			if (!audioPlayer.current) return
+			audioPlayer.current.play()
+		}, delay)
 	}, [])
 
 	const setVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
