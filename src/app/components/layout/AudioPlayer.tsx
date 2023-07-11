@@ -1,8 +1,15 @@
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
-const AudioPlayer = () => {
+interface AudioPlayerProps {
+	source: string
+	isLoop?: boolean
+	player?: boolean
+}
+
+const AudioPlayer = ({ source, isLoop = false, player }: AudioPlayerProps) => {
 	const [audioPlaying, setAudioPlaying] = useState(false)
 	const audioPlayer = useRef<HTMLAudioElement>(null)
 
@@ -33,22 +40,33 @@ const AudioPlayer = () => {
 		console.log(parseInt(e.target.value) / 100)
 	}
 
-	const theme = useAppSelector((state: RootState) => state.user.theme)
-
 	return (
 		<>
-			<audio ref={audioPlayer} loop src='/audio/Hyperspace.wav' />
-			<button
-				onClick={() => setAudioPlaying(!audioPlaying)}
-				className={`!absolute top-[8vh] left-[2rem] rounded-full pixel-corners w-[2vw] aspect-square ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor} text-white`}
-			>
-				{audioPlaying ? 'PAUSE' : 'PLAY'}
-			</button>
-			<input
-				type='range'
-				className={`!absolute top-[15vh] left-[2rem] -rotate-90`}
-				onChange={(e) => setVolume(e)}
-			/>
+			<audio ref={audioPlayer} loop={isLoop} src={source} />
+			{player && (
+				<>
+					<div className='flex gap-2'>
+						<div
+							className='cursor-pointer flex'
+							onClick={() => setAudioPlaying(!audioPlaying)}
+						>
+							<Image
+								src={
+									audioPlaying
+										? '/assets/icons/play.svg'
+										: '/assets/icons/pause.svg'
+								}
+								width={30}
+								height={30}
+								alt='edit-icon'
+								className='invert'
+								onClick={() => setAudioPlaying(true)}
+							/>
+						</div>
+						{/* <input type='range' className='' onChange={(e) => setVolume(e)} /> */}
+					</div>
+				</>
+			)}
 		</>
 	)
 }
