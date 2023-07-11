@@ -9,6 +9,7 @@ import SuccessAsset from '../ui/SuccessAsset'
 import { useMutationValidateUserSuccess } from '@/services/mutations/success'
 import { UserSuccess } from '@/type/success.type'
 import { useFetchUserYol } from '@/services/queries/yol'
+import AudioPlayer from '../layout/AudioPlayer'
 
 interface AchievementTileProps {
 	achievement: UserSuccess
@@ -41,61 +42,66 @@ const AchievementTile = ({ achievement }: AchievementTileProps) => {
 
 		setTimeout(() => {
 			setIsExploding(true)
-		}, 1000)
+		}, 3000)
 	}
 
 	return (
-		<div
-			className={`${
-				actualAmount < success.amountNeeded
-					? 'bg-lowOpacity'
-					: `${theme.vibrantBackgroundColor}`
-			} h-[15vh] p-8 w-[80%] flex ${
-				useIsMobile() ? 'h-full flex-col gap-y-[1rem]' : ''
-			} items-center relative text-white gap-x-[1rem] pixel-corners-items`}
-		>
-			<SuccessAsset
-				image={success.image ?? '/assets/yols/egg/static/pouasson.png'}
-				amount={success.amountNeeded}
-				size={60}
-			/>
-			<div>
-				<p className='text-2xl'>{success.title}</p>
-				<p className='text-lg'>{success.description}</p>
-			</div>
-			<div className='absolute top-[1rem] right-[1rem] text-end text-2xl'>
-				{isExploding && <ConfettiExplosion colors={['#FFF']} />}
-				{actualAmount < success.amountNeeded && (
-					<p>
-						{actualAmount}/{success.amountNeeded}
-					</p>
-				)}
-				<p>+{success.successXp}xp</p>
-			</div>
-			{actualAmount === success.amountNeeded && !isCompleted && (
-				<div className='lg:absolute right-[1rem] top-12'>
-					<Button
-						content='Valider mon succès'
-						backgroundColor={theme.secondaryBackgroundColor}
-						size={ButtonSize.Small}
-						additionalStyle={`mt-1 ${validateSuccess && 'animate-explode'}`}
-						onClick={handleValidateSuccess}
-					/>
-				</div>
-			)}
-			{actualAmount < success.amountNeeded && (
-				<div
-					className={`absolute -bottom-1 left-0 h-[7px] customWidth ${theme.vibrantBackgroundColor}`}
+		<>
+			<div
+				className={`${
+					actualAmount < success.amountNeeded
+						? 'bg-lowOpacity'
+						: `${theme.vibrantBackgroundColor}`
+				} h-[15vh] p-8 w-[80%] flex ${
+					useIsMobile() ? 'h-full flex-col gap-y-[1rem]' : ''
+				} items-center relative text-white gap-x-[1rem] pixel-corners-items`}
+			>
+				<SuccessAsset
+					image={success.image ?? '/assets/yols/egg/static/pouasson.png'}
+					amount={success.amountNeeded}
+					size={60}
 				/>
-			)}
-			<style jsx>
-				{`
-					.customWidth {
-						width: ${Math.round((actualAmount / success.amountNeeded) * 100)}%;
-					}
-				`}
-			</style>
-		</div>
+				<div>
+					<p className='text-2xl'>{success.title}</p>
+					<p className='text-lg'>{success.description}</p>
+				</div>
+				<div className='absolute top-[1rem] right-[1rem] text-end text-2xl'>
+					{isExploding && <ConfettiExplosion colors={['#FFF']} />}
+					{actualAmount < success.amountNeeded && (
+						<p>
+							{actualAmount}/{success.amountNeeded}
+						</p>
+					)}
+					<p>+{success.successXp}xp</p>
+				</div>
+				{actualAmount === success.amountNeeded && !isCompleted && (
+					<div className='lg:absolute right-[1rem] top-12'>
+						<Button
+							content='Valider mon succès'
+							backgroundColor={theme.secondaryBackgroundColor}
+							size={ButtonSize.Small}
+							additionalStyle={`mt-1 ${validateSuccess && 'animate-explode'}`}
+							onClick={handleValidateSuccess}
+						/>
+					</div>
+				)}
+				{actualAmount < success.amountNeeded && (
+					<div
+						className={`absolute -bottom-1 left-0 h-[7px] customWidth ${theme.vibrantBackgroundColor}`}
+					/>
+				)}
+				<style jsx>
+					{`
+						.customWidth {
+							width: ${Math.round(
+								(actualAmount / success.amountNeeded) * 100,
+							)}%;
+						}
+					`}
+				</style>
+			</div>
+			{validateSuccess && <AudioPlayer source='/audio/success.mp3' autoPlay />}
+		</>
 	)
 }
 

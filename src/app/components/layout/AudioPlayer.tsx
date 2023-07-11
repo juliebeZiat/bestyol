@@ -8,6 +8,7 @@ interface AudioPlayerProps {
 	isLoop?: boolean
 	player?: boolean
 	delay?: number
+	autoPlay?: boolean
 }
 
 const AudioPlayer = ({
@@ -15,38 +16,35 @@ const AudioPlayer = ({
 	isLoop = false,
 	player,
 	delay = 0,
+	autoPlay = false,
 }: AudioPlayerProps) => {
 	const [audioPlaying, setAudioPlaying] = useState(false)
 	const audioPlayer = useRef<HTMLAudioElement>(null)
 
 	useEffect(() => {
-		console.log('audio use effet')
 		if (!audioPlayer.current) {
-			console.log('no audioplayer.current')
 			return
 		}
-		console.log(audioPlayer.current)
 		if (!audioPlaying) {
-			console.log('pause audio')
 			audioPlayer.current?.pause()
 		} else {
-			console.log('play audio')
 			audioPlayer.current?.play()
 		}
 	}, [audioPlaying])
 
 	useEffect(() => {
-		if (!audioPlayer.current) return
-		setTimeout(() => {
+		if (autoPlay) {
 			if (!audioPlayer.current) return
-			audioPlayer.current.play()
-		}, delay)
+			setTimeout(() => {
+				if (!audioPlayer.current) return
+				audioPlayer.current.play()
+			}, delay)
+		}
 	}, [])
 
 	const setVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (audioPlayer.current)
 			audioPlayer.current.volume = parseInt(e.target.value) / 100
-		console.log(parseInt(e.target.value) / 100)
 	}
 
 	return (

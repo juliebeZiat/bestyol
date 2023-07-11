@@ -56,7 +56,7 @@ module.exports = {
         flashEvolve: 'flash 4s ease-out 9s',
         jump: 'jump .5s 2 3s',
         jumpInfinite: 'jumpInfinite 2s infinite',
-        explode: 'explode 1s ease-in-out',
+        explode: 'explode .8s ease-in-out 3',
         evolveOut: 'evolveOut 12s forwards',
         evolveIn: 'evolveIn 12s forwards',
       },

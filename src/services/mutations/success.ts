@@ -20,7 +20,7 @@ export const useMutationValidateUserSuccess = () => {
 				setTimeout(() => {
 					queryClient.invalidateQueries(['yol'])
 					queryClient.invalidateQueries(['userSuccess'])
-				}, 1100)
+				}, 3300)
 			},
 		},
 	)
