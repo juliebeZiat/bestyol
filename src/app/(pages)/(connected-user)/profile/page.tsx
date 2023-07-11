@@ -8,13 +8,15 @@ import Modal from '@/app/components/ui/Modal'
 import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { availableAvatars, availableBanners } from './profileImages'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { themes } from '@/utils/themes'
 
 const ProfilePage = () => {
 	const user = useAppSelector((state: RootState) => state.user.user)
+	const theme = useAppSelector((state: RootState) => state.user.theme)
 
 	const [userAvatar, setUserAvatar] = useState<string>(
 		'/assets/avatars/Icon1.png',
@@ -59,22 +61,24 @@ const ProfilePage = () => {
 				onClose={() => setModalAvatarIsOpen(false)}
 				title='Modifier mon avatar'
 			>
-				<div className='flex flex-col items-center justify-center gap-10 basis-[33%] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
-					<div className='flex flex-wrap gap-4 justify-center'>
+				<div className='h-[700px] flex flex-col justify-center gap-10'>
+					<div className='h-[80%] overflow-y-auto flex flex-wrap items-center gap-3'>
 						{availableAvatars.map((avatar, index) => (
-							<Image
-								key={index}
-								src={avatar}
-								alt='avatar'
-								width={100}
-								height={100}
-								className={`cursor-pointer h-[100px] w-[100px] ${
-									userAvatar === avatar
-										? 'border-2 border-white border-darkLowOpacity'
-										: ''
-								}`}
-								onClick={() => setUserAvatar(avatar)}
-							/>
+							<div>
+								<Image
+									key={index}
+									src={avatar}
+									alt='avatar'
+									width={100}
+									height={100}
+									className={`cursor-pointer h-[100px] w-[100px] ${
+										userAvatar === avatar
+											? 'border-2 border-white border-darkLowOpacity'
+											: ''
+									}`}
+									onClick={() => setUserAvatar(avatar)}
+								/>
+							</div>
 						))}
 
 						<div
@@ -93,51 +97,9 @@ const ProfilePage = () => {
 					<Button
 						content='Valider'
 						onClick={() => setModalAvatarIsOpen(false)}
-						backgroundColor='bg-orange'
-						additionalStyle='self-center w-[50%]'
-					/>
-				</div>
-			</Modal>
-
-			<Modal
-				isOpen={modalBannerIsOpen}
-				onClose={() => setModalBannerIsOpen(false)}
-				title='Modifier ma bannière'
-			>
-				<div className='flex flex-col items-center justify-center gap-10 sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
-					<div className='flex flex-wrap gap-4'>
-						{availableBanners.map((banner, index) => (
-							<Image
-								key={index}
-								src={banner}
-								alt='banner'
-								width={200}
-								height={100}
-								className={`cursor-pointer aspect-video object-contain ${
-									userBanner === banner ? 'border-2 border-white' : ''
-								}`}
-								onClick={() => setUserBanner(banner)}
-							/>
-						))}
-
-						<div
-							className='flex justify-center items-center cursor-pointer h-[100px] w-[100px] border border-darkLowOpacity'
-							onClick={() => {
-								const randomBanner =
-									availableBanners[
-										Math.floor(Math.random() * availableBanners.length)
-									]
-								setUserBanner(randomBanner)
-							}}
-						>
-							<div className='text-4xl font-bold text-white select-none'>?</div>
-						</div>
-					</div>
-					<Button
-						content='Valider'
-						onClick={() => setModalBannerIsOpen(false)}
-						backgroundColor='bg-orange'
-						additionalStyle='self-center w-[50%]'
+						backgroundColor={theme.secondaryBackgroundColor}
+						textColor='text-white'
+						additionalStyle='self-center w-fit'
 					/>
 				</div>
 			</Modal>
@@ -154,7 +116,8 @@ const ProfilePage = () => {
 					</div>
 					<Button
 						content='Valider'
-						backgroundColor='bg-orange'
+						backgroundColor={theme.secondaryBackgroundColor}
+						textColor='text-white'
 						additionalStyle='w-[50%] self-center'
 					/>
 				</div>
@@ -172,7 +135,8 @@ const ProfilePage = () => {
 						<TextField label='Confirmer le nouveau mot de passe' />
 						<Button
 							content='Valider'
-							backgroundColor='bg-orange'
+							backgroundColor={theme.secondaryBackgroundColor}
+							textColor='text-white'
 							additionalStyle='w-[50%] self-center'
 						/>
 					</div>
@@ -194,7 +158,8 @@ const ProfilePage = () => {
 								<TextField label='Mot de passe' />
 								<Button
 									content='Valider'
-									backgroundColor='bg-orange'
+									backgroundColor={theme.secondaryBackgroundColor}
+									textColor='text-white'
 									additionalStyle='w-[50%] self-center'
 									onClick={() => setDeleteAccountStateView('confirmation')}
 								/>
@@ -218,7 +183,8 @@ const ProfilePage = () => {
 									/>
 									<Button
 										content='Non'
-										backgroundColor='bg-orange'
+										backgroundColor={theme.secondaryBackgroundColor}
+										textColor='text-white'
 										additionalStyle='w-[50%]'
 										onClick={() => {
 											setModalDeleteAccountIsOpen(false)
