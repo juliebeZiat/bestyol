@@ -40,7 +40,7 @@ const SigninPage = () => {
 			setErrors({})
 			await mutateAsync(data, {
 				onSuccess: async (data) => {
-					dispatch(login(data.token))
+					dispatch(login(data.accessToken))
 					dispatch(setUser(data.user))
 				},
 				onError: async (error: any) => {

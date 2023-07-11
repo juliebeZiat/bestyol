@@ -25,7 +25,7 @@ const LoginPage = () => {
 		const data = { username: values.username, password: values.password }
 		await mutateAsync(data, {
 			onSuccess: async (responseData) => {
-				dispatch(login(responseData.token))
+				dispatch(login(responseData.accessToken))
 				dispatch(setUser(responseData.user))
 			},
 		})
