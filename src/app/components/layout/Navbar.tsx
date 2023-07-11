@@ -11,6 +11,7 @@ import { RootState } from '@/state/store'
 import { logout, setTheme } from '@/state/reducer/user.reducer'
 import ProgressBar from '../ui/ProgressBar'
 import { getYolCurrentLevel } from '@/utils/utils'
+import AudioPlayer from './AudioPlayer'
 
 const Navbar = () => {
 	const dispatch = useAppDispatch()
@@ -86,50 +87,55 @@ const Navbar = () => {
 						/> */}
 					</div>
 
-					<div
-						ref={menuRef}
-						className='ml-3 relative flex gap-3 items-center'
-						onClick={() => {
-							setMenuIsOpen(!menuIsOpen)
-						}}
-					>
-						<Image
-							src={user.pp}
-							alt='user profile'
-							className={`border-[2px] border-black`}
-							width={40}
-							height={40}
-						/>
-						<div className='rotate-90 text-2xl select-none cursor-pointer'>
-							&gt;
+					<div className='flex items-center'>
+						<div>
+							<AudioPlayer isLoop player source='/audio/Hyperspace.wav' />
 						</div>
-						{menuIsOpen && (
-							<ul className='absolute top-[51px] left-[-80px] z-50'>
-								<a className='cursor-pointer' href={'/profile'}>
-									<li
-										className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
-									>
-										Profil
-									</li>
-								</a>
+						<div
+							ref={menuRef}
+							className='ml-3 relative flex gap-3 items-center'
+							onClick={() => {
+								setMenuIsOpen(!menuIsOpen)
+							}}
+						>
+							<Image
+								src={user.pp}
+								alt='user profile'
+								className={`border-[2px] border-black`}
+								width={40}
+								height={40}
+							/>
+							<div className='rotate-90 text-2xl select-none cursor-pointer'>
+								&gt;
+							</div>
+							{menuIsOpen && (
+								<ul className='absolute top-[51px] left-[-80px] z-50'>
+									<a className='cursor-pointer' href={'/profile'}>
+										<li
+											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
+										>
+											Profil
+										</li>
+									</a>
 
-								<a className='cursor-pointer' href={'/'}>
-									<li
-										className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
-										onClick={() => dispatch(logout())}
-									>
-										Déconnexion
-									</li>
-								</a>
+									<a className='cursor-pointer' href={'/'}>
+										<li
+											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
+											onClick={() => dispatch(logout())}
+										>
+											Déconnexion
+										</li>
+									</a>
 
-								<li
-									className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
-									onClick={() => setIsThemeModalOpen(true)}
-								>
-									Thèmes de couleur
-								</li>
-							</ul>
-						)}
+									<li
+										className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
+										onClick={() => setIsThemeModalOpen(true)}
+									>
+										Thèmes de couleur
+									</li>
+								</ul>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>

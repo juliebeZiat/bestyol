@@ -6,9 +6,9 @@ import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { endEvolution } from '@/state/reducer/evolution.reducer'
 import { RootState } from '@/state/store'
 import { EvolutionAssets } from '@/type/yol.type'
-import { getEvolutionStep } from '@/utils/utils'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import AudioPlayer from '../layout/AudioPlayer'
 
 const EvolutionCinematic = ({
 	previousForm,
@@ -42,6 +42,11 @@ const EvolutionCinematic = ({
 
 	return (
 		<>
+			{evolutionStep === 0 ? (
+				<AudioPlayer source={'/audio/egg-evolution.wav'} delay={1000} />
+			) : (
+				<AudioPlayer source={'/audio/species-evolution.wav'} />
+			)}
 			<div className='bg-[#000] w-full h-[10vh] flex items-center p-[2rem]'>
 				{hasEvolved && (
 					<button
