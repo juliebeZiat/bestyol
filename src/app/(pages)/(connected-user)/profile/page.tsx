@@ -9,21 +9,19 @@ import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import { useState } from 'react'
-import { availableAvatars, availableBanners } from './profileImages'
+import { availableAvatars } from './profileImages'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import { themes } from '@/utils/themes'
+import CredentialsForm from '@/app/components/profile/CredentialsForm'
+import PasswordForm from '@/app/components/profile/PasswordForm'
 
 const ProfilePage = () => {
-	const user = useAppSelector((state: RootState) => state.user.user)
-	const theme = useAppSelector((state: RootState) => state.user.theme)
+	const { user, theme } = useAppSelector((state: RootState) => state.user)
 
 	const [userAvatar, setUserAvatar] = useState<string>(
 		'/assets/avatars/Icon1.png',
 	)
-	const [userBanner, setUserBanner] = useState<string>('/assets/mountain.png')
 	const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(false)
-	const [modalBannerIsOpen, setModalBannerIsOpen] = useState(false)
 	const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false)
 	const [modalPasswordIsOpen, setModalPasswordIsOpen] = useState(false)
 	const [modalDeleteAccountIsOpen, setModalDeleteAccountIsOpen] =
@@ -109,18 +107,7 @@ const ProfilePage = () => {
 				onClose={() => setModalInfoIsOpen(false)}
 				title='Modifier mon profil'
 			>
-				<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
-					<div className='flex flex-col gap-5'>
-						<TextField label='Nom' />
-						<TextField label='Email' />
-					</div>
-					<Button
-						content='Valider'
-						backgroundColor={theme.secondaryBackgroundColor}
-						textColor='text-white'
-						additionalStyle='w-[50%] self-center'
-					/>
-				</div>
+				<CredentialsForm closeModal={() => setModalInfoIsOpen(false)} />
 			</Modal>
 
 			<Modal
@@ -128,19 +115,7 @@ const ProfilePage = () => {
 				onClose={() => setModalPasswordIsOpen(false)}
 				title='Modifier mon mot de passe'
 			>
-				<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
-					<div className='flex flex-col gap-5'>
-						<TextField label='Mot de passe actuel' />
-						<TextField label='Nouveau mot de passe' />
-						<TextField label='Confirmer le nouveau mot de passe' />
-						<Button
-							content='Valider'
-							backgroundColor={theme.secondaryBackgroundColor}
-							textColor='text-white'
-							additionalStyle='w-[50%] self-center'
-						/>
-					</div>
-				</div>
+				<PasswordForm closeModal={() => setModalPasswordIsOpen(false)} />
 			</Modal>
 
 			<Modal

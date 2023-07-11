@@ -7,3 +7,12 @@ export interface User {
 	password: string
 	createdAt: string
 }
+
+export interface UserEditCredentialsRequest {
+	username?: string
+	email?: string
+}
+
+export interface UserEditPasswordRequest {
+	password: string
+}
