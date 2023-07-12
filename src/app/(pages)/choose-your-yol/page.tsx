@@ -18,7 +18,7 @@ const ChooseYourYol = () => {
 
 	if (!isLogged) return redirect('/')
 
-	const { data: yolData } = useFetchUserYol(user.id)
+	const { data: yolData, isLoading: loadingYol } = useFetchUserYol(user.id)
 
 	const [values, setValues] = useState({
 		name: '',
@@ -104,7 +104,7 @@ const ChooseYourYol = () => {
 		)
 	}
 
-	if (!yolData?.data.id) {
+	if (!loadingYol && !yolData?.data.id) {
 		return (
 			<div className='h-[100svh] flex items-center justify-center text-white text-center'>
 				<form className='flex items-center justify-center'>
