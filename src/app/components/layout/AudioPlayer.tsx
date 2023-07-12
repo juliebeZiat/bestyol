@@ -35,9 +35,6 @@ const AudioPlayer = ({
 	}, [muted])
 
 	useEffect(() => {
-		console.log('autoplay: ', autoPlay)
-		console.log('muted: ', muted)
-		console.log('both: ', autoPlay && !muted)
 		if (autoPlay && !muted) {
 			if (!audioPlayer.current) return
 			setTimeout(() => {
