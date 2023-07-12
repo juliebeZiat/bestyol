@@ -1,6 +1,7 @@
 'use client'
 import Box from '@/app/components/ui/Box'
 import Button, { ButtonSize } from '@/app/components/ui/Button'
+import Loader from '@/app/components/ui/Loader'
 import TextField from '@/app/components/ui/TextField'
 import YolCarousel from '@/app/components/ui/YolCarousel'
 import { useIsMobile } from '@/hooks/useWindowSize'
@@ -104,7 +105,8 @@ const ChooseYourYol = () => {
 		)
 	}
 
-	if (!loadingYol && !yolData?.data.id) {
+	if (loadingYol) return <Loader />
+	if (!yolData?.data.id) {
 		return (
 			<div className='h-[100svh] flex items-center justify-center text-white text-center'>
 				<form className='flex items-center justify-center'>
