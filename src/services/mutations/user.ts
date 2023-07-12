@@ -29,9 +29,18 @@ export const useMutationEditUserCredentials = () => {
 export const useMutationEditUserPassword = () => {
 	const queryClient = useQueryClient()
 	return useMutation(
-		async ({ userId, password }: { userId: number; password: string }) => {
+		async ({
+			userId,
+			formerPassword,
+			newPassword,
+		}: {
+			userId: number
+			formerPassword: string
+			newPassword: string
+		}) => {
 			return await userService.editUserPassword(userId, {
-				password,
+				formerPassword,
+				newPassword,
 			})
 		},
 		{

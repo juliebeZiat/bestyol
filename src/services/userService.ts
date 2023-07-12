@@ -15,7 +15,7 @@ const editUserCredentials = async (
 	{ username, email }: UserEditCredentialsRequest,
 ) => {
 	const response = await axios.patch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/user/edit/credentials/${userId}`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/user/edit/username_email/${userId}`,
 		{
 			username,
 			email,
@@ -26,12 +26,13 @@ const editUserCredentials = async (
 
 const editUserPassword = async (
 	userId: number,
-	{ password }: UserEditPasswordRequest,
+	{ formerPassword, newPassword }: UserEditPasswordRequest,
 ) => {
 	const response = await axios.patch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user/edit/password/${userId}`,
 		{
-			password,
+			formerPassword,
+			newPassword,
 		},
 	)
 	return response.data

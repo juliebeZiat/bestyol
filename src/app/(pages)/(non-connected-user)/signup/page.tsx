@@ -99,7 +99,7 @@ const SigninPage = () => {
 				{isError && (
 					<div>
 						<p className='text-lg text-error'>
-							Il y a eu un problème de l'inscription
+							Il y a eu un problème lors de l'inscription
 							{requestError && `: ${requestError}`}
 						</p>
 					</div>

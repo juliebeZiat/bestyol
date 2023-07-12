@@ -17,6 +17,7 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 	const { user, theme } = useAppSelector((state: RootState) => state.user)
 
 	const [passwordValues, setPasswordValues] = useState({
+		formerPassword: '',
 		newPassword: '',
 		newPasswordConfirm: '',
 	})
@@ -28,8 +29,9 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 
 	const handleSubmit = async () => {
 		const data = {
-			password: passwordValues.newPassword,
-			passwordConfirm: passwordValues.newPasswordConfirm,
+			formerPassword: passwordValues.formerPassword,
+			newPassword: passwordValues.newPassword,
+			newPasswordConfirm: passwordValues.newPasswordConfirm,
 			userId: user.id,
 		}
 
@@ -38,7 +40,7 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 			setErrors({})
 			await mutateAsync(data, {
 				onSuccess: async (data) => {
-					// dispatch(setUser(data))
+					dispatch(setUser(data))
 					// dispatch(setNotification({title: "Votre mot de passe a bien été modifié", link: ""}))
 					closeModal()
 				},
@@ -61,9 +63,17 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 		<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
 			<div className='flex flex-col gap-5'>
 				<TextField
-					label='Mot de passe actuel'
+					value={passwordValues.formerPassword}
+					onChange={(e) =>
+						setPasswordValues({
+							...passwordValues,
+							formerPassword: e.target.value,
+						})
+					}
+					label='Votre mot de passe'
+					labelFor='formerPassword'
 					inputType='password'
-					inputFocus
+					errorMessage={errors['formerPassword']}
 				/>
 				<TextField
 					value={passwordValues.newPassword}
@@ -76,7 +86,7 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 					label='Votre mot de passe'
 					labelFor='newPassword'
 					inputType='password'
-					errorMessage={errors['password']}
+					errorMessage={errors['newPassword']}
 				/>
 				<TextField
 					value={passwordValues.newPasswordConfirm}
@@ -89,12 +99,12 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 					label='Confirmation de votre mot de passe'
 					labelFor='newPasswordConfirm'
 					inputType='password'
-					errorMessage={errors['passwordConfirm']}
+					errorMessage={errors['newPasswordConfirm']}
 				/>
 				{isError && (
 					<div>
 						<p className='text-lg text-error'>
-							Il y a eu un problème de la modification du mot de passe
+							Il y a eu un problème lors de la modification du mot de passe
 							{requestError && `: ${requestError}`}
 						</p>
 					</div>

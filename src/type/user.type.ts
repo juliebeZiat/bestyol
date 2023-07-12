@@ -14,5 +14,6 @@ export interface UserEditCredentialsRequest {
 }
 
 export interface UserEditPasswordRequest {
-	password: string
+	formerPassword: string
+	newPassword: string
 }
