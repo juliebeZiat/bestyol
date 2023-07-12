@@ -1,4 +1,5 @@
-import { useAppSelector } from '@/state/hooks'
+import { useAppDispatch, useAppSelector } from '@/state/hooks'
+import { toggleMute } from '@/state/reducer/sound.reducer'
 import { RootState } from '@/state/store'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
@@ -18,22 +19,23 @@ const AudioPlayer = ({
 	delay = 0,
 	autoPlay = false,
 }: AudioPlayerProps) => {
-	const [audioPlaying, setAudioPlaying] = useState(false)
 	const audioPlayer = useRef<HTMLAudioElement>(null)
+	const muted = useAppSelector((state: RootState) => state.sound.muted)
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		if (!audioPlayer.current) {
 			return
 		}
-		if (!audioPlaying) {
+		if (muted) {
 			audioPlayer.current?.pause()
 		} else {
 			audioPlayer.current?.play()
 		}
-	}, [audioPlaying])
+	}, [muted])
 
 	useEffect(() => {
-		if (autoPlay) {
+		if (autoPlay && !muted) {
 			if (!audioPlayer.current) return
 			setTimeout(() => {
 				if (!audioPlayer.current) return
@@ -55,19 +57,17 @@ const AudioPlayer = ({
 					<div className='flex gap-2'>
 						<div
 							className='cursor-pointer flex'
-							onClick={() => setAudioPlaying(!audioPlaying)}
+							onClick={() => dispatch(toggleMute({ muted: !muted }))}
 						>
 							<Image
 								src={
-									audioPlaying
-										? '/assets/icons/play.svg'
-										: '/assets/icons/pause.svg'
+									!muted ? '/assets/icons/play.svg' : '/assets/icons/pause.svg'
 								}
 								width={30}
 								height={30}
 								alt='edit-icon'
 								className='invert'
-								onClick={() => setAudioPlaying(true)}
+								// onClick={() => setAudioPlaying(true)}
 							/>
 						</div>
 						{/* <input type='range' className='' onChange={(e) => setVolume(e)} /> */}

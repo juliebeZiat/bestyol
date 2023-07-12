@@ -32,5 +32,5 @@ export default function useWindowSize() {
 
 export function useIsMobile() {
     const { windowWidth } = useWindowSize();
-    return windowWidth < 900;
+    return windowWidth < 1024;
 }
