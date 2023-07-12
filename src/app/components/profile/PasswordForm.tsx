@@ -15,7 +15,7 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 	const dispatch = useAppDispatch()
 	const { user, theme } = useAppSelector((state: RootState) => state.user)
 
-	const [passwordValues, setPasswordValues] = useState({
+	const [values, setValues] = useState({
 		formerPassword: '',
 		newPassword: '',
 		newPasswordConfirm: '',
@@ -28,9 +28,9 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 
 	const handleSubmit = async () => {
 		const data = {
-			formerPassword: passwordValues.formerPassword,
-			newPassword: passwordValues.newPassword,
-			newPasswordConfirm: passwordValues.newPasswordConfirm,
+			formerPassword: values.formerPassword,
+			newPassword: values.newPassword,
+			newPasswordConfirm: values.newPasswordConfirm,
 			userId: user.id,
 		}
 
@@ -64,10 +64,10 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 		<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
 			<div className='flex flex-col gap-5'>
 				<TextField
-					value={passwordValues.formerPassword}
+					value={values.formerPassword}
 					onChange={(e) =>
-						setPasswordValues({
-							...passwordValues,
+						setValues({
+							...values,
 							formerPassword: e.target.value,
 						})
 					}
@@ -77,10 +77,10 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 					errorMessage={errors['formerPassword']}
 				/>
 				<TextField
-					value={passwordValues.newPassword}
+					value={values.newPassword}
 					onChange={(e) =>
-						setPasswordValues({
-							...passwordValues,
+						setValues({
+							...values,
 							newPassword: e.target.value,
 						})
 					}
@@ -90,10 +90,10 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 					errorMessage={errors['newPassword']}
 				/>
 				<TextField
-					value={passwordValues.newPasswordConfirm}
+					value={values.newPasswordConfirm}
 					onChange={(e) =>
-						setPasswordValues({
-							...passwordValues,
+						setValues({
+							...values,
 							newPasswordConfirm: e.target.value,
 						})
 					}

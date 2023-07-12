@@ -27,7 +27,7 @@ const AvatarForm = ({ closeModal }: AvatarFormProps) => {
 
 		await mutateAsync(data, {
 			onSuccess: async (data) => {
-				dispatch(setUserAvatar(data.pp))
+				dispatch(setUserAvatar(data.updatedPp.pp))
 				closeModal()
 			},
 		})

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import userService from '../userService'
 
-export const useMutationEditUserCredentials = () => {
+export const useMutationEditUserUsernamePassword = () => {
 	const queryClient = useQueryClient()
 	return useMutation(
 		async ({
@@ -13,7 +13,7 @@ export const useMutationEditUserCredentials = () => {
 			username?: string
 			email?: string
 		}) => {
-			return await userService.editUserCredentials(userId, {
+			return await userService.editUserUsernamePassword(userId, {
 				username,
 				email,
 			})

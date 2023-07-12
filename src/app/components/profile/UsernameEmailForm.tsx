@@ -3,21 +3,20 @@ import TextField from '../ui/TextField'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import Button from '../ui/Button'
-import { useMutationEditUserCredentials } from '@/services/mutations/user'
-import { editUserCredentialsSchema } from '@/utils/formValidationSchema'
-import Loader from '../ui/Loader'
+import { editUserUsernameEmailSchema } from '@/utils/formValidationSchema'
 import { setNotification } from '@/state/reducer/notification.reducer'
 import { setUserUsernameEmail } from '@/state/reducer/user.reducer'
+import { useMutationEditUserUsernamePassword } from '@/services/mutations/user'
 
-interface CredentialsFormProps {
+interface UsernameEmailFormProps {
 	closeModal: () => void
 }
 
-const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
+const UsernameEmailForm = ({ closeModal }: UsernameEmailFormProps) => {
 	const dispatch = useAppDispatch()
 	const { user, theme } = useAppSelector((state: RootState) => state.user)
 
-	const [credentialsValues, setCredentialsValues] = useState({
+	const [values, setValues] = useState({
 		username: user.username,
 		email: user.email,
 	})
@@ -25,24 +24,24 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 	const [requestError, setRequestError] = useState<string | null>()
 	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-	const { mutateAsync, isError } = useMutationEditUserCredentials()
+	const { mutateAsync, isError } = useMutationEditUserUsernamePassword()
 
 	const handleSubmit = async () => {
 		const data = {
-			username: credentialsValues.username,
-			email: credentialsValues.email,
+			username: values.username,
+			email: values.email,
 			userId: user.id,
 		}
 
 		try {
-			await editUserCredentialsSchema.validate(data, { abortEarly: false })
+			await editUserUsernameEmailSchema.validate(data, { abortEarly: false })
 			setErrors({})
 			await mutateAsync(data, {
 				onSuccess: async (data) => {
 					dispatch(
 						setUserUsernameEmail({
-							username: data.username,
-							email: data.email,
+							username: data.updatedUser.username,
+							email: data.updatedUser.email,
 						}),
 					)
 					dispatch(
@@ -71,12 +70,12 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 			<div className='flex flex-col gap-5'>
 				<TextField
 					label="Nom d'utilisateur"
-					value={credentialsValues.username}
+					value={values.username}
 					labelFor='username'
 					inputFocus
 					onChange={(e) =>
-						setCredentialsValues({
-							...credentialsValues,
+						setValues({
+							...values,
 							username: e.target.value,
 						})
 					}
@@ -84,11 +83,11 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 				/>
 				<TextField
 					label='Email'
-					value={credentialsValues.email}
+					value={values.email}
 					labelFor='email'
 					onChange={(e) =>
-						setCredentialsValues({
-							...credentialsValues,
+						setValues({
+							...values,
 							email: e.target.value,
 						})
 					}
@@ -114,4 +113,4 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 	)
 }
 
-export default CredentialsForm
+export default UsernameEmailForm

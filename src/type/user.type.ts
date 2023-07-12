@@ -8,9 +8,16 @@ export interface User {
 	createdAt: string
 }
 
-export interface UserEditCredentialsRequest {
+export interface UserEditUsernameEmailRequest {
 	username?: string
 	email?: string
+}
+
+export interface UserEditUsernameEmailResponse {
+	updatedUser: {
+		username: string
+		email: string
+	}
 }
 
 export interface UserEditPasswordRequest {
@@ -20,4 +27,10 @@ export interface UserEditPasswordRequest {
 
 export interface UserEditAvatarRequest {
 	pp: string
+}
+
+export interface UserEditAvatarResponse {
+	updatedPp: {
+		pp: string
+	}
 }

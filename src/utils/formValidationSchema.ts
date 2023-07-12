@@ -27,7 +27,7 @@ export const createYolSchema = object().shape({
 		.min(3, 'Le nom de votre Yol doit faire au minimum 3 caractères'),
 })
 
-export const editUserCredentialsSchema = object().shape({
+export const editUserUsernameEmailSchema = object().shape({
 	username: string()
 		.min(3, "Le nom d'utilisateur doit contenir au minimum 3 caractères")
 		.max(20, "Le nom d'utilisateur doit contenir au maximum 20 caractères"),
