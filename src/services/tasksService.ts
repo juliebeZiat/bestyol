@@ -50,7 +50,7 @@ const createNewCustomTask = async (taskName: string, userId: number) => {
 }
 
 const editCustomTask = async (newTaskName: string, taskId: number) => {
-	const response = await axios.put(
+	const response = await axios.patch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user-tasks/${taskId}`,
 		{
 			title: newTaskName,

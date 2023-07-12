@@ -34,3 +34,7 @@ export interface UserEditPictureResponse {
 		pp: string
 	}
 }
+
+export interface UserDeleteAccountRequest {
+	password: string
+}

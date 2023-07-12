@@ -75,7 +75,7 @@ export const useMutationEditUserPicture = () => {
 
 export const useMutationDeleteUser = () => {
 	return useMutation(
-		async ({ userId }: { userId: number }) =>
-			await userService.deleteUser(userId),
+		async ({ userId, password }: { userId: number; password: string }) =>
+			await userService.deleteUser(userId, { password }),
 	)
 }

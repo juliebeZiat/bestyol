@@ -5,6 +5,7 @@ import {
 	UserEditPasswordRequest,
 	UserEditUsernameEmailResponse,
 	UserEditPictureResponse,
+	UserDeleteAccountRequest,
 } from '@/type/user.type'
 import axios from 'axios'
 
@@ -54,9 +55,17 @@ const editUserPicture = async (
 	return response.data
 }
 
-const deleteUser = async (userId: number) => {
+const deleteUser = async (
+	userId: number,
+	{ password }: UserDeleteAccountRequest,
+) => {
 	const response = await axios.delete(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/user/delete/${userId}`,
+		{
+			data: {
+				password,
+			},
+		},
 	)
 	return response.data
 }
