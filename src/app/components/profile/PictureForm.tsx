@@ -6,28 +6,29 @@ import Button from '../ui/Button'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUserAvatar } from '@/state/reducer/user.reducer'
-import { useMutationEditUserAvatar } from '@/services/mutations/user'
+import { useMutationEditUserPicture } from '@/services/mutations/user'
 
-interface AvatarFormProps {
+interface PictureFormProps {
 	closeModal: () => void
 }
 
-const AvatarForm = ({ closeModal }: AvatarFormProps) => {
+const PictureForm = ({ closeModal }: PictureFormProps) => {
 	const dispatch = useDispatch()
 	const { user, theme } = useAppSelector((state: RootState) => state.user)
 	const [selectedUserAvatar, setSelectedUserAvatar] = useState<string>(user.pp)
 
-	const { mutateAsync, isError } = useMutationEditUserAvatar()
+	const getPictureNumber = selectedUserAvatar.match(/\d+/)![0]
+
+	const { mutateAsync, isError } = useMutationEditUserPicture()
 
 	const handleSubmit = async () => {
 		const data = {
 			userId: user.id,
-			pp: selectedUserAvatar,
+			pictureNumber: Number(getPictureNumber),
 		}
-
 		await mutateAsync(data, {
 			onSuccess: async (data) => {
-				dispatch(setUserAvatar(data.updatedPp.pp))
+				dispatch(setUserAvatar(data.updatedUser.pp))
 				closeModal()
 			},
 		})
@@ -37,9 +38,8 @@ const AvatarForm = ({ closeModal }: AvatarFormProps) => {
 		<div className='h-[700px] flex flex-col justify-center gap-10'>
 			<div className='h-[80%] overflow-y-auto flex flex-wrap items-center gap-3'>
 				{availableAvatars.map((avatar, index) => (
-					<div>
+					<div key={`avatar-${index}`}>
 						<Image
-							key={index}
 							src={avatar}
 							alt='avatar'
 							width={100}
@@ -85,4 +85,4 @@ const AvatarForm = ({ closeModal }: AvatarFormProps) => {
 	)
 }
 
-export default AvatarForm
+export default PictureForm

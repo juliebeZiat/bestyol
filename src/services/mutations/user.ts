@@ -51,12 +51,18 @@ export const useMutationEditUserPassword = () => {
 	)
 }
 
-export const useMutationEditUserAvatar = () => {
+export const useMutationEditUserPicture = () => {
 	const queryClient = useQueryClient()
 	return useMutation(
-		async ({ userId, pp }: { userId: number; pp: string }) => {
-			return await userService.editUserAvatar(userId, {
-				pp,
+		async ({
+			userId,
+			pictureNumber,
+		}: {
+			userId: number
+			pictureNumber: number
+		}) => {
+			return await userService.editUserPicture(userId, {
+				pictureNumber,
 			})
 		},
 		{

@@ -10,8 +10,8 @@ import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import CredentialsForm from '@/app/components/profile/UsernameEmailForm'
 import PasswordForm from '@/app/components/profile/PasswordForm'
-import AvatarForm from '@/app/components/profile/AvatarForm'
 import DeleteAccount from '@/app/components/profile/DeleteAccount'
+import PictureForm from '@/app/components/profile/PictureForm'
 
 const ProfilePage = () => {
 	const { user } = useAppSelector((state: RootState) => state.user)
@@ -51,7 +51,7 @@ const ProfilePage = () => {
 				onClose={() => setModalAvatarIsOpen(false)}
 				title='Modifier mon avatar'
 			>
-				<AvatarForm closeModal={() => setModalAvatarIsOpen(false)} />
+				<PictureForm closeModal={() => setModalAvatarIsOpen(false)} />
 			</Modal>
 
 			<Modal

@@ -1,10 +1,10 @@
 import {
 	User,
-	UserEditAvatarRequest,
+	UserEditPictureRequest,
 	UserEditUsernameEmailRequest,
 	UserEditPasswordRequest,
 	UserEditUsernameEmailResponse,
-	UserEditAvatarResponse,
+	UserEditPictureResponse,
 } from '@/type/user.type'
 import axios from 'axios'
 
@@ -41,14 +41,14 @@ const editUserPassword = async (
 	return response.data
 }
 
-const editUserAvatar = async (
+const editUserPicture = async (
 	userId: number,
-	{ pp }: UserEditAvatarRequest,
+	{ pictureNumber }: UserEditPictureRequest,
 ) => {
-	const response = await axios.patch<UserEditAvatarResponse>(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/user/edit/pp/${userId}`,
+	const response = await axios.patch<UserEditPictureResponse>(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/user/edit/picture/${userId}`,
 		{
-			pp,
+			pictureNumber,
 		},
 	)
 	return response.data
@@ -58,7 +58,7 @@ const userService = {
 	fetchUserById,
 	editUserUsernamePassword,
 	editUserPassword,
-	editUserAvatar,
+	editUserPicture,
 }
 
 export default userService

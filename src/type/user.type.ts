@@ -25,12 +25,12 @@ export interface UserEditPasswordRequest {
 	newPassword: string
 }
 
-export interface UserEditAvatarRequest {
-	pp: string
+export interface UserEditPictureRequest {
+	pictureNumber: number
 }
 
-export interface UserEditAvatarResponse {
-	updatedPp: {
+export interface UserEditPictureResponse {
+	updatedUser: {
 		pp: string
 	}
 }
