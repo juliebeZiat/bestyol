@@ -8,7 +8,7 @@ import { useIsMobile } from '@/hooks/useWindowSize'
 import { useState } from 'react'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
-import CredentialsForm from '@/app/components/profile/UsernameEmailForm'
+import UsernameEmailForm from '@/app/components/profile/UsernameEmailForm'
 import PasswordForm from '@/app/components/profile/PasswordForm'
 import DeleteAccount from '@/app/components/profile/DeleteAccount'
 import PictureForm from '@/app/components/profile/PictureForm'
@@ -59,7 +59,7 @@ const ProfilePage = () => {
 				onClose={() => setModalInfoIsOpen(false)}
 				title='Modifier mon profil'
 			>
-				<CredentialsForm closeModal={() => setModalInfoIsOpen(false)} />
+				<UsernameEmailForm closeModal={() => setModalInfoIsOpen(false)} />
 			</Modal>
 
 			<Modal
