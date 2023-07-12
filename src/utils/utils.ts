@@ -7,7 +7,11 @@ export const evolutionLevels = [100, 700, 1750]
 
 export const isYolEvolving = (yol: Yol) => {
 	// return evolutionLevels.includes(yol.xp)
-	return (yol.species.stage == SpeciesStages.EGG && yol.xp >= 100) || (yol.species.stage == SpeciesStages.BABY && yol.xp >= 700) || (yol.species.stage == SpeciesStages.ADO && yol.xp >= 1750)
+	return (
+		(yol.species.stage == SpeciesStages.EGG && yol.xp >= 100) ||
+		(yol.species.stage == SpeciesStages.BABY && yol.xp >= 700) ||
+		(yol.species.stage == SpeciesStages.ADO && yol.xp >= 1750)
+	)
 }
 
 export const getEvolutionStep = (yol: Yol) => {
@@ -71,7 +75,9 @@ export const getThemeBySpecies = (
 				case SpeciesNames.GRUMPFISH:
 					return themes.find((theme) => theme.name == 'lightBlue') ?? themes[7]
 				case SpeciesNames.BUMBLEBLINK:
-					return themes.find((theme) => theme.name == 'lightYellow') ?? themes[7]
+					return (
+						themes.find((theme) => theme.name == 'lightYellow') ?? themes[7]
+					)
 				case SpeciesNames.GREENBELLY:
 					return themes.find((theme) => theme.name == 'lightGreen') ?? themes[7]
 			}
