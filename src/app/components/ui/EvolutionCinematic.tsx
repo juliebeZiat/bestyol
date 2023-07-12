@@ -47,27 +47,24 @@ const EvolutionCinematic = ({
 				if (hasEvolved) dispatch(endEvolution())
 			}}
 		>
-			{evolutionStep === 0 ? (
-				<AudioPlayer
-					source={'/audio/egg-evolution.wav'}
-					delay={1000}
-					autoPlay
-				/>
-			) : (
-				<AudioPlayer source={'/audio/species-evolution.wav'} autoPlay />
-			)}
-			<div className='bg-[#000] w-full h-[10vh] flex items-center p-[2rem]'>
-				{hasEvolved && (
-					<button
-						type='button'
-						className='text-white text-6xl'
-						onClick={() => dispatch(endEvolution())}
-					>
-						&#x2190;
-					</button>
+			<div className='absolute top-6 right-6'>
+				{evolutionStep === 0 ? (
+					<AudioPlayer
+						source={'/audio/egg-evolution.wav'}
+						delay={1000}
+						autoPlay
+						player
+					/>
+				) : (
+					<AudioPlayer
+						source={'/audio/species-evolution.wav'}
+						autoPlay
+						player
+					/>
 				)}
 			</div>
-			<div className='h-[80vh] w-full flex flex-col gap-y-[2rem] items-center justify-center relative text-white text-center textShadow text-3xl lg:text-8xl '>
+			<header className='bg-[#000] w-full h-[10vh] flex items-center p-[2rem]' />
+			<main className='h-[80vh] w-full flex flex-col gap-y-[2rem] items-center justify-center relative text-white text-center textShadow text-3xl lg:text-8xl '>
 				<div
 					className={`absolute top-0 left-0 opacity-0 bg-white h-full w-full pointer-events-none z-10 ${
 						evolutionStep == 0 ? 'animate-flashEgg' : 'animate-flashEvolve'
@@ -108,8 +105,8 @@ const EvolutionCinematic = ({
 				<p className='absolute bottom-[1rem]'>
 					{hasEvolved ? evolutionMessage : ''}
 				</p>
-			</div>
-			<div className='bg-[#000] w-full h-[10vh]' />
+			</main>
+			<footer className='bg-[#000] w-full h-[10vh]' />
 		</div>
 	)
 }
