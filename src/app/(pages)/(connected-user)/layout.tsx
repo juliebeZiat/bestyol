@@ -22,7 +22,7 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 
 	if (isLoading) return <Loader />
 	if (isLogged) {
-		if (yolData) {
+		if (yolData?.data.id) {
 			return (
 				<>
 					{!isEvolving ? (

@@ -41,7 +41,12 @@ const EvolutionCinematic = ({
 	const windowSizes = useWindowSize()
 
 	return (
-		<>
+		<div
+			className={`w-full h-full ${hasEvolved ? 'cursor-pointer' : ''}`}
+			onClick={() => {
+				if (hasEvolved) dispatch(endEvolution())
+			}}
+		>
 			{evolutionStep === 0 ? (
 				<AudioPlayer
 					source={'/audio/egg-evolution.wav'}
@@ -105,7 +110,7 @@ const EvolutionCinematic = ({
 				</p>
 			</div>
 			<div className='bg-[#000] w-full h-[10vh]' />
-		</>
+		</div>
 	)
 }
 
