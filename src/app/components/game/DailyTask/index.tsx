@@ -14,35 +14,17 @@ interface DailyTaskBoxProps {
 const DailyTaskBox = ({ dailyTasks, isLoading }: DailyTaskBoxProps) => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const { mutateAsync: generateDailyTasks } = useMutationGenerateDailyTasks()
-	const [hasSentRequest, setHasSentRequest] = useState(false)
 
 	useEffect(() => {
-		const data = { userId: user.id }
+		if (isLoading) return
 
+		const data = { userId: user.id }
 		const sendRequest = async () => {
 			await generateDailyTasks(data)
-			setHasSentRequest(true)
 		}
 
-		const currentDate = new Date().toISOString().split('T')[0]
-		const storedDate = localStorage.getItem('lastRequestDate')
-
-		if (storedDate !== currentDate) {
-			sendRequest()
-			localStorage.setItem('lastRequestDate', currentDate)
-		}
-
-		const interval = setInterval(() => {
-			const date = new Date().toISOString().split('T')[0]
-			if (storedDate !== date) {
-				setHasSentRequest(false)
-			}
-		}, 24 * 60 * 60 * 1000)
-
-		return () => {
-			clearInterval(interval)
-		}
-	}, [])
+		if (dailyTasks.length == 0) sendRequest()
+	}, [dailyTasks])
 
 	if (!dailyTasks) return null
 	if (isLoading) return <Loader />

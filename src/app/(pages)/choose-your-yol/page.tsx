@@ -104,7 +104,7 @@ const ChooseYourYol = () => {
 		)
 	}
 
-	if (!yolData) {
+	if (!yolData?.data.id) {
 		return (
 			<div className='h-[100svh] flex items-center justify-center text-white text-center'>
 				<form className='flex items-center justify-center'>

@@ -35,7 +35,6 @@ const Box = ({
 	}, [isMobile])
 
 	const toggleOpen = () => {
-		console.log(isMobile)
 		if (isMobile) {
 			setIsOpen(!isOpen)
 			if (handleOpen) {
