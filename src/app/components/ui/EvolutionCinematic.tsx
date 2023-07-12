@@ -43,9 +43,13 @@ const EvolutionCinematic = ({
 	return (
 		<>
 			{evolutionStep === 0 ? (
-				<AudioPlayer source={'/audio/egg-evolution.wav'} delay={1000} />
+				<AudioPlayer
+					source={'/audio/egg-evolution.wav'}
+					delay={1000}
+					autoPlay
+				/>
 			) : (
-				<AudioPlayer source={'/audio/species-evolution.wav'} />
+				<AudioPlayer source={'/audio/species-evolution.wav'} autoPlay />
 			)}
 			<div className='bg-[#000] w-full h-[10vh] flex items-center p-[2rem]'>
 				{hasEvolved && (

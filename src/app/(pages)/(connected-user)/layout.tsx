@@ -3,6 +3,7 @@
 import Navbar from '@/app/components/layout/Navbar'
 import EvolutionCinematic from '@/app/components/ui/EvolutionCinematic'
 import Loader from '@/app/components/ui/Loader'
+import Notification from '@/app/components/ui/Notification'
 import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
@@ -33,6 +34,7 @@ const NavLayout = ({ children }: { children: React.ReactNode }) => {
 							<div className='h-[92svh] w-full flex flex-col items-center justify-center'>
 								<Suspense fallback={<Loader />}>{children}</Suspense>
 							</div>
+							<Notification />
 						</>
 					) : (
 						<EvolutionCinematic

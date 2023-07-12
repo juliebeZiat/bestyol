@@ -2,6 +2,7 @@ import { useMutationEvolveYol } from '@/services/mutations/yol'
 import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { evolveYol } from '@/state/reducer/evolution.reducer'
+import { setNotification } from '@/state/reducer/notification.reducer'
 import { RootState } from '@/state/store'
 import { SpeciesStages } from '@/type/species.type'
 import {
@@ -22,6 +23,14 @@ const YolBox = () => {
 	if (!yol) return null
 
 	const handleEvolveYol = async () => {
+		if (isYolEvolving(yol.data)) {
+			dispatch(
+				setNotification({
+					title: "Je crois qu'il se passe quelque chose avec ton Yol...",
+					link: '',
+				}),
+			)
+		}
 		if (!isYolEvolving(yol.data)) return
 		const evolutionStep = getEvolutionStep(yol.data)
 		const previousForm = yol.data.species.gif

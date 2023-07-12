@@ -15,8 +15,7 @@ enum AchievementType {
 const AchievementsPage = () => {
 	const userId = useAppSelector((state: RootState) => state.user.user.id)
 
-	const { data: userSuccess, isLoading: userSuccessLoading } =
-		useFetchAllUserSuccessQuery(userId)
+	const { data: userSuccess } = useFetchAllUserSuccessQuery(userId)
 
 	const [achievementType, setAchievementType] = useState<AchievementType>(
 		AchievementType.Pending,
@@ -61,7 +60,10 @@ const AchievementsPage = () => {
 								? pendingAchievements
 								: completedAchievements
 							)?.map((achievement) => (
-								<AchievementTile achievement={achievement} />
+								<AchievementTile
+									achievement={achievement}
+									key={achievement.id}
+								/>
 							))}
 						</div>
 					</Box>
