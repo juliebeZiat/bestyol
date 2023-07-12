@@ -4,7 +4,6 @@ import Box from '../../ui/Box'
 import TextField from '../../ui/TextField'
 import CustomTaskItem from './CustomTaskItem'
 import { UserTask } from '@/type/tasks.type'
-import { useIsMobile } from '@/hooks/useWindowSize'
 import Tabs from '../../ui/Tabs'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
@@ -20,7 +19,6 @@ interface CustomTaskProps {
 }
 
 const CustomTaskBox = ({ customTasks }: CustomTaskProps) => {
-	const isMobile = useIsMobile()
 	const [taskType, setTaskType] = useState<TaskType>(TaskType.All)
 	const [taskCreation, setTaskCreation] = useState<boolean>(false)
 	const [newTask, setNewTask] = useState<string>('')
