@@ -23,6 +23,14 @@ const YolBox = () => {
 	if (!yol) return null
 
 	const handleEvolveYol = async () => {
+		if (isYolEvolving(yol.data)) {
+			dispatch(
+				setNotification({
+					title: "Je crois qu'il se passe quelque chose avec ton Yol...",
+					link: '',
+				}),
+			)
+		}
 		if (!isYolEvolving(yol.data)) return
 		const evolutionStep = getEvolutionStep(yol.data)
 		const previousForm = yol.data.species.gif
@@ -33,15 +41,6 @@ const YolBox = () => {
 		const animatedNewForm = newSpecies.gif
 		dispatch(
 			evolveYol({ previousForm, newForm, animatedNewForm, evolutionStep }),
-		)
-	}
-
-	if (isYolEvolving(yol.data)) {
-		dispatch(
-			setNotification({
-				title: "Je crois qu'il se passe quelque chose avec ton Yol...",
-				link: '',
-			}),
 		)
 	}
 
