@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import yolService from '../yolService'
 
 export const useMutationCreateYol = () => {
+	const queryClient = useQueryClient()
 	return useMutation(
 		async (values: { name: string; userId: number; speciesId: number }) =>
 			await yolService.createYol({
@@ -9,6 +10,11 @@ export const useMutationCreateYol = () => {
 				userId: values.userId,
 				speciesId: values.speciesId,
 			}),
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(['yol'])
+			},
+		},
 	)
 }
 

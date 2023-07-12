@@ -49,14 +49,16 @@ const Box = ({
 				theme.pixelBorderColor
 			} ${additionalStyle} ${centerItems && 'items-center flex flex-col'}`}
 			style={{ width: width }}
+			onClick={toggleOpen}
 		>
 			<div className='flex justify-between justify-items-center'>
 				<div>
 					<h1 className='text-white lg:text-2xl uppercase'>{title}</h1>
 				</div>
+				<div>{additionalButton}</div>
 			</div>
 			{isToggle ? isOpen && children : children}
-			{isToggle && isMobile ? (
+			{isToggle && isMobile && (
 				<div className='flex'>
 					{additionalButton}
 					<ButtonIcon onClick={toggleOpen} isOpen={isOpen}>
@@ -69,8 +71,6 @@ const Box = ({
 						/>
 					</ButtonIcon>
 				</div>
-			) : (
-				<div>{additionalButton}</div>
 			)}
 		</div>
 	)

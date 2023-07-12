@@ -44,7 +44,10 @@ const DailyTaskItem = ({
 				className={`dailyCard relative h-[20vh] w-full mb-5 lg:mb-0 ${
 					confirmValidation && !is_completed && 'flip cursor-pointer'
 				}`}
-				onClick={() => setConfirmValidation(!confirmValidation)}
+				onClick={(e) => {
+					e.stopPropagation()
+					setConfirmValidation(!confirmValidation)
+				}}
 			>
 				<div
 					className={`frontFace !absolute top-0 left-0 h-[20vh] w-full p-4 flex flex-col items-center text-center justify-around text-white mb-12 lg:mb-0 pixel-corners ${
