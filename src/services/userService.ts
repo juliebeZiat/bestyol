@@ -54,11 +54,19 @@ const editUserPicture = async (
 	return response.data
 }
 
+const deleteUser = async (userId: number) => {
+	const response = await axios.delete(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/user/delete/${userId}`,
+	)
+	return response.data
+}
+
 const userService = {
 	fetchUserById,
 	editUserUsernamePassword,
 	editUserPassword,
 	editUserPicture,
+	deleteUser,
 }
 
 export default userService

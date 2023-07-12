@@ -1,18 +1,32 @@
 import { useState } from 'react'
 import TextField from '../ui/TextField'
 import Button from '../ui/Button'
-import { useAppSelector } from '@/state/hooks'
+import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
+import { useMutationDeleteUser } from '@/services/mutations/user'
+import { logout } from '@/state/reducer/user.reducer'
 
 interface DeleteAccountProps {
 	closeModal: () => void
 }
 
 const DeleteAccount = ({ closeModal }: DeleteAccountProps) => {
+	const dispatch = useAppDispatch()
 	const { user, theme } = useAppSelector((state: RootState) => state.user)
 	const [deleteAccountStateView, setDeleteAccountStateView] = useState<
 		'form' | 'confirmation'
 	>('form')
+
+	const { mutateAsync, isError } = useMutationDeleteUser()
+
+	const handleDelete = async () => {
+		const data = { userId: user.id }
+		await mutateAsync(data, {
+			onSuccess: async () => {
+				logout()
+			},
+		})
+	}
 
 	return (
 		<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[200px]'>
@@ -40,10 +54,7 @@ const DeleteAccount = ({ closeModal }: DeleteAccountProps) => {
 								backgroundColor='bg-error'
 								textColor='text-white'
 								additionalStyle='w-[50%]'
-								onClick={() => {
-									closeModal()
-									setDeleteAccountStateView('form')
-								}}
+								onClick={handleDelete}
 							/>
 							<Button
 								content='Non'
@@ -56,6 +67,13 @@ const DeleteAccount = ({ closeModal }: DeleteAccountProps) => {
 								}}
 							/>
 						</div>
+						{isError && (
+							<div>
+								<p className='text-lg text-error'>
+									Il y a eu un soucis lors de la suppression du compte
+								</p>
+							</div>
+						)}
 					</div>
 				)}
 			</div>
