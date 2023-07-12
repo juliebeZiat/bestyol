@@ -28,14 +28,15 @@ const AudioPlayer = ({
 			return
 		}
 		if (muted) {
-			audioPlayer.current?.pause()
+			audioPlayer.current.volume = 0
 		} else {
-			audioPlayer.current?.play()
+			audioPlayer.current.volume = 1
+			if (audioPlayer.current.paused) audioPlayer.current.play()
 		}
 	}, [muted])
 
 	useEffect(() => {
-		if (autoPlay && !muted) {
+		if (autoPlay) {
 			if (!audioPlayer.current) return
 			setTimeout(() => {
 				if (!audioPlayer.current) return

@@ -92,7 +92,9 @@ const DailyTaskItem = ({
 				</div>
 			</div>
 			{validateTask && <AudioPlayer source='/audio/beep.mp3' autoPlay />}
-			{confirmValidation && <AudioPlayer source='/audio/spin.mp3' autoPlay />}
+			{confirmValidation && !is_completed && (
+				<AudioPlayer source='/audio/spin.mp3' autoPlay />
+			)}
 		</>
 	)
 }
