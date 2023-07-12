@@ -4,9 +4,8 @@ import { useAppDispatch, useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import Button from '../ui/Button'
 import { editUserPasswordSchema } from '@/utils/formValidationSchema'
-import { setUser } from '@/state/reducer/user.reducer'
-import Loader from '../ui/Loader'
 import { useMutationEditUserPassword } from '@/services/mutations/user'
+import { setNotification } from '@/state/reducer/notification.reducer'
 
 interface PasswordFormProps {
 	closeModal: () => void
@@ -25,7 +24,7 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 	const [requestError, setRequestError] = useState<string | null>()
 	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-	const { mutateAsync, isError, isLoading } = useMutationEditUserPassword()
+	const { mutateAsync, isError } = useMutationEditUserPassword()
 
 	const handleSubmit = async () => {
 		const data = {
@@ -40,8 +39,12 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 			setErrors({})
 			await mutateAsync(data, {
 				onSuccess: async (data) => {
-					dispatch(setUser(data))
-					// dispatch(setNotification({title: "Votre mot de passe a bien été modifié", link: ""}))
+					dispatch(
+						setNotification({
+							title: 'Votre mot de passe a bien été modifié',
+							link: '',
+						}),
+					)
 					closeModal()
 				},
 				onError: async (error: any) => {
@@ -56,8 +59,6 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 			setErrors(validationErrors)
 		}
 	}
-
-	if (isLoading) return <Loader />
 
 	return (
 		<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>
@@ -104,7 +105,7 @@ const PasswordForm = ({ closeModal }: PasswordFormProps) => {
 				{isError && (
 					<div>
 						<p className='text-lg text-error'>
-							Il y a eu un problème lors de la modification du mot de passe
+							Votre mot de passe actuel ne semble pas correct
 							{requestError && `: ${requestError}`}
 						</p>
 					</div>

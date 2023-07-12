@@ -5,8 +5,9 @@ import { RootState } from '@/state/store'
 import Button from '../ui/Button'
 import { useMutationEditUserCredentials } from '@/services/mutations/user'
 import { editUserCredentialsSchema } from '@/utils/formValidationSchema'
-import { setUser } from '@/state/reducer/user.reducer'
 import Loader from '../ui/Loader'
+import { setNotification } from '@/state/reducer/notification.reducer'
+import { setUserUsernameEmail } from '@/state/reducer/user.reducer'
 
 interface CredentialsFormProps {
 	closeModal: () => void
@@ -24,8 +25,7 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 	const [requestError, setRequestError] = useState<string | null>()
 	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-	const { mutateAsync, isError, isLoading, isSuccess } =
-		useMutationEditUserCredentials()
+	const { mutateAsync, isError } = useMutationEditUserCredentials()
 
 	const handleSubmit = async () => {
 		const data = {
@@ -39,8 +39,18 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 			setErrors({})
 			await mutateAsync(data, {
 				onSuccess: async (data) => {
-					// dispatch(setUser(data))
-					// dispatch(setNotification({title: "Votre profil a bien été modifié", link: ""}))
+					dispatch(
+						setUserUsernameEmail({
+							username: data.username,
+							email: data.email,
+						}),
+					)
+					dispatch(
+						setNotification({
+							title: 'Votre profil a bien été modifié',
+							link: '',
+						}),
+					)
 					closeModal()
 				},
 				onError: async (error: any) => {
@@ -55,8 +65,6 @@ const CredentialsForm = ({ closeModal }: CredentialsFormProps) => {
 			setErrors(validationErrors)
 		}
 	}
-
-	if (isLoading) return <Loader />
 
 	return (
 		<div className='flex flex-col gap-5 min-w-[250px] sm:min-w-[350px] lg:min-w-[500px] min-h-[300px]'>

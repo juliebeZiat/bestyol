@@ -17,3 +17,7 @@ export interface UserEditPasswordRequest {
 	formerPassword: string
 	newPassword: string
 }
+
+export interface UserEditAvatarRequest {
+	pp: string
+}

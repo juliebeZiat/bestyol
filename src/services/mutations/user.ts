@@ -50,3 +50,19 @@ export const useMutationEditUserPassword = () => {
 		},
 	)
 }
+
+export const useMutationEditUserAvatar = () => {
+	const queryClient = useQueryClient()
+	return useMutation(
+		async ({ userId, pp }: { userId: number; pp: string }) => {
+			return await userService.editUserAvatar(userId, {
+				pp,
+			})
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(['user'])
+			},
+		},
+	)
+}

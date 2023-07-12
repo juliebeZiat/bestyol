@@ -9,18 +9,16 @@ import TextField from '@/app/components/ui/TextField'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import Image from 'next/image'
 import { useState } from 'react'
-import { availableAvatars } from './profileImages'
+import { availableAvatars } from '../../../../utils/profileImages'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import CredentialsForm from '@/app/components/profile/CredentialsForm'
 import PasswordForm from '@/app/components/profile/PasswordForm'
+import AvatarForm from '@/app/components/profile/AvatarForm'
 
 const ProfilePage = () => {
 	const { user, theme } = useAppSelector((state: RootState) => state.user)
 
-	const [userAvatar, setUserAvatar] = useState<string>(
-		'/assets/avatars/Icon1.png',
-	)
 	const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(false)
 	const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false)
 	const [modalPasswordIsOpen, setModalPasswordIsOpen] = useState(false)
@@ -59,47 +57,7 @@ const ProfilePage = () => {
 				onClose={() => setModalAvatarIsOpen(false)}
 				title='Modifier mon avatar'
 			>
-				<div className='h-[700px] flex flex-col justify-center gap-10'>
-					<div className='h-[80%] overflow-y-auto flex flex-wrap items-center gap-3'>
-						{availableAvatars.map((avatar, index) => (
-							<div>
-								<Image
-									key={index}
-									src={avatar}
-									alt='avatar'
-									width={100}
-									height={100}
-									className={`cursor-pointer h-[100px] w-[100px] ${
-										userAvatar === avatar
-											? 'border-2 border-white border-darkLowOpacity'
-											: ''
-									}`}
-									onClick={() => setUserAvatar(avatar)}
-								/>
-							</div>
-						))}
-
-						<div
-							className='flex justify-center items-center cursor-pointer h-[100px] w-[100px] border border-darkLowOpacity'
-							onClick={() => {
-								const randomAvatar =
-									availableAvatars[
-										Math.floor(Math.random() * availableAvatars.length)
-									]
-								setUserAvatar(randomAvatar)
-							}}
-						>
-							<div className='text-4xl font-bold text-white select-none'>?</div>
-						</div>
-					</div>
-					<Button
-						content='Valider'
-						onClick={() => setModalAvatarIsOpen(false)}
-						backgroundColor={theme.secondaryBackgroundColor}
-						textColor='text-white'
-						additionalStyle='self-center w-fit'
-					/>
-				</div>
+				<AvatarForm closeModal={() => setModalAvatarIsOpen(false)} />
 			</Modal>
 
 			<Modal

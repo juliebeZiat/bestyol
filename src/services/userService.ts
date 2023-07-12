@@ -1,5 +1,6 @@
 import {
 	User,
+	UserEditAvatarRequest,
 	UserEditCredentialsRequest,
 	UserEditPasswordRequest,
 } from '@/type/user.type'
@@ -38,10 +39,24 @@ const editUserPassword = async (
 	return response.data
 }
 
+const editUserAvatar = async (
+	userId: number,
+	{ pp }: UserEditAvatarRequest,
+) => {
+	const response = await axios.patch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/user/edit/pp/${userId}`,
+		{
+			pp,
+		},
+	)
+	return response.data
+}
+
 const userService = {
 	fetchUserById,
 	editUserCredentials,
 	editUserPassword,
+	editUserAvatar,
 }
 
 export default userService

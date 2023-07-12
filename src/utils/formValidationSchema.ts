@@ -35,11 +35,11 @@ export const editUserCredentialsSchema = object().shape({
 })
 
 export const editUserPasswordSchema = object().shape({
-	password: string().matches(
+	newPassword: string().matches(
 		/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
 		'Votre mot de passe doit contenir au minimum 8 caractères, un nombre et un caractère spécial',
 	),
-	passwordConfirm: string()
+	newPasswordConfirm: string()
 		.required('La confirmation du mot de passe est requise')
-		.oneOf([ref('password')], 'Les mots de passe ne correspondent pas'),
+		.oneOf([ref('newPassword')], 'Les mots de passe ne correspondent pas'),
 })

@@ -34,6 +34,16 @@ export const user = createSlice({
 				? JSON.parse(selectedTheme)
 				: themes.find((theme) => theme.name == 'neutral')
 		},
+		setUserUsernameEmail: (
+			state,
+			action: PayloadAction<{ username: string; email: string }>,
+		) => {
+			state.user.username = action.payload.username
+			state.user.email = action.payload.email
+		},
+		setUserAvatar: (state, action: PayloadAction<User['pp']>) => {
+			state.user.pp = action.payload
+		},
 		setTheme: (state, action: PayloadAction<Theme>) => {
 			state.theme = action.payload
 			localStorage.setItem('selectedTheme', JSON.stringify(action.payload))
@@ -47,5 +57,12 @@ export const user = createSlice({
 	},
 })
 
-export const { login, logout, setUser, setTheme } = user.actions
+export const {
+	login,
+	logout,
+	setUser,
+	setTheme,
+	setUserUsernameEmail,
+	setUserAvatar,
+} = user.actions
 export default user.reducer

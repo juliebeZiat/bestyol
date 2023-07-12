@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux'
 const Notification = () => {
 	const dispatch = useDispatch()
 	const theme = useAppSelector((state: RootState) => state.user.theme)
-	const { isNotified, title, link } = useAppSelector(
+	const { isNotified, link, title } = useAppSelector(
 		(state: RootState) => state.notification,
 	)
 
