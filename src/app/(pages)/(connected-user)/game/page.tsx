@@ -5,6 +5,7 @@ import DailyTaskBox from '@/app/components/game/DailyTask'
 import SuccessBox from '@/app/components/game/Success'
 import YolBox from '@/app/components/game/Yol'
 import Box from '@/app/components/ui/Box'
+import Loader from '@/app/components/ui/Loader'
 import { useIsMobile } from '@/hooks/useWindowSize'
 import { useFetchAllUserTasks } from '@/services/queries/tasks'
 import { useAppSelector } from '@/state/hooks'
@@ -24,6 +25,7 @@ const GamePage = () => {
 	const customTasks = tasks?.data.customTasks
 
 	const isMobile = useIsMobile()
+	if (isLoading) return <Loader />
 	return (
 		<div className='lg:grid grid-cols-[30%_30%_35%] grid-rows-[40vh_40vh] grid-flow-row gap-8 p-6 lg:w-[90vw] h-full'>
 			<Box additionalStyle='col-span-2 mb-12 lg:mb-0 relative'>
