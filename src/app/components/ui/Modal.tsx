@@ -28,7 +28,7 @@ export default function Modal({
 	return isOpen === true ? (
 		<div className='w-[100vw] h-[100vh] fixed top-0 left-0 z-[60] bg-darkLowOpacity'>
 			<div
-				className='w-full h-full flex justify-center items-center'
+				className='h-full flex justify-center items-center'
 				onClick={handleOutsideModalClick}
 			>
 				<div

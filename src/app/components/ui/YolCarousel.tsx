@@ -114,7 +114,7 @@ const YolCarousel = ({
 								alt={specie.name}
 								width={150}
 								height={150}
-								className={`absolute w-[80px] lg:w-[150px] h-auto select-none bottom-[50%] translate-y-[20px] left-[50%] transition-all duration-[1s] ease-[ease-in-out] cursor-pointer ${
+								className={`absolute w-[80px] lg:w-[150px] h-auto select-none bottom-[30%] translate-y-[20px] left-[50%] transition-all duration-[1s] ease-[ease-in-out] cursor-pointer ${
 									specie.pos == 1 && 'translate-x-[-200%] z-0'
 								} ${
 									specie.pos == 2 &&

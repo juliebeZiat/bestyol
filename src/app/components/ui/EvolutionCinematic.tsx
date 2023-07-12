@@ -49,12 +49,7 @@ const EvolutionCinematic = ({
 		>
 			<div className='absolute top-6 right-6'>
 				{evolutionStep === 0 ? (
-					<AudioPlayer
-						source={'/audio/egg-evolution.wav'}
-						delay={1000}
-						autoPlay
-						player
-					/>
+					<AudioPlayer source={'/audio/egg-evolution.mp3'} autoPlay player />
 				) : (
 					<AudioPlayer
 						source={'/audio/species-evolution.wav'}
