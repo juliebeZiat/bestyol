@@ -1,6 +1,4 @@
-import Image from 'next/image'
-import Box from '../ui/Box'
-import { useState } from 'react'
+import { useFetchUserYol } from '@/services/queries/yol'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 
@@ -15,65 +13,39 @@ const ProfileInformation = ({
 	setModalPasswordIsOpen,
 	setModalDeleteAccountIsOpen,
 }: ProfileInformationProps) => {
-	const user = useAppSelector((state: RootState) => state.user.user)
+	const { theme, user } = useAppSelector((state: RootState) => state.user)
+	const { data: yolData } = useFetchUserYol(user.id)
 
-	const [pointerHovering, setPointerHovering] = useState<
-		'none' | 'profile' | 'password' | 'delete'
-	>('none')
 	return (
-		<Box additionalStyle='relative min-w-[300px] max-w-[300px] min-h-[400px] border-white border-2'>
-			<div className='flex flex-col items-center gap-5'>
-				<h2 className='text-center text-4xl tracking-wider'>Informations</h2>
-				<div className='flex flex-col gap-5 text-xl justify-between h-[250px]'>
-					<div className='flex flex-col'>
-						<p className=''>nom : {user.username}</p>
-						<p className=''>email : {user.email}</p>
-					</div>
-					<section className='flex flex-col gap-3 border-t-2 pt-8'>
-						<Image
-							src='/assets/pointer.png'
-							width={50}
-							height={50}
-							alt='pointer'
-							className='animate-slideLeftToRight absolute left-0 '
-							style={{
-								bottom:
-									pointerHovering === 'profile'
-										? '30%'
-										: pointerHovering === 'password'
-										? '20%'
-										: '10%',
-								display: pointerHovering === 'none' ? 'none' : 'block',
-							}}
-						/>
-						<p
-							className='cursor-pointer'
-							onClick={() => setModalInfoIsOpen(true)}
-							onMouseEnter={() => setPointerHovering('profile')}
-							onMouseLeave={() => setPointerHovering('none')}
-						>
-							Modifier mon profil
-						</p>
-						<p
-							className='cursor-pointer'
-							onClick={() => setModalPasswordIsOpen(true)}
-							onMouseEnter={() => setPointerHovering('password')}
-							onMouseLeave={() => setPointerHovering('none')}
-						>
-							Modifier mon mot de passe
-						</p>
-						<p
-							className='cursor-pointer'
-							onClick={() => setModalDeleteAccountIsOpen(true)}
-							onMouseEnter={() => setPointerHovering('delete')}
-							onMouseLeave={() => setPointerHovering('none')}
-						>
-							Supprimer mon compte
-						</p>
-					</section>
-				</div>
+		<div
+			className={`pixel-corners md:w-5/6 ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} p-6 md:flex mt-10 md:mt-0`}
+		>
+			<div className='flex flex-col md:w-[50%] text-white mb-4 md:mb-0'>
+				<p className='text-lg md:w-[70%] mb-6'>
+					Propriétaire certifié du Yol numéro {yolData?.data.id} -{' '}
+					{yolData?.data.name}
+				</p>
+				<p className='text-xl'>Nom : {user.username}</p>
+				<p className='text-xl'>Email : {user.email}</p>
 			</div>
-		</Box>
+			<div className='flex flex-col md:w-[50%] text-white underline text-lg'>
+				<p className='cursor-pointer' onClick={() => setModalInfoIsOpen(true)}>
+					Modifier mon profil
+				</p>
+				<p
+					className='cursor-pointer'
+					onClick={() => setModalPasswordIsOpen(true)}
+				>
+					Modifier mon mot de passe
+				</p>
+				<p
+					className='cursor-pointer'
+					onClick={() => setModalDeleteAccountIsOpen(true)}
+				>
+					Supprimer mon compte
+				</p>
+			</div>
+		</div>
 	)
 }
 
