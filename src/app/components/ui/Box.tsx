@@ -15,6 +15,7 @@ interface BoxProps {
 	title?: string
 	isTogglable?: boolean
 	additionalButton?: ReactNode
+	isOpenOnRender?: boolean
 }
 
 const Box = ({
@@ -24,14 +25,16 @@ const Box = ({
 	additionalStyle,
 	handleOpen,
 	title,
-	isTogglable: isToggle = false,
+	isTogglable = false,
 	additionalButton,
+	isOpenOnRender = false,
 }: BoxProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const isMobile = useIsMobile()
 
 	useEffect(() => {
 		if (!isMobile) setIsOpen(true)
+		if (isOpenOnRender) setIsOpen(true)
 	}, [isMobile])
 
 	const toggleOpen = () => {
@@ -51,16 +54,18 @@ const Box = ({
 				theme.pixelBorderColor
 			} ${additionalStyle} ${centerItems && 'items-center flex flex-col'}`}
 			style={{ width: width }}
-			onClick={toggleOpen}
 		>
-			<div className='flex justify-between justify-items-center'>
+			<div
+				className='flex justify-between justify-items-center'
+				onClick={toggleOpen}
+			>
 				<div>
 					<h1 className='text-white lg:text-2xl uppercase'>{title}</h1>
 				</div>
 				<div>{additionalButton}</div>
 			</div>
-			{isToggle ? isOpen && children : children}
-			{isToggle && isMobile && (
+			{isTogglable ? isOpen && children : children}
+			{isTogglable && isMobile && (
 				<div className='flex'>
 					{additionalButton}
 					<ButtonIcon onClick={toggleOpen} isOpen={isOpen}>

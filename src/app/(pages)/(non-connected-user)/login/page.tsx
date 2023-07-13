@@ -36,7 +36,7 @@ const LoginPage = () => {
 	return (
 		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
 			<h1 className='text-white text-2xl mb-10'>Connexion</h1>
-			<form className='w-3/4 mb-10'>
+			<form className='w-full lg:w-3/4 mb-10'>
 				<TextField
 					inputFocus
 					label="Votre nom d'utilisateur"
@@ -68,7 +68,7 @@ const LoginPage = () => {
 						onClick={handleSubmit}
 					/>
 
-					<Link href='/signup' className='text-white mt-5'>
+					<Link href='/signup' className='text-white text-center mt-5'>
 						Pas encore inscrit ? Inscrivez-vous
 					</Link>
 				</div>

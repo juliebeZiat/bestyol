@@ -31,7 +31,9 @@ const AchievementsPage = () => {
 	return (
 		userSuccess && (
 			<>
-				<h1 className='text-4xl text-white my-[2rem]'>MES SUCCÈS</h1>
+				<h1 className='text-4xl text-white my-[2rem] mt-40 md:mt-0'>
+					MES SUCCÈS
+				</h1>
 				<div className='w-full flex flex-col items-center h-[80vh]'>
 					<Box
 						centerItems

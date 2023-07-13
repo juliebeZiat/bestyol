@@ -61,7 +61,7 @@ const SigninPage = () => {
 	return (
 		<Box centerItems additionalStyle='mt-24' width={isMobile ? '80%' : '40%'}>
 			<h1 className='text-white text-2xl mb-10'>Inscription</h1>
-			<form className='w-3/4 mb-10'>
+			<form className='w-full lg:w-3/4 mb-10'>
 				<TextField
 					value={values.username}
 					onChange={(e) => setValues({ ...values, username: e.target.value })}

@@ -35,6 +35,7 @@ const GamePage = () => {
 				additionalStyle='row-span-2 mb-12 lg:mb-0'
 				title='Tâches quotidiennes'
 				isTogglable
+				isOpenOnRender
 			>
 				{dailyTasks && (
 					<DailyTaskBox dailyTasks={dailyTasks} isLoading={isLoading} />

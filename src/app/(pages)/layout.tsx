@@ -9,10 +9,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<html lang='en'>
 			<head>
-				<title>Bestyol</title>
+				<title>Best Yol</title>
 				<meta
 					name='description'
-					content='Bestyol is the best website about yols'
+					content='Best Yol is the best website about yols'
 				/>
 			</head>
 			<body>
