@@ -67,6 +67,7 @@ const CustomTaskItem = ({
 	return (
 		<>
 			<div
+				onClick={(e) => e.stopPropagation()}
 				className={`h-[4rem] p-3 mb-4 pixel-corners-items text-white flex justify-between items-center ${
 					theme.pixelBorderColor
 				} transition-all ease-in-out duration-1000 

@@ -81,10 +81,6 @@ const Navbar = () => {
 								<span>/ {currentLevel.levelMax} XP</span>
 							</div>
 						</div>
-						{/* <img
-							className='absolute h-[64px] left-[80%] select-none'
-							src='assets/cloud-with-moon.png'
-						/> */}
 					</div>
 
 					<div className='flex items-center'>
@@ -110,22 +106,22 @@ const Navbar = () => {
 							</div>
 							{menuIsOpen && (
 								<ul className='absolute top-[51px] left-[-80px] z-50'>
-									<a className='cursor-pointer' href={'/profile'}>
+									<Link className='cursor-pointer' href={'/profile'}>
 										<li
 											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
 										>
 											Profil
 										</li>
-									</a>
+									</Link>
 
-									<a className='cursor-pointer' href={'/'}>
+									<Link className='cursor-pointer' href={'/'}>
 										<li
 											className={`w-[150px] border-2 p-1 text-xl ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
 											onClick={() => dispatch(logout())}
 										>
 											Déconnexion
 										</li>
-									</a>
+									</Link>
 
 									<li
 										className={`w-[150px] border-2 p-1 text-xl cursor-pointer ${theme.gradientTo} ${theme.vibrantBackgroundColor}`}
@@ -161,19 +157,6 @@ const Navbar = () => {
 								></div>
 							)
 						})}
-						{/* random avatar button */}
-						{/* <div
-							className='flex justify-center items-center cursor-pointer h-[100px] w-[100px] border border-darkLowOpacity'
-							onClick={() => {
-								const randomAvatar =
-									availableAvatars[
-										Math.floor(Math.random() * availableAvatars.length)
-									]
-								setUserAvatar(randomAvatar)
-							}}
-						>
-							<div className='text-4xl font-bold text-white select-none'>?</div>
-						</div> */}
 					</div>
 					<Button
 						content='Valider'
