@@ -108,20 +108,21 @@ const YolCarousel = ({
 			<Hammer onSwipeLeft={handlePrev} onSwipeRight={handleNext}>
 				<section className='relative flex items-center justify-center h-[160px] w-full sm:w-[400px] sm:h-[200px] lg:h-[300px] lg:w-[800px]'>
 					{species?.map((specie) => {
+						console.log(specie.image)
 						return (
 							<Image
 								src={specie.image}
 								alt={specie.name}
 								width={150}
 								height={150}
-								className={`absolute w-[80px] lg:w-[150px] h-auto select-none bottom-[30%] translate-y-[20px] left-[50%] transition-all duration-[1s] ease-[ease-in-out] cursor-pointer ${
-									specie.pos == 1 && 'translate-x-[-200%] z-0'
+								className={`absolute w-[80px] lg:w-[150px] h-auto select-none bottom-[50%] left-[50%] translate-y-[50px] transition-all duration-[1s] ease-[ease-in-out] cursor-pointer ${
+									specie.pos == 1 && 'translate-x-[-175%] z-0'
 								} ${
 									specie.pos == 2 &&
-									`translate-x-[-50%] translate-y-[0px] scale-[150%] z-30 cursor-auto ${
+									`translate-x-[-50%] translate-y-[70px] scale-[150%] z-30 cursor-auto ${
 										isAnimating && 'animate-hoveringTest duration-300'
 									}`
-								} ${specie.pos == 3 && 'translate-x-[100%] z-0'}`}
+								} ${specie.pos == 3 && 'translate-x-[75%] z-0'}`}
 								onClick={() => {
 									handleNav(specie.pos, specie.theme)
 								}}

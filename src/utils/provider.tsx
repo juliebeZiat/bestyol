@@ -42,7 +42,7 @@ function Providers({ children }: React.PropsWithChildren) {
 			<PersistGate loading={null} persistor={persistor}>
 				<QueryClientProvider client={client}>
 					<InitProvider>{children}</InitProvider>
-					<ReactQueryDevtools initialIsOpen={false} />
+					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 				</QueryClientProvider>
 			</PersistGate>
 		</ReduxProvider>
