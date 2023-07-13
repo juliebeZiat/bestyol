@@ -8,7 +8,7 @@ export default function NotFound() {
 				<h1 className='text-6xl text-white'>Cette page n'existe pas !</h1>
 				<p className='my-6 text-white text-4xl'>╰(•́ ꞈ •̀)╯</p>
 				<Link href='/'>
-					<Button content='Retourner vers Bestyol' textColor='text-white' />
+					<Button content='Retourner vers Best Yol' textColor='text-white' />
 				</Link>
 			</div>
 		</div>

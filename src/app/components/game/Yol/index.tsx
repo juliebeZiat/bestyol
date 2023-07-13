@@ -65,7 +65,7 @@ const YolBox = () => {
 		>
 			<div className='h-full w-full flex gap-x-8 lg:gap-x-16 justify-center flex-wrap lg:flex-nowrap items-center'>
 				<div
-					className={`p-4 pixel-corners-items ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor} ${theme.borderColor} text-white`}
+					className={`p-4 pixel-corners-items ${theme.pixelBorderColor} ${theme.secondaryBackgroundColor} ${theme.borderColor} text-white mb-10 md:mb-0`}
 				>
 					<h2 className='uppercase text-lg mb-2'>Informations</h2>
 					<p>Nom: ✨ {yol.data.name} ✨</p>

@@ -64,6 +64,7 @@ const SuccessBox = () => {
 							content='Voir tous mes succès'
 							uppercase
 							size={ButtonSize.Small}
+							textColor='text-white'
 						/>
 					</Link>
 				</div>

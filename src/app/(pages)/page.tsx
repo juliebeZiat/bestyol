@@ -23,7 +23,7 @@ const HomePage = () => {
 	if (!isLogged)
 		return (
 			<div className='flex flex-col min-h-screen justify-center items-center text-white gap-10'>
-				<div className='flex flex-col justify-center items-center relative'>
+				<div className='flex flex-col justify-center items-center relative mt-10 mb-5 lg:mt-0'>
 					<h1 className='text-7xl sm:text-[100px] lg:text-[150px] text-center'>
 						BEST YOL
 					</h1>
@@ -58,10 +58,10 @@ const HomePage = () => {
 						/>
 					</Link>
 				</div>
-				<div className='text-center w-2/3 text-xl sm:text-xl'>
+				<div className='text-center w-2/3 text-xl sm:text-xl mb-28'>
 					<p className='textShadow'>
-						Bienvenue sur Best yol, le site web qui vous offre une expérience
-						unique et motivante ! Best'yol vous présente Yol, votre compagnon
+						Bienvenue sur Best Yol, le site web qui vous offre une expérience
+						unique et motivante ! Best Yol vous présente Yol, votre compagnon
 						virtuel plein d'énergie et d'enthousiasme.
 					</p>
 					<p className='textShadow'>

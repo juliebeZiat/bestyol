@@ -53,7 +53,7 @@ const AchievementTile = ({ achievement }: AchievementTileProps) => {
 						? 'bg-lowOpacity'
 						: `${theme.vibrantBackgroundColor}`
 				} h-[15vh] p-8 w-[80%] flex ${
-					useIsMobile() ? 'h-full flex-col gap-y-[1rem]' : ''
+					useIsMobile() ? 'h-fit flex-col gap-y-[1rem]' : ''
 				} items-center relative text-white gap-x-[1rem] pixel-corners-items`}
 			>
 				<SuccessAsset

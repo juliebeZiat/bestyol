@@ -12,9 +12,17 @@ const LoaderComponent = styled.div`
 	animation: ${loadingAnimation} 2s infinite steps(6);
 `
 
-const Loader = () => {
+interface LoaderProps {
+	fullScreen?: boolean
+}
+
+const Loader = ({ fullScreen = true }: LoaderProps) => {
 	return (
-		<div className='h-screen w-full flex items-center justify-center'>
+		<div
+			className={`w-full flex items-center justify-center ${
+				fullScreen ? 'h-screen ' : 'h-96'
+			}`}
+		>
 			<LoaderComponent />
 		</div>
 	)

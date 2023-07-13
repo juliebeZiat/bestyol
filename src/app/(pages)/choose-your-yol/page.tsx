@@ -76,7 +76,7 @@ const ChooseYourYol = () => {
 					<h2 className='text-4xl'>{currentSpecies?.name ?? ''}</h2>
 				</div>
 
-				<div className='w-[40%]'>
+				<div className='lg:w-[40%] w-[80%]'>
 					<TextField
 						inputFocus
 						value={values.name}

@@ -62,14 +62,12 @@ const Navbar = () => {
 								/>
 							</div>
 						</Link>
-						<div className='flex flex-col'>
-							<div>
-								<span className='sm:text-3xl'>Level {currentLevel.level}</span>
-							</div>
-							<div>
-								<span className='text-sm sm:text-base'>{yol.data.name}</span>
-							</div>
+
+						<div className='flex flex-col mr-10 md:mr-0'>
+							<p className='sm:text-3xl'>Level {currentLevel.level}</p>
+							<span className='text-sm -mt-1'>{yol.data.name}</span>
 						</div>
+
 						<div className='flex flex-col'>
 							<ProgressBar
 								progress={yol.data.xp - currentLevel.levelMin}
