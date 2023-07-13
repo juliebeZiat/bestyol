@@ -12,9 +12,10 @@ import UsernameEmailForm from '@/app/components/profile/UsernameEmailForm'
 import PasswordForm from '@/app/components/profile/PasswordForm'
 import DeleteAccount from '@/app/components/profile/DeleteAccount'
 import PictureForm from '@/app/components/profile/PictureForm'
+import Image from 'next/image'
 
 const ProfilePage = () => {
-	const { user } = useAppSelector((state: RootState) => state.user)
+	const { user, theme } = useAppSelector((state: RootState) => state.user)
 
 	const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(false)
 	const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false)
@@ -28,22 +29,32 @@ const ProfilePage = () => {
 
 	return (
 		<div className='w-full flex flex-col gap-20 h-full'>
-			<ProfileBanner
-				avatar={user.pp}
-				setModalAvatarIsOpen={setModalAvatarIsOpen}
-			/>
 			<div
-				className={
-					'flex justify-center items-center mx-4 text-white gap-5 sm:gap-28 lg:gap-36 ' +
-					(isMobile ? 'flex-col' : '')
-				}
+				className={`pixel-corners md:w-2/3 w-[90%] ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} mt-10 m-auto relative`}
 			>
-				<ProfileInformation
-					setModalInfoIsOpen={setModalInfoIsOpen}
-					setModalPasswordIsOpen={setModalPasswordIsOpen}
-					setModalDeleteAccountIsOpen={setModalDeleteAccountIsOpen}
-				/>
-				<ProfileStatistics />
+				<div className={`${theme.vibrantBackgroundColor} h-15 w-full p-4`}>
+					<h1 className='text-white text-3xl'>PERMIS DE PROPRIÉTAIRE DE YOL</h1>
+				</div>
+				<div className='p-8'>
+					<div className='md:flex gap-x-6'>
+						<ProfileBanner setModalAvatarIsOpen={setModalAvatarIsOpen} />
+						<ProfileInformation
+							setModalInfoIsOpen={setModalInfoIsOpen}
+							setModalPasswordIsOpen={setModalPasswordIsOpen}
+							setModalDeleteAccountIsOpen={setModalDeleteAccountIsOpen}
+						/>
+					</div>
+					<ProfileStatistics />
+				</div>
+				{!isMobile && (
+					<Image
+						src='/assets/icons/tampon.png'
+						height={400}
+						width={400}
+						alt='tampon'
+						className='absolute -bottom-8 right-2'
+					/>
+				)}
 			</div>
 
 			<Modal
