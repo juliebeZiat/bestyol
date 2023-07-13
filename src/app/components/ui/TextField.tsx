@@ -54,7 +54,7 @@ const TextField = ({
 			<div className='relative text-white'>
 				<input
 					ref={inputFocus ? inputReference : null}
-					className={`pixel-corners-items appearance-none w-full py-2 px-3 sm:pl-6 focus:outline-none outline-none text-[.7rem] sm:text-xl bg-lowOpacity ${
+					className={`pixel-corners-items appearance-none w-full py-2 px-3 sm:pl-6 focus:outline-none outline-none text-[.7rem] text-xl bg-lowOpacity tracking-wider lg:tracking-normal ${
 						error && 'border-error border-2'
 					} `}
 					type={passwordShown ? 'text' : inputType}
@@ -63,6 +63,7 @@ const TextField = ({
 					onBlur={() => setIsFocused(false)}
 					value={value}
 					onChange={onChange ?? undefined}
+					autoCapitalize='none'
 				/>
 				{inputType === 'password' && (
 					<Image
