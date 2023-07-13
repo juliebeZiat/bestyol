@@ -92,7 +92,7 @@ const YolCarousel = ({
 
 	const windowSizes = useWindowSize()
 
-	if (isLoading || isFetching) return <Loader />
+	if (isLoading || isFetching) return <Loader fullScreen={false} />
 
 	return (
 		<div className='flex items-center justify-center'>
