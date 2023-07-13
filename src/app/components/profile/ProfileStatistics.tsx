@@ -28,7 +28,9 @@ const ProfileStatistics = () => {
 		<div
 			className={`pixel-corners h-4/6 w-full ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} mt-10 text-white p-5`}
 		>
-			<h2 className='text-4xl tracking-wider mb-4'>ACCOMPLISSEMENTS</h2>
+			<h2 className='md:text-4xl text-xl tracking-wider mb-4'>
+				ACCOMPLISSEMENTS
+			</h2>
 			<div>
 				<ul className='text-xl'>
 					<li>Succès complétés : {completedUserSuccess?.length}</li>

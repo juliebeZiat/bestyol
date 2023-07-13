@@ -18,17 +18,17 @@ const ProfileInformation = ({
 
 	return (
 		<div
-			className={`pixel-corners w-5/6 ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} p-6 flex`}
+			className={`pixel-corners md:w-5/6 ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} p-6 md:flex mt-10 md:mt-0`}
 		>
-			<div className='flex flex-col w-[50%] text-white'>
-				<p className='text-lg w-[70%] mb-6'>
+			<div className='flex flex-col md:w-[50%] text-white mb-4 md:mb-0'>
+				<p className='text-lg md:w-[70%] mb-6'>
 					Propriétaire certifié du Yol numéro {yolData?.data.id} -{' '}
 					{yolData?.data.name}
 				</p>
 				<p className='text-xl'>Nom : {user.username}</p>
 				<p className='text-xl'>Email : {user.email}</p>
 			</div>
-			<div className='flex flex-col w-[50%] text-white underline text-lg'>
+			<div className='flex flex-col md:w-[50%] text-white underline text-lg'>
 				<p className='cursor-pointer' onClick={() => setModalInfoIsOpen(true)}>
 					Modifier mon profil
 				</p>

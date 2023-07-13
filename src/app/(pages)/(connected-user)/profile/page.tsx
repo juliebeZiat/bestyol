@@ -30,13 +30,13 @@ const ProfilePage = () => {
 	return (
 		<div className='w-full flex flex-col gap-20 h-full'>
 			<div
-				className={`pixel-corners w-2/3 ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} mt-10 m-auto relative`}
+				className={`pixel-corners md:w-2/3 w-[90%] ${theme.secondaryBackgroundColor} ${theme.pixelBorderColor} mt-10 m-auto relative`}
 			>
 				<div className={`${theme.vibrantBackgroundColor} h-15 w-full p-4`}>
 					<h1 className='text-white text-3xl'>PERMIS DE PROPRIÉTAIRE DE YOL</h1>
 				</div>
 				<div className='p-8'>
-					<div className='flex gap-x-6'>
+					<div className='md:flex gap-x-6'>
 						<ProfileBanner setModalAvatarIsOpen={setModalAvatarIsOpen} />
 						<ProfileInformation
 							setModalInfoIsOpen={setModalInfoIsOpen}
@@ -46,13 +46,15 @@ const ProfilePage = () => {
 					</div>
 					<ProfileStatistics />
 				</div>
-				<Image
-					src='/assets/icons/tampon.png'
-					height={400}
-					width={400}
-					alt='tampon'
-					className='absolute -bottom-8 right-2'
-				/>
+				{!isMobile && (
+					<Image
+						src='/assets/icons/tampon.png'
+						height={400}
+						width={400}
+						alt='tampon'
+						className='absolute -bottom-8 right-2'
+					/>
+				)}
 			</div>
 
 			<Modal

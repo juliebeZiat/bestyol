@@ -1,3 +1,4 @@
+import { useIsMobile } from '@/hooks/useWindowSize'
 import { useAppSelector } from '@/state/hooks'
 import { RootState } from '@/state/store'
 import Image from 'next/image'
@@ -9,14 +10,15 @@ interface ProfileBannerProps {
 const ProfileBanner = ({ setModalAvatarIsOpen }: ProfileBannerProps) => {
 	const user = useAppSelector((state: RootState) => state.user.user)
 	const theme = useAppSelector((state: RootState) => state.user.theme)
+	const isMobile = useIsMobile()
 	if (!user) return null
 
 	return (
-		<div className='relative group w-fit'>
+		<div className='relative group w-fit m-auto md:m-0'>
 			<Image
 				src={user.pp}
-				height={250}
-				width={200}
+				height={isMobile ? 150 : 250}
+				width={isMobile ? 150 : 250}
 				alt='Image de profil'
 				className={`border-4 border-darkLowOpacity ${theme.vibrantBackgroundColor}`}
 			/>
