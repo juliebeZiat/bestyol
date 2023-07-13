@@ -17,8 +17,8 @@ const ProfileBanner = ({ setModalAvatarIsOpen }: ProfileBannerProps) => {
 		<div className='relative group w-fit m-auto md:m-0'>
 			<Image
 				src={user.pp}
-				height={isMobile ? 150 : 250}
-				width={isMobile ? 150 : 250}
+				height={isMobile ? 150 : 200}
+				width={isMobile ? 150 : 200}
 				alt='Image de profil'
 				className={`border-4 border-darkLowOpacity ${theme.vibrantBackgroundColor}`}
 			/>
