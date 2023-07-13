@@ -20,7 +20,7 @@ const YolCarousel = ({
 	const dispatch = useAppDispatch()
 	const [species, setSpecies] = useState<SpeciesModifiedData[]>()
 
-	const { data, isLoading, isFetching } = useFetchAllYolSpecies()
+	const { data, isLoading } = useFetchAllYolSpecies()
 	const speciesToDisplay = data?.data.species.filter(
 		(specie) => specie.stage === SpeciesStages.BABY,
 	)
@@ -92,7 +92,7 @@ const YolCarousel = ({
 
 	const windowSizes = useWindowSize()
 
-	if (isLoading || isFetching) return <Loader fullScreen={false} />
+	if (isLoading) return <Loader fullScreen={false} />
 
 	return (
 		<div className='flex items-center justify-center'>
