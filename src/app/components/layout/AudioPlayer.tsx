@@ -30,7 +30,7 @@ const AudioPlayer = ({
 		if (muted) {
 			audioPlayer.current.volume = 0
 		} else {
-			audioPlayer.current.volume = 1
+			audioPlayer.current.volume = 0.02
 			if (audioPlayer.current.paused) audioPlayer.current.play()
 		}
 	}, [muted])
